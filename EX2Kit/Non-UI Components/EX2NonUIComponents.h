@@ -12,5 +12,6 @@
 #import "EX2FileDecryptor.h"
 #import "EX2FileEncryptor.h"
 #import "EX2RingBuffer.h"
+#import "EX2SimpleConnectionQueue.h"
 
 #endif
