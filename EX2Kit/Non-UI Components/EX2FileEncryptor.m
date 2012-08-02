@@ -1,6 +1,6 @@
 //
 //  EX2FileEncryptor.m
-//  TestCode
+//  EX2Kit
 //
 //  Created by Ben Baron on 6/29/12.
 //  Copyright (c) 2012 Ben Baron. All rights reserved.
@@ -9,7 +9,7 @@
 #import "EX2FileEncryptor.h"
 #import "RNCryptor.h"
 #import "EX2RingBuffer.h"
-//#import "DDLog.h"
+#import "DDLog.h"
 
 @interface EX2FileEncryptor()
 {
@@ -24,7 +24,7 @@
 @implementation EX2FileEncryptor
 @synthesize path, fileHandle, encryptionBuffer, chunkSize;
 
-//static const int ddLogLevel = LOG_LEVEL_INFO;
+static const int ddLogLevel = LOG_LEVEL_INFO;
 
 #define DEFAULT_CHUNK_SIZE 4096
 
@@ -76,14 +76,14 @@
 	{
 		NSData *data = [self.encryptionBuffer drainData:chunkSize];
 		NSError *encryptionError;
-		//NSTimeInterval start = [[NSDate date] timeIntervalSince1970];	
+		NSTimeInterval start = [[NSDate date] timeIntervalSince1970];	
 		NSData *encrypted = [[RNCryptor AES256Cryptor] encryptData:data password:key error:&encryptionError];
-		//DDLogVerbose(@"total time: %f", [[NSDate date] timeIntervalSince1970] - start);
+		DDLogVerbose(@"total time: %f", [[NSDate date] timeIntervalSince1970] - start);
 
 		//DLog(@"data size: %u  encrypted size: %u", data.length, encrypted.length);
 		if (encryptionError)
 		{
-			//DDLogError(@"Encryptor: ERROR THERE WAS AN ERROR ENCRYPTING THIS CHUNK");
+			DDLogError(@"Encryptor: ERROR THERE WAS AN ERROR ENCRYPTING THIS CHUNK");
 			return bytesWritten;
 		}
 		else
@@ -96,7 +96,7 @@
 			}
 			@catch (NSException *exception) 
 			{
-				//DDLogError(@"Encryptor: Failed to write to file");
+				DDLogError(@"Encryptor: Failed to write to file");
 				@throw(exception);
 			}
 		}
@@ -112,16 +112,16 @@
 
 - (void)clearBuffer
 {
-	//DDLogInfo(@"Encryptor: clearing the buffer");
+	DDLogInfo(@"Encryptor: clearing the buffer");
 	[self.encryptionBuffer reset];
 }
 
 - (BOOL)closeFile
 {
-	//DDLogInfo(@"Encryptor: closing the file");
+	DDLogInfo(@"Encryptor: closing the file");
 	while (self.encryptionBuffer.filledSpaceLength > 0)
 	{
-		//DDLogInfo(@"Encryptor: writing the remaining bytes");
+		DDLogInfo(@"Encryptor: writing the remaining bytes");
 		NSUInteger length = self.encryptionBuffer.filledSpaceLength >= 4096 ? 4096 : self.encryptionBuffer.filledSpaceLength;
 		NSData *data = [self.encryptionBuffer drainData:length];
 		
@@ -130,7 +130,7 @@
 		//DLog(@"data size: %u  encrypted size: %u", data.length, encrypted.length);
 		if (encryptionError)
 		{
-			//DDLogError(@"ERROR THERE WAS AN ERROR ENCRYPTING THIS CHUNK");
+			DDLogError(@"ERROR THERE WAS AN ERROR ENCRYPTING THIS CHUNK");
 			//return NO;
 		}
 		else

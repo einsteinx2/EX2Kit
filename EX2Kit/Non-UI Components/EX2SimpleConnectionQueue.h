@@ -47,20 +47,29 @@
 
 #import <Foundation/Foundation.h>
 
+@protocol EX2SimpleConnectionQueueDelegate;
 
-@interface EX2SimpleConnectionQueue : NSObject 
-{
-	NSMutableArray *connectionStack;
-		
-	BOOL isRunning;
-}
+// Class
+@interface EX2SimpleConnectionQueue : NSObject
 
-@property (readonly) NSMutableArray *connectionStack;
+@property (unsafe_unretained) id <EX2SimpleConnectionQueueDelegate> delegate;
+
+@property (readonly, strong) NSMutableArray *connectionStack;
 @property (readonly) BOOL isRunning;
 
 - (void)registerConnection:(NSURLConnection *)connection;
 - (void)connectionFinished:(NSURLConnection *)connection;
+
 - (void)startQueue;
 - (void)stopQueue;
+- (void)clearQueue;
+
+@end
+
+// Delegate Protocol
+@protocol EX2SimpleConnectionQueueDelegate <NSObject>
+
+@optional
+- (void)connectionQueueDidFinish:(EX2SimpleConnectionQueue *)connectionQueue;
 
 @end

@@ -49,25 +49,17 @@
 
 @implementation EX2SimpleConnectionQueue
 
-@synthesize connectionStack, isRunning;
+@synthesize delegate, connectionStack, isRunning;
 
-- (id) init
+- (id)init
 {
 	if (self = [super init])
 	{
 		connectionStack = [[NSMutableArray alloc] init];
-		
 		isRunning = NO;
 	}
 	
 	return self;
-}
-
-- (void)dealloc
-{
-	[connectionStack release];
-	
-	[super dealloc];
 }
 
 - (void)registerConnection:(NSURLConnection *)connection
@@ -92,6 +84,8 @@
 	else
 	{
 		isRunning = NO;
+        
+        [delegate connectionQueueDidFinish:self];
 	}
 }
 
@@ -110,6 +104,18 @@
 - (void)stopQueue
 {
 	isRunning = NO;
+}
+
+- (void)clearQueue
+{
+	[self stopQueue];
+	
+	for (NSURLConnection *connection in connectionStack)
+	{
+		[connection cancel];
+	}
+	
+	[connectionStack removeAllObjects];
 }
 
 @end

@@ -1,5 +1,5 @@
 //
-//  Macros.h
+//  EX2Macros.h
 //  EX2Kit
 //
 //  Created by Ben Baron on 3/10/12.
@@ -9,16 +9,13 @@
 #ifndef EX2Kit_Macros_h
 #define EX2Kit_Macros_h
 
-// 240.0 is the minimum URL connection timeout enforced by CFNetwork
-// Unless an HTTP Post body is created then it may default to 74.0
-// unless you reset the timeout after setting up the post body
-#define ISMSLoadingTimeout 240.0
-#define ISMSJukeboxTimeout 60.0
-#define ISMSServerCheckTimeout 15.0
+#define BytesFromKB(value) (value * 1000)
+#define BytesFromMB(value) (BytesFromKB(value) * 1000)
+#define BytesFromGB(value) (BytesFromMB(value) * 1000)
 
-#define BytesToKB(value) (value * 1024)
-#define BytesToMB(value) (BytesToKB(value) * 1024)
-#define BytesToGB(value) (BytesToMB(value) * 1024)
+#define BytesFromKiB(value) (value * 1024)
+#define BytesFromMiB(value) (BytesFromKiB(value) * 1024)
+#define BytesFromGiB(value) (BytesFromMiB(value) * 1024)
 
 // iPad detection
 #ifdef UI_USER_INTERFACE_IDIOM//()
@@ -26,10 +23,6 @@
 #else
 #define IS_IPAD() (false)
 #endif
-
-// 3G restrictions
-#define IS_3G_UNRESTRICTED NO   // 3G is restricted (safe for App Store)
-//#define IS_3G_UNRESTRICTED YES  // 3G is NOT restricted (NOT safe for App Store)
 
 // Lite version build switch
 #ifdef LITE
@@ -95,17 +88,11 @@
 
 #define BytesForSecondsAtBitrate(seconds, bitrate) ((bitrate / 8) * 1024 * seconds)
 
-#define ISMSiPadBackgroundColor [UIColor colorWithPatternImage:[UIImage imageNamed:@"underPageBackground.png"]]
-#define ISMSiPadCornerRadius 5.
+#define SYSTEM_VERSION_EQUAL_TO(v)                  ([[[UIDevice currentDevice] systemVersion] compare:v options:NSNumericSearch] == NSOrderedSame)
+#define SYSTEM_VERSION_GREATER_THAN(v)              ([[[UIDevice currentDevice] systemVersion] compare:v options:NSNumericSearch] == NSOrderedDescending)
+#define SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(v)  ([[[UIDevice currentDevice] systemVersion] compare:v options:NSNumericSearch] != NSOrderedAscending)
+#define SYSTEM_VERSION_LESS_THAN(v)                 ([[[UIDevice currentDevice] systemVersion] compare:v options:NSNumericSearch] == NSOrderedAscending)
+#define SYSTEM_VERSION_LESS_THAN_OR_EQUAL_TO(v)     ([[[UIDevice currentDevice] systemVersion] compare:v options:NSNumericSearch] != NSOrderedDescending)
 
-typedef enum
-{
-	ISMSBassVisualType_none		 = 0,
-	ISMSBassVisualType_line		 = 1,
-	ISMSBassVisualType_skinnyBar = 2,
-	ISMSBassVisualType_fatBar	 = 3,
-	ISMSBassVisualType_aphexFace = 4,
-	ISMSBassVisualType_maxValue  = 5
-} ISMSBassVisualType;
 
 #endif

@@ -1,6 +1,6 @@
 //
 //  EX2FileDecryptor.m
-//  TestCode
+//  EX2Kit
 //
 //  Created by Ben Baron on 6/29/12.
 //  Copyright (c) 2012 Ben Baron. All rights reserved.
@@ -9,7 +9,7 @@
 #import "EX2FileDecryptor.h"
 #import "RNCryptor.h"
 #import "EX2RingBuffer.h"
-//#import "DDLog.h"
+#import "DDLog.h"
 
 @interface EX2FileDecryptor()
 {
@@ -22,11 +22,11 @@
 @end
 
 @implementation EX2FileDecryptor
-@synthesize fileHandle, path, decryptedBuffer, tempDecryptBuffer, seekOffset, chunkSize;
+@synthesize fileHandle, path, decryptedBuffer, tempDecryptBuffer, seekOffset, chunkSize, error;
 
 #define DEFAULT_DECR_CHUNK_SIZE 4096
 
-//static const int ddLogLevel = LOG_LEVEL_ERROR;
+static const int ddLogLevel = LOG_LEVEL_ERROR;
 
 - (id)init
 {
@@ -65,7 +65,7 @@
 	
 	seekOffset = mod;
 	
-	//DDLogVerbose(@"offset: %u  padding: %u  realOffset: %u  mod: %u:", offset, padding, realOffset, mod);
+	DDLogVerbose(@"offset: %u  padding: %u  realOffset: %u  mod: %u:", offset, padding, realOffset, mod);
 	
 	@try {
 		[self.fileHandle seekToFileOffset:realOffset];
@@ -88,8 +88,8 @@
 	{
 		NSUInteger encryptedChunkSize = self.encryptedChunkSize;
 		
-		//DDLogVerbose(@"  ");
-		//DDLogVerbose(@"asked to read length: %u", length);
+		DDLogVerbose(@"  ");
+		DDLogVerbose(@"asked to read length: %u", length);
 		// Round up the read to the next block
 		//length = self.decryptedBuffer.filledSpaceLength - length;
 		NSUInteger realLength = seekOffset + length;
@@ -100,7 +100,7 @@
 			realLength += self.encryptedChunkSize;
 		}
 		
-		//DDLogVerbose(@"seek offset %u   realLength %u", seekOffset, realLength);
+		DDLogVerbose(@"seek offset %u   realLength %u", seekOffset, realLength);
 		NSUInteger mod = realLength % encryptedChunkSize;
 		if (mod > chunkSize)
 		{
@@ -108,7 +108,7 @@
 			mod -= chunkSize;
 		}
 		
-		//DDLogVerbose(@"mod %u", mod);
+		DDLogVerbose(@"mod %u", mod);
 		//if (mod != 0)
 		if (realLength % encryptedChunkSize != 0)
 		{
@@ -116,9 +116,9 @@
 			//realLength += ENCR_CHUNK_SIZE - mod; 
 			realLength = ((int)(realLength / encryptedChunkSize) * encryptedChunkSize) + encryptedChunkSize;
 		}
-		//DDLogVerbose(@"reading length: %u", realLength);
+		DDLogVerbose(@"reading length: %u", realLength);
 		
-		//DDLogInfo(@"file offset: %llu", self.fileHandle.offsetInFile);
+		DDLogInfo(@"file offset: %llu", self.fileHandle.offsetInFile);
 		
 		// We need to decrypt some more data
 		[self.tempDecryptBuffer reset];
@@ -128,45 +128,46 @@
 		} @catch (NSException *exception) {
 			readData = nil;
 		}
-		//DDLogVerbose(@"read data length %u", readData.length);
+		DDLogVerbose(@"read data length %u", readData.length);
 		
 		if (readData)
 		{
-			//DDLogVerbose(@"filling temp buffer with data");
+			DDLogVerbose(@"filling temp buffer with data");
 			[self.tempDecryptBuffer fillWithData:readData];
-			//DDLogVerbose(@"temp buffer filled size %u", self.tempDecryptBuffer.filledSpaceLength);
+			DDLogVerbose(@"temp buffer filled size %u", self.tempDecryptBuffer.filledSpaceLength);
 		}
 		
 		while (self.tempDecryptBuffer.filledSpaceLength >= encryptedChunkSize)
 		{
-			//DDLogVerbose(@"draining data");
+			DDLogVerbose(@"draining data");
 			NSData *data = [self.tempDecryptBuffer drainData:encryptedChunkSize];
-			//DDLogVerbose(@"data drained, filled size %u", self.tempDecryptBuffer.filledSpaceLength);
+			DDLogVerbose(@"data drained, filled size %u", self.tempDecryptBuffer.filledSpaceLength);
 			NSError *decryptionError;
-			//DDLogVerbose(@"decrypting data");
+			DDLogVerbose(@"decrypting data");
 			NSData *decrypted = [[RNCryptor AES256Cryptor] decryptData:data password:key error:&decryptionError];
-			//DDLogVerbose(@"data size: %u  decrypted size: %u", data.length, decrypted.length);
+			DDLogVerbose(@"data size: %u  decrypted size: %u", data.length, decrypted.length);
 			if (decryptionError)
 			{
-				//DDLogError(@"ERROR THERE WAS AN ERROR DECRYPTING THIS CHUNK");
+				error = decryptionError;
+				DDLogError(@"ERROR THERE WAS AN ERROR DECRYPTING THIS CHUNK");
 			}
 			else
 			{
 				// Add the data to the decryption buffer
 				if (seekOffset > 0)
 				{
-					//DDLogVerbose(@"seek offset greater than 0");
+					DDLogVerbose(@"seek offset greater than 0");
 					const void *tempBuff = decrypted.bytes;
-					//DDLogVerbose(@"filling decrypted buffer length %u", chunkSize-seekOffset);
+					DDLogVerbose(@"filling decrypted buffer length %u", chunkSize-seekOffset);
 					[self.decryptedBuffer fillWithBytes:tempBuff+seekOffset length:chunkSize-seekOffset];
 					seekOffset = 0;
-					//DDLogVerbose(@"setting seekOffset to 0");
+					DDLogVerbose(@"setting seekOffset to 0");
 				}
 				else
 				{
-					//DDLogVerbose(@"filling decrypted buffer with data length %u", decrypted.length);
+					DDLogVerbose(@"filling decrypted buffer with data length %u", decrypted.length);
 					[self.decryptedBuffer fillWithData:decrypted];
-					//DDLogVerbose(@"filled decrypted buffer");
+					DDLogVerbose(@"filled decrypted buffer");
 				}
 			}
 		}
@@ -176,9 +177,9 @@
 	NSUInteger bytesRead = self.decryptedBuffer.filledSpaceLength >= length ? length : self.decryptedBuffer.filledSpaceLength;
 	if (bytesRead > 0)
 	{
-		//DDLogVerbose(@"draining bytes into buffer length %u", bytesRead);
+		DDLogVerbose(@"draining bytes into buffer length %u", bytesRead);
 		[self.decryptedBuffer drainBytes:buffer length:bytesRead];
-		//DDLogVerbose(@"bytes drained");
+		DDLogVerbose(@"bytes drained");
 	}
 
 	return bytesRead;
@@ -193,7 +194,7 @@
 	{
 		returnData = [NSData dataWithBytesNoCopy:buffer length:realLength freeWhenDone:YES];
 	}
-	//DDLogVerbose(@"read bytes length %u", realLength);
+	DDLogVerbose(@"read bytes length %u", realLength);
 	return returnData;
 }
 

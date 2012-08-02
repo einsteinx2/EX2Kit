@@ -15,4 +15,6 @@
 #import "EX2NonUIComponents.h"
 #import "EX2UIComponents.h"
 
+#import "CocoaLumberjack.h"
+
 #endif

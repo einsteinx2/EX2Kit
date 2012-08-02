@@ -19,6 +19,8 @@
 #define ISMSTopShadowName @"ISMS Top Shadow"
 #define ISMSBottomShadowName @"ISMS Bottom Shadow"
 
+#define ISMSiPadCornerRadius 5.
+
 + (CAGradientLayer *)verticalShadowWithAlpha:(CGFloat)shadowAlpha inverse:(BOOL)inverse
 {
 	CAGradientLayer *newShadow = [[CAGradientLayer alloc] init];
@@ -147,7 +149,7 @@
 
 - (CGFloat)top 
 {
-    return CGRectGetMaxY(self.frame);
+    return CGRectGetMinY(self.frame);
 }
 
 - (void)setTop:(CGFloat)y 
@@ -171,7 +173,7 @@
 
 - (CGFloat)bottom 
 {
-	return CGRectGetMinY(self.frame);
+	return CGRectGetMaxY(self.frame);
 }
 
 - (void)setBottom:(CGFloat)bottom 

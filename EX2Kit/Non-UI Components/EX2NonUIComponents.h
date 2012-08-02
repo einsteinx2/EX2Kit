@@ -13,5 +13,6 @@
 #import "EX2FileEncryptor.h"
 #import "EX2RingBuffer.h"
 #import "EX2SimpleConnectionQueue.h"
+#import "EX2NetworkIndicator.h"
 
 #endif

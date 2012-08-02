@@ -13,5 +13,8 @@
 #import "NSArray+Additions.h"
 #import "NSString+Additions.h"
 #import "NSNotificationCenter+MainThread.h"
+#import "NSData+AES128.h"
+#import "NSData+Base64.h"
+#import "NSDate+UTC.h"
 
 #endif

@@ -7,6 +7,29 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		53AF2FF815C9FCEC0007D112 /* EX2NetworkIndicator.h in Headers */ = {isa = PBXBuildFile; fileRef = 53AF2FF615C9FCEC0007D112 /* EX2NetworkIndicator.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		53AF2FF915C9FCEC0007D112 /* EX2NetworkIndicator.m in Sources */ = {isa = PBXBuildFile; fileRef = 53AF2FF715C9FCEC0007D112 /* EX2NetworkIndicator.m */; };
+		53AF2FFE15C9FDD00007D112 /* EX2NotificationBar.h in Headers */ = {isa = PBXBuildFile; fileRef = 53AF2FFB15C9FDD00007D112 /* EX2NotificationBar.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		53AF2FFF15C9FDD00007D112 /* EX2NotificationBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 53AF2FFC15C9FDD00007D112 /* EX2NotificationBar.m */; };
+		53AF300015C9FDD00007D112 /* EX2NotificationBar.xib in Resources */ = {isa = PBXBuildFile; fileRef = 53AF2FFD15C9FDD00007D112 /* EX2NotificationBar.xib */; };
+		53AF301B15CA11370007D112 /* EX2SimpleConnectionQueue.h in Headers */ = {isa = PBXBuildFile; fileRef = 53AF301915CA11370007D112 /* EX2SimpleConnectionQueue.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		53AF301C15CA11370007D112 /* EX2SimpleConnectionQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = 53AF301A15CA11370007D112 /* EX2SimpleConnectionQueue.m */; };
+		53AF303315CA12F90007D112 /* UIColor+ColorWithHex.h in Headers */ = {isa = PBXBuildFile; fileRef = 53AF303115CA12F90007D112 /* UIColor+ColorWithHex.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		53AF303415CA12F90007D112 /* UIColor+ColorWithHex.m in Sources */ = {isa = PBXBuildFile; fileRef = 53AF303215CA12F90007D112 /* UIColor+ColorWithHex.m */; };
+		53AF304115CA14EF0007D112 /* UIImage+Tint.h in Headers */ = {isa = PBXBuildFile; fileRef = 53AF303F15CA14EE0007D112 /* UIImage+Tint.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		53AF304215CA14EF0007D112 /* UIImage+Tint.m in Sources */ = {isa = PBXBuildFile; fileRef = 53AF304015CA14EF0007D112 /* UIImage+Tint.m */; };
+		53AF304F15CA157D0007D112 /* UIImage+CustomStretch.h in Headers */ = {isa = PBXBuildFile; fileRef = 53AF304D15CA157D0007D112 /* UIImage+CustomStretch.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		53AF305015CA157D0007D112 /* UIImage+CustomStretch.m in Sources */ = {isa = PBXBuildFile; fileRef = 53AF304E15CA157D0007D112 /* UIImage+CustomStretch.m */; };
+		53AF306B15CA17F20007D112 /* NSData+AES128.h in Headers */ = {isa = PBXBuildFile; fileRef = 53AF306515CA17F20007D112 /* NSData+AES128.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		53AF306C15CA17F20007D112 /* NSData+AES128.m in Sources */ = {isa = PBXBuildFile; fileRef = 53AF306615CA17F20007D112 /* NSData+AES128.m */; };
+		53AF306D15CA17F20007D112 /* NSData+Base64.h in Headers */ = {isa = PBXBuildFile; fileRef = 53AF306715CA17F20007D112 /* NSData+Base64.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		53AF306E15CA17F20007D112 /* NSData+Base64.m in Sources */ = {isa = PBXBuildFile; fileRef = 53AF306815CA17F20007D112 /* NSData+Base64.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		53AF306F15CA17F20007D112 /* NSDate+UTC.h in Headers */ = {isa = PBXBuildFile; fileRef = 53AF306915CA17F20007D112 /* NSDate+UTC.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		53AF307015CA17F20007D112 /* NSDate+UTC.m in Sources */ = {isa = PBXBuildFile; fileRef = 53AF306A15CA17F20007D112 /* NSDate+UTC.m */; };
+		53AF308715CA1BFA0007D112 /* NSString+SHA1.h in Headers */ = {isa = PBXBuildFile; fileRef = 53AF308515CA1BF90007D112 /* NSString+SHA1.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		53AF308815CA1BFA0007D112 /* NSString+SHA1.m in Sources */ = {isa = PBXBuildFile; fileRef = 53AF308615CA1BF90007D112 /* NSString+SHA1.m */; };
+		53AF309915CA1EAE0007D112 /* NSString+Validation.h in Headers */ = {isa = PBXBuildFile; fileRef = 53AF309715CA1EA90007D112 /* NSString+Validation.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		53AF309A15CA1EAE0007D112 /* NSString+Validation.m in Sources */ = {isa = PBXBuildFile; fileRef = 53AF309815CA1EAA0007D112 /* NSString+Validation.m */; };
 		53D44EAA15AA56C700CDD3B8 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 53D44EA815AA56C700CDD3B8 /* InfoPlist.strings */; };
 		53D44EB715AA570500CDD3B8 /* RNCryptor.h in Headers */ = {isa = PBXBuildFile; fileRef = 53D44EB515AA570500CDD3B8 /* RNCryptor.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		53D44EB815AA570500CDD3B8 /* RNCryptor.m in Sources */ = {isa = PBXBuildFile; fileRef = 53D44EB615AA570500CDD3B8 /* RNCryptor.m */; };
@@ -82,9 +105,51 @@
 		53D44F5215AA571A00CDD3B8 /* EX2UIComponents.h in Headers */ = {isa = PBXBuildFile; fileRef = 53D44F0A15AA571900CDD3B8 /* EX2UIComponents.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		53D44F5315AA571A00CDD3B8 /* SnappySlider.h in Headers */ = {isa = PBXBuildFile; fileRef = 53D44F0B15AA571900CDD3B8 /* SnappySlider.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		53D44F5415AA571A00CDD3B8 /* SnappySlider.m in Sources */ = {isa = PBXBuildFile; fileRef = 53D44F0C15AA571900CDD3B8 /* SnappySlider.m */; };
+		53D4B71D15CA228900DCA62A /* DDAbstractDatabaseLogger.h in Headers */ = {isa = PBXBuildFile; fileRef = 53D4B70D15CA228900DCA62A /* DDAbstractDatabaseLogger.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		53D4B71E15CA228900DCA62A /* DDAbstractDatabaseLogger.m in Sources */ = {isa = PBXBuildFile; fileRef = 53D4B70E15CA228900DCA62A /* DDAbstractDatabaseLogger.m */; };
+		53D4B71F15CA228900DCA62A /* DDASLLogger.h in Headers */ = {isa = PBXBuildFile; fileRef = 53D4B70F15CA228900DCA62A /* DDASLLogger.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		53D4B72015CA228900DCA62A /* DDASLLogger.m in Sources */ = {isa = PBXBuildFile; fileRef = 53D4B71015CA228900DCA62A /* DDASLLogger.m */; };
+		53D4B72115CA228900DCA62A /* DDFileLogger.h in Headers */ = {isa = PBXBuildFile; fileRef = 53D4B71115CA228900DCA62A /* DDFileLogger.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		53D4B72215CA228900DCA62A /* DDFileLogger.m in Sources */ = {isa = PBXBuildFile; fileRef = 53D4B71215CA228900DCA62A /* DDFileLogger.m */; };
+		53D4B72315CA228900DCA62A /* DDLog.h in Headers */ = {isa = PBXBuildFile; fileRef = 53D4B71315CA228900DCA62A /* DDLog.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		53D4B72415CA228900DCA62A /* DDLog.m in Sources */ = {isa = PBXBuildFile; fileRef = 53D4B71415CA228900DCA62A /* DDLog.m */; };
+		53D4B72515CA228900DCA62A /* DDTTYLogger.h in Headers */ = {isa = PBXBuildFile; fileRef = 53D4B71515CA228900DCA62A /* DDTTYLogger.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		53D4B72615CA228900DCA62A /* DDTTYLogger.m in Sources */ = {isa = PBXBuildFile; fileRef = 53D4B71615CA228900DCA62A /* DDTTYLogger.m */; };
+		53D4B72715CA228900DCA62A /* ContextFilterLogFormatter.h in Headers */ = {isa = PBXBuildFile; fileRef = 53D4B71815CA228900DCA62A /* ContextFilterLogFormatter.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		53D4B72815CA228900DCA62A /* ContextFilterLogFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = 53D4B71915CA228900DCA62A /* ContextFilterLogFormatter.m */; };
+		53D4B72915CA228900DCA62A /* DispatchQueueLogFormatter.h in Headers */ = {isa = PBXBuildFile; fileRef = 53D4B71A15CA228900DCA62A /* DispatchQueueLogFormatter.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		53D4B72A15CA228900DCA62A /* DispatchQueueLogFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = 53D4B71B15CA228900DCA62A /* DispatchQueueLogFormatter.m */; };
+		53D4B72B15CA228900DCA62A /* README.txt in Resources */ = {isa = PBXBuildFile; fileRef = 53D4B71C15CA228900DCA62A /* README.txt */; };
+		53D4B74915CA242100DCA62A /* CocoaLumberjack.h in Headers */ = {isa = PBXBuildFile; fileRef = 53D4B74815CA242100DCA62A /* CocoaLumberjack.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		53D4B76915CA254C00DCA62A /* CommonKeyDerivation.c in Sources */ = {isa = PBXBuildFile; fileRef = 53D4B76615CA254600DCA62A /* CommonKeyDerivation.c */; };
+		53D4B76A15CA254C00DCA62A /* CommonKeyDerivation.h in Headers */ = {isa = PBXBuildFile; fileRef = 53D4B76715CA254700DCA62A /* CommonKeyDerivation.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		53D4B76B15CA254C00DCA62A /* CommonKeyDerivationPriv.h in Headers */ = {isa = PBXBuildFile; fileRef = 53D4B76815CA254900DCA62A /* CommonKeyDerivationPriv.h */; settings = {ATTRIBUTES = (Public, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		53AF2FF615C9FCEC0007D112 /* EX2NetworkIndicator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EX2NetworkIndicator.h; sourceTree = "<group>"; };
+		53AF2FF715C9FCEC0007D112 /* EX2NetworkIndicator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EX2NetworkIndicator.m; sourceTree = "<group>"; };
+		53AF2FFB15C9FDD00007D112 /* EX2NotificationBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EX2NotificationBar.h; sourceTree = "<group>"; };
+		53AF2FFC15C9FDD00007D112 /* EX2NotificationBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EX2NotificationBar.m; sourceTree = "<group>"; };
+		53AF2FFD15C9FDD00007D112 /* EX2NotificationBar.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EX2NotificationBar.xib; sourceTree = "<group>"; };
+		53AF301915CA11370007D112 /* EX2SimpleConnectionQueue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EX2SimpleConnectionQueue.h; sourceTree = "<group>"; };
+		53AF301A15CA11370007D112 /* EX2SimpleConnectionQueue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EX2SimpleConnectionQueue.m; sourceTree = "<group>"; };
+		53AF303115CA12F90007D112 /* UIColor+ColorWithHex.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+ColorWithHex.h"; sourceTree = "<group>"; };
+		53AF303215CA12F90007D112 /* UIColor+ColorWithHex.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+ColorWithHex.m"; sourceTree = "<group>"; };
+		53AF303F15CA14EE0007D112 /* UIImage+Tint.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+Tint.h"; sourceTree = "<group>"; };
+		53AF304015CA14EF0007D112 /* UIImage+Tint.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Tint.m"; sourceTree = "<group>"; };
+		53AF304D15CA157D0007D112 /* UIImage+CustomStretch.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+CustomStretch.h"; sourceTree = "<group>"; };
+		53AF304E15CA157D0007D112 /* UIImage+CustomStretch.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+CustomStretch.m"; sourceTree = "<group>"; };
+		53AF306515CA17F20007D112 /* NSData+AES128.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSData+AES128.h"; sourceTree = "<group>"; };
+		53AF306615CA17F20007D112 /* NSData+AES128.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSData+AES128.m"; sourceTree = "<group>"; };
+		53AF306715CA17F20007D112 /* NSData+Base64.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSData+Base64.h"; sourceTree = "<group>"; };
+		53AF306815CA17F20007D112 /* NSData+Base64.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSData+Base64.m"; sourceTree = "<group>"; };
+		53AF306915CA17F20007D112 /* NSDate+UTC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate+UTC.h"; sourceTree = "<group>"; };
+		53AF306A15CA17F20007D112 /* NSDate+UTC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+UTC.m"; sourceTree = "<group>"; };
+		53AF308515CA1BF90007D112 /* NSString+SHA1.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+SHA1.h"; sourceTree = "<group>"; };
+		53AF308615CA1BF90007D112 /* NSString+SHA1.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+SHA1.m"; sourceTree = "<group>"; };
+		53AF309715CA1EA90007D112 /* NSString+Validation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+Validation.h"; sourceTree = "<group>"; };
+		53AF309815CA1EAA0007D112 /* NSString+Validation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+Validation.m"; sourceTree = "<group>"; };
 		53D44EA315AA56C700CDD3B8 /* EX2Kit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = EX2Kit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		53D44EA715AA56C700CDD3B8 /* EX2Kit-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "EX2Kit-Info.plist"; sourceTree = "<group>"; };
 		53D44EA915AA56C700CDD3B8 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
@@ -163,6 +228,25 @@
 		53D44F0A15AA571900CDD3B8 /* EX2UIComponents.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EX2UIComponents.h; sourceTree = "<group>"; };
 		53D44F0B15AA571900CDD3B8 /* SnappySlider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SnappySlider.h; sourceTree = "<group>"; };
 		53D44F0C15AA571900CDD3B8 /* SnappySlider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SnappySlider.m; sourceTree = "<group>"; };
+		53D4B70D15CA228900DCA62A /* DDAbstractDatabaseLogger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DDAbstractDatabaseLogger.h; sourceTree = "<group>"; };
+		53D4B70E15CA228900DCA62A /* DDAbstractDatabaseLogger.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DDAbstractDatabaseLogger.m; sourceTree = "<group>"; };
+		53D4B70F15CA228900DCA62A /* DDASLLogger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DDASLLogger.h; sourceTree = "<group>"; };
+		53D4B71015CA228900DCA62A /* DDASLLogger.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DDASLLogger.m; sourceTree = "<group>"; };
+		53D4B71115CA228900DCA62A /* DDFileLogger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DDFileLogger.h; sourceTree = "<group>"; };
+		53D4B71215CA228900DCA62A /* DDFileLogger.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DDFileLogger.m; sourceTree = "<group>"; };
+		53D4B71315CA228900DCA62A /* DDLog.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DDLog.h; sourceTree = "<group>"; };
+		53D4B71415CA228900DCA62A /* DDLog.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DDLog.m; sourceTree = "<group>"; };
+		53D4B71515CA228900DCA62A /* DDTTYLogger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DDTTYLogger.h; sourceTree = "<group>"; };
+		53D4B71615CA228900DCA62A /* DDTTYLogger.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DDTTYLogger.m; sourceTree = "<group>"; };
+		53D4B71815CA228900DCA62A /* ContextFilterLogFormatter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContextFilterLogFormatter.h; sourceTree = "<group>"; };
+		53D4B71915CA228900DCA62A /* ContextFilterLogFormatter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContextFilterLogFormatter.m; sourceTree = "<group>"; };
+		53D4B71A15CA228900DCA62A /* DispatchQueueLogFormatter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DispatchQueueLogFormatter.h; sourceTree = "<group>"; };
+		53D4B71B15CA228900DCA62A /* DispatchQueueLogFormatter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DispatchQueueLogFormatter.m; sourceTree = "<group>"; };
+		53D4B71C15CA228900DCA62A /* README.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.txt; sourceTree = "<group>"; };
+		53D4B74815CA242100DCA62A /* CocoaLumberjack.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CocoaLumberjack.h; sourceTree = "<group>"; };
+		53D4B76615CA254600DCA62A /* CommonKeyDerivation.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = CommonKeyDerivation.c; sourceTree = "<group>"; };
+		53D4B76715CA254700DCA62A /* CommonKeyDerivation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommonKeyDerivation.h; sourceTree = "<group>"; };
+		53D4B76815CA254900DCA62A /* CommonKeyDerivationPriv.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommonKeyDerivationPriv.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -215,8 +299,12 @@
 		53D44EB415AA570500CDD3B8 /* Dependencies */ = {
 			isa = PBXGroup;
 			children = (
+				53D4B70C15CA228900DCA62A /* Lumberjack */,
 				53D44EB515AA570500CDD3B8 /* RNCryptor.h */,
 				53D44EB615AA570500CDD3B8 /* RNCryptor.m */,
+				53D4B76615CA254600DCA62A /* CommonKeyDerivation.c */,
+				53D4B76715CA254700DCA62A /* CommonKeyDerivation.h */,
+				53D4B76815CA254900DCA62A /* CommonKeyDerivationPriv.h */,
 			);
 			name = Dependencies;
 			path = ../../Dependencies;
@@ -252,11 +340,17 @@
 			children = (
 				53D44EBE15AA571900CDD3B8 /* EX2FoundationCategories.h */,
 				53D44EBF15AA571900CDD3B8 /* NSArray */,
+				53D44ECB15AA571900CDD3B8 /* NSString */,
 				53D44EC715AA571900CDD3B8 /* NSNotificationCenter+MainThread.h */,
 				53D44EC815AA571900CDD3B8 /* NSNotificationCenter+MainThread.m */,
 				53D44EC915AA571900CDD3B8 /* NSObject+ListMethods.h */,
 				53D44ECA15AA571900CDD3B8 /* NSObject+ListMethods.m */,
-				53D44ECB15AA571900CDD3B8 /* NSString */,
+				53AF306515CA17F20007D112 /* NSData+AES128.h */,
+				53AF306615CA17F20007D112 /* NSData+AES128.m */,
+				53AF306715CA17F20007D112 /* NSData+Base64.h */,
+				53AF306815CA17F20007D112 /* NSData+Base64.m */,
+				53AF306915CA17F20007D112 /* NSDate+UTC.h */,
+				53AF306A15CA17F20007D112 /* NSDate+UTC.m */,
 			);
 			path = Foundation;
 			sourceTree = "<group>";
@@ -278,10 +372,10 @@
 		53D44ECB15AA571900CDD3B8 /* NSString */ = {
 			isa = PBXGroup;
 			children = (
+				53D44ECF15AA571900CDD3B8 /* NSString+Additions.h */,
 				53D44ECC15AA571900CDD3B8 /* GTMDefines.h */,
 				53D44ECD15AA571900CDD3B8 /* GTMNSString+HTML.h */,
 				53D44ECE15AA571900CDD3B8 /* GTMNSString+HTML.m */,
-				53D44ECF15AA571900CDD3B8 /* NSString+Additions.h */,
 				53D44ED015AA571900CDD3B8 /* NSString+Clean.h */,
 				53D44ED115AA571900CDD3B8 /* NSString+Clean.m */,
 				53D44ED215AA571900CDD3B8 /* NSString+compareWithoutIndefiniteArticles.h */,
@@ -302,6 +396,10 @@
 				53D44EE115AA571900CDD3B8 /* NSString+TrimmingAdditions.m */,
 				53D44EE215AA571900CDD3B8 /* NSString+URLEncode.h */,
 				53D44EE315AA571900CDD3B8 /* NSString+URLEncode.m */,
+				53AF308515CA1BF90007D112 /* NSString+SHA1.h */,
+				53AF308615CA1BF90007D112 /* NSString+SHA1.m */,
+				53AF309715CA1EA90007D112 /* NSString+Validation.h */,
+				53AF309815CA1EAA0007D112 /* NSString+Validation.m */,
 			);
 			path = NSString;
 			sourceTree = "<group>";
@@ -336,6 +434,12 @@
 				53D44EF715AA571900CDD3B8 /* UIView+Tools.m */,
 				53D44EF815AA571900CDD3B8 /* UIViewController+IsVisible.h */,
 				53D44EF915AA571900CDD3B8 /* UIViewController+IsVisible.m */,
+				53AF303115CA12F90007D112 /* UIColor+ColorWithHex.h */,
+				53AF303215CA12F90007D112 /* UIColor+ColorWithHex.m */,
+				53AF303F15CA14EE0007D112 /* UIImage+Tint.h */,
+				53AF304015CA14EF0007D112 /* UIImage+Tint.m */,
+				53AF304D15CA157D0007D112 /* UIImage+CustomStretch.h */,
+				53AF304E15CA157D0007D112 /* UIImage+CustomStretch.m */,
 			);
 			path = UIKit;
 			sourceTree = "<group>";
@@ -351,13 +455,17 @@
 		53D44EFD15AA571900CDD3B8 /* Non-UI Components */ = {
 			isa = PBXGroup;
 			children = (
+				53D44F0215AA571900CDD3B8 /* EX2NonUIComponents.h */,
 				53D44EFE15AA571900CDD3B8 /* EX2FileDecryptor.h */,
 				53D44EFF15AA571900CDD3B8 /* EX2FileDecryptor.m */,
 				53D44F0015AA571900CDD3B8 /* EX2FileEncryptor.h */,
 				53D44F0115AA571900CDD3B8 /* EX2FileEncryptor.m */,
-				53D44F0215AA571900CDD3B8 /* EX2NonUIComponents.h */,
 				53D44F0315AA571900CDD3B8 /* EX2RingBuffer.h */,
 				53D44F0415AA571900CDD3B8 /* EX2RingBuffer.m */,
+				53AF2FF615C9FCEC0007D112 /* EX2NetworkIndicator.h */,
+				53AF2FF715C9FCEC0007D112 /* EX2NetworkIndicator.m */,
+				53AF301915CA11370007D112 /* EX2SimpleConnectionQueue.h */,
+				53AF301A15CA11370007D112 /* EX2SimpleConnectionQueue.m */,
 			);
 			path = "Non-UI Components";
 			sourceTree = "<group>";
@@ -378,8 +486,42 @@
 				53D44F0A15AA571900CDD3B8 /* EX2UIComponents.h */,
 				53D44F0B15AA571900CDD3B8 /* SnappySlider.h */,
 				53D44F0C15AA571900CDD3B8 /* SnappySlider.m */,
+				53AF2FFB15C9FDD00007D112 /* EX2NotificationBar.h */,
+				53AF2FFC15C9FDD00007D112 /* EX2NotificationBar.m */,
+				53AF2FFD15C9FDD00007D112 /* EX2NotificationBar.xib */,
 			);
 			path = "UI Components";
+			sourceTree = "<group>";
+		};
+		53D4B70C15CA228900DCA62A /* Lumberjack */ = {
+			isa = PBXGroup;
+			children = (
+				53D4B74815CA242100DCA62A /* CocoaLumberjack.h */,
+				53D4B70D15CA228900DCA62A /* DDAbstractDatabaseLogger.h */,
+				53D4B70E15CA228900DCA62A /* DDAbstractDatabaseLogger.m */,
+				53D4B70F15CA228900DCA62A /* DDASLLogger.h */,
+				53D4B71015CA228900DCA62A /* DDASLLogger.m */,
+				53D4B71115CA228900DCA62A /* DDFileLogger.h */,
+				53D4B71215CA228900DCA62A /* DDFileLogger.m */,
+				53D4B71315CA228900DCA62A /* DDLog.h */,
+				53D4B71415CA228900DCA62A /* DDLog.m */,
+				53D4B71515CA228900DCA62A /* DDTTYLogger.h */,
+				53D4B71615CA228900DCA62A /* DDTTYLogger.m */,
+				53D4B71715CA228900DCA62A /* Extensions */,
+			);
+			path = Lumberjack;
+			sourceTree = "<group>";
+		};
+		53D4B71715CA228900DCA62A /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				53D4B71815CA228900DCA62A /* ContextFilterLogFormatter.h */,
+				53D4B71915CA228900DCA62A /* ContextFilterLogFormatter.m */,
+				53D4B71A15CA228900DCA62A /* DispatchQueueLogFormatter.h */,
+				53D4B71B15CA228900DCA62A /* DispatchQueueLogFormatter.m */,
+				53D4B71C15CA228900DCA62A /* README.txt */,
+			);
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -431,7 +573,28 @@
 				53D44F4F15AA571A00CDD3B8 /* EX2Dispatch.h in Headers */,
 				53D44F5115AA571A00CDD3B8 /* EX2StaticClasses.h in Headers */,
 				53D44F5215AA571A00CDD3B8 /* EX2UIComponents.h in Headers */,
+				53AF2FF815C9FCEC0007D112 /* EX2NetworkIndicator.h in Headers */,
+				53AF2FFE15C9FDD00007D112 /* EX2NotificationBar.h in Headers */,
+				53AF301B15CA11370007D112 /* EX2SimpleConnectionQueue.h in Headers */,
+				53AF303315CA12F90007D112 /* UIColor+ColorWithHex.h in Headers */,
+				53AF304115CA14EF0007D112 /* UIImage+Tint.h in Headers */,
+				53AF304F15CA157D0007D112 /* UIImage+CustomStretch.h in Headers */,
+				53AF306B15CA17F20007D112 /* NSData+AES128.h in Headers */,
+				53AF306D15CA17F20007D112 /* NSData+Base64.h in Headers */,
+				53AF306F15CA17F20007D112 /* NSDate+UTC.h in Headers */,
+				53AF308715CA1BFA0007D112 /* NSString+SHA1.h in Headers */,
+				53AF309915CA1EAE0007D112 /* NSString+Validation.h in Headers */,
+				53D4B71D15CA228900DCA62A /* DDAbstractDatabaseLogger.h in Headers */,
+				53D4B71F15CA228900DCA62A /* DDASLLogger.h in Headers */,
+				53D4B72115CA228900DCA62A /* DDFileLogger.h in Headers */,
+				53D4B72315CA228900DCA62A /* DDLog.h in Headers */,
+				53D4B72515CA228900DCA62A /* DDTTYLogger.h in Headers */,
+				53D4B72715CA228900DCA62A /* ContextFilterLogFormatter.h in Headers */,
+				53D4B72915CA228900DCA62A /* DispatchQueueLogFormatter.h in Headers */,
+				53D4B74915CA242100DCA62A /* CocoaLumberjack.h in Headers */,
 				53D44F5315AA571A00CDD3B8 /* SnappySlider.h in Headers */,
+				53D4B76A15CA254C00DCA62A /* CommonKeyDerivation.h in Headers */,
+				53D4B76B15CA254C00DCA62A /* CommonKeyDerivationPriv.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -490,6 +653,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				53D44EAA15AA56C700CDD3B8 /* InfoPlist.strings in Resources */,
+				53AF300015C9FDD00007D112 /* EX2NotificationBar.xib in Resources */,
+				53D4B72B15CA228900DCA62A /* README.txt in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -573,6 +738,25 @@
 				53D44F4E15AA571A00CDD3B8 /* EX2RingBuffer.m in Sources */,
 				53D44F5015AA571A00CDD3B8 /* EX2Dispatch.m in Sources */,
 				53D44F5415AA571A00CDD3B8 /* SnappySlider.m in Sources */,
+				53AF2FF915C9FCEC0007D112 /* EX2NetworkIndicator.m in Sources */,
+				53AF2FFF15C9FDD00007D112 /* EX2NotificationBar.m in Sources */,
+				53AF301C15CA11370007D112 /* EX2SimpleConnectionQueue.m in Sources */,
+				53AF303415CA12F90007D112 /* UIColor+ColorWithHex.m in Sources */,
+				53AF304215CA14EF0007D112 /* UIImage+Tint.m in Sources */,
+				53AF305015CA157D0007D112 /* UIImage+CustomStretch.m in Sources */,
+				53AF306C15CA17F20007D112 /* NSData+AES128.m in Sources */,
+				53AF306E15CA17F20007D112 /* NSData+Base64.m in Sources */,
+				53AF307015CA17F20007D112 /* NSDate+UTC.m in Sources */,
+				53AF308815CA1BFA0007D112 /* NSString+SHA1.m in Sources */,
+				53AF309A15CA1EAE0007D112 /* NSString+Validation.m in Sources */,
+				53D4B71E15CA228900DCA62A /* DDAbstractDatabaseLogger.m in Sources */,
+				53D4B72015CA228900DCA62A /* DDASLLogger.m in Sources */,
+				53D4B72215CA228900DCA62A /* DDFileLogger.m in Sources */,
+				53D4B72415CA228900DCA62A /* DDLog.m in Sources */,
+				53D4B72615CA228900DCA62A /* DDTTYLogger.m in Sources */,
+				53D4B72815CA228900DCA62A /* ContextFilterLogFormatter.m in Sources */,
+				53D4B72A15CA228900DCA62A /* DispatchQueueLogFormatter.m in Sources */,
+				53D4B76915CA254C00DCA62A /* CommonKeyDerivation.c in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

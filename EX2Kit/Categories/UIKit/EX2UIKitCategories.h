@@ -16,5 +16,8 @@
 #import "UITableView+Shadows.h"
 #import "UIImageView+Reflection.h"
 #import "UIBezierPath+Smoothing.h"
+#import "UIColor+ColorWithHex.h"
+#import "UIImage+Tint.h"
+#import "UIImage+CustomStretch.h"
 
 #endif

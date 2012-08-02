@@ -1,6 +1,6 @@
 //
 //  EX2FileDecryptor.h
-//  TestCode
+//  EX2Kit
 //
 //  Created by Ben Baron on 6/29/12.
 //  Copyright (c) 2012 Ben Baron. All rights reserved.
@@ -9,6 +9,8 @@
 #import <Foundation/Foundation.h>
 
 @interface EX2FileDecryptor : NSObject
+
+@property (nonatomic, readonly) NSError *error;
 
 @property (nonatomic, readonly) NSUInteger chunkSize;
 @property (nonatomic, readonly) NSUInteger encryptedChunkSize;

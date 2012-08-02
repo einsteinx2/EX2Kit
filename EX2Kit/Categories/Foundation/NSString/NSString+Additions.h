@@ -20,5 +20,8 @@
 #import "GTMNSString+HTML.h"
 #import "NSString+FileSize.h"
 #import "NSString+Clean.h"
+#import "NSString+SHA1.h"
+#import "NSString+Validation.h"
+
 
 #endif

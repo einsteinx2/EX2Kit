@@ -10,5 +10,6 @@
 #define EX2Kit_EX2UIComponents_h
 
 #import "SnappySlider.h"
+#import "EX2NotificationBar.h"
 
 #endif
