@@ -68,7 +68,7 @@
 - (void)viewWillAppear:(BOOL)animated
 {
 	[super viewWillAppear:animated];
-	
+    
 	// In iOS 4 make sure to pass this message
 	if (SYSTEM_VERSION_LESS_THAN(@"5.0"))
 	{
@@ -90,6 +90,28 @@
 - (void)viewDidAppear:(BOOL)animated
 {
 	[super viewDidAppear:animated];
+    
+    if (self.isNotificationBarShowing)
+	{
+		if ([self.mainViewController isKindOfClass:[UITabBarController class]])
+		{
+			UITabBarController *tabController = (UITabBarController *)self.mainViewController;
+			if ([tabController.selectedViewController isKindOfClass:[UINavigationController class]])
+			{
+                // Must shift down the navigation controller after switching tabs
+				UINavigationController *navController = (UINavigationController *)tabController.selectedViewController;
+				//navController.view.y += STATUS_HEIGHT; // attempt to fix the moving down on rotation bug
+                
+                if (navController.view.y != STATUS_HEIGHT)
+                {
+                    [UIView animateWithDuration:0.25 animations:^
+                     {
+                         navController.view.y = STATUS_HEIGHT;
+                     }];
+                }
+			}
+		}
+	}
 	
 	// In iOS 4 make sure to pass this message
 	if (SYSTEM_VERSION_LESS_THAN(@"5.0"))
