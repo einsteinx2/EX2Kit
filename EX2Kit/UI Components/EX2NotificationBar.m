@@ -10,12 +10,18 @@
 #define DEFAULT_HIDE_DURATION 5.0
 #define ANIMATE_DUR 0.3
 #define DEFAULT_BAR_HEIGHT 30.
-//#define STATUS_HEIGHT [[UIApplication sharedApplication] statusBarFrame].size.height
-#define STATUS_HEIGHT ([UIApplication sharedApplication].isStatusBarHidden ? 0. : 20.)
-//#define STATUS_HEIGHT ([UIApplication sharedApplication].isStatusBarHidden ? 0. : 10.)
+#define SMALL_STATUS_HEIGHT 20.
+#define LARGE_STATUS_HEIGHT 40.
+#define ACTUAL_STATUS_HEIGHT [[UIApplication sharedApplication] statusBarFrame].size.height
+
+@interface EX2NotificationBar()
+@property (nonatomic) BOOL wasStatusBarTallOnStart;
+@property (nonatomic) BOOL changedTabSinceTallHeight;
+@property (nonatomic) BOOL hasViewWillAppearRan;
+@end
 
 @implementation EX2NotificationBar
-@synthesize position, notificationBar, notificationBarContent, mainViewHolder, mainViewController, isNotificationBarShowing, notificationBarHeight;
+@synthesize position, notificationBar, notificationBarContent, mainViewHolder, mainViewController, isNotificationBarShowing, notificationBarHeight, wasStatusBarTallOnStart, hasViewWillAppearRan;
 
 #pragma mark - Life Cycle
 
@@ -67,6 +73,7 @@
 	self.mainViewController = self.mainViewController;
     
     // Register for status bar frame changes
+    //[NSNotificationCenter defaultCenter]
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(statusBarDidChange:) name:UIApplicationDidChangeStatusBarFrameNotification object:nil];
 }
 
@@ -101,6 +108,34 @@
 	{
 		[self.mainViewController viewDidAppear:animated];
 	}
+    
+    // Fix for modal view controller dismissal positioning
+    if ([self.mainViewController isKindOfClass:[UITabBarController class]])
+    {
+        UITabBarController *tabController = (UITabBarController *)self.mainViewController;
+        if ([tabController.selectedViewController isKindOfClass:[UINavigationController class]])
+        {
+            UINavigationController *navController = (UINavigationController *)tabController.selectedViewController;
+            if (ACTUAL_STATUS_HEIGHT > SMALL_STATUS_HEIGHT)
+            {
+                [UIView animateWithDuration:.2 animations:^{
+                    
+                    CGFloat heightChange = self.isNotificationBarShowing ? LARGE_STATUS_HEIGHT : SMALL_STATUS_HEIGHT;
+                    
+                    if (self.hasViewWillAppearRan)
+                    {
+                        CGRect theFrame = CGRectMake(0., heightChange, navController.visibleViewController.view.width, navController.visibleViewController.view.height - heightChange);
+                        navController.visibleViewController.view.frame = theFrame;
+                    }
+                    
+                    if (!self.wasStatusBarTallOnStart || self.hasViewWillAppearRan)
+                        navController.navigationBar.y += heightChange;
+                }];
+            }
+        }
+    }
+    
+    self.hasViewWillAppearRan = YES;
 }
 
 - (void)viewDidDisappear:(BOOL)animated
@@ -163,7 +198,7 @@
 				// Must shift down the navigation controller after switching tabs
 				UINavigationController *navController = (UINavigationController *)tabController.selectedViewController;
 				//navController.view.y += STATUS_HEIGHT; // attempt to fix the moving down on rotation bug
-				navController.view.y = STATUS_HEIGHT;
+				navController.view.y = ACTUAL_STATUS_HEIGHT;
 			}
 		}
 	}
@@ -206,13 +241,24 @@
 	// Handle UITabBarController weirdness
 	if ([mainViewController isKindOfClass:[UITabBarController class]])
 	{
-		mainViewController.view.y = -STATUS_HEIGHT;
+		mainViewController.view.y = -ACTUAL_STATUS_HEIGHT;
 	}
+    
+    if (ACTUAL_STATUS_HEIGHT > SMALL_STATUS_HEIGHT)
+        self.wasStatusBarTallOnStart = YES;
     
     // Add tab change observation
     if ([mainViewController isKindOfClass:[UITabBarController class]])
     {
         UITabBarController *tabController = (UITabBarController *)mainViewController;
+        @try
+        {
+            [tabController removeObserver:self forKeyPath:@"selectedViewController"];
+        }
+        @catch (id anException)
+        {
+            // Ignore this
+        }
         [tabController addObserver:self forKeyPath:@"selectedViewController" options:NSKeyValueObservingOptionOld context:NULL];
     }
 }
@@ -272,8 +318,18 @@
 				if ([tabController.selectedViewController isKindOfClass:[UINavigationController class]])
 				{
 					UINavigationController *navController = (UINavigationController *)tabController.selectedViewController;
-					navController.view.y += STATUS_HEIGHT;
-					//navController.view.height -= STATUS_HEIGHT;					
+					navController.view.y += self.changedTabSinceTallHeight ? ACTUAL_STATUS_HEIGHT : SMALL_STATUS_HEIGHT;
+                    
+                    if (!self.wasStatusBarTallOnStart)
+                    {
+                        navController.navigationBar.y += self.changedTabSinceTallHeight ? SMALL_STATUS_HEIGHT : 0.;
+                    }
+                    
+                    if (ACTUAL_STATUS_HEIGHT < LARGE_STATUS_HEIGHT && self.wasStatusBarTallOnStart)
+                    {
+                        navController.navigationBar.y += LARGE_STATUS_HEIGHT;
+                    }
+					//navController.view.height -= STATUS_HEIGHT;
 				}
 			}
             			
@@ -304,15 +360,31 @@
 					{
 						UINavigationController *navController = (UINavigationController *)tabController.selectedViewController;
 						
-						navController.view.y += STATUS_HEIGHT;
-						navController.navigationBar.y -= STATUS_HEIGHT;
+						navController.view.y += SMALL_STATUS_HEIGHT;
+						navController.navigationBar.y -= SMALL_STATUS_HEIGHT;
 					}
 				}
 			}
 		} completion:^(BOOL finished){
 			isNotificationBarShowing = YES;
 			self.view.userInteractionEnabled = YES;
-			
+            
+            if ([mainViewController isKindOfClass:[UITabBarController class]])
+            {
+                UITabBarController *tabController = (UITabBarController *)mainViewController;
+                
+                if ([tabController.selectedViewController isKindOfClass:[UINavigationController class]])
+                {
+                    UINavigationController *navController = (UINavigationController *)tabController.selectedViewController;
+
+                    if (self.wasStatusBarTallOnStart)
+                    {
+                        CGRect theFrame = CGRectMake(0., SMALL_STATUS_HEIGHT, navController.visibleViewController.view.width, navController.visibleViewController.view.height - SMALL_STATUS_HEIGHT);
+                        navController.visibleViewController.view.frame = theFrame;
+                    }
+                }
+            }
+                     
 			[[NSNotificationCenter defaultCenter] postNotificationName:EX2NotificationBarDidHide object:nil];
 			[[NSNotificationCenter defaultCenter] postNotificationName:UIDeviceOrientationDidChangeNotification object:nil];
 			
@@ -367,8 +439,8 @@
 			{
 				UINavigationController *navController = (UINavigationController *)tabController.selectedViewController;
 				navController.view.y = 0.;
-				navController.navigationBar.y = STATUS_HEIGHT;
-				navController.topViewController.view.y = 0.;				
+				navController.navigationBar.y = SMALL_STATUS_HEIGHT;
+				navController.topViewController.view.y = 0.;
 			}
 		}
 	}
@@ -396,6 +468,33 @@
 		isNotificationBarShowing = NO;
 		self.view.userInteractionEnabled = YES;
 		
+        if ([mainViewController isKindOfClass:[UITabBarController class]])
+		{
+			UITabBarController *tabController = (UITabBarController *)mainViewController;
+            if ([tabController.selectedViewController isKindOfClass:[UINavigationController class]])
+            {
+                UINavigationController *navController = (UINavigationController *)tabController.selectedViewController;
+                
+                if (ACTUAL_STATUS_HEIGHT > SMALL_STATUS_HEIGHT)
+                {
+                    if (self.wasStatusBarTallOnStart)
+                    {
+                        navController.navigationBar.y = LARGE_STATUS_HEIGHT;
+                    }
+                    else
+                    {
+                        CGRect theFrame = CGRectMake(0., SMALL_STATUS_HEIGHT, navController.visibleViewController.view.width, navController.visibleViewController.view.height - SMALL_STATUS_HEIGHT);
+                        navController.visibleViewController.view.frame = theFrame;
+                    }
+                }
+                else if (self.wasStatusBarTallOnStart)
+                {
+                    navController.view.y = SMALL_STATUS_HEIGHT;
+                    navController.visibleViewController.view.y = SMALL_STATUS_HEIGHT;
+                }
+            }
+        }
+        
 		[[NSNotificationCenter defaultCenter] postNotificationName:EX2NotificationBarDidHide object:nil];
 		[[NSNotificationCenter defaultCenter] postNotificationName:UIDeviceOrientationDidChangeNotification object:nil];
 		
@@ -416,20 +515,79 @@
 
 // Handle status bar height changes
 - (void)statusBarDidChange:(NSNotification *)notification
-{
+{    
     if ([self.mainViewController isKindOfClass:[UITabBarController class]])
     {
         UITabBarController *tabController = (UITabBarController *)self.mainViewController;
         if ([tabController.selectedViewController isKindOfClass:[UINavigationController class]])
-        {
-            //tabController.selectedViewController = tabController.selectedViewController;
-            
+        {            
             // Must shift down the navigation controller after switching tabs
             UINavigationController *navController = (UINavigationController *)tabController.selectedViewController;
             
-            [UIView animateWithDuration:.2 animations:^{
-                navController.view.y += 10.;//STATUS_HEIGHT;
-            }];
+            if (ACTUAL_STATUS_HEIGHT > SMALL_STATUS_HEIGHT)
+            {
+                if (self.wasStatusBarTallOnStart)
+                {
+                    [UIView animateWithDuration:.2 animations:^{
+                        
+                        if (self.isNotificationBarShowing)
+                        {
+                            CGRect theFrame = CGRectMake(0., LARGE_STATUS_HEIGHT, navController.visibleViewController.view.width, navController.visibleViewController.view.height - LARGE_STATUS_HEIGHT);
+                            navController.visibleViewController.view.frame = theFrame;
+                        }
+                        
+                        navController.navigationBar.y = LARGE_STATUS_HEIGHT;
+                    }];
+                }
+                else if (self.isNotificationBarShowing)
+                {
+                    CGFloat heightChange = self.changedTabSinceTallHeight ? LARGE_STATUS_HEIGHT : SMALL_STATUS_HEIGHT;
+                    
+                    [UIView animateWithDuration:.2 animations:^{
+                        CGRect theFrame = CGRectMake(0., heightChange, navController.view.width, navController.view.height - heightChange);
+                        navController.view.frame = theFrame;
+                    }];
+                }
+                else
+                {
+                    CGFloat heightChange = SMALL_STATUS_HEIGHT;//self.changedTabSinceTallHeight ? LARGE_STATUS_HEIGHT : SMALL_STATUS_HEIGHT;
+                    
+                    [UIView animateWithDuration:.2 animations:^{
+                        CGRect theFrame = CGRectMake(0., heightChange, navController.visibleViewController.view.width, navController.visibleViewController.view.height - heightChange);
+                        navController.visibleViewController.view.frame = theFrame;
+                        
+                        navController.navigationBar.y = SMALL_STATUS_HEIGHT;
+                    }];
+                }
+            }
+            else
+            {
+                if (self.wasStatusBarTallOnStart)
+                {
+                    [UIView animateWithDuration:.2 animations:^{
+                        //navController.navigationBar.y -= LARGE_STATUS_HEIGHT;
+                        //navController.view.y += LARGE_STATUS_HEIGHT;
+                        
+                        navController.navigationBar.y = 0.;
+                        
+                        CGRect theFrame = CGRectMake(0., LARGE_STATUS_HEIGHT, navController.view.width, navController.view.height - LARGE_STATUS_HEIGHT);
+                        navController.view.frame = theFrame;
+                    }];
+                }
+                else if (self.isNotificationBarShowing)
+                {
+                    [UIView animateWithDuration:.2 animations:^{
+                        CGRect theFrame = CGRectMake(0., SMALL_STATUS_HEIGHT, navController.view.width, navController.view.height - SMALL_STATUS_HEIGHT);
+                        navController.view.frame = theFrame;
+                    }];
+                }
+                else if (self.changedTabSinceTallHeight)
+                {
+                    [UIView animateWithDuration:.2 animations:^{
+                        navController.navigationBar.y += SMALL_STATUS_HEIGHT;
+                    }];
+                }
+            }
         }
     }
 }
@@ -437,24 +595,48 @@
 // Handle tab bar changes
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
 {
-    if ([UIApplication sharedApplication].statusBarFrame.size.height > 20. || self.isNotificationBarShowing)
-    {
-        if ([keyPath isEqualToString:@"selectedViewController"])
-        {
-            if ([object isKindOfClass:[UITabBarController class]])
-            {
-                id oldValue = [change objectForKey:NSKeyValueChangeOldKey];
-                UITabBarController *tabController = (UITabBarController *)object;
-                
-                if (oldValue != tabController.selectedViewController)
-                {
-                    // Only if the tab actually changed
-                    if ([tabController.selectedViewController isKindOfClass:[UINavigationController class]])
-                    {
-                        // Must shift down the navigation controller after switching tabs
-                        UINavigationController *navController = (UINavigationController *)tabController.selectedViewController;
+    self.changedTabSinceTallHeight = ACTUAL_STATUS_HEIGHT > SMALL_STATUS_HEIGHT;
+    DLog(@"changedTabSinceTallHeight: %@", NSStringFromBOOL(self.changedTabSinceTallHeight));
 
-                        navController.view.y += 10.;//STATUS_HEIGHT;
+    if ([keyPath isEqualToString:@"selectedViewController"])
+    {
+        if ([object isKindOfClass:[UITabBarController class]])
+        {
+            id oldValue = [change objectForKey:NSKeyValueChangeOldKey];
+            UITabBarController *tabController = (UITabBarController *)object;
+            
+            if (oldValue != tabController.selectedViewController)
+            {
+                // Only if the tab actually changed
+                if ([tabController.selectedViewController isKindOfClass:[UINavigationController class]])
+                {
+                    // Must shift down the navigation controller after switching tabs
+                    UINavigationController *navController = (UINavigationController *)tabController.selectedViewController;
+                    
+                    if (ACTUAL_STATUS_HEIGHT > SMALL_STATUS_HEIGHT || self.isNotificationBarShowing)
+                    {
+                        CGFloat changeHeight = SMALL_STATUS_HEIGHT;
+                        if (ACTUAL_STATUS_HEIGHT > SMALL_STATUS_HEIGHT)
+                            changeHeight = self.wasStatusBarTallOnStart ? LARGE_STATUS_HEIGHT : SMALL_STATUS_HEIGHT;
+                        else if (ACTUAL_STATUS_HEIGHT < LARGE_STATUS_HEIGHT && self.wasStatusBarTallOnStart)
+                            changeHeight = LARGE_STATUS_HEIGHT;
+                        
+                        if (ACTUAL_STATUS_HEIGHT > SMALL_STATUS_HEIGHT || self.isNotificationBarShowing)
+                        {
+                            if (self.wasStatusBarTallOnStart && !self.isNotificationBarShowing)
+                            {
+                                return;
+                            }
+                            
+                            navController.view.y += changeHeight;
+                            
+                            CGRect theFrame = CGRectMake(0., 0, navController.visibleViewController.view.width, navController.visibleViewController.view.height - SMALL_STATUS_HEIGHT);
+                            navController.visibleViewController.view.frame = theFrame;
+                        }
+                    }
+                    else if (ACTUAL_STATUS_HEIGHT < LARGE_STATUS_HEIGHT && self.wasStatusBarTallOnStart)
+                    {
+                        navController.view.y = LARGE_STATUS_HEIGHT;
                     }
                 }
             }
