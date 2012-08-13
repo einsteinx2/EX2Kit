@@ -10,7 +10,9 @@
 #define DEFAULT_HIDE_DURATION 5.0
 #define ANIMATE_DUR 0.3
 #define DEFAULT_BAR_HEIGHT 30.
+//#define STATUS_HEIGHT [[UIApplication sharedApplication] statusBarFrame].size.height
 #define STATUS_HEIGHT ([UIApplication sharedApplication].isStatusBarHidden ? 0. : 20.)
+//#define STATUS_HEIGHT ([UIApplication sharedApplication].isStatusBarHidden ? 0. : 10.)
 
 @implementation EX2NotificationBar
 @synthesize position, notificationBar, notificationBarContent, mainViewHolder, mainViewController, isNotificationBarShowing, notificationBarHeight;
@@ -63,12 +65,15 @@
 	
 	// Setup the main view controller if it was done before the XIB loaded
 	self.mainViewController = self.mainViewController;
+    
+    // Register for status bar frame changes
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(statusBarDidChange:) name:UIApplicationDidChangeStatusBarFrameNotification object:nil];
 }
 
 - (void)viewWillAppear:(BOOL)animated
 {
 	[super viewWillAppear:animated];
-    
+	
 	// In iOS 4 make sure to pass this message
 	if (SYSTEM_VERSION_LESS_THAN(@"5.0"))
 	{
@@ -90,28 +95,6 @@
 - (void)viewDidAppear:(BOOL)animated
 {
 	[super viewDidAppear:animated];
-    
-    if (self.isNotificationBarShowing)
-	{
-		if ([self.mainViewController isKindOfClass:[UITabBarController class]])
-		{
-			UITabBarController *tabController = (UITabBarController *)self.mainViewController;
-			if ([tabController.selectedViewController isKindOfClass:[UINavigationController class]])
-			{
-                // Must shift down the navigation controller after switching tabs
-				UINavigationController *navController = (UINavigationController *)tabController.selectedViewController;
-				//navController.view.y += STATUS_HEIGHT; // attempt to fix the moving down on rotation bug
-                
-                if (navController.view.y != STATUS_HEIGHT)
-                {
-                    [UIView animateWithDuration:0.25 animations:^
-                     {
-                         navController.view.y = STATUS_HEIGHT;
-                     }];
-                }
-			}
-		}
-	}
 	
 	// In iOS 4 make sure to pass this message
 	if (SYSTEM_VERSION_LESS_THAN(@"5.0"))
@@ -223,8 +206,15 @@
 	// Handle UITabBarController weirdness
 	if ([mainViewController isKindOfClass:[UITabBarController class]])
 	{
-		mainViewController.view.y = -20.;
+		mainViewController.view.y = -STATUS_HEIGHT;
 	}
+    
+    // Add tab change observation
+    if ([mainViewController isKindOfClass:[UITabBarController class]])
+    {
+        UITabBarController *tabController = (UITabBarController *)mainViewController;
+        [tabController addObserver:self forKeyPath:@"selectedViewController" options:NSKeyValueObservingOptionOld context:NULL];
+    }
 }
 
 #pragma mark - Methods
@@ -277,7 +267,7 @@
 			if ([mainViewController isKindOfClass:[UITabBarController class]])
 			{
 				UITabBarController *tabController = (UITabBarController *)mainViewController;
-				[tabController addObserver:self forKeyPath:@"selectedViewController" options:NSKeyValueObservingOptionOld context:NULL];
+				//[tabController addObserver:self forKeyPath:@"selectedViewController" options:NSKeyValueObservingOptionOld context:NULL];
 				
 				if ([tabController.selectedViewController isKindOfClass:[UINavigationController class]])
 				{
@@ -364,14 +354,14 @@
 		if ([mainViewController isKindOfClass:[UITabBarController class]])
 		{
 			UITabBarController *tabController = (UITabBarController *)mainViewController;
-			@try
+			/*@try
 			{
 				[tabController removeObserver:self forKeyPath:@"selectedViewController"];
 			}
 			@catch (id anException) 
 			{
 				// This shouldn't happen
-			}
+			}*/
 			
 			if ([tabController.selectedViewController isKindOfClass:[UINavigationController class]])
 			{
@@ -424,28 +414,52 @@
 					 completion:completion];
 }
 
+// Handle status bar height changes
+- (void)statusBarDidChange:(NSNotification *)notification
+{
+    if ([self.mainViewController isKindOfClass:[UITabBarController class]])
+    {
+        UITabBarController *tabController = (UITabBarController *)self.mainViewController;
+        if ([tabController.selectedViewController isKindOfClass:[UINavigationController class]])
+        {
+            //tabController.selectedViewController = tabController.selectedViewController;
+            
+            // Must shift down the navigation controller after switching tabs
+            UINavigationController *navController = (UINavigationController *)tabController.selectedViewController;
+            
+            [UIView animateWithDuration:.2 animations:^{
+                navController.view.y += 10.;//STATUS_HEIGHT;
+            }];
+        }
+    }
+}
+
 // Handle tab bar changes
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
 {
-	if ([keyPath isEqualToString:@"selectedViewController"])
-	{
-		if ([object isKindOfClass:[UITabBarController class]])
-		{
-			id oldValue = [change objectForKey:NSKeyValueChangeOldKey];
-			UITabBarController *tabController = (UITabBarController *)object;
-			
-			if (oldValue != tabController.selectedViewController)
-			{
-				// Only if the tab actually changed
-				if ([tabController.selectedViewController isKindOfClass:[UINavigationController class]])
-				{
-					// Must shift down the navigation controller after switching tabs
-					UINavigationController *navController = (UINavigationController *)tabController.selectedViewController;
-					navController.view.y += STATUS_HEIGHT;
-				}
-			}
-		}
-	}
+    if ([UIApplication sharedApplication].statusBarFrame.size.height > 20. || self.isNotificationBarShowing)
+    {
+        if ([keyPath isEqualToString:@"selectedViewController"])
+        {
+            if ([object isKindOfClass:[UITabBarController class]])
+            {
+                id oldValue = [change objectForKey:NSKeyValueChangeOldKey];
+                UITabBarController *tabController = (UITabBarController *)object;
+                
+                if (oldValue != tabController.selectedViewController)
+                {
+                    // Only if the tab actually changed
+                    if ([tabController.selectedViewController isKindOfClass:[UINavigationController class]])
+                    {
+                        // Must shift down the navigation controller after switching tabs
+                        UINavigationController *navController = (UINavigationController *)tabController.selectedViewController;
+
+                        navController.view.y += 10.;//STATUS_HEIGHT;
+                    }
+                }
+            }
+        }
+    }
 }
 
 @end
