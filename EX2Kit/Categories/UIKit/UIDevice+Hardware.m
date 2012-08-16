@@ -200,8 +200,10 @@
  
 	if ([self platformType] == UIDevice1GiPhone ||
 		[self platformType] == UIDevice3GiPhone ||
+        [self platformType] == UIDevice3GSiPhone ||
 		[self platformType] == UIDevice1GiPod ||
-		[self platformType] == UIDevice2GiPod)
+		[self platformType] == UIDevice2GiPod ||
+        [self platformType] == UIDevice3GiPod)
 	{
 		return YES;
 	}
