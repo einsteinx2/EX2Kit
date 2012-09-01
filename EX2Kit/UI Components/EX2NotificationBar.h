@@ -5,6 +5,11 @@
 //  Copyright (c) 2012 Ben Baron. All rights reserved.
 //
 
+// If you use a UITabBarController, switch to using EX2TabBarController,
+// and if you're using UINavigationController, use EX2NavigationController.
+// There are a bunch of dirty hacks in here to support the UIKit classes,
+// but they don't work nearly as well and not every edge case is covered.
+
 #import <UIKit/UIKit.h>
 
 #define EX2NotificationBarWillShow @"EX2NotificationBarWillShow"
