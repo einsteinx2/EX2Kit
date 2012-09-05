@@ -23,6 +23,12 @@ static char key;
     {
         // Check it's parent controllers
         UIViewController *parent = self.parentViewController;
+        
+        if (!parent)
+        {
+            parent = self.presentingViewController;
+        }
+        
         while (parent)
         {
             tabController = (EX2TabBarController *)objc_getAssociatedObject(parent, &key);
@@ -79,13 +85,20 @@ static char key;
     // Remove any displayed views first
     [self.containerView.subviews makeObjectsPerformSelector:@selector(removeFromSuperview)];
     
+    // Clear the ex2TabBarController property from the old controllers if they exist
+    for (UIViewController *controller in viewControllers)
+    {
+        controller.ex2TabBarController = nil;
+    }
+    
     // Set the ivar
     viewControllers = controllers;
-    
-    // Setup the tab bar items
+        
+    // Setup the tab bar items and set the ex2TabBarController property
     NSMutableArray *items = [NSMutableArray arrayWithCapacity:viewControllers.count];
     for (UIViewController *controller in viewControllers)
     {
+        controller.ex2TabBarController = self;
         [items addObject:controller.tabBarItem];
     }
     self.tabBar.items = [NSArray arrayWithArray:items];
