@@ -16,5 +16,6 @@
 #import "NSData+AES128.h"
 #import "NSData+Base64.h"
 #import "NSDate+UTC.h"
+#import "NSData+Gzip.h"
 
 #endif

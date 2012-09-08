@@ -22,6 +22,6 @@
 #import "NSString+Clean.h"
 #import "NSString+SHA1.h"
 #import "NSString+Validation.h"
-
+#import "NSString+Gzip.h"
 
 #endif

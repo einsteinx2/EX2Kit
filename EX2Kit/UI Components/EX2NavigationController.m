@@ -45,6 +45,7 @@ static char key;
 
 @interface EX2NavigationController()
 @property (strong, nonatomic) NSMutableArray *viewControllers;
+@property (nonatomic) BOOL isAnimating;
 @end
 
 @implementation EX2NavigationController
@@ -165,6 +166,7 @@ static char key;
 
 - (void)animationStopped:(UIViewController *)disappearingController appearingController:(UIViewController *)appearingController
 {
+    DLog(@"animation stopped");
     [disappearingController.view removeFromSuperview];
     
     if ([self.delegate respondsToSelector:@selector(ex2NavigationController:didShowViewController:animated:)])
@@ -175,9 +177,15 @@ static char key;
 
 - (void)performAnimation:(UIViewController *)appearing appearingStart:(CGRect)appearingStart appearingEnd:(CGRect)appearingEnd disappearing:(UIViewController *)disappearing disappearingEnd:(CGRect)disappearingEnd
 {
+    DLog(@"appearingStart: %@  appearingEnd: %@  disappearingEnd: %@", NSStringFromCGRect(appearingStart), NSStringFromCGRect(appearingEnd), NSStringFromCGRect(disappearingEnd));
+    
+    if (self.isAnimating)
+        return;
+    
     [self.contentView addSubview:appearing.view];
     appearing.view.frame = appearingStart;
     
+    self.isAnimating = YES;
     [UIView animateWithDuration:AnimationDuration
                           delay:0.0
                         options:AnimationCurve
@@ -187,11 +195,15 @@ static char key;
                      }
                      completion:^(BOOL finished) {
                          [self animationStopped:disappearing appearingController:appearing];
+                         self.isAnimating = NO;
                      }];
 }
 
 - (void)animate:(UIViewController *)appearing disappearing:(UIViewController *)disappearing animation:(EX2NavigationControllerAnimation)animation
 {
+    if (self.isAnimating)
+        return;
+    
     CGRect appearingEnd = self.contentView.bounds;
     switch (animation)
 	{
@@ -289,6 +301,9 @@ static char key;
 
 - (void)pushViewController:(UIViewController *)viewController withAnimation:(EX2NavigationControllerAnimation)animation
 {
+    if (self.isAnimating)
+        return;
+    
 	if ([self.delegate respondsToSelector:@selector(ex2NavigationController:willShowViewController:animated:)])
     {
         [self.delegate ex2NavigationController:self willShowViewController:viewController animated:(animation != EX2NavigationControllerAnimationNone)];
@@ -316,7 +331,7 @@ static char key;
 
 - (void)popViewControllerWithAnimation:(EX2NavigationControllerAnimation)animation
 {
-	if (self.viewControllers.count == 1)
+	if (self.isAnimating || self.viewControllers.count == 1)
 		return;
     
 	UIViewController *disappearing = self.viewControllers.lastObject;
@@ -337,7 +352,7 @@ static char key;
 
 - (void)popToRootViewControllerAnimated:(BOOL)animated
 {
-    if (self.viewControllers.count > 1)
+    if (!self.isAnimating && self.viewControllers.count > 1)
     {
         NSArray *array = [NSArray arrayWithObject:[viewControllers objectAtIndex:0]];
         [self setViewControllers:array withAnimation:(animated ? EX2NavigationControllerAnimationLeft : EX2NavigationControllerAnimationNone)];
