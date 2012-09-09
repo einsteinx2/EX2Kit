@@ -13,5 +13,6 @@
 #import "EX2NotificationBar.h"
 #import "EX2NavigationController.h"
 #import "EX2TabBarController.h"
+#import "EX2SlidingNotification.h"
 
 #endif
