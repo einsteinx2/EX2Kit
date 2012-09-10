@@ -11,8 +11,8 @@
 
 #import "EX2Macros.h"
 #import "EX2Categories.h"
-#import "EX2StaticClasses.h"
-#import "EX2NonUIComponents.h"
+#import "EX2Static.h"
+#import "EX2Components.h"
 #import "EX2UIComponents.h"
 
 #import "CocoaLumberjack.h"

@@ -14,5 +14,6 @@
 #import "EX2RingBuffer.h"
 #import "EX2SimpleConnectionQueue.h"
 #import "EX2NetworkIndicator.h"
+#import "EX2Reachability.h"
 
 #endif
