@@ -1,5 +1,5 @@
 //
-//  SlidingNotification.m
+//  EX2SlidingNotification.m
 //  EX2Kit
 //
 //  Created by Ben Baron on 4/17/12.
@@ -20,7 +20,7 @@
 
 - (id)initOnView:(UIView *)theParentView message:(NSString *)theMessage image:(UIImage*)theImage displayTime:(NSTimeInterval)time
 {
-	if ((self = [super initWithNibName:@"SlidingNotification" bundle:nil])) 
+	if ((self = [super initWithNibName:@"EX2SlidingNotification" bundle:nil])) 
 	{
 		displayTime = time;
 		parentView = theParentView;
@@ -28,9 +28,7 @@
 		message = [theMessage copy];
 		
 		// If we're directly on the UIWindow, add 20 points for the status bar
-		CGFloat height = -self.view.height;
-		height += (parentView == [[UIApplication sharedApplication] keyWindow] ? 20. : 0.);
-		self.view.frame = CGRectMake(0., height, parentView.width, self.view.height);
+		self.view.frame = CGRectMake(0., 0, parentView.width, self.view.height);
 		
 		[parentView addSubview:self.view];
 	}
@@ -45,17 +43,17 @@
 
 + (id)slidingNotificationOnMainWindowWithMessage:(NSString *)theMessage image:(UIImage*)theImage
 {
-	return [[EX2SlidingNotification alloc] initOnView:[[UIApplication sharedApplication] keyWindow] message:theMessage image:theImage];
+	return [[self alloc] initOnView:[[UIApplication sharedApplication] keyWindow] message:theMessage image:theImage];
 }
 
 + (id)slidingNotificationOnTopViewWithMessage:(NSString *)theMessage image:(UIImage*)theImage
 {
-	return [[EX2SlidingNotification alloc] initOnView:[[[UIApplication sharedApplication] keyWindow].subviews firstObjectSafe] message:theMessage image:theImage];
+	return [[self alloc] initOnView:[[[UIApplication sharedApplication] keyWindow].subviews firstObjectSafe] message:theMessage image:theImage];
 }
 
 + (id)slidingNotificationOnView:(UIView *)theParentView message:(NSString *)theMessage image:(UIImage*)theImage
 {
-	return [[EX2SlidingNotification alloc] initOnView:theParentView message:theMessage image:theImage];
+	return [[self alloc] initOnView:theParentView message:theMessage image:theImage];
 }
 
 - (void)viewDidLoad
@@ -68,21 +66,8 @@
 	[self.view addBottomShadow];
 	CALayer *shadow = [[self.view.layer sublayers] objectAtIndexSafe:0];
     shadow.frame = CGRectMake(shadow.frame.origin.x, shadow.frame.origin.y, 1024., shadow.frame.size.height);
-	
-	/*CGRect newFrame;
-	if (image)
-	{
-		newFrame = CGRectMake(5., 5., self.view.height - 10., self.view.height - 10.);
-		self.imageView.frame = newFrame;
-		
-		newFrame = CGRectMake(self.view.height, 5., self.view.width - self.view.height - 5., self.view.height - 10.);
-		self.messageLabel.frame = newFrame;
-	}
-	else
-	{
-		newFrame = CGRectMake(5., 5., self.view.width - 10., self.view.height - 10.);		
-		self.messageLabel.frame = newFrame;
-	}*/
+    
+    [self sizeToFit];
 }
 
 - (void)viewDidUnload
@@ -115,17 +100,33 @@
 	[self performSelector:@selector(hideSlidingNotification) withObject:nil afterDelay:displayTime];
 }
 
+- (void)showAndHideSlidingNotification:(NSTimeInterval)showTime
+{
+    displayTime = showTime;
+    
+    [self showAndHideSlidingNotification];
+}
+
 - (void)showSlidingNotification
 {
 	self.selfRef = self;
+    
+    // Set the start position
+    self.view.y = -self.view.height;
+    if (self.view.superview == [[UIApplication sharedApplication] keyWindow])
+        self.view.y += [[UIApplication sharedApplication] statusBarFrame].size.height;
+    
+    DLog(@"current frame: %@", NSStringFromCGRect(self.view.frame));
 	[UIView animateWithDuration:ANIMATION_DELAY animations:^(void)
      {
          // If we're directly on the UIWindow then add the status bar height
          CGFloat y = 0.;
          if (self.view.superview == [[UIApplication sharedApplication] keyWindow])
-             y = [[UIApplication sharedApplication] statusBarFrame].origin.y;
+             y = [[UIApplication sharedApplication] statusBarFrame].size.height;
              
          self.view.y = y;
+         
+         DLog(@"new frame: %@", NSStringFromCGRect(self.view.frame));
      }];
 }
 

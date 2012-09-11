@@ -94,5 +94,16 @@
 #define SYSTEM_VERSION_LESS_THAN(v)                 ([[[UIDevice currentDevice] systemVersion] compare:v options:NSNumericSearch] == NSOrderedAscending)
 #define SYSTEM_VERSION_LESS_THAN_OR_EQUAL_TO(v)     ([[[UIDevice currentDevice] systemVersion] compare:v options:NSNumericSearch] != NSOrderedDescending)
 
+// Shim to support @YES and @NO in Xcode 4.4
+// From this SO answer: http://stackoverflow.com/a/11697204/299262
+#ifndef __IPHONE_6_0
+#if __has_feature(objc_bool)
+#undef YES
+#undef NO
+#define YES __objc_yes
+#define NO __objc_no
+#endif
+#endif
+
 
 #endif

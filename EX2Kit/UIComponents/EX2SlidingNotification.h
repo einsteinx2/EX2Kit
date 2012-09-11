@@ -1,5 +1,5 @@
 //
-//  SlidingNotification.h
+//  EX2SlidingNotification.h
 //  EX2Kit
 //
 //  Created by Ben Baron on 4/17/12.
@@ -29,6 +29,7 @@
 @property NSTimeInterval displayTime;
 
 - (void)showAndHideSlidingNotification;
+- (void)showAndHideSlidingNotification:(NSTimeInterval)showTime;
 - (void)showSlidingNotification;
 - (void)hideSlidingNotification;
 
