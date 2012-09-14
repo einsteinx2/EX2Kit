@@ -7,9 +7,10 @@
 //
 
 
-
 @interface NSMutableArray (Safe)
 
+- (void)addObjectSafe:(id)object;
+- (void)insertObjectSafe:(id)object atIndex:(NSUInteger)index;
 - (void)removeObjectAtIndexSafe:(NSUInteger)index;
 
 @end
