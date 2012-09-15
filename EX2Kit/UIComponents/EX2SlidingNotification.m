@@ -101,7 +101,7 @@
 
 - (void)showAndHideSlidingNotification:(NSTimeInterval)showTime
 {
-    displayTime = showTime;
+    self.displayTime = showTime;
     
     [self showAndHideSlidingNotification];
 }
