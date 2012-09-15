@@ -16,21 +16,20 @@
 @end
 
 @implementation EX2SlidingNotification
-@synthesize messageLabel, imageView, message, image, parentView, displayTime, backgroundImageView, selfRef;
 
 - (id)initOnView:(UIView *)theParentView message:(NSString *)theMessage image:(UIImage*)theImage displayTime:(NSTimeInterval)time
 {
 	if ((self = [super initWithNibName:@"EX2SlidingNotification" bundle:nil])) 
 	{
-		displayTime = time;
-		parentView = theParentView;
-		image = theImage;
-		message = [theMessage copy];
+		_displayTime = time;
+		_parentView = theParentView;
+		_image = theImage;
+		_message = [theMessage copy];
 		
 		// If we're directly on the UIWindow, add 20 points for the status bar
-		self.view.frame = CGRectMake(0., 0, parentView.width, self.view.height);
+		self.view.frame = CGRectMake(0., 0, _parentView.width, self.view.height);
 		
-		[parentView addSubview:self.view];
+		[_parentView addSubview:self.view];
 	}
 	
 	return self;
@@ -60,8 +59,8 @@
 {
     [super viewDidLoad];
 	
-	self.imageView.image = image;
-	self.messageLabel.text = message;
+	self.imageView.image = self.image;
+	self.messageLabel.text = self.message;
 	
 	[self.view addBottomShadow];
 	CALayer *shadow = [[self.view.layer sublayers] objectAtIndexSafe:0];
@@ -80,7 +79,7 @@
 - (void)sizeToFit
 {
 	CGSize maximumLabelSize = CGSizeMake(self.messageLabel.width, 300.);
-	CGSize expectedLabelSize = [message sizeWithFont:self.messageLabel.font constrainedToSize:maximumLabelSize lineBreakMode:self.messageLabel.lineBreakMode];
+	CGSize expectedLabelSize = [self.message sizeWithFont:self.messageLabel.font constrainedToSize:maximumLabelSize lineBreakMode:self.messageLabel.lineBreakMode];
 	if (expectedLabelSize.height >= 25.)
 	{
 		self.messageLabel.size = expectedLabelSize;
@@ -97,7 +96,7 @@
 {
 	[self showSlidingNotification];
 	
-	[self performSelector:@selector(hideSlidingNotification) withObject:nil afterDelay:displayTime];
+	[self performSelector:@selector(hideSlidingNotification) withObject:nil afterDelay:self.displayTime];
 }
 
 - (void)showAndHideSlidingNotification:(NSTimeInterval)showTime

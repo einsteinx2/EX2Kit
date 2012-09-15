@@ -13,16 +13,13 @@
 
 @interface EX2FileEncryptor()
 {
-	NSString *key;
+	NSString *_key;
 }
-
 @property (nonatomic, strong, readonly) EX2RingBuffer *encryptionBuffer;
 @property (nonatomic, strong, readonly) NSFileHandle *fileHandle;
-
 @end
 
 @implementation EX2FileEncryptor
-@synthesize path, fileHandle, encryptionBuffer, chunkSize;
 
 static const int ddLogLevel = LOG_LEVEL_INFO;
 
@@ -37,8 +34,8 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
 {
 	if ((self = [super init]))
 	{
-		chunkSize = theChunkSize;
-		encryptionBuffer = [[EX2RingBuffer alloc] initWithBufferLength:chunkSize * 10];
+		_chunkSize = theChunkSize;
+		_encryptionBuffer = [[EX2RingBuffer alloc] initWithBufferLength:_chunkSize * 10];
 	}
 	return self;
 }
@@ -47,18 +44,18 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
 {
 	if ((self = [self initWithChunkSize:theChunkSize]))
 	{
-		key = [theKey copy];
-		path = [aPath copy];
-		fileHandle = [NSFileHandle fileHandleForWritingAtPath:path];
-		if (fileHandle)
+		_key = [theKey copy];
+		_path = [aPath copy];
+		_fileHandle = [NSFileHandle fileHandleForWritingAtPath:_path];
+		if (_fileHandle)
 		{
-			[fileHandle seekToEndOfFile];
+			[_fileHandle seekToEndOfFile];
 		}
 		else
 		{
 			// No file exists, so create one
-			[[NSFileManager defaultManager] createFileAtPath:path contents:[NSData data] attributes:nil];
-			fileHandle = [NSFileHandle fileHandleForWritingAtPath:path];
+			[[NSFileManager defaultManager] createFileAtPath:_path contents:[NSData data] attributes:nil];
+			_fileHandle = [NSFileHandle fileHandleForWritingAtPath:_path];
 		}
 	}
 	return self;
@@ -72,12 +69,12 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
 	[self.encryptionBuffer fillWithBytes:buffer length:length];
 	
 	NSUInteger bytesWritten = 0;
-	while (self.encryptionBuffer.filledSpaceLength >= chunkSize)
+	while (self.encryptionBuffer.filledSpaceLength >= self.chunkSize)
 	{
-		NSData *data = [self.encryptionBuffer drainData:chunkSize];
+		NSData *data = [self.encryptionBuffer drainData:self.chunkSize];
 		NSError *encryptionError;
 		NSTimeInterval start = [[NSDate date] timeIntervalSince1970];	
-		NSData *encrypted = [[RNCryptor AES256Cryptor] encryptData:data password:key error:&encryptionError];
+		NSData *encrypted = [[RNCryptor AES256Cryptor] encryptData:data password:_key error:&encryptionError];
 		DDLogVerbose(@"total time: %f", [[NSDate date] timeIntervalSince1970] - start);
 
 		//DLog(@"data size: %u  encrypted size: %u", data.length, encrypted.length);
@@ -92,7 +89,7 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
 			@try
 			{
 				[self.fileHandle writeData:encrypted];
-				bytesWritten += chunkSize;
+				bytesWritten += self.chunkSize;
 			}
 			@catch (NSException *exception) 
 			{
@@ -126,7 +123,7 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
 		NSData *data = [self.encryptionBuffer drainData:length];
 		
 		NSError *encryptionError;
-		NSData *encrypted = [[RNCryptor AES256Cryptor] encryptData:data password:key error:&encryptionError];
+		NSData *encrypted = [[RNCryptor AES256Cryptor] encryptData:data password:_key error:&encryptionError];
 		//DLog(@"data size: %u  encrypted size: %u", data.length, encrypted.length);
 		if (encryptionError)
 		{
@@ -154,7 +151,7 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
 
 - (NSUInteger)encryptedChunkSize
 {
-	NSUInteger aesPaddedSize = ((chunkSize / 16) + 1) * 16;
+	NSUInteger aesPaddedSize = ((self.chunkSize / 16) + 1) * 16;
 	NSUInteger totalPaddedSize = aesPaddedSize + 66; // Add the RNCryptor padding
 	return totalPaddedSize;
 }
@@ -171,7 +168,7 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
 	unsigned long long encryptedSize = self.encryptedFileSizeOnDisk;
 	
 	// Find padding size
-	unsigned long long chunkPadding = self.encryptedChunkSize - chunkSize;
+	unsigned long long chunkPadding = self.encryptedChunkSize - self.chunkSize;
 	unsigned long long numberOfEncryptedChunks = (encryptedSize / self.encryptedChunkSize);
 	unsigned long long filePadding = numberOfEncryptedChunks * chunkPadding;
 	

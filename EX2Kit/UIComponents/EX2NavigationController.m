@@ -50,8 +50,6 @@ static char key;
 
 @implementation EX2NavigationController
 
-@synthesize navigationBar, contentView, delegate, viewControllers;
-
 #define AnimationDuration 0.3
 #define AnimationCurve UIViewAnimationOptionCurveEaseInOut
 
@@ -62,7 +60,7 @@ static char key;
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self)
     {
-		viewControllers = [[NSMutableArray alloc] init];
+		_viewControllers = [[NSMutableArray alloc] init];
     }
     return self;
 }
@@ -73,7 +71,7 @@ static char key;
 	{
         viewController.ex2NavigationController = self;
 		
-		viewControllers = [[NSMutableArray alloc] initWithObjects:viewController, nil];
+		_viewControllers = [[NSMutableArray alloc] initWithObjects:viewController, nil];
 	}
 	return self;
 }
@@ -244,7 +242,7 @@ static char key;
 		default:
 		{
 			[disappearing.view removeFromSuperview];
-			[contentView addSubview:appearing.view];
+			[self.contentView addSubview:appearing.view];
             appearing.view.autoresizingMask = (UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth);
             appearing.view.frame = appearingEnd;
             
@@ -291,7 +289,7 @@ static char key;
 		[c.navigationItem.backBarButtonItem setTarget:self];
 		[c.navigationItem.backBarButtonItem setAction:@selector(backItemTapped:)];
 	}
-	[navigationBar setItems:newItems animated:(animation != EX2NavigationControllerAnimationNone)];
+	[self.navigationBar setItems:newItems animated:(animation != EX2NavigationControllerAnimationNone)];
 }
 
 - (void)pushViewController:(UIViewController *)viewController animated:(BOOL)animated
@@ -354,7 +352,7 @@ static char key;
 {
     if (!self.isAnimating && self.viewControllers.count > 1)
     {
-        NSArray *array = [NSArray arrayWithObject:[viewControllers objectAtIndex:0]];
+        NSArray *array = [NSArray arrayWithObject:[self.viewControllers objectAtIndex:0]];
         [self setViewControllers:array withAnimation:(animated ? EX2NavigationControllerAnimationLeft : EX2NavigationControllerAnimationNone)];
     }
 }

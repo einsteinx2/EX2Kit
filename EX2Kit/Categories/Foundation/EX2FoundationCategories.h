@@ -17,5 +17,6 @@
 #import "NSData+Base64.h"
 #import "NSDate+UTC.h"
 #import "NSData+Gzip.h"
+#import "NSMutableDictionary+Safe.h"
 
 #endif

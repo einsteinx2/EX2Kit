@@ -26,9 +26,6 @@
 #import <UIKit/UISlider.h>
 
 @interface SnappySlider : UISlider
-{
-	CGFloat *rawDetents;
-}
 
 @property (nonatomic, strong) NSArray *detents;
 @property (nonatomic) CGFloat snapDistance;

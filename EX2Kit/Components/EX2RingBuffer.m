@@ -8,15 +8,20 @@
 
 #import "EX2RingBuffer.h"
 
+@interface EX2RingBuffer ()
+{
+	void *_bufferBackingStore;
+}
+@end
+
 @implementation EX2RingBuffer
-@synthesize buffer, readPosition, writePosition, freeSpaceLength, filledSpaceLength;
 
 - (id)initWithBufferLength:(NSUInteger)bytes
 {
 	if ((self = [super init]))
 	{
-		bufferBackingStore = malloc(sizeof(char) * bytes);
-		buffer = [NSData dataWithBytesNoCopy:bufferBackingStore length:bytes freeWhenDone:YES];
+		_bufferBackingStore = malloc(sizeof(char) * bytes);
+		_buffer = [NSData dataWithBytesNoCopy:_bufferBackingStore length:bytes freeWhenDone:YES];
 		[self reset];
 	}
 	return self;
@@ -29,7 +34,7 @@
 
 - (void)reset
 {
-	memset(bufferBackingStore, 0, self.totalLength);
+	memset(_bufferBackingStore, 0, self.totalLength);
 	self.readPosition = 0;
 	self.writePosition = 0;
 }
@@ -105,13 +110,13 @@
 			if (bufferLength > bytesUntilEnd)
 			{
 				// Split it between the end and beginning
-				memcpy(bufferBackingStore + self.writePosition, byteBuffer, bytesUntilEnd);
-				memcpy(bufferBackingStore, byteBuffer + bytesUntilEnd, bufferLength - bytesUntilEnd);
+				memcpy(_bufferBackingStore + self.writePosition, byteBuffer, bytesUntilEnd);
+				memcpy(_bufferBackingStore, byteBuffer + bytesUntilEnd, bufferLength - bytesUntilEnd);
 			}
 			else
 			{
 				// Just copy in the bytes
-				memcpy(bufferBackingStore + self.writePosition, byteBuffer, bufferLength);
+				memcpy(_bufferBackingStore + self.writePosition, byteBuffer, bufferLength);
 			}
 			
 			//DLog(@"filled %i bytes, free: %i, filled: %i, writPos: %i, readPos: %i", bufferLength, self.freeSpaceLength, self.filledSpaceLength, self.writePosition, self.readPosition);
@@ -141,13 +146,13 @@
 			if (bufferLength > bytesUntilEnd)
 			{
 				// Split it between the end and beginning
-				memcpy(byteBuffer, bufferBackingStore + self.readPosition, bytesUntilEnd);
-				memcpy(byteBuffer + bytesUntilEnd, bufferBackingStore, bufferLength - bytesUntilEnd);
+				memcpy(byteBuffer, _bufferBackingStore + self.readPosition, bytesUntilEnd);
+				memcpy(byteBuffer + bytesUntilEnd, _bufferBackingStore, bufferLength - bytesUntilEnd);
 			}
 			else
 			{
 				// Just copy in the bytes
-				memcpy(byteBuffer, bufferBackingStore + self.readPosition, bufferLength);
+				memcpy(byteBuffer, _bufferBackingStore + self.readPosition, bufferLength);
 			}
 			
 			//DLog(@"read %i bytes, free: %i, filled: %i, writPos: %i, readPos: %i", bufferLength, self.freeSpaceLength, self.filledSpaceLength, self.writePosition, self.readPosition);
