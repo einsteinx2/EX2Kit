@@ -68,7 +68,7 @@
 - (void)viewDidLoad
 {
 	[super viewDidLoad];
-	
+    	
 	// Setup the main view controller if it was done before the XIB loaded
 	self.mainViewController = self.mainViewController;
     
@@ -234,6 +234,9 @@
         
 	// Set the new controller
 	mainViewController = theMainViewController;
+    
+    // Make sure it's the right size
+    mainViewController.view.frame = self.mainViewHolder.bounds;
 	
 	// Add the new controller's view
 	[self.mainViewHolder addSubview:mainViewController.view];

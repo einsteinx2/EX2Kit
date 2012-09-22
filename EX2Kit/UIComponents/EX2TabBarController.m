@@ -54,7 +54,7 @@ static char key;
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
-    
+        
     // Handle having a large status bar on start
     if ([[UIApplication sharedApplication] statusBarFrame].size.height > 20.)
     {
@@ -68,6 +68,14 @@ static char key;
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    
+    // TODO: Hacky fix for sizing issue, need to properly fix later
+    self.containerView.height = IS_TALL_SCREEN() ? 499. : 411.;
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
