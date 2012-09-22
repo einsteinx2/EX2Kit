@@ -15,20 +15,23 @@
 #define ACTUAL_STATUS_HEIGHT [[UIApplication sharedApplication] statusBarFrame].size.height
 
 @interface EX2NotificationBar()
+{
+    EX2NotificationBarPosition _position;
+    __strong UIViewController *_mainViewController;
+}
 @property (nonatomic) BOOL wasStatusBarTallOnStart;
 @property (nonatomic) BOOL changedTabSinceTallHeight;
 @property (nonatomic) BOOL hasViewWillAppearRan;
 @end
 
 @implementation EX2NotificationBar
-@synthesize position, notificationBar, notificationBarContent, mainViewHolder, mainViewController, isNotificationBarShowing, notificationBarHeight, wasStatusBarTallOnStart, hasViewWillAppearRan;
 
 #pragma mark - Life Cycle
 
 - (void)setup
 {
-	notificationBarHeight = DEFAULT_BAR_HEIGHT;
-	position = EX2NotificationBarPositionTop;
+	_notificationBarHeight = DEFAULT_BAR_HEIGHT;
+	_position = EX2NotificationBarPositionTop;
 }
 
 - (id)initWithPosition:(EX2NotificationBarPosition)thePosition
@@ -36,7 +39,7 @@
 	if ((self = [super initWithNibName:@"EX2NotificationBar" bundle:nil]))
 	{
 		[self setup];
-		position = thePosition;
+		_position = thePosition;
 	}
 	return self;
 }
@@ -208,52 +211,52 @@
 
 - (EX2NotificationBarPosition)position
 {
-	return position;
+	return _position;
 }
 
 - (void)setPosition:(EX2NotificationBarPosition)thePosition
 {
 	if (!self.isNotificationBarShowing)
 	{
-		position = thePosition;
+		_position = thePosition;
 	}
 }
 
 - (UIViewController *)mainViewController
 {
-	return mainViewController;
+	return _mainViewController;
 }
 
 - (void)setMainViewController:(UIViewController *)theMainViewController
 {
 	// Remove the old controller's view, if there is one
-	for (UIView *subview in mainViewHolder.subviews)
+	for (UIView *subview in _mainViewHolder.subviews)
 	{
 		[subview removeFromSuperview];
 	}
         
 	// Set the new controller
-	mainViewController = theMainViewController;
+	_mainViewController = theMainViewController;
     
     // Make sure it's the right size
-    mainViewController.view.frame = self.mainViewHolder.bounds;
+    _mainViewController.view.frame = self.mainViewHolder.bounds;
 	
 	// Add the new controller's view
-	[self.mainViewHolder addSubview:mainViewController.view];
+	[self.mainViewHolder addSubview:_mainViewController.view];
 	
 	// Handle UITabBarController weirdness
-	if ([mainViewController isKindOfClass:[UITabBarController class]])
+	if ([_mainViewController isKindOfClass:[UITabBarController class]])
 	{
-		mainViewController.view.y = -ACTUAL_STATUS_HEIGHT;
+		_mainViewController.view.y = -ACTUAL_STATUS_HEIGHT;
 	}
     
     if (ACTUAL_STATUS_HEIGHT > SMALL_STATUS_HEIGHT)
         self.wasStatusBarTallOnStart = YES;
     
     // Add tab change observation
-    if ([mainViewController isKindOfClass:[UITabBarController class]])
+    if ([_mainViewController isKindOfClass:[UITabBarController class]])
     {
-        UITabBarController *tabController = (UITabBarController *)mainViewController;
+        UITabBarController *tabController = (UITabBarController *)_mainViewController;
         @try
         {
             [tabController removeObserver:self forKeyPath:@"selectedViewController"];
@@ -296,11 +299,11 @@
 		completionBlock = [completionBlock copy];
 	}
     	
-	if (position == EX2NotificationBarPositionTop)
+	if (self.position == EX2NotificationBarPositionTop)
 	{
 		self.notificationBar.height = 0;
 	}
-	else if (position == EX2NotificationBarPositionBottom)
+	else if (self.position == EX2NotificationBarPositionBottom)
 	{
 		//self.view.y = self.view.superview.height - self.view.height + 20.;
 		//self.view.width = self.view.superview.width;
@@ -311,11 +314,11 @@
     	
 	void (^animations)(void) = ^(void)
 	{
-		if (position == EX2NotificationBarPositionTop)
+		if (self.position == EX2NotificationBarPositionTop)
 		{
-			if ([mainViewController isKindOfClass:[UITabBarController class]])
+			if ([self.mainViewController isKindOfClass:[UITabBarController class]])
 			{
-				UITabBarController *tabController = (UITabBarController *)mainViewController;
+				UITabBarController *tabController = (UITabBarController *)self.mainViewController;
 				//[tabController addObserver:self forKeyPath:@"selectedViewController" options:NSKeyValueObservingOptionOld context:NULL];
 				
 				if ([tabController.selectedViewController isKindOfClass:[UINavigationController class]])
@@ -336,15 +339,15 @@
 				}
 			}
             			
-			notificationBar.height = self.notificationBarHeight;
-			mainViewHolder.frame = CGRectMake(mainViewHolder.x, 
-											  mainViewHolder.y + self.notificationBarHeight, 
-											  mainViewHolder.width, 
-											  mainViewHolder.height - self.notificationBarHeight);
+			self.notificationBar.height = self.notificationBarHeight;
+			self.mainViewHolder.frame = CGRectMake(self.mainViewHolder.x,
+                                                   self.mainViewHolder.y + self.notificationBarHeight,
+                                                   self.mainViewHolder.width,
+                                                   self.mainViewHolder.height - self.notificationBarHeight);
 		}
-		else if (position == EX2NotificationBarPositionBottom)
+		else if (self.position == EX2NotificationBarPositionBottom)
 		{
-			mainViewHolder.height -= self.notificationBar.height; 
+			self.mainViewHolder.height -= self.notificationBar.height; 
 			//UIView *topView = appDelegateS.mainTabBarController.selectedViewController.view;
 			//topView.height -= self.notificationBar.height; 
 		}
@@ -353,11 +356,11 @@
 	void (^completion)(BOOL) = ^(BOOL finished)
 	{
 		[UIView animateWithDuration:ANIMATE_DUR delay:0.0 options:UIViewAnimationCurveEaseInOut animations:^(void){
-			if (position == EX2NotificationBarPositionTop)
+			if (self.position == EX2NotificationBarPositionTop)
 			{
-				if ([mainViewController isKindOfClass:[UITabBarController class]])
+				if ([self.mainViewController isKindOfClass:[UITabBarController class]])
 				{
-					UITabBarController *tabController = (UITabBarController *)mainViewController;
+					UITabBarController *tabController = (UITabBarController *)self.mainViewController;
 					
 					if ([tabController.selectedViewController isKindOfClass:[UINavigationController class]])
 					{
@@ -369,12 +372,12 @@
 				}
 			}
 		} completion:^(BOOL finished){
-			isNotificationBarShowing = YES;
+			_isNotificationBarShowing = YES;
 			self.view.userInteractionEnabled = YES;
             
-            if ([mainViewController isKindOfClass:[UITabBarController class]])
+            if ([self.mainViewController isKindOfClass:[UITabBarController class]])
             {
-                UITabBarController *tabController = (UITabBarController *)mainViewController;
+                UITabBarController *tabController = (UITabBarController *)self.mainViewController;
                 
                 if ([tabController.selectedViewController isKindOfClass:[UINavigationController class]])
                 {
@@ -424,11 +427,11 @@
 		completionBlock = [completionBlock copy];
 	}
 	
-	if (position == EX2NotificationBarPositionTop)
+	if (self.position == EX2NotificationBarPositionTop)
 	{
-		if ([mainViewController isKindOfClass:[UITabBarController class]])
+		if ([self.mainViewController isKindOfClass:[UITabBarController class]])
 		{
-			UITabBarController *tabController = (UITabBarController *)mainViewController;
+			UITabBarController *tabController = (UITabBarController *)self.mainViewController;
 			/*@try
 			{
 				[tabController removeObserver:self forKeyPath:@"selectedViewController"];
@@ -450,17 +453,17 @@
 	
 	void (^animations)(void) = ^(void)
 	{
-		if (position == EX2NotificationBarPositionTop)
+		if (self.position == EX2NotificationBarPositionTop)
 		{
-			notificationBar.height = 0.;
-			mainViewHolder.frame = CGRectMake(mainViewHolder.x, 
-											  mainViewHolder.y - self.notificationBarHeight, 
-											  mainViewHolder.width, 
-											  mainViewHolder.height + self.notificationBarHeight);
+			self.notificationBar.height = 0.;
+			self.mainViewHolder.frame = CGRectMake(self.mainViewHolder.x, 
+                                                   self.mainViewHolder.y - self.notificationBarHeight, 
+                                                   self.mainViewHolder.width, 
+                                                   self.mainViewHolder.height + self.notificationBarHeight);
 		}
-		else if (position == EX2NotificationBarPositionBottom)
+		else if (self.position == EX2NotificationBarPositionBottom)
 		{
-			mainViewHolder.height += self.notificationBar.height; 
+			self.mainViewHolder.height += self.notificationBar.height; 
 			//UIView *topView = appDelegateS.mainTabBarController.selectedViewController.view;
 			//topView.height += self.notificationBar.height; 
 		}
@@ -468,12 +471,12 @@
 	
 	void (^completion)(BOOL) = ^(BOOL finished) 
 	{
-		isNotificationBarShowing = NO;
+		_isNotificationBarShowing = NO;
 		self.view.userInteractionEnabled = YES;
 		
-        if ([mainViewController isKindOfClass:[UITabBarController class]])
+        if ([self.mainViewController isKindOfClass:[UITabBarController class]])
 		{
-			UITabBarController *tabController = (UITabBarController *)mainViewController;
+			UITabBarController *tabController = (UITabBarController *)self.mainViewController;
             if ([tabController.selectedViewController isKindOfClass:[UINavigationController class]])
             {
                 UINavigationController *navController = (UINavigationController *)tabController.selectedViewController;

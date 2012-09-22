@@ -32,15 +32,20 @@
 
 #import "SnappySlider.h"
 
+@interface SnappySlider ()
+{
+	CGFloat *_rawDetents;
+}
+@end
+
 @implementation SnappySlider
-@synthesize detents, snapDistance;
 
 - (id)initWithFrame:(CGRect)aFrame
 {
 	if ((self = [super initWithFrame:aFrame]))
 	{
-		rawDetents = NULL;
-		detents = nil;
+		_rawDetents = NULL;
+		_detents = nil;
 	}
 	return self;
 }
@@ -49,33 +54,33 @@
 {
 	if ((self = [super initWithCoder:aDecoder]))
 	{
-		rawDetents = NULL;
-		detents = nil;
+		_rawDetents = NULL;
+		_detents = nil;
 	}
 	return self;
 }
 
 - (void)setDetents:(NSArray *)v
 {
-	if (detents == v)
+	if (_detents == v)
 	{
 		return;
 	}
 	
 	NSArray *newDetents = [[v sortedArrayUsingSelector:@selector(compare:)] copy];
 	
-	detents = newDetents;
+	_detents = newDetents;
 	
-	if (nil != rawDetents)
+	if (nil != _rawDetents)
 	{
-		free(rawDetents);
+		free(_rawDetents);
 	}
 	
-	rawDetents = malloc(sizeof(CGFloat) * [detents count]);
+	_rawDetents = malloc(sizeof(CGFloat) * _detents.count);
 	
-	for (int i=0; i<[detents count]; i++)
+	for (int i = 0; i < _detents.count; i++)
 	{
-		rawDetents[i] = [[detents objectAtIndex:i] floatValue];
+		_rawDetents[i] = [[_detents objectAtIndex:i] floatValue];
 	}
 }
 
@@ -84,9 +89,9 @@
 	CGFloat bestDistance = CGFLOAT_MAX;
 	CGFloat bestFit = CGFLOAT_MAX;
 	
-	for (int i = 0; i < [detents count]; i++)
+	for (int i = 0; i < _detents.count; i++)
 	{
-		CGFloat candidate = rawDetents[i];
+		CGFloat candidate = _rawDetents[i];
 		CGFloat candidateDistance = fabs(candidate - value);
 		
 		if (candidateDistance < bestDistance)
@@ -96,7 +101,7 @@
 		}
 	}
 	
-	if (bestDistance <= snapDistance)
+	if (bestDistance <= _snapDistance)
 		[super setValue:bestFit animated:animated];
 	else 
 		[super setValue:value animated:animated];
@@ -104,8 +109,7 @@
 
 - (void)dealloc
 {
-	self.detents = nil;
-	free(rawDetents);
+	free(_rawDetents);
 }
 
 @end

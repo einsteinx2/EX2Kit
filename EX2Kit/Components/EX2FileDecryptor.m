@@ -22,7 +22,6 @@
 @end
 
 @implementation EX2FileDecryptor
-@synthesize fileHandle, path, decryptedBuffer, tempDecryptBuffer, seekOffset, chunkSize, error;
 
 #define DEFAULT_DECR_CHUNK_SIZE 4096
 
@@ -37,9 +36,9 @@ static const int ddLogLevel = LOG_LEVEL_ERROR;
 {
 	if ((self = [super init]))
 	{
-		chunkSize = theChunkSize;
-		tempDecryptBuffer = [[EX2RingBuffer alloc] initWithBufferLength:500*1024];
-		decryptedBuffer = [[EX2RingBuffer alloc] initWithBufferLength:500*1024];
+		_chunkSize = theChunkSize;
+		_tempDecryptBuffer = [[EX2RingBuffer alloc] initWithBufferLength:500*1024];
+		_decryptedBuffer = [[EX2RingBuffer alloc] initWithBufferLength:500*1024];
 	}
 	return self;
 }
@@ -49,8 +48,8 @@ static const int ddLogLevel = LOG_LEVEL_ERROR;
 	if ((self = [self initWithChunkSize:theChunkSize]))
 	{
 		key = [theKey copy];
-		path = [aPath copy];
-		fileHandle = [NSFileHandle fileHandleForReadingAtPath:aPath];
+		_path = [aPath copy];
+		_fileHandle = [NSFileHandle fileHandleForReadingAtPath:aPath];
 	}
 	return self;
 }
@@ -59,11 +58,11 @@ static const int ddLogLevel = LOG_LEVEL_ERROR;
 {
 	BOOL success = YES;
 	
-	NSUInteger padding = ((int)(offset / chunkSize) * self.encryptedChunkPadding); // Calculate the encryption padding
+	NSUInteger padding = ((int)(offset / self.chunkSize) * self.encryptedChunkPadding); // Calculate the encryption padding
 	NSUInteger mod = (offset + padding) % self.encryptedChunkSize;
 	NSUInteger realOffset = (offset + padding) - mod; // only seek in increments of the encryption blocks
 	
-	seekOffset = mod;
+	self.seekOffset = mod;
 	
 	DDLogVerbose(@"offset: %u  padding: %u  realOffset: %u  mod: %u:", offset, padding, realOffset, mod);
 	
@@ -92,20 +91,20 @@ static const int ddLogLevel = LOG_LEVEL_ERROR;
 		DDLogVerbose(@"asked to read length: %u", length);
 		// Round up the read to the next block
 		//length = self.decryptedBuffer.filledSpaceLength - length;
-		NSUInteger realLength = seekOffset + length;
+		NSUInteger realLength = self.seekOffset + length;
 		
-		if (((chunkSize - seekOffset) + (length / chunkSize)) < length)
+		if (((self.chunkSize - self.seekOffset) + (length / self.chunkSize)) < length)
 		{
 			// We need to read an extra chunk
 			realLength += self.encryptedChunkSize;
 		}
 		
-		DDLogVerbose(@"seek offset %u   realLength %u", seekOffset, realLength);
+		DDLogVerbose(@"seek offset %u   realLength %u", self.seekOffset, realLength);
 		NSUInteger mod = realLength % encryptedChunkSize;
-		if (mod > chunkSize)
+		if (mod > self.chunkSize)
 		{
 			realLength += encryptedChunkSize;
-			mod -= chunkSize;
+			mod -= self.chunkSize;
 		}
 		
 		DDLogVerbose(@"mod %u", mod);
@@ -148,19 +147,19 @@ static const int ddLogLevel = LOG_LEVEL_ERROR;
 			DDLogVerbose(@"data size: %u  decrypted size: %u", data.length, decrypted.length);
 			if (decryptionError)
 			{
-				error = decryptionError;
+				_error = decryptionError;
 				DDLogError(@"ERROR THERE WAS AN ERROR DECRYPTING THIS CHUNK");
 			}
 			else
 			{
 				// Add the data to the decryption buffer
-				if (seekOffset > 0)
+				if (self.seekOffset > 0)
 				{
 					DDLogVerbose(@"seek offset greater than 0");
 					const void *tempBuff = decrypted.bytes;
-					DDLogVerbose(@"filling decrypted buffer length %u", chunkSize-seekOffset);
-					[self.decryptedBuffer fillWithBytes:tempBuff+seekOffset length:chunkSize-seekOffset];
-					seekOffset = 0;
+					DDLogVerbose(@"filling decrypted buffer length %u", self.chunkSize - self.seekOffset);
+					[self.decryptedBuffer fillWithBytes:tempBuff+self.seekOffset length:self.chunkSize-self.seekOffset];
+					self.seekOffset = 0;
 					DDLogVerbose(@"setting seekOffset to 0");
 				}
 				else
@@ -203,17 +202,17 @@ static const int ddLogLevel = LOG_LEVEL_ERROR;
 	[self.tempDecryptBuffer reset];
 	[self.decryptedBuffer reset];
 	[self.fileHandle closeFile];
-	fileHandle = nil;
+	_fileHandle = nil;
 }
 
 - (NSUInteger)encryptedChunkPadding
 {
-	return self.encryptedChunkSize - chunkSize;
+	return self.encryptedChunkSize - self.chunkSize;
 }
 
 - (NSUInteger)encryptedChunkSize
 {
-	NSUInteger aesPaddedSize = ((chunkSize / 16) + 1) * 16;
+	NSUInteger aesPaddedSize = ((self.chunkSize / 16) + 1) * 16;
 	NSUInteger totalPaddedSize = aesPaddedSize + 66; // Add the RNCryptor padding
 	return totalPaddedSize;
 }
@@ -230,7 +229,7 @@ static const int ddLogLevel = LOG_LEVEL_ERROR;
 	unsigned long long encryptedSize = self.encryptedFileSizeOnDisk;
 	
 	// Find padding size
-	unsigned long long chunkPadding = self.encryptedChunkSize - chunkSize;
+	unsigned long long chunkPadding = self.encryptedChunkSize - self.chunkSize;
 	unsigned long long numberOfEncryptedChunks = (encryptedSize / self.encryptedChunkSize);
 	unsigned long long filePadding = numberOfEncryptedChunks * chunkPadding;
 	

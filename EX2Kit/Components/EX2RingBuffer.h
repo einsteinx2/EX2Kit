@@ -9,9 +9,6 @@
 #import <Foundation/Foundation.h>
 
 @interface EX2RingBuffer : NSObject
-{
-	void *bufferBackingStore;
-}
 
 @property (strong) NSData *buffer;
 @property (nonatomic) NSUInteger readPosition;

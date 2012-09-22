@@ -49,14 +49,12 @@
 
 @implementation EX2SimpleConnectionQueue
 
-@synthesize delegate, connectionStack, isRunning;
-
 - (id)init
 {
 	if (self = [super init])
 	{
-		connectionStack = [[NSMutableArray alloc] init];
-		isRunning = NO;
+		_connectionStack = [[NSMutableArray alloc] init];
+		_isRunning = NO;
 	}
 	
 	return self;
@@ -64,38 +62,36 @@
 
 - (void)registerConnection:(NSURLConnection *)connection
 {
-	[connectionStack addObject:connection];
+	[self.connectionStack addObject:connection];
 	//NSLog(@"CONNECTION QUEUE REGISTER: %i connections registered", [connectionStack count]);
 }
 
 - (void)connectionFinished:(NSURLConnection *)connection
 {
-	if ([connectionStack count] > 0)
-		[connectionStack removeObjectAtIndex:0];
+	if (self.connectionStack.count > 0)
+		[self.connectionStack removeObjectAtIndex:0];
 	
 	//NSLog(@"CONNECTION QUEUE FINISHED: %i connections registered", [connectionStack count]);
 	
-	if (isRunning && [connectionStack count] > 0)
+	if (self.isRunning && self.connectionStack.count > 0)
 	{
-		NSURLConnection *connection = [connectionStack objectAtIndex:0];
+		NSURLConnection *connection = [self.connectionStack objectAtIndex:0];
 		[connection scheduleInRunLoop:[NSRunLoop currentRunLoop] forMode:NSDefaultRunLoopMode];
 		[connection start];
 	}
 	else
 	{
-		isRunning = NO;
-        
-        [delegate connectionQueueDidFinish:self];
+		_isRunning = NO;
+        [self.delegate connectionQueueDidFinish:self];
 	}
 }
 
 - (void)startQueue
 {	
-	if ([connectionStack count] > 0 && !isRunning)
+	if (self.connectionStack.count > 0 && !self.isRunning)
 	{
-		isRunning = YES;
-
-		NSURLConnection *connection = [connectionStack objectAtIndex:0];
+		_isRunning = YES;
+		NSURLConnection *connection = [self.connectionStack objectAtIndex:0];
 		[connection scheduleInRunLoop:[NSRunLoop currentRunLoop] forMode:NSDefaultRunLoopMode];
 		[connection start];
 	}
@@ -103,19 +99,19 @@
 
 - (void)stopQueue
 {
-	isRunning = NO;
+	_isRunning = NO;
 }
 
 - (void)clearQueue
 {
 	[self stopQueue];
 	
-	for (NSURLConnection *connection in connectionStack)
+	for (NSURLConnection *connection in self.connectionStack)
 	{
 		[connection cancel];
 	}
 	
-	[connectionStack removeAllObjects];
+	[self.connectionStack removeAllObjects];
 }
 
 @end

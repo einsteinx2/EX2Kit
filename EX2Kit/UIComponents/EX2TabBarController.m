@@ -47,8 +47,14 @@ static char key;
 }
 @end
 
+@interface EX2TabBarController ()
+{
+    __strong NSArray *_viewControllers;
+    NSUInteger _selectedIndex;
+}
+@end
+
 @implementation EX2TabBarController
-@synthesize containerView, tabBar, viewControllers, selectedIndex, animation;
 
 - (void)viewDidLoad
 {
@@ -85,7 +91,7 @@ static char key;
 
 - (NSArray *)viewControllers
 {
-    return viewControllers;
+    return _viewControllers;
 }
 
 - (void)setViewControllers:(NSArray *)controllers
@@ -94,17 +100,17 @@ static char key;
     [self.containerView.subviews makeObjectsPerformSelector:@selector(removeFromSuperview)];
     
     // Clear the ex2TabBarController property from the old controllers if they exist
-    for (UIViewController *controller in viewControllers)
+    for (UIViewController *controller in _viewControllers)
     {
         controller.ex2TabBarController = nil;
     }
     
     // Set the ivar
-    viewControllers = controllers;
+    _viewControllers = controllers;
         
     // Setup the tab bar items and set the ex2TabBarController property
-    NSMutableArray *items = [NSMutableArray arrayWithCapacity:viewControllers.count];
-    for (UIViewController *controller in viewControllers)
+    NSMutableArray *items = [NSMutableArray arrayWithCapacity:_viewControllers.count];
+    for (UIViewController *controller in _viewControllers)
     {
         controller.ex2TabBarController = self;
         [items addObject:controller.tabBarItem];
@@ -112,7 +118,7 @@ static char key;
     self.tabBar.items = [NSArray arrayWithArray:items];
     
     // Display the first controller if it exists
-    if (viewControllers.count > 0)
+    if (_viewControllers.count > 0)
     {
         [self displayControllerAtIndex:0 animation:self.animation];
     }
@@ -120,12 +126,12 @@ static char key;
 
 - (UIViewController *)selectedViewController
 {
-    return [viewControllers objectAtIndexSafe:selectedIndex];
+    return [self.viewControllers objectAtIndexSafe:self.selectedIndex];
 }
 
 - (void)setSelectedViewController:(UIViewController *)selectedViewController
 {
-    NSUInteger index = [viewControllers indexOfObject:selectedViewController];
+    NSUInteger index = [self.viewControllers indexOfObject:selectedViewController];
     if (index != NSNotFound)
     {
         self.selectedIndex = index;
@@ -134,12 +140,12 @@ static char key;
 
 - (NSUInteger)selectedIndex
 {
-    return selectedIndex;
+    return _selectedIndex;
 }
 
 - (void)setSelectedIndex:(NSUInteger)index
 {
-    if (selectedIndex != index)
+    if (_selectedIndex != index)
     {
         self.tabBar.selectedItem = [self.tabBar.items objectAtIndex:index];
         [self tabBar:self.tabBar didSelectItem:self.tabBar.selectedItem];
@@ -148,7 +154,7 @@ static char key;
 
 - (void)displayControllerAtIndex:(NSUInteger)index animation:(EX2TabBarControllerAnimation)animationType
 {
-    if (viewControllers.count > index)
+    if (self.viewControllers.count > index)
     {
         switch (animationType)
         {
@@ -158,7 +164,7 @@ static char key;
                 [self.containerView.subviews makeObjectsPerformSelector:@selector(removeFromSuperview)];
                 
                 // Resize the view
-                UIViewController *controller = [viewControllers objectAtIndex:index];
+                UIViewController *controller = [self.viewControllers objectAtIndex:index];
                 controller.view.frame = self.containerView.bounds;
                 controller.view.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
                 
@@ -186,7 +192,7 @@ static char key;
             case EX2TabBarControllerAnimationFadeTogether:
             {
                 // Prepare the new view
-                UIViewController *controller = [viewControllers objectAtIndex:index];
+                UIViewController *controller = [self.viewControllers objectAtIndex:index];
                 controller.view.frame = self.containerView.bounds;
                 controller.view.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
                 controller.view.alpha = 0.0;
@@ -219,9 +225,9 @@ static char key;
 - (void)tabBar:(UITabBar *)bar didSelectItem:(UITabBarItem *)item
 {
     NSUInteger index = [bar.items indexOfObject:item];
-    if (index != NSNotFound && selectedIndex != index)
+    if (index != NSNotFound && self.selectedIndex != index)
     {
-        selectedIndex = index;
+        _selectedIndex = index;
         [self displayControllerAtIndex:index animation:self.animation];
     }
 }
