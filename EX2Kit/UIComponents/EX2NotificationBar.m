@@ -154,7 +154,13 @@
 
 #pragma mark - Rotation
 
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)inOrientation 
+- (BOOL)shouldAutorotate
+{
+    UIInterfaceOrientation orientation = [[UIDevice currentDevice] orientation];
+    return [self shouldAutorotateToInterfaceOrientation:orientation];
+}
+
+- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)inOrientation
 {
 	// Don't allow rotating while the notification bar is animating
 	if (!self.view.userInteractionEnabled)
