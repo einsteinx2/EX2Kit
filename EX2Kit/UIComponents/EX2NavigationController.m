@@ -65,6 +65,15 @@ static char key;
     return self;
 }
 
+- (id)initWithCoder:(NSCoder *)aDecoder
+{
+    if ([super initWithCoder:aDecoder])
+    {
+        _viewControllers = [[NSMutableArray alloc] init];
+    }
+    return self;
+}
+
 - (id)initWithRootViewController:(UIViewController *)viewController
 {
 	if (self = [super init])
@@ -105,6 +114,7 @@ static char key;
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
 	if (self.viewControllers.count > 0)
 	{
 		UIViewController *current = self.viewControllers.lastObject;
