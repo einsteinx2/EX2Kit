@@ -15,7 +15,7 @@
 @class EX2NavigationController;
 
 @interface UIViewController (EX2NavigationController)
-@property (nonatomic, unsafe_unretained) EX2NavigationController *ex2NavigationController;
+@property (nonatomic, weak) EX2NavigationController *ex2NavigationController;
 @end
 
 @protocol EX2NavigationControllerDelegate <NSObject>

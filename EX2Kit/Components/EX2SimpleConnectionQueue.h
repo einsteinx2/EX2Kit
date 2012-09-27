@@ -52,7 +52,7 @@
 // Class
 @interface EX2SimpleConnectionQueue : NSObject
 
-@property (unsafe_unretained) id <EX2SimpleConnectionQueueDelegate> delegate;
+@property (weak) id <EX2SimpleConnectionQueueDelegate> delegate;
 
 @property (readonly, strong) NSMutableArray *connectionStack;
 @property (readonly) BOOL isRunning;

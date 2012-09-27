@@ -28,16 +28,16 @@ EX2NotificationBarPosition;
 
 // View to place notification bar content. May add any custom subviews, etc. 
 // Think of like UITableViewCell contentView.
-@property (unsafe_unretained, nonatomic, readonly) IBOutlet UIView *notificationBarContent;
+@property (weak, nonatomic, readonly) IBOutlet UIView *notificationBarContent;
 
 // The notification bar area. Contains the content view and shadows. Always add
 // subviews to the content view, NOT to this view, or they will be placed
 // above the shadows unless you specifically move them backwards in the hierarchy
-@property (unsafe_unretained, nonatomic, readonly) IBOutlet UIView *notificationBar;
+@property (weak, nonatomic, readonly) IBOutlet UIView *notificationBar;
 
 // The view that contains the main view. This is where you would add your UITabBarController,
 // UINavigationController, etc.
-@property (unsafe_unretained, nonatomic, readonly) IBOutlet UIView *mainViewHolder;
+@property (weak, nonatomic, readonly) IBOutlet UIView *mainViewHolder;
 
 // YES when the notificationBar is visible
 @property (nonatomic, readonly) BOOL isNotificationBarShowing;
