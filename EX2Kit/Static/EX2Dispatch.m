@@ -116,6 +116,7 @@ static void initialize_navigationBarImages()
 		// Add it to the dictionary
 		NSValue *timerValue = [NSValue valueWithPointer:timer];
 		[gcdTimers setObject:timerValue forKey:name];
+        //[gcdTimers setObject:timer forKey:name];
 		
 		// Start the timer
 		dispatch_resume(timer);

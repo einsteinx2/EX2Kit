@@ -107,6 +107,6 @@
 #endif
 
 // Temporary hack, need a proper solution
-#define IS_TALL_SCREEN() ([[UIScreen mainScreen] bounds].size.height > 480.)
+#define IS_TALL_SCREEN() (CGSizeEqualToSize([[UIScreen mainScreen] preferredMode].size, CGSizeMake(640, 1136)))
 
 #endif

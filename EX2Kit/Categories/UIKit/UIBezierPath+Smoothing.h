@@ -6,6 +6,8 @@
 //  Copyright (c) 2012 Ben Baron. All rights reserved.
 //
 
+#import <UIKit/UIKit.h>
+
 @interface UIBezierPath (Smoothing)
 
 - (UIBezierPath *)smoothedPathWithGranularity:(NSInteger)granularity;

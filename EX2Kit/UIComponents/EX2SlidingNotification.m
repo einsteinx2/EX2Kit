@@ -6,7 +6,10 @@
 //  Copyright (c) 2012 Ben Baron. All rights reserved.
 //
 
+#import "UIView+Tools.h"
 #import "EX2SlidingNotification.h"
+#import "NSArray+Additions.h"
+#import "UIView+Tools.h"
 
 #define ANIMATION_DELAY 0.25
 #define DEFAULT_DISPLAY_TIME 2.0
@@ -115,7 +118,7 @@
     if (self.view.superview == [[UIApplication sharedApplication] keyWindow])
         self.view.y += [[UIApplication sharedApplication] statusBarFrame].size.height;
     
-    DLog(@"current frame: %@", NSStringFromCGRect(self.view.frame));
+    //DLog(@"current frame: %@", NSStringFromCGRect(self.view.frame));
 	[UIView animateWithDuration:ANIMATION_DELAY animations:^(void)
      {
          // If we're directly on the UIWindow then add the status bar height
@@ -125,7 +128,7 @@
              
          self.view.y = y;
          
-         DLog(@"new frame: %@", NSStringFromCGRect(self.view.frame));
+         //DLog(@"new frame: %@", NSStringFromCGRect(self.view.frame));
      }];
 }
 

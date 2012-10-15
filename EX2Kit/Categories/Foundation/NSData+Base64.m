@@ -299,7 +299,7 @@ char *NewBase64Encode(
 	size_t outputLength;
 	char *outputBuffer = NewBase64Encode([self bytes], [self length], false, &outputLength);
 	
-	NSString *result = [[[NSString alloc] initWithBytes:outputBuffer length:outputLength encoding:NSUTF8StringEncoding] autorelease];
+	NSString *result = [[NSString alloc] initWithBytes:outputBuffer length:outputLength encoding:NSUTF8StringEncoding];
 	free(outputBuffer);
 	return result;
 }

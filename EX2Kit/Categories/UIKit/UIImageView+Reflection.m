@@ -7,6 +7,7 @@
 //
 
 #import "UIImageView+Reflection.h"
+#import "EX2Macros.h"
 
 @implementation UIImageView (Reflection)
 
