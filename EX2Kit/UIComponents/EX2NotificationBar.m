@@ -5,7 +5,9 @@
 //  Copyright (c) 2012 Ben Baron. All rights reserved.
 //
 
+#import "UIView+Tools.h"
 #import "EX2NotificationBar.h"
+#import "EX2Macros.h"
 
 #define DEFAULT_HIDE_DURATION 5.0
 #define ANIMATE_DUR 0.3
@@ -170,7 +172,7 @@
     return [self shouldAutorotateToInterfaceOrientation:[UIDevice currentDevice].orientation];
 }
 
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)inOrientation
+- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)inOrientation 
 {
 	// Don't allow rotating while the notification bar is animating
 	if (self.isNotificationBarAnimating)

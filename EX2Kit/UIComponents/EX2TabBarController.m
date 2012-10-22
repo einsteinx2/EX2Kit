@@ -8,6 +8,9 @@
 
 #import "EX2TabBarController.h"
 #import <objc/runtime.h>
+#import "UIView+Tools.h"
+#import "EX2Macros.h"
+#import "NSArray+Additions.h"
 
 @implementation UIViewController (EX2TabBarController)
 // No adding instance properties in categories you say? Hogwash! Three cheers for associative references!
@@ -76,6 +79,11 @@ static char key;
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
+}
+
+- (BOOL)shouldAutorotate
+{
+    return [self shouldAutorotateToInterfaceOrientation:[UIDevice currentDevice].orientation];
 }
 
 - (void)viewWillAppear:(BOOL)animated

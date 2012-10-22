@@ -4,7 +4,6 @@
  BSD License, Use at your own risk
  */
 
-
 #define IFPGA_NAMESTRING				@"iFPGA"
 
 #define IPHONE_1G_NAMESTRING			@"iPhone 1G"
@@ -32,6 +31,8 @@
 #define IPHONE_SIMULATOR_NAMESTRING			@"iPhone Simulator"
 #define IPHONE_SIMULATOR_IPHONE_NAMESTRING	@"iPhone Simulator"
 #define IPHONE_SIMULATOR_IPAD_NAMESTRING	@"iPad Simulator"
+
+#import <UIKit/UIKit.h>
 
 typedef enum {
 	UIDeviceUnknown,

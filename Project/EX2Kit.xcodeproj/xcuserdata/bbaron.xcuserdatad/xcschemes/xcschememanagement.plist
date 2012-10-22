@@ -9,10 +9,25 @@
 			<key>orderHint</key>
 			<integer>0</integer>
 		</dict>
+		<key>EX2KitResources.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>1</integer>
+		</dict>
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
 		<key>53D44EA215AA56C700CDD3B8</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>53F15ED6162B9F1B00C24FC1</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>53F15EE8162B9F6800C24FC1</key>
 		<dict>
 			<key>primary</key>
 			<true/>

@@ -56,6 +56,8 @@
 
 #import "EX2Reachability.h"
 
+#import "NSNotificationCenter+MainThread.h"
+
 #define kShouldPrintReachabilityFlags 0
 
 static void PrintReachabilityFlags(SCNetworkReachabilityFlags    flags, const char* comment)

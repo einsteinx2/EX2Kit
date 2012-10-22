@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "NSData+Gzip.h"
 
 @interface NSString (Gzip)
 

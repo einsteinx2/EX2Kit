@@ -58,7 +58,7 @@
 // Class
 @interface EX2SimpleConnectionQueue : NSObject
 
-@property (unsafe_unretained) id <EX2SimpleConnectionQueueDelegate> delegate;
+@property (weak) id <EX2SimpleConnectionQueueDelegate> delegate;
 
 @property NSUInteger numberOfConcurrentConnections;
 @property NSTimeInterval delayBetweenConnections;

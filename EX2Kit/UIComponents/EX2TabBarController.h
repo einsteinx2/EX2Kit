@@ -28,7 +28,7 @@ EX2TabBarControllerAnimation;
 
 @class EX2TabBarController;
 @interface UIViewController (EX2TabBarController)
-@property (nonatomic, unsafe_unretained) EX2TabBarController *ex2TabBarController;
+@property (nonatomic, weak) EX2TabBarController *ex2TabBarController;
 @end
 
 @interface EX2TabBarController : UIViewController <UITabBarDelegate>

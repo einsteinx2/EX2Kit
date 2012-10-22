@@ -195,7 +195,7 @@ static char key;
 
 - (void)animationStopped:(UIViewController *)disappearingController appearingController:(UIViewController *)appearingController
 {
-    DLog(@"animation stopped");
+    //DLog(@"animation stopped");
     [disappearingController.view removeFromSuperview];
     
     if ([self.delegate respondsToSelector:@selector(ex2NavigationController:didShowViewController:animated:)])
@@ -206,7 +206,7 @@ static char key;
 
 - (void)performAnimation:(UIViewController *)appearing appearingStart:(CGRect)appearingStart appearingEnd:(CGRect)appearingEnd disappearing:(UIViewController *)disappearing disappearingEnd:(CGRect)disappearingEnd
 {
-    DLog(@"appearingStart: %@  appearingEnd: %@  disappearingEnd: %@", NSStringFromCGRect(appearingStart), NSStringFromCGRect(appearingEnd), NSStringFromCGRect(disappearingEnd));
+    //DLog(@"appearingStart: %@  appearingEnd: %@  disappearingEnd: %@", NSStringFromCGRect(appearingStart), NSStringFromCGRect(appearingEnd), NSStringFromCGRect(disappearingEnd));
     
     if (self.isAnimating)
         return;

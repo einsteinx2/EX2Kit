@@ -6,6 +6,7 @@
 //  Copyright (c) 2012 Ben Baron. All rights reserved.
 //
 
+#import <UIKit/UIKit.h>
 #import <QuartzCore/QuartzCore.h>
 
 @interface CALayer (ImageFromLayer)

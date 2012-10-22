@@ -107,5 +107,7 @@
 #endif
 #endif
 
+// Temporary hack, need a proper solution
+#define IS_TALL_SCREEN() (CGSizeEqualToSize([[UIScreen mainScreen] preferredMode].size, CGSizeMake(640, 1136)))
 
 #endif

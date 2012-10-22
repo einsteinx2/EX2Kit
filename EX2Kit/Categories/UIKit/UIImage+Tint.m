@@ -8,6 +8,7 @@
 // From: http://mbigatti.wordpress.com/2012/04/02/objc-an-uiimage-category-to-tint-images-with-transparency/
 
 #import "UIImage+Tint.h"
+#import "EX2Macros.h"
 
 @implementation UIImage (Tint)
 
