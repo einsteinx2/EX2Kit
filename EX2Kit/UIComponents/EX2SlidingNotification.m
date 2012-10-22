@@ -108,7 +108,8 @@
 
 - (void)showSlidingNotification
 {
-	self.selfRef = self;
+	if (!self.selfRef)
+        self.selfRef = self;
     
     // Set the start position
     self.view.y = -self.view.height;
@@ -142,6 +143,14 @@
          [self.view removeFromSuperview];
          self.selfRef = nil;
      }];
+}
+
+- (IBAction)buttonAction:(id)sender
+{
+    if (self.tapBlock)
+    {
+        self.tapBlock();
+    }
 }
 
 @end

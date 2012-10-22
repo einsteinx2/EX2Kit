@@ -47,6 +47,12 @@
 
 #import <Foundation/Foundation.h>
 
+// Notifications
+#define EX2SimpleConnectionQueueDidStart @"EX2SimpleConnectionQueueDidStart"
+#define EX2SimpleConnectionQueueDidStop @"EX2SimpleConnectionQueueDidStop"
+#define EX2SimpleConnectionQueueDidClear @"EX2SimpleConnectionQueueDidClear"
+#define EX2SimpleConnectionQueueConnectionDidFinish @"EX2SimpleConnectionQueueConnectionDidFinish"
+
 @protocol EX2SimpleConnectionQueueDelegate;
 
 // Class
@@ -54,8 +60,16 @@
 
 @property (unsafe_unretained) id <EX2SimpleConnectionQueueDelegate> delegate;
 
-@property (readonly, strong) NSMutableArray *connectionStack;
+@property NSUInteger numberOfConcurrentConnections;
+@property NSTimeInterval delayBetweenConnections;
+
+@property BOOL isStartConnectionsAutomatically;
+
+@property (readonly, strong) NSMutableArray *activeConnectionStack;
+@property (readonly, strong) NSMutableArray *waitingConnectionStack;
 @property (readonly) BOOL isRunning;
+
+@property (readonly) CGFloat progress;
 
 - (void)registerConnection:(NSURLConnection *)connection;
 - (void)connectionFinished:(NSURLConnection *)connection;

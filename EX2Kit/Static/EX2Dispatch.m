@@ -162,7 +162,7 @@ static void initialize_navigationBarImages()
 	@synchronized(syncObject)
 	{
 		// Get all the keys
-		NSArray *keys = [NSArray arrayWithArray:[gcdTimers allKeys]];
+		NSArray *keys = [NSArray arrayWithArraySafe:[gcdTimers allKeys]];
 		
 		// Cancel each timer
 		for (NSString *key in keys)

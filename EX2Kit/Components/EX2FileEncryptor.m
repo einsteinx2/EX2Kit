@@ -75,12 +75,12 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
 		NSError *encryptionError;
 		NSTimeInterval start = [[NSDate date] timeIntervalSince1970];	
 		NSData *encrypted = [[RNCryptor AES256Cryptor] encryptData:data password:_key error:&encryptionError];
-		DDLogVerbose(@"total time: %f", [[NSDate date] timeIntervalSince1970] - start);
+		DDLogVerbose(@"[EX2FileEncryptor] total time: %f", [[NSDate date] timeIntervalSince1970] - start);
 
 		//DLog(@"data size: %u  encrypted size: %u", data.length, encrypted.length);
 		if (encryptionError)
 		{
-			DDLogError(@"Encryptor: ERROR THERE WAS AN ERROR ENCRYPTING THIS CHUNK");
+			DDLogError(@"[EX2FileEncryptor] Encryptor: ERROR THERE WAS AN ERROR ENCRYPTING THIS CHUNK");
 			return bytesWritten;
 		}
 		else
@@ -93,7 +93,7 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
 			}
 			@catch (NSException *exception) 
 			{
-				DDLogError(@"Encryptor: Failed to write to file");
+				DDLogError(@"[EX2FileEncryptor] Encryptor: Failed to write to file");
 				@throw(exception);
 			}
 		}
@@ -109,16 +109,16 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
 
 - (void)clearBuffer
 {
-	DDLogInfo(@"Encryptor: clearing the buffer");
+	DDLogInfo(@"[EX2FileEncryptor] Encryptor: clearing the buffer");
 	[self.encryptionBuffer reset];
 }
 
 - (BOOL)closeFile
 {
-	DDLogInfo(@"Encryptor: closing the file");
+	DDLogInfo(@"[EX2FileEncryptor] Encryptor: closing the file");
 	while (self.encryptionBuffer.filledSpaceLength > 0)
 	{
-		DDLogInfo(@"Encryptor: writing the remaining bytes");
+		DDLogInfo(@"[EX2FileEncryptor] Encryptor: writing the remaining bytes");
 		NSUInteger length = self.encryptionBuffer.filledSpaceLength >= 4096 ? 4096 : self.encryptionBuffer.filledSpaceLength;
 		NSData *data = [self.encryptionBuffer drainData:length];
 		
@@ -127,7 +127,7 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
 		//DLog(@"data size: %u  encrypted size: %u", data.length, encrypted.length);
 		if (encryptionError)
 		{
-			DDLogError(@"ERROR THERE WAS AN ERROR ENCRYPTING THIS CHUNK");
+			DDLogError(@"[EX2FileEncryptor] ERROR THERE WAS AN ERROR ENCRYPTING THIS CHUNK");
 			//return NO;
 		}
 		else

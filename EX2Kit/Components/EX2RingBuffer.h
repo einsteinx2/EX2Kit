@@ -10,6 +10,8 @@
 
 @interface EX2RingBuffer : NSObject
 
+@property NSUInteger maximumLength;
+
 @property (strong) NSData *buffer;
 @property (nonatomic) NSUInteger readPosition;
 @property (nonatomic) NSUInteger writePosition;

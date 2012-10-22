@@ -20,7 +20,8 @@
 {
 	if ((self = [super init]))
 	{
-		_bufferBackingStore = malloc(sizeof(char) * bytes);
+        _maximumLength = bytes; // default to no expansion
+		_bufferBackingStore = malloc(bytes);
 		_buffer = [NSData dataWithBytesNoCopy:_bufferBackingStore length:bytes freeWhenDone:YES];
 		[self reset];
 	}
@@ -34,7 +35,6 @@
 
 - (void)reset
 {
-	memset(_bufferBackingStore, 0, self.totalLength);
 	self.readPosition = 0;
 	self.writePosition = 0;
 }
@@ -122,9 +122,23 @@
 			//DLog(@"filled %i bytes, free: %i, filled: %i, writPos: %i, readPos: %i", bufferLength, self.freeSpaceLength, self.filledSpaceLength, self.writePosition, self.readPosition);
 			
 			[self advanceWritePosition:bufferLength];
+            
+            //DLog(@"ring buffer, filled space: %i", self.filledSpaceLength);
 			
 			return YES;
 		}
+        else if (self.totalLength < self.maximumLength)
+        {
+            DLog(@"totalLength: %u  maximumLength: %u,  expanding the buffer", self.totalLength, self.maximumLength);
+            
+            // Expand the buffer and try to fill it again
+            if ([self expand])
+            {
+                DLog(@"Expansion successful, new totalLength: %u", self.totalLength);
+                return [self fillWithBytes:byteBuffer length:bufferLength];
+            }
+        }
+        
 		return NO;
 	}
 }
@@ -181,6 +195,48 @@
 - (BOOL)hasSpace:(NSUInteger)length
 {
 	return self.freeSpaceLength >= length;
+}
+
+- (BOOL)expand
+{
+    // Expand by 25%
+    return [self expand:(NSUInteger)((double)self.totalLength * 1.25)];
+}
+
+- (BOOL)expand:(NSUInteger)size
+{
+    @synchronized(self)
+	{
+        if (size <= self.totalLength)
+            return NO;
+        
+        DLog(@"Expanding ring buffer size from: %u to %u", self.totalLength, size);
+        
+        // First try to expand the backing buffer
+        void *tempBuffer = malloc(sizeof(char) * size);
+        if (tempBuffer == NULL)
+        {
+            // malloc failed
+            return NO;
+        }
+        else
+        {
+            // Drain all the bytes into the new buffer
+            NSUInteger filledSize = self.filledSpaceLength;
+            [self drainBytes:tempBuffer length:filledSize];
+            
+            // Adjust the read and write positions
+            self.readPosition = 0;
+            self.writePosition = filledSize;
+            
+            // Swap out the buffers
+            _buffer = nil;
+            _bufferBackingStore = tempBuffer;
+            _buffer = [NSData dataWithBytesNoCopy:_bufferBackingStore length:size freeWhenDone:YES];
+            
+            return YES;
+        }
+    }
 }
 
 @end

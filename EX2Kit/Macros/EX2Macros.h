@@ -82,6 +82,7 @@
 #define n2N(value) (value ? value : [NSNull null])
 #define N2n(value) (value == [NSNull null] ? nil : value)
 #define n2blank(value) (value ? value : @"")
+#define n2zero(value) (value ? value : @(0))
 
 //static id n2N(id value) { return value ? value : [NSNull null]; }
 

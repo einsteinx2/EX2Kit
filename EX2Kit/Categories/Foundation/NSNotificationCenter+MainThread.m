@@ -40,7 +40,7 @@
 		if (userInfo) [info setObject:userInfo forKey:@"userInfo"];
 		
 		[NSNotificationCenter performSelectorOnMainThread:@selector(postNotificationInternal:) 
-											   withObject:info 
+											   withObject:info
 											waitUntilDone:NO];
 	}
 }

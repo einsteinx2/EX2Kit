@@ -44,6 +44,17 @@
 	return self;
 }
 
+- (id)initWithPosition:(EX2NotificationBarPosition)thePosition mainViewController:(UIViewController *)mainViewController
+{
+    if ((self = [super initWithNibName:@"EX2NotificationBar" bundle:nil]))
+	{
+		[self setup];
+		_position = thePosition;
+        _mainViewController = mainViewController;
+	}
+	return self;
+}
+
 - (id)init
 {
 	return [self initWithPosition:EX2NotificationBarPositionTop];
@@ -156,14 +167,13 @@
 
 - (BOOL)shouldAutorotate
 {
-    UIInterfaceOrientation orientation = [[UIDevice currentDevice] orientation];
-    return [self shouldAutorotateToInterfaceOrientation:orientation];
+    return [self shouldAutorotateToInterfaceOrientation:[UIDevice currentDevice].orientation];
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)inOrientation
 {
 	// Don't allow rotating while the notification bar is animating
-	if (!self.view.userInteractionEnabled)
+	if (self.isNotificationBarAnimating)
 	{
 		return inOrientation == [UIApplication sharedApplication].statusBarOrientation;
 	}
@@ -295,11 +305,22 @@
 
 - (void)show:(void (^)(void))completionBlock
 {
-	if (self.isNotificationBarShowing || !self.view.userInteractionEnabled)
-		return;
-	    
-	self.view.userInteractionEnabled = NO;
-	
+	if (self.isNotificationBarShowing)
+	{
+        // If already showing, do nothing
+        return;
+    }
+    _isNotificationBarShowing = YES;
+    
+    DLog(@"Notification bar SHOW called, is animating: %@", NSStringFromBOOL(self.isNotificationBarAnimating));
+    if (!self.isNotificationBarAnimating)
+    {
+        // If currently animating, cancel all animations
+        [self.notificationBar.layer removeAllAnimations];
+        [self.mainViewHolder.layer removeAllAnimations];
+    }
+    _isNotificationBarAnimating = YES;
+    
 	if (completionBlock != NULL)
 	{
 		completionBlock = [completionBlock copy];
@@ -321,35 +342,14 @@
 	void (^animations)(void) = ^(void)
 	{
 		if (self.position == EX2NotificationBarPositionTop)
-		{
-			if ([self.mainViewController isKindOfClass:[UITabBarController class]])
-			{
-				UITabBarController *tabController = (UITabBarController *)self.mainViewController;
-				//[tabController addObserver:self forKeyPath:@"selectedViewController" options:NSKeyValueObservingOptionOld context:NULL];
-				
-				if ([tabController.selectedViewController isKindOfClass:[UINavigationController class]])
-				{
-					UINavigationController *navController = (UINavigationController *)tabController.selectedViewController;
-					navController.view.y += self.changedTabSinceTallHeight ? ACTUAL_STATUS_HEIGHT : SMALL_STATUS_HEIGHT;
-                    
-                    if (!self.wasStatusBarTallOnStart)
-                    {
-                        navController.navigationBar.y += self.changedTabSinceTallHeight ? SMALL_STATUS_HEIGHT : 0.;
-                    }
-                    
-                    if (ACTUAL_STATUS_HEIGHT < LARGE_STATUS_HEIGHT && self.wasStatusBarTallOnStart)
-                    {
-                        navController.navigationBar.y += LARGE_STATUS_HEIGHT;
-                    }
-					//navController.view.height -= STATUS_HEIGHT;
-				}
-			}
-            			
+		{	
 			self.notificationBar.height = self.notificationBarHeight;
 			self.mainViewHolder.frame = CGRectMake(self.mainViewHolder.x,
                                                    self.mainViewHolder.y + self.notificationBarHeight,
                                                    self.mainViewHolder.width,
                                                    self.mainViewHolder.height - self.notificationBarHeight);
+            
+            if (self.mainViewHolder.y < 0.) self.mainViewHolder.y = 0.;
 		}
 		else if (self.position == EX2NotificationBarPositionBottom)
 		{
@@ -361,50 +361,19 @@
 	
 	void (^completion)(BOOL) = ^(BOOL finished)
 	{
-		[UIView animateWithDuration:ANIMATE_DUR delay:0.0 options:UIViewAnimationCurveEaseInOut animations:^(void){
-			if (self.position == EX2NotificationBarPositionTop)
-			{
-				if ([self.mainViewController isKindOfClass:[UITabBarController class]])
-				{
-					UITabBarController *tabController = (UITabBarController *)self.mainViewController;
-					
-					if ([tabController.selectedViewController isKindOfClass:[UINavigationController class]])
-					{
-						UINavigationController *navController = (UINavigationController *)tabController.selectedViewController;
-						
-						navController.view.y += SMALL_STATUS_HEIGHT;
-						navController.navigationBar.y -= SMALL_STATUS_HEIGHT;
-					}
-				}
-			}
-		} completion:^(BOOL finished){
-			_isNotificationBarShowing = YES;
-			self.view.userInteractionEnabled = YES;
+        if (finished)
+        {            
+            [[NSNotificationCenter defaultCenter] postNotificationName:EX2NotificationBarDidShow object:nil];
+            [[NSNotificationCenter defaultCenter] postNotificationName:UIDeviceOrientationDidChangeNotification object:nil];
             
-            if ([self.mainViewController isKindOfClass:[UITabBarController class]])
+            if (completionBlock != NULL)
             {
-                UITabBarController *tabController = (UITabBarController *)self.mainViewController;
-                
-                if ([tabController.selectedViewController isKindOfClass:[UINavigationController class]])
-                {
-                    UINavigationController *navController = (UINavigationController *)tabController.selectedViewController;
-
-                    if (self.wasStatusBarTallOnStart)
-                    {
-                        CGRect theFrame = CGRectMake(0., SMALL_STATUS_HEIGHT, navController.visibleViewController.view.width, navController.visibleViewController.view.height - SMALL_STATUS_HEIGHT);
-                        navController.visibleViewController.view.frame = theFrame;
-                    }
-                }
+                completionBlock();
             }
-                     
-			[[NSNotificationCenter defaultCenter] postNotificationName:EX2NotificationBarDidHide object:nil];
-			[[NSNotificationCenter defaultCenter] postNotificationName:UIDeviceOrientationDidChangeNotification object:nil];
-			
-			if (completionBlock != NULL)
-			{
-				completionBlock();
-			}
-		}];
+        }
+        
+        DLog(@"Notification bar SHOW completed, finished: %@", NSStringFromBOOL(finished));
+        _isNotificationBarAnimating = NO;
 	};
 	
 	[[NSNotificationCenter defaultCenter] postNotificationName:EX2NotificationBarWillShow object:nil];
@@ -423,38 +392,25 @@
 
 - (void)hide:(void (^)(void))completionBlock
 {
-	if (!self.isNotificationBarShowing || !self.view.userInteractionEnabled)
-		return;
-	
-	self.view.userInteractionEnabled = NO;
-	
+	if (!self.isNotificationBarShowing)
+	{
+        // If already showing, do nothing
+        return;
+    }
+    _isNotificationBarShowing = NO;
+    
+    DLog(@"Notification bar HIDE called, is animating: %@", NSStringFromBOOL(self.isNotificationBarAnimating));
+    if (!self.isNotificationBarAnimating)
+    {
+        // If currently animating, cancel all animations
+        [self.notificationBar.layer removeAllAnimations];
+        [self.mainViewHolder.layer removeAllAnimations];
+    }
+    _isNotificationBarAnimating = YES;
+		
 	if (completionBlock != NULL)
 	{
 		completionBlock = [completionBlock copy];
-	}
-	
-	if (self.position == EX2NotificationBarPositionTop)
-	{
-		if ([self.mainViewController isKindOfClass:[UITabBarController class]])
-		{
-			UITabBarController *tabController = (UITabBarController *)self.mainViewController;
-			/*@try
-			{
-				[tabController removeObserver:self forKeyPath:@"selectedViewController"];
-			}
-			@catch (id anException) 
-			{
-				// This shouldn't happen
-			}*/
-			
-			if ([tabController.selectedViewController isKindOfClass:[UINavigationController class]])
-			{
-				UINavigationController *navController = (UINavigationController *)tabController.selectedViewController;
-				navController.view.y = 0.;
-				navController.navigationBar.y = SMALL_STATUS_HEIGHT;
-				navController.topViewController.view.y = 0.;
-			}
-		}
 	}
 	
 	void (^animations)(void) = ^(void)
@@ -466,6 +422,8 @@
                                                    self.mainViewHolder.y - self.notificationBarHeight, 
                                                    self.mainViewHolder.width, 
                                                    self.mainViewHolder.height + self.notificationBarHeight);
+            
+            if (self.mainViewHolder.y < 0.) self.mainViewHolder.y = 0.;
 		}
 		else if (self.position == EX2NotificationBarPositionBottom)
 		{
@@ -477,43 +435,19 @@
 	
 	void (^completion)(BOOL) = ^(BOOL finished) 
 	{
-		_isNotificationBarShowing = NO;
-		self.view.userInteractionEnabled = YES;
-		
-        if ([self.mainViewController isKindOfClass:[UITabBarController class]])
-		{
-			UITabBarController *tabController = (UITabBarController *)self.mainViewController;
-            if ([tabController.selectedViewController isKindOfClass:[UINavigationController class]])
+        if (finished)
+        {            
+            [[NSNotificationCenter defaultCenter] postNotificationName:EX2NotificationBarDidHide object:nil];
+            [[NSNotificationCenter defaultCenter] postNotificationName:UIDeviceOrientationDidChangeNotification object:nil];
+            
+            if (completionBlock != NULL)
             {
-                UINavigationController *navController = (UINavigationController *)tabController.selectedViewController;
-                
-                if (ACTUAL_STATUS_HEIGHT > SMALL_STATUS_HEIGHT)
-                {
-                    if (self.wasStatusBarTallOnStart)
-                    {
-                        navController.navigationBar.y = LARGE_STATUS_HEIGHT;
-                    }
-                    else
-                    {
-                        CGRect theFrame = CGRectMake(0., SMALL_STATUS_HEIGHT, navController.visibleViewController.view.width, navController.visibleViewController.view.height - SMALL_STATUS_HEIGHT);
-                        navController.visibleViewController.view.frame = theFrame;
-                    }
-                }
-                else if (self.wasStatusBarTallOnStart)
-                {
-                    navController.view.y = SMALL_STATUS_HEIGHT;
-                    navController.visibleViewController.view.y = SMALL_STATUS_HEIGHT;
-                }
+                completionBlock();
             }
         }
         
-		[[NSNotificationCenter defaultCenter] postNotificationName:EX2NotificationBarDidHide object:nil];
-		[[NSNotificationCenter defaultCenter] postNotificationName:UIDeviceOrientationDidChangeNotification object:nil];
-		
-		if (completionBlock != NULL)
-		{
-			completionBlock();
-		}
+        DLog(@"Notification bar HIDE completed, finished: %@", NSStringFromBOOL(finished));
+        _isNotificationBarAnimating = NO;
 	};
 	
 	[[NSNotificationCenter defaultCenter] postNotificationName:EX2NotificationBarWillHide object:nil];

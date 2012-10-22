@@ -21,16 +21,25 @@ typedef enum
 EX2TabBarControllerAnimation;
 
 @class EX2TabBarController;
+@protocol EX2TabBarControllerDelegate <NSObject>
+- (UIViewController *)ex2TabBarController:(EX2TabBarController *)tabBarController viewControllerForIndex:(NSUInteger)index;
+- (void)ex2TabBarController:(EX2TabBarController *)tabBarController doneWithViewControllerAtIndex:(NSUInteger)index;
+@end
+
+@class EX2TabBarController;
 @interface UIViewController (EX2TabBarController)
 @property (nonatomic, unsafe_unretained) EX2TabBarController *ex2TabBarController;
 @end
 
 @interface EX2TabBarController : UIViewController <UITabBarDelegate>
 
+@property (nonatomic, unsafe_unretained) IBOutlet id<EX2TabBarControllerDelegate> ex2Delegate;
+
 @property (nonatomic, strong) IBOutlet UIView *containerView;
 @property (nonatomic, strong) IBOutlet UITabBar *tabBar;
 
 @property (nonatomic, strong) NSArray *viewControllers;
+@property (nonatomic, strong) NSArray *tabBarItems;
 @property (nonatomic, strong) UIViewController *selectedViewController;
 @property (nonatomic) NSUInteger selectedIndex;
 @property (nonatomic) EX2TabBarControllerAnimation animation;

@@ -18,4 +18,22 @@
 	return nil;
 }
 
++ (id)arrayWithArraySafe:(NSArray *)array
+{
+    if (array.count > 0)
+    {
+        return [self arrayWithArray:array];
+    }
+    return [self array];
+}
+
+- (id)initWithArraySafe:(NSArray *)array
+{
+    if (array.count > 0)
+    {
+        return [self initWithArray:array];
+    }
+    return [self init];
+}
+
 @end

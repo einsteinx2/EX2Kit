@@ -23,5 +23,6 @@
 #import "NSString+SHA1.h"
 #import "NSString+Validation.h"
 #import "NSString+Gzip.h"
+#import "NSString+HasValue.h"
 
 #endif

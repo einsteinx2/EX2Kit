@@ -11,9 +11,9 @@
 @implementation NSString (URLEncode)
 
 + (NSString *)URLEncodeString:(NSString *)string 
-{ 
-    NSString *result = (__bridge NSString *)CFURLCreateStringByAddingPercentEscapes(kCFAllocatorDefault, 
-                    (__bridge CFStringRef)string, NULL, CFSTR(";/?:@&=$+{}[]<>,"), kCFStringEncodingUTF8); 
+{
+    NSString *result = (__bridge_transfer NSString *)CFURLCreateStringByAddingPercentEscapes(kCFAllocatorDefault,
+                    (__bridge CFStringRef)string, NULL, CFSTR(";/?:@&=$+{}[]<>,"), kCFStringEncodingUTF8);
     
     return result;
 } 

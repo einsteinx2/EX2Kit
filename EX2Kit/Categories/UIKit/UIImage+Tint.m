@@ -14,14 +14,16 @@
 - (UIImage *)imageWithTint:(UIColor *)tintColor 
 {
     // Begin drawing
-    CGRect aRect = CGRectMake(0.f, 0.f, self.size.width * SCREEN_SCALE(), self.size.height * SCREEN_SCALE());
+    //CGRect aRect = CGRectMake(0.f, 0.f, self.size.width * SCREEN_SCALE(), self.size.height * SCREEN_SCALE());
+    CGRect aRect = CGRectMake(0.f, 0.f, self.size.width, self.size.height);
     CGImageRef alphaMask;
 	
     //
     // Compute mask flipping image
     //
     {
-        UIGraphicsBeginImageContext(aRect.size);        
+        //UIGraphicsBeginImageContext(aRect.size);
+        UIGraphicsBeginImageContextWithOptions(aRect.size, NO, SCREEN_SCALE());
         CGContextRef c = UIGraphicsGetCurrentContext(); 
 		
         // draw image
@@ -35,7 +37,8 @@
     }
 	
     //
-    UIGraphicsBeginImageContext(aRect.size);
+    //UIGraphicsBeginImageContext(aRect.size);
+    UIGraphicsBeginImageContextWithOptions(aRect.size, NO, SCREEN_SCALE());
 	
     // Get the graphic context
     CGContextRef c = UIGraphicsGetCurrentContext(); 

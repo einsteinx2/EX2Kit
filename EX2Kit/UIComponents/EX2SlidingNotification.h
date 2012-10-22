@@ -28,6 +28,11 @@
 
 @property NSTimeInterval displayTime;
 
+@property (nonatomic, strong) IBOutlet UIButton *tapButton;
+
+@property (copy) void (^tapBlock)(void);
+
+
 - (void)showAndHideSlidingNotification;
 - (void)showAndHideSlidingNotification:(NSTimeInterval)showTime;
 - (void)showSlidingNotification;

@@ -42,6 +42,9 @@ EX2NotificationBarPosition;
 // YES when the notificationBar is visible
 @property (nonatomic, readonly) BOOL isNotificationBarShowing;
 
+// YES when the notificationBar is currently transitioning
+@property (nonatomic, readonly) BOOL isNotificationBarAnimating;
+
 // This can be changed during runtime, but only when isNotificationBarShowing == NO
 @property EX2NotificationBarPosition position;
 
@@ -52,6 +55,9 @@ EX2NotificationBarPosition;
 @property CGFloat notificationBarHeight;
 
 - (id)initWithPosition:(EX2NotificationBarPosition)thePosition;
+
+- (id)initWithPosition:(EX2NotificationBarPosition)thePosition mainViewController:(UIViewController *)mainViewController;
+
 
 // Show the notificationBar temporarily, then automatically dismiss
 - (void)showAndHideForDuration:(NSTimeInterval)duration;

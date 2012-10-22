@@ -11,5 +11,6 @@
 @interface NSString (Clean)
 
 - (NSString *)cleanString;
+- (NSString *)trimString;
 
 @end

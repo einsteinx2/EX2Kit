@@ -45,7 +45,15 @@
 //	}
 //
 
+LOG_LEVEL_ANGHAMI_DEFAULT
+
 #import "EX2SimpleConnectionQueue.h"
+
+@interface EX2SimpleConnectionQueue ()
+{
+    NSUInteger _numberOfCompletedConnections;
+}
+@end
 
 @implementation EX2SimpleConnectionQueue
 
@@ -53,8 +61,11 @@
 {
 	if (self = [super init])
 	{
-		_connectionStack = [[NSMutableArray alloc] init];
+		_waitingConnectionStack = [[NSMutableArray alloc] init];
+        _activeConnectionStack = [[NSMutableArray alloc] init];
 		_isRunning = NO;
+        _numberOfConcurrentConnections = 3;
+        _isStartConnectionsAutomatically = YES;
 	}
 	
 	return self;
@@ -62,56 +73,97 @@
 
 - (void)registerConnection:(NSURLConnection *)connection
 {
-	[self.connectionStack addObject:connection];
-	//NSLog(@"CONNECTION QUEUE REGISTER: %i connections registered", [connectionStack count]);
+	[self.waitingConnectionStack addObject:connection];
+    
+    if (self.isStartConnectionsAutomatically)
+        [self startQueue];
+    
+	DDLogVerbose(@"[EX2SimpleConnectionQueue] CONNECTION QUEUE REGISTER: %i connections waiting, %i active", self.waitingConnectionStack.count, self.activeConnectionStack.count);
+}
+
+- (void)startNextConnection
+{
+    // Make sure we always run in the same thread
+    [EX2Dispatch runInMainThreadAfterDelay:self.delayBetweenConnections block:^
+     {
+         if (self.isRunning && self.waitingConnectionStack.count > 0 && self.activeConnectionStack.count < self.numberOfConcurrentConnections)
+         {
+             NSURLConnection *connection = [self.waitingConnectionStack objectAtIndex:0];
+             [connection scheduleInRunLoop:[NSRunLoop currentRunLoop] forMode:NSDefaultRunLoopMode];
+             [connection start];
+             
+             [self.activeConnectionStack addObject:connection];
+             [self.waitingConnectionStack removeObjectAtIndex:0];
+         }
+     }];
 }
 
 - (void)connectionFinished:(NSURLConnection *)connection
 {
-	if (self.connectionStack.count > 0)
-		[self.connectionStack removeObjectAtIndex:0];
-	
-	//NSLog(@"CONNECTION QUEUE FINISHED: %i connections registered", [connectionStack count]);
-	
-	if (self.isRunning && self.connectionStack.count > 0)
-	{
-		NSURLConnection *connection = [self.connectionStack objectAtIndex:0];
-		[connection scheduleInRunLoop:[NSRunLoop currentRunLoop] forMode:NSDefaultRunLoopMode];
-		[connection start];
-	}
-	else
-	{
-		_isRunning = NO;
-        [self.delegate connectionQueueDidFinish:self];
-	}
+    // Make sure this is always the main thread
+    [EX2Dispatch runInMainThreadAndWaitUntilDone:YES block:^
+     {
+         _numberOfCompletedConnections++;
+         
+         [self.activeConnectionStack removeObjectSafe:connection];
+         
+         DDLogVerbose(@"[EX2SimpleConnectionQueue] CONNECTION QUEUE FINISHED: %i connections waiting, %i active", self.waitingConnectionStack.count, self.activeConnectionStack.count);
+         
+         if (self.activeConnectionStack.count + self.waitingConnectionStack.count == 0)
+         {
+             _isRunning = NO;
+             _numberOfCompletedConnections = 0;
+             [self.delegate connectionQueueDidFinish:self];
+             
+             [NSNotificationCenter postNotificationToMainThreadWithName:EX2SimpleConnectionQueueDidStop object:self];
+         }
+         else
+         {
+             [self startNextConnection];
+             [NSNotificationCenter postNotificationToMainThreadWithName:EX2SimpleConnectionQueueConnectionDidFinish object:self];
+         }
+     }];
 }
 
 - (void)startQueue
-{	
-	if (self.connectionStack.count > 0 && !self.isRunning)
-	{
-		_isRunning = YES;
-		NSURLConnection *connection = [self.connectionStack objectAtIndex:0];
-		[connection scheduleInRunLoop:[NSRunLoop currentRunLoop] forMode:NSDefaultRunLoopMode];
-		[connection start];
-	}
+{
+    if (self.waitingConnectionStack.count > 0 && self.activeConnectionStack.count < self.numberOfConcurrentConnections)
+    {
+        _isRunning = YES;
+        
+        [self startNextConnection];
+        
+        [NSNotificationCenter postNotificationToMainThreadWithName:EX2SimpleConnectionQueueDidStart object:self];
+    }
 }
 
 - (void)stopQueue
 {
 	_isRunning = NO;
+    
+    [NSNotificationCenter postNotificationToMainThreadWithName:EX2SimpleConnectionQueueDidStop object:self];
 }
 
 - (void)clearQueue
-{
-	[self stopQueue];
+{    
+    _isRunning = NO;
+    _numberOfCompletedConnections = 0;
 	
-	for (NSURLConnection *connection in self.connectionStack)
+	for (NSURLConnection *connection in self.activeConnectionStack)
 	{
 		[connection cancel];
 	}
 	
-	[self.connectionStack removeAllObjects];
+	[self.activeConnectionStack removeAllObjects];
+    [self.waitingConnectionStack removeAllObjects];
+    
+    [NSNotificationCenter postNotificationToMainThreadWithName:EX2SimpleConnectionQueueDidClear object:self];
+}
+
+- (CGFloat)progress
+{
+    // Completed over all active, waiting, and finished connections, will always be a value between 0 and 1
+    return (CGFloat)_numberOfCompletedConnections / (CGFloat)(self.activeConnectionStack.count + self.waitingConnectionStack.count + _numberOfCompletedConnections);
 }
 
 @end

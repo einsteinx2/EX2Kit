@@ -21,4 +21,9 @@
 	//return [[self gtm_stringByUnescapingFromHTML] stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
 }
 
+- (NSString *)trimString
+{
+    return [self stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+}
+
 @end

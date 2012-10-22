@@ -67,7 +67,7 @@ static char key;
 
 - (id)initWithCoder:(NSCoder *)aDecoder
 {
-    if ([super initWithCoder:aDecoder])
+    if (self = [super initWithCoder:aDecoder])
     {
         _viewControllers = [[NSMutableArray alloc] init];
     }
@@ -85,6 +85,17 @@ static char key;
 	return self;
 }
 
+- (void)dealloc
+{
+    for (int i = _viewControllers.count - 1; i >= 0; i--)
+    {
+        UIViewController *controller = [_viewControllers objectAtIndex:i];
+        controller.ex2NavigationController = nil;
+        [controller.view removeFromSuperview];
+        [_viewControllers removeObjectAtIndexSafe:i];
+    }
+}
+
 // To allow easy overriding with custom navigation bar. Useful for skinning the nav bar in iOS 4
 // (have a EX2NavivigationBar subclass return a custom UINavigationBar subclass from this method)
 - (UINavigationBar *)createNavigationBar
@@ -97,13 +108,18 @@ static char key;
 // Implement loadView to create a view hierarchy programmatically, without using a nib.
 - (void)loadView
 {
-	self.view = [[UIView alloc] initWithFrame: CGRectMake(0, 0, 320, 364)];
+	//self.view = [[UIView alloc] initWithFrame: CGRectMake(0, 0, 320, 364)];
+    // TODO: Hacky fix for sizing issue, need to properly fix later
+    //CGFloat height = IS_TALL_SCREEN() ? 452. : 367;
+    //self.view = [[UIView alloc] initWithFrame: CGRectMake(0, 0, 320, height)];
+    self.view = [[UIView alloc] initWithFrame: CGRectMake(0, 0, 320, 480)];
 	self.view.autoresizingMask = (UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight);
     
 	self.navigationBar = [self createNavigationBar];
     
-	self.contentView = [[UIView alloc] initWithFrame:CGRectMake(0, 44, 320, 320)];
-	self.contentView.clipsToBounds = YES;
+	//self.contentView = [[UIView alloc] initWithFrame:CGRectMake(0, 44, 320, 320)];
+	self.contentView = [[UIView alloc ] initWithFrame:CGRectMake(0, self.navigationBar.bottom, self.view.width, self.view.height - self.navigationBar.height)];
+    self.contentView.clipsToBounds = YES;
 	self.contentView.autoresizingMask = (UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight);
     
 	[self.view addSubview:self.navigationBar];
@@ -153,6 +169,11 @@ static char key;
     {
         [self.viewControllers.lastObject viewWillAppear:animated];
     }
+}
+
+- (BOOL)shouldAutorotate
+{
+    return [self shouldAutorotateToInterfaceOrientation:[UIDevice currentDevice].orientation];
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
@@ -281,7 +302,7 @@ static char key;
         c.ex2NavigationController = nil;
 	}
 	[self.viewControllers removeAllObjects];
-	[self.viewControllers addObjectsFromArray:vc];
+	[self.viewControllers addObjectsFromArraySafe:vc];
 	
 	for (UIViewController *c in self.viewControllers)
 	{
@@ -309,7 +330,7 @@ static char key;
 
 - (void)pushViewController:(UIViewController *)viewController withAnimation:(EX2NavigationControllerAnimation)animation
 {
-    if (self.isAnimating)
+    if (self.isAnimating || !viewController)
         return;
     
 	if ([self.delegate respondsToSelector:@selector(ex2NavigationController:willShowViewController:animated:)])
@@ -321,7 +342,7 @@ static char key;
 	UIViewController *disappearing = nil;
 	if (self.viewControllers.count > 0)
 		disappearing = self.viewControllers.lastObject;
-	[self.viewControllers addObject:viewController];
+	[self.viewControllers addObjectSafe:viewController];
     
     // Perform the animation
     animation = animation == EX2NavigationControllerAnimationDefault ? EX2NavigationControllerAnimationRight : animation;

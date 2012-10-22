@@ -49,8 +49,10 @@ static char key;
 
 @interface EX2TabBarController ()
 {
-    __strong NSArray *_viewControllers;
+    __strong NSMutableArray *_viewControllers;
+    __strong NSArray *_tabBarItems;
     NSUInteger _selectedIndex;
+    BOOL _isSparse;
 }
 @end
 
@@ -80,8 +82,13 @@ static char key;
 {
     [super viewWillAppear:animated];
     
-    // TODO: Hacky fix for sizing issue, need to properly fix later
-    self.containerView.height = IS_TALL_SCREEN() ? 499. : 411.;
+    self.containerView.frame = CGRectMake(0., 0., self.view.width, self.view.height - self.tabBar.height);
+    //self.tabBar.bottom = self.view.bottom;
+}
+
+- (BOOL)shouldAutorotate
+{
+    return [self shouldAutorotateToInterfaceOrientation:[UIDevice currentDevice].orientation];
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
@@ -91,11 +98,13 @@ static char key;
 
 - (NSArray *)viewControllers
 {
-    return _viewControllers;
+    return [NSArray arrayWithArray:_viewControllers];
 }
 
 - (void)setViewControllers:(NSArray *)controllers
 {
+    _isSparse = NO;
+    
     // Remove any displayed views first
     [self.containerView.subviews makeObjectsPerformSelector:@selector(removeFromSuperview)];
     
@@ -106,7 +115,7 @@ static char key;
     }
     
     // Set the ivar
-    _viewControllers = controllers;
+    _viewControllers = [NSMutableArray arrayWithArray:controllers];
         
     // Setup the tab bar items and set the ex2TabBarController property
     NSMutableArray *items = [NSMutableArray arrayWithCapacity:_viewControllers.count];
@@ -115,10 +124,47 @@ static char key;
         controller.ex2TabBarController = self;
         [items addObject:controller.tabBarItem];
     }
-    self.tabBar.items = [NSArray arrayWithArray:items];
+    self.tabBar.items = [NSArray arrayWithArraySafe:items];
     
     // Display the first controller if it exists
     if (_viewControllers.count > 0)
+    {
+        [self displayControllerAtIndex:0 animation:self.animation];
+    }
+}
+
+- (NSArray *)tabBarItems
+{
+    return _tabBarItems;
+}
+
+- (void)setTabBarItems:(NSArray *)items
+{
+    _isSparse = YES;
+    
+    // Remove any displayed views first
+    [self.containerView.subviews makeObjectsPerformSelector:@selector(removeFromSuperview)];
+    
+    // Clear the ex2TabBarController property from the old controllers if they exist
+    for (UIViewController *controller in _viewControllers)
+    {
+        controller.ex2TabBarController = nil;
+    }
+    
+    // Set the ivar
+    _tabBarItems = items;
+    
+    // Setup the tab bar items
+    self.tabBar.items = [NSArray arrayWithArraySafe:items];
+    
+    _viewControllers = [NSMutableArray arrayWithCapacity:items.count];
+    for (int i = 0; i < _tabBarItems.count; i++)
+    {
+        [_viewControllers addObject:[NSNull null]];
+    }
+    
+    // Display the first controller if it exists
+    if (_tabBarItems.count > 0)
     {
         [self displayControllerAtIndex:0 animation:self.animation];
     }
@@ -165,6 +211,16 @@ static char key;
                 
                 // Resize the view
                 UIViewController *controller = [self.viewControllers objectAtIndex:index];
+                
+                if ((NSNull *)controller == [NSNull null])
+                {
+                    // Load the controller from the delegate
+                    controller = [self.ex2Delegate ex2TabBarController:self viewControllerForIndex:index];
+                    controller.ex2TabBarController = self;
+                    [_viewControllers replaceObjectAtIndex:index withObject:controller];
+                }
+                
+                //controller.view.autoresizingMask = UIViewAutoresizingNone;
                 controller.view.frame = self.containerView.bounds;
                 controller.view.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
                 
@@ -229,6 +285,28 @@ static char key;
     {
         _selectedIndex = index;
         [self displayControllerAtIndex:index animation:self.animation];
+    }
+}
+
+- (void)didReceiveMemoryWarning
+{
+	// Releases the view if it doesn't have a superview.
+    [super didReceiveMemoryWarning];
+    
+    if (_isSparse)
+    {
+        for (int i = 0; i < self.viewControllers.count; i++)
+        {
+            if (i != self.selectedIndex)
+            {
+                id controller = [_viewControllers objectAtIndex:i];
+                if ([controller isKindOfClass:[UIViewController class]])
+                    ((UIViewController *)controller).ex2TabBarController = nil;
+                
+                [_viewControllers replaceObjectAtIndex:i withObject:[NSNull null]];
+                [self.ex2Delegate ex2TabBarController:self doneWithViewControllerAtIndex:i];
+            }
+        }
     }
 }
 
