@@ -7,7 +7,6 @@
 //
 
 #import "NSArray+FirstObject.h"
-#import "NSArray+Safe.h"
 
 @implementation NSArray (FirstObject)
 

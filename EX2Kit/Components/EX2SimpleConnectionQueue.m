@@ -45,9 +45,9 @@
 //	}
 //
 
-LOG_LEVEL_ANGHAMI_DEFAULT
-
 #import "EX2SimpleConnectionQueue.h"
+
+static const int ddLogLevel = LOG_LEVEL_VERBOSE;
 
 @interface EX2SimpleConnectionQueue ()
 {
@@ -160,10 +160,10 @@ LOG_LEVEL_ANGHAMI_DEFAULT
     [NSNotificationCenter postNotificationToMainThreadWithName:EX2SimpleConnectionQueueDidClear object:self];
 }
 
-- (CGFloat)progress
+- (float)progress
 {
     // Completed over all active, waiting, and finished connections, will always be a value between 0 and 1
-    return (CGFloat)_numberOfCompletedConnections / (CGFloat)(self.activeConnectionStack.count + self.waitingConnectionStack.count + _numberOfCompletedConnections);
+    return (float)_numberOfCompletedConnections / (CGFloat)(self.activeConnectionStack.count + self.waitingConnectionStack.count + _numberOfCompletedConnections);
 }
 
 @end

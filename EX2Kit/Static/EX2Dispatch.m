@@ -7,6 +7,7 @@
 //
 
 #import "EX2Dispatch.h"
+#import "NSArray+Additions.h"
 
 @implementation EX2Dispatch
 

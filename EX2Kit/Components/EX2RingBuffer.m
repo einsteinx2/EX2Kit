@@ -128,13 +128,10 @@
 			return YES;
 		}
         else if (self.totalLength < self.maximumLength)
-        {
-            DLog(@"totalLength: %u  maximumLength: %u,  expanding the buffer", self.totalLength, self.maximumLength);
-            
+        {            
             // Expand the buffer and try to fill it again
             if ([self expand])
             {
-                DLog(@"Expansion successful, new totalLength: %u", self.totalLength);
                 return [self fillWithBytes:byteBuffer length:bufferLength];
             }
         }
@@ -209,9 +206,7 @@
 	{
         if (size <= self.totalLength)
             return NO;
-        
-        DLog(@"Expanding ring buffer size from: %u to %u", self.totalLength, size);
-        
+                
         // First try to expand the backing buffer
         void *tempBuffer = malloc(sizeof(char) * size);
         if (tempBuffer == NULL)

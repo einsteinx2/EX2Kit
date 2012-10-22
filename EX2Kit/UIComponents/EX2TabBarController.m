@@ -94,11 +94,6 @@ static char key;
     //self.tabBar.bottom = self.view.bottom;
 }
 
-- (BOOL)shouldAutorotate
-{
-    return [self shouldAutorotateToInterfaceOrientation:[UIDevice currentDevice].orientation];
-}
-
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
 {
     return (interfaceOrientation == UIInterfaceOrientationPortrait);
