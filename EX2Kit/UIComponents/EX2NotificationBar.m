@@ -38,7 +38,7 @@
 
 - (id)initWithPosition:(EX2NotificationBarPosition)thePosition
 {
-	if ((self = [super initWithNibName:@"EX2NotificationBar" bundle:nil]))
+	if ((self = [super initWithNibName:@"EX2NotificationBar" bundle:[EX2Kit resourceBundle]]))
 	{
 		[self setup];
 		_position = thePosition;
@@ -48,7 +48,7 @@
 
 - (id)initWithPosition:(EX2NotificationBarPosition)thePosition mainViewController:(UIViewController *)mainViewController
 {
-    if ((self = [super initWithNibName:@"EX2NotificationBar" bundle:nil]))
+    if ((self = [super initWithNibName:@"EX2NotificationBar" bundle:[EX2Kit resourceBundle]]))
 	{
 		[self setup];
 		_position = thePosition;

@@ -17,4 +17,10 @@
 
 #import "CocoaLumberjack.h"
 
+@interface EX2Kit : NSObject
+
++ (NSBundle *)resourceBundle;
+
+@end
+
 #endif

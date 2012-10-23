@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		5339E1821635E93A007628C0 /* NSString+HasValue.h in Headers */ = {isa = PBXBuildFile; fileRef = 5339E1801635E93A007628C0 /* NSString+HasValue.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		5339E1831635E93A007628C0 /* NSString+HasValue.m in Sources */ = {isa = PBXBuildFile; fileRef = 5339E1811635E93A007628C0 /* NSString+HasValue.m */; };
+		5339E20416360B9F007628C0 /* EX2Kit.m in Sources */ = {isa = PBXBuildFile; fileRef = 5339E20316360B9E007628C0 /* EX2Kit.m */; };
 		5373A931162DD71F0016A019 /* EX2Kit.h in Headers */ = {isa = PBXBuildFile; fileRef = 53F15F71162B9FCA00C24FC1 /* EX2Kit.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		5373A932162DD71F0016A019 /* EX2Categories.h in Headers */ = {isa = PBXBuildFile; fileRef = 53F15EF7162B9FCA00C24FC1 /* EX2Categories.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		5373A933162DD71F0016A019 /* EX2FoundationCategories.h in Headers */ = {isa = PBXBuildFile; fileRef = 53F15EF9162B9FCA00C24FC1 /* EX2FoundationCategories.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -160,6 +161,7 @@
 /* Begin PBXFileReference section */
 		5339E1801635E93A007628C0 /* NSString+HasValue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+HasValue.h"; sourceTree = "<group>"; };
 		5339E1811635E93A007628C0 /* NSString+HasValue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+HasValue.m"; sourceTree = "<group>"; };
+		5339E20316360B9E007628C0 /* EX2Kit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EX2Kit.m; sourceTree = "<group>"; };
 		53D44EA715AA56C700CDD3B8 /* EX2Kit-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "EX2Kit-Info.plist"; sourceTree = "<group>"; };
 		53D44EA915AA56C700CDD3B8 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		53D44EAB15AA56C700CDD3B8 /* EX2Kit-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "EX2Kit-Prefix.pch"; sourceTree = "<group>"; };
@@ -367,6 +369,7 @@
 			isa = PBXGroup;
 			children = (
 				53F15F71162B9FCA00C24FC1 /* EX2Kit.h */,
+				5339E20316360B9E007628C0 /* EX2Kit.m */,
 				53F15EF6162B9FCA00C24FC1 /* Categories */,
 				53F15F4B162B9FCA00C24FC1 /* Components */,
 				53F15F72162B9FCA00C24FC1 /* Macros */,
@@ -859,6 +862,7 @@
 				53F15FBE162B9FCA00C24FC1 /* EX2TabBarController.m in Sources */,
 				53F15FBF162B9FCA00C24FC1 /* SnappySlider.m in Sources */,
 				5339E1831635E93A007628C0 /* NSString+HasValue.m in Sources */,
+				5339E20416360B9F007628C0 /* EX2Kit.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

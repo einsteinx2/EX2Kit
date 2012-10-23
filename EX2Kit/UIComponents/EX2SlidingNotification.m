@@ -22,7 +22,7 @@
 
 - (id)initOnView:(UIView *)theParentView message:(NSString *)theMessage image:(UIImage*)theImage displayTime:(NSTimeInterval)time
 {
-	if ((self = [super initWithNibName:@"EX2SlidingNotification" bundle:nil])) 
+	if ((self = [super initWithNibName:@"EX2SlidingNotification" bundle:[EX2Kit resourceBundle]])) 
 	{
 		_displayTime = time;
 		_parentView = theParentView;

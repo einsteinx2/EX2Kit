@@ -70,7 +70,6 @@ static char key;
     if ([[UIApplication sharedApplication] statusBarFrame].size.height > 20.)
     {
         self.containerView.height -= 20;
-        self.tabBar.y -= 20.;
     }
 }
 

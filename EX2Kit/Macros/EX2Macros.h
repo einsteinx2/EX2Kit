@@ -65,6 +65,13 @@
 // Multitasking support check
 #define IS_MULTITASKING() ([[UIDevice currentDevice] respondsToSelector:@selector(multitaskingSupported)] ? [UIDevice currentDevice].multitaskingSupported : false)
 
+// Check if simulator
+#if TARGET_IPHONE_SIMULATOR
+#define IS_SIMULATOR() (true)
+#else
+#define IS_SIMULATOR() (false)
+#endif
+
 // DLog is almost a drop-in replacement for NSLog
 // DLog();
 // DLog(@"here");
