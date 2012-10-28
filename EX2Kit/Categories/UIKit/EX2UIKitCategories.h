@@ -19,5 +19,6 @@
 #import "UIColor+ColorWithHex.h"
 #import "UIImage+Tint.h"
 #import "UIImage+CustomStretch.h"
+#import "UIImage+Cropping.h"
 
 #endif
