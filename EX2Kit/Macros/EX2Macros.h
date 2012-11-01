@@ -17,8 +17,11 @@
 #define BytesFromMiB(value) (BytesFromKiB(value) * 1024)
 #define BytesFromGiB(value) (BytesFromMiB(value) * 1024)
 
-// iPad detection
-#ifdef UI_USER_INTERFACE_IDIOM//()
+// iPad hardware detection (will detect as iPad if running an iPhone only app on an iPad)
+#define IS_IPAD_HW() ([[[UIDevice currentDevice] model] hasPrefix:@"iPad"])
+
+// iPad app type detection (will detect as iPhone if running an iPhone only app on an iPad)
+#ifdef UI_USER_INTERFACE_IDIOM
 #define IS_IPAD() (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
 #else
 #define IS_IPAD() (false)
