@@ -18,5 +18,6 @@
 #import "NSDate+UTC.h"
 #import "NSData+Gzip.h"
 #import "NSMutableDictionary+Safe.h"
+#import "NSURL+QueryParameterDictionary.h"
 
 #endif

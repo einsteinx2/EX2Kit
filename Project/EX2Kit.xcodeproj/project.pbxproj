@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		53145C17163F5E6400DE22F1 /* NSURL+QueryParameterDictionary.h in Headers */ = {isa = PBXBuildFile; fileRef = 53145C15163F5E6400DE22F1 /* NSURL+QueryParameterDictionary.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		53145C18163F5E6400DE22F1 /* NSURL+QueryParameterDictionary.m in Sources */ = {isa = PBXBuildFile; fileRef = 53145C16163F5E6400DE22F1 /* NSURL+QueryParameterDictionary.m */; };
+		531CF183163D064A008F8AA7 /* UIImage+Cropping.h in Headers */ = {isa = PBXBuildFile; fileRef = 531CF181163D064A008F8AA7 /* UIImage+Cropping.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		531CF184163D064A008F8AA7 /* UIImage+Cropping.m in Sources */ = {isa = PBXBuildFile; fileRef = 531CF182163D064A008F8AA7 /* UIImage+Cropping.m */; };
 		5339E1821635E93A007628C0 /* NSString+HasValue.h in Headers */ = {isa = PBXBuildFile; fileRef = 5339E1801635E93A007628C0 /* NSString+HasValue.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		5339E1831635E93A007628C0 /* NSString+HasValue.m in Sources */ = {isa = PBXBuildFile; fileRef = 5339E1811635E93A007628C0 /* NSString+HasValue.m */; };
 		5339E20416360B9F007628C0 /* EX2Kit.m in Sources */ = {isa = PBXBuildFile; fileRef = 5339E20316360B9E007628C0 /* EX2Kit.m */; };
@@ -159,6 +163,10 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		53145C15163F5E6400DE22F1 /* NSURL+QueryParameterDictionary.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSURL+QueryParameterDictionary.h"; sourceTree = "<group>"; };
+		53145C16163F5E6400DE22F1 /* NSURL+QueryParameterDictionary.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSURL+QueryParameterDictionary.m"; sourceTree = "<group>"; };
+		531CF181163D064A008F8AA7 /* UIImage+Cropping.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+Cropping.h"; sourceTree = "<group>"; };
+		531CF182163D064A008F8AA7 /* UIImage+Cropping.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Cropping.m"; sourceTree = "<group>"; };
 		5339E1801635E93A007628C0 /* NSString+HasValue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+HasValue.h"; sourceTree = "<group>"; };
 		5339E1811635E93A007628C0 /* NSString+HasValue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+HasValue.m"; sourceTree = "<group>"; };
 		5339E20316360B9E007628C0 /* EX2Kit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EX2Kit.m; sourceTree = "<group>"; };
@@ -437,6 +445,8 @@
 				53F15F0D162B9FCA00C24FC1 /* NSNotificationCenter+MainThread.m */,
 				53F15F0E162B9FCA00C24FC1 /* NSObject+ListMethods.h */,
 				53F15F0F162B9FCA00C24FC1 /* NSObject+ListMethods.m */,
+				53145C15163F5E6400DE22F1 /* NSURL+QueryParameterDictionary.h */,
+				53145C16163F5E6400DE22F1 /* NSURL+QueryParameterDictionary.m */,
 				53F15F10162B9FCA00C24FC1 /* NSString */,
 			);
 			path = Foundation;
@@ -531,6 +541,8 @@
 				53F15F48162B9FCA00C24FC1 /* UIView+Tools.m */,
 				53F15F49162B9FCA00C24FC1 /* UIViewController+IsVisible.h */,
 				53F15F4A162B9FCA00C24FC1 /* UIViewController+IsVisible.m */,
+				531CF181163D064A008F8AA7 /* UIImage+Cropping.h */,
+				531CF182163D064A008F8AA7 /* UIImage+Cropping.m */,
 			);
 			path = UIKit;
 			sourceTree = "<group>";
@@ -718,6 +730,8 @@
 				5373A95B162DD71F0016A019 /* UIView+Tools.h in Headers */,
 				5373A95C162DD71F0016A019 /* UIViewController+IsVisible.h in Headers */,
 				5339E1821635E93A007628C0 /* NSString+HasValue.h in Headers */,
+				53145C17163F5E6400DE22F1 /* NSURL+QueryParameterDictionary.h in Headers */,
+				531CF183163D064A008F8AA7 /* UIImage+Cropping.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -863,6 +877,8 @@
 				53F15FBF162B9FCA00C24FC1 /* SnappySlider.m in Sources */,
 				5339E1831635E93A007628C0 /* NSString+HasValue.m in Sources */,
 				5339E20416360B9F007628C0 /* EX2Kit.m in Sources */,
+				531CF184163D064A008F8AA7 /* UIImage+Cropping.m in Sources */,
+				53145C18163F5E6400DE22F1 /* NSURL+QueryParameterDictionary.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
