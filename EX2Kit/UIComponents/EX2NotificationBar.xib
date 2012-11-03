@@ -40,6 +40,7 @@
 						<int key="NSvFlags">274</int>
 						<string key="NSFrameSize">{320, 460}</string>
 						<reference key="NSSuperview" ref="429829551"/>
+						<reference key="NSWindow"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<object class="NSColor" key="IBUIBackgroundColor" id="721852588">
 							<int key="NSColorSpace">3</int>
@@ -57,6 +58,7 @@
 								<int key="NSvFlags">274</int>
 								<string key="NSFrameSize">{320, 0}</string>
 								<reference key="NSSuperview" ref="191373211"/>
+								<reference key="NSWindow"/>
 								<reference key="NSNextKeyView" ref="540252777"/>
 								<string key="NSReuseIdentifierKey">_NS:9</string>
 								<reference key="IBUIBackgroundColor" ref="721852588"/>
@@ -67,6 +69,7 @@
 								<int key="NSvFlags">290</int>
 								<string key="NSFrameSize">{320, 10}</string>
 								<reference key="NSSuperview" ref="191373211"/>
+								<reference key="NSWindow"/>
 								<reference key="NSNextKeyView" ref="1059172620"/>
 								<string key="NSReuseIdentifierKey">_NS:9</string>
 								<bool key="IBUIUserInteractionEnabled">NO</bool>
@@ -81,6 +84,7 @@
 								<int key="NSvFlags">266</int>
 								<string key="NSFrame">{{0, -10}, {320, 10}}</string>
 								<reference key="NSSuperview" ref="191373211"/>
+								<reference key="NSWindow"/>
 								<reference key="NSNextKeyView" ref="58087588"/>
 								<string key="NSReuseIdentifierKey">_NS:9</string>
 								<bool key="IBUIUserInteractionEnabled">NO</bool>
@@ -93,6 +97,7 @@
 						</array>
 						<string key="NSFrameSize">{320, 0}</string>
 						<reference key="NSSuperview" ref="429829551"/>
+						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="354310614"/>
 						<object class="NSColor" key="IBUIBackgroundColor">
 							<int key="NSColorSpace">10</int>
@@ -4495,6 +4500,7 @@ AAgAAAAIAAIACAACAAAAAgAAAAEAAQABAAE</bytes>
 				</array>
 				<string key="NSFrame">{{0, 20}, {320, 460}}</string>
 				<reference key="NSSuperview"/>
+				<reference key="NSWindow"/>
 				<reference key="NSNextKeyView" ref="191373211"/>
 				<string key="NSReuseIdentifierKey">_NS:9</string>
 				<reference key="IBUIBackgroundColor" ref="721852588"/>
@@ -4602,11 +4608,13 @@ AAgAAAAIAAIACAACAAAAAgAAAAEAAQABAAE</bytes>
 						<int key="objectID">4</int>
 						<reference key="object" ref="540252777"/>
 						<reference key="parent" ref="191373211"/>
+						<string key="objectName">Image View - Fade Bottom</string>
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">5</int>
 						<reference key="object" ref="354310614"/>
 						<reference key="parent" ref="191373211"/>
+						<string key="objectName">Image View - Fade Top</string>
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">11</int>
@@ -4631,9 +4639,44 @@ AAgAAAAIAAIACAACAAAAAgAAAAEAAQABAAE</bytes>
 			<nil key="activeLocalization"/>
 			<dictionary class="NSMutableDictionary" key="localizations"/>
 			<nil key="sourceID"/>
-			<int key="maxID">30</int>
+			<int key="maxID">32</int>
 		</object>
-		<object class="IBClassDescriber" key="IBDocument.Classes"/>
+		<object class="IBClassDescriber" key="IBDocument.Classes">
+			<array class="NSMutableArray" key="referencedPartialClassDescriptions">
+				<object class="IBPartialClassDescription">
+					<string key="className">EX2NotificationBar</string>
+					<string key="superclassName">UIViewController</string>
+					<dictionary class="NSMutableDictionary" key="outlets">
+						<string key="mainViewController">UIViewController</string>
+						<string key="mainViewHolder">UIView</string>
+						<string key="notificationBar">UIView</string>
+						<string key="notificationBarContent">UIView</string>
+					</dictionary>
+					<dictionary class="NSMutableDictionary" key="toOneOutletInfosByName">
+						<object class="IBToOneOutletInfo" key="mainViewController">
+							<string key="name">mainViewController</string>
+							<string key="candidateClassName">UIViewController</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="mainViewHolder">
+							<string key="name">mainViewHolder</string>
+							<string key="candidateClassName">UIView</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="notificationBar">
+							<string key="name">notificationBar</string>
+							<string key="candidateClassName">UIView</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="notificationBarContent">
+							<string key="name">notificationBarContent</string>
+							<string key="candidateClassName">UIView</string>
+						</object>
+					</dictionary>
+					<object class="IBClassDescriptionSource" key="sourceIdentifier">
+						<string key="majorKey">IBProjectSource</string>
+						<string key="minorKey">./Classes/EX2NotificationBar.h</string>
+					</object>
+				</object>
+			</array>
+		</object>
 		<int key="IBDocument.localizationMode">0</int>
 		<string key="IBDocument.TargetRuntimeIdentifier">IBCocoaTouchFramework</string>
 		<object class="NSMutableDictionary" key="IBDocument.PluginDeclaredDependencies">

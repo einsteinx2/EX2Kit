@@ -148,6 +148,10 @@
 		53F15FC0162BA05A00C24FC1 /* EX2NotificationBar.xib in Resources */ = {isa = PBXBuildFile; fileRef = 53F15F7D162B9FCA00C24FC1 /* EX2NotificationBar.xib */; };
 		53F15FC1162BA05A00C24FC1 /* EX2SlidingNotification.xib in Resources */ = {isa = PBXBuildFile; fileRef = 53F15F80162B9FCA00C24FC1 /* EX2SlidingNotification.xib */; };
 		53F15FC2162BA05A00C24FC1 /* EX2TabBarController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 53F15F83162B9FCA00C24FC1 /* EX2TabBarController.xib */; };
+		53FA691C1644789900D19576 /* table-fade-bottom.png in Resources */ = {isa = PBXBuildFile; fileRef = 53FA69181644789900D19576 /* table-fade-bottom.png */; };
+		53FA691D1644789900D19576 /* table-fade-bottom@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 53FA69191644789900D19576 /* table-fade-bottom@2x.png */; };
+		53FA691E1644789900D19576 /* table-fade-top.png in Resources */ = {isa = PBXBuildFile; fileRef = 53FA691A1644789900D19576 /* table-fade-top.png */; };
+		53FA691F1644789900D19576 /* table-fade-top@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 53FA691B1644789900D19576 /* table-fade-top@2x.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -312,6 +316,10 @@
 		53F15F84162B9FCA00C24FC1 /* EX2UIComponents.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EX2UIComponents.h; sourceTree = "<group>"; };
 		53F15F85162B9FCA00C24FC1 /* SnappySlider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SnappySlider.h; sourceTree = "<group>"; };
 		53F15F86162B9FCA00C24FC1 /* SnappySlider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SnappySlider.m; sourceTree = "<group>"; };
+		53FA69181644789900D19576 /* table-fade-bottom.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "table-fade-bottom.png"; sourceTree = "<group>"; };
+		53FA69191644789900D19576 /* table-fade-bottom@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "table-fade-bottom@2x.png"; sourceTree = "<group>"; };
+		53FA691A1644789900D19576 /* table-fade-top.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "table-fade-top.png"; sourceTree = "<group>"; };
+		53FA691B1644789900D19576 /* table-fade-top@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "table-fade-top@2x.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -639,6 +647,10 @@
 				53F15F7B162B9FCA00C24FC1 /* EX2NotificationBar.h */,
 				53F15F7C162B9FCA00C24FC1 /* EX2NotificationBar.m */,
 				53F15F7D162B9FCA00C24FC1 /* EX2NotificationBar.xib */,
+				53FA69181644789900D19576 /* table-fade-bottom.png */,
+				53FA69191644789900D19576 /* table-fade-bottom@2x.png */,
+				53FA691A1644789900D19576 /* table-fade-top.png */,
+				53FA691B1644789900D19576 /* table-fade-top@2x.png */,
 				53F15F7E162B9FCA00C24FC1 /* EX2SlidingNotification.h */,
 				53F15F7F162B9FCA00C24FC1 /* EX2SlidingNotification.m */,
 				53F15F80162B9FCA00C24FC1 /* EX2SlidingNotification.xib */,
@@ -808,6 +820,10 @@
 				53F15FC1162BA05A00C24FC1 /* EX2SlidingNotification.xib in Resources */,
 				53F15FC2162BA05A00C24FC1 /* EX2TabBarController.xib in Resources */,
 				53F15EF1162B9F6800C24FC1 /* InfoPlist.strings in Resources */,
+				53FA691C1644789900D19576 /* table-fade-bottom.png in Resources */,
+				53FA691D1644789900D19576 /* table-fade-bottom@2x.png in Resources */,
+				53FA691E1644789900D19576 /* table-fade-top.png in Resources */,
+				53FA691F1644789900D19576 /* table-fade-top@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1003,7 +1019,7 @@
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				COMBINE_HIDPI_IMAGES = YES;
+				COMBINE_HIDPI_IMAGES = NO;
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "EX2KitResources/EX2KitResources-Prefix.pch";
@@ -1029,7 +1045,7 @@
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				COMBINE_HIDPI_IMAGES = YES;
+				COMBINE_HIDPI_IMAGES = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;

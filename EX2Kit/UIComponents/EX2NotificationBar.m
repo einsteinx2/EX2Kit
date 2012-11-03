@@ -89,7 +89,6 @@
 	self.mainViewController = self.mainViewController;
     
     // Register for status bar frame changes
-    //[NSNotificationCenter defaultCenter]
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(statusBarDidChange:) name:UIApplicationDidChangeStatusBarFrameNotification object:nil];
 }
 
