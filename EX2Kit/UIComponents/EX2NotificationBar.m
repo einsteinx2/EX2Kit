@@ -78,7 +78,9 @@
 
 - (void)dealloc
 {
-	[[NSNotificationCenter defaultCenter] removeObserver:self];
+    [EX2Dispatch runInMainThreadAndWaitUntilDone:YES block:^{
+        [[NSNotificationCenter defaultCenter] removeObserver:self];
+    }];
 }
 
 - (void)viewDidLoad

@@ -60,4 +60,36 @@
     [self postNotificationToMainThreadWithName:name object:nil userInfo:nil];
 }
 
+/*
+ *
+ */
+
++ (void)addObserverOnMainThread:(id)notificationObserver selector:(SEL)notificationSelector name:(NSString *)notificationName object:(id)notificationSender
+{
+    // Ensure this runs in the main thread
+    [EX2Dispatch runInMainThreadAndWaitUntilDone:YES block:^{
+        [[NSNotificationCenter defaultCenter] addObserver:notificationObserver selector:notificationSelector name:notificationName object:notificationSender];
+    }];
+}
+
+/*
+*
+*/
+
++ (void)removeObserverOnMainThread:(id)notificationObserver
+{
+    // Ensure this runs in the main thread
+    [EX2Dispatch runInMainThreadAndWaitUntilDone:YES block:^{
+        [[NSNotificationCenter defaultCenter] removeObserver:notificationObserver];
+    }];
+}
+
++ (void)removeObserverOnMainThread:(id)notificationObserver name:(NSString *)notificationName object:(id)notificationSender
+{
+    // Ensure this runs in the main thread
+    [EX2Dispatch runInMainThreadAndWaitUntilDone:YES block:^{
+        [[NSNotificationCenter defaultCenter] removeObserver:notificationObserver name:notificationName object:notificationSender];
+    }];
+}
+
 @end

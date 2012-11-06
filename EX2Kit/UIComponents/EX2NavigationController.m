@@ -87,13 +87,15 @@ static char key;
 
 - (void)dealloc
 {
-    for (int i = _viewControllers.count - 1; i >= 0; i--)
-    {
-        UIViewController *controller = [_viewControllers objectAtIndex:i];
-        controller.ex2NavigationController = nil;
-        [controller.view removeFromSuperview];
-        [_viewControllers removeObjectAtIndexSafe:i];
-    }
+    [EX2Dispatch runInMainThreadAndWaitUntilDone:YES block:^{
+        for (int i = _viewControllers.count - 1; i >= 0; i--)
+        {
+            UIViewController *controller = [_viewControllers objectAtIndex:i];
+            controller.ex2NavigationController = nil;
+            [controller.view removeFromSuperview];
+            [_viewControllers removeObjectAtIndexSafe:i];
+        }
+    }];
 }
 
 // To allow easy overriding with custom navigation bar. Useful for skinning the nav bar in iOS 4
