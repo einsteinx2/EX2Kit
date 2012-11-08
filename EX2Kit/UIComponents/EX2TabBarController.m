@@ -87,10 +87,61 @@ static char key;
 
 - (void)viewWillAppear:(BOOL)animated
 {
-    [super viewWillAppear:animated];
+	[super viewWillAppear:animated];
+	
+	// In iOS 4 make sure to pass this message
+	if (SYSTEM_VERSION_LESS_THAN(@"5.0"))
+	{
+        if ([self.selectedViewController isKindOfClass:[UIViewController class]])
+        {
+            [self.selectedViewController viewWillAppear:animated];
+        }
+	}
     
     self.containerView.frame = CGRectMake(0., 0., self.view.width, self.view.height - self.tabBar.height);
     //self.tabBar.bottom = self.view.bottom;
+}
+
+- (void)viewWillDisappear:(BOOL)animated
+{
+	[super viewWillDisappear:animated];
+	
+	// In iOS 4 make sure to pass this message
+	if (SYSTEM_VERSION_LESS_THAN(@"5.0"))
+	{
+        if ([self.selectedViewController isKindOfClass:[UIViewController class]])
+        {
+            [self.selectedViewController viewWillDisappear:animated];
+        }
+	}
+}
+
+- (void)viewDidAppear:(BOOL)animated
+{
+	[super viewDidAppear:animated];
+	
+	// In iOS 4 make sure to pass this message
+	if (SYSTEM_VERSION_LESS_THAN(@"5.0"))
+	{
+        if ([self.selectedViewController isKindOfClass:[UIViewController class]])
+        {
+            [self.selectedViewController viewDidAppear:animated];
+        }
+	}
+}
+
+- (void)viewDidDisappear:(BOOL)animated
+{
+	[super viewDidDisappear:animated];
+	
+	// In iOS 4 make sure to pass this message
+	if (SYSTEM_VERSION_LESS_THAN(@"5.0"))
+	{
+        if ([self.selectedViewController isKindOfClass:[UIViewController class]])
+        {
+            [self.selectedViewController viewDidDisappear:animated];
+        }
+	}
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
@@ -226,8 +277,27 @@ static char key;
                 controller.view.frame = self.containerView.bounds;
                 controller.view.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
                 
+                // In iOS 4, this isn't automatic
+                if (SYSTEM_VERSION_LESS_THAN(@"5.0"))
+                {
+                    if ([controller isKindOfClass:[UIViewController class]])
+                    {
+                        [controller viewWillAppear:NO];
+                    }
+                }
+                
                 // Add the view
                 [self.containerView addSubview:controller.view];
+                
+                // In iOS 4, this isn't automatic
+                if (SYSTEM_VERSION_LESS_THAN(@"5.0"))
+                {
+                    if ([controller isKindOfClass:[UIViewController class]])
+                    {
+                        [controller viewDidAppear:NO];
+                    }
+                }
+                
                 break;
             }
             case EX2TabBarControllerAnimationFadeInOut:
@@ -285,8 +355,28 @@ static char key;
     NSUInteger index = [bar.items indexOfObject:item];
     if (index != NSNotFound && self.selectedIndex != index)
     {
+        // In iOS 4, this isn't automatic
+        if (SYSTEM_VERSION_LESS_THAN(@"5.0"))
+        {
+            UIViewController *controller = [_viewControllers objectAtIndexSafe:index];
+            if ([controller isKindOfClass:[UIViewController class]])
+            {
+                [controller viewWillDisappear:NO];
+            }
+        }
+        
         _selectedIndex = index;
         [self displayControllerAtIndex:index animation:self.animation];
+        
+        // In iOS 4, this isn't automatic
+        if (SYSTEM_VERSION_LESS_THAN(@"5.0"))
+        {
+            UIViewController *controller = [_viewControllers objectAtIndexSafe:index];
+            if ([controller isKindOfClass:[UIViewController class]])
+            {
+                [controller viewDidDisappear:NO];
+            }
+        }
     }
 }
 

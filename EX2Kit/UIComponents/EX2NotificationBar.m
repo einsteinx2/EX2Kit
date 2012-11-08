@@ -91,7 +91,7 @@
 	self.mainViewController = self.mainViewController;
     
     // Register for status bar frame changes
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(statusBarDidChange:) name:UIApplicationDidChangeStatusBarFrameNotification object:nil];
+    [NSNotificationCenter addObserverOnMainThread:self selector:@selector(statusBarDidChange:) name:UIApplicationDidChangeStatusBarFrameNotification object:nil];
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -591,6 +591,12 @@
             }
         }
     }
+}
+
+- (void)didReceiveMemoryWarning
+{
+    [super didReceiveMemoryWarning];
+    DLog(@"didReceiveMemoryWarning");
 }
 
 @end

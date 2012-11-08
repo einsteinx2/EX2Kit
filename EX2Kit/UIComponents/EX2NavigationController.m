@@ -162,15 +162,53 @@ static char key;
 	}
 }
 
-// Pass viewWillAppear to the visible view controller
 - (void)viewWillAppear:(BOOL)animated
 {
-    [super viewWillAppear:animated];
+	[super viewWillAppear:animated];
+	
+	// In iOS 4 make sure to pass this message
+	if (SYSTEM_VERSION_LESS_THAN(@"5.0"))
+	{
+		[self.viewControllers.lastObject viewWillAppear:animated];
+	}
     
     if (self.viewControllers.count > 0)
     {
         [self.viewControllers.lastObject viewWillAppear:animated];
     }
+}
+
+- (void)viewWillDisappear:(BOOL)animated
+{
+	[super viewWillDisappear:animated];
+	
+	// In iOS 4 make sure to pass this message
+	if (SYSTEM_VERSION_LESS_THAN(@"5.0"))
+	{
+		[self.viewControllers.lastObject viewWillDisappear:animated];
+	}
+}
+
+- (void)viewDidAppear:(BOOL)animated
+{
+	[super viewDidAppear:animated];
+	
+	// In iOS 4 make sure to pass this message
+	if (SYSTEM_VERSION_LESS_THAN(@"5.0"))
+	{
+		[self.viewControllers.lastObject viewDidAppear:animated];
+	}
+}
+
+- (void)viewDidDisappear:(BOOL)animated
+{
+	[super viewDidDisappear:animated];
+	
+	// In iOS 4 make sure to pass this message
+	if (SYSTEM_VERSION_LESS_THAN(@"5.0"))
+	{
+		[self.viewControllers.lastObject viewDidDisappear:animated];
+	}
 }
 
 - (BOOL)shouldAutorotate
@@ -200,6 +238,13 @@ static char key;
     //DLog(@"animation stopped");
     [disappearingController.view removeFromSuperview];
     
+    // In iOS 4, these messages don't happen automatically
+	if (SYSTEM_VERSION_LESS_THAN(@"5.0"))
+	{
+		[disappearingController viewDidDisappear:YES];
+        [appearingController viewDidAppear:YES];
+	}
+    
     if ([self.delegate respondsToSelector:@selector(ex2NavigationController:didShowViewController:animated:)])
     { 
         [self.delegate ex2NavigationController:self didShowViewController:appearingController animated:YES];
@@ -215,6 +260,13 @@ static char key;
     
     [self.contentView addSubview:appearing.view];
     appearing.view.frame = appearingStart;
+    
+    // In iOS 4, these messages don't happen automatically
+	if (SYSTEM_VERSION_LESS_THAN(@"5.0"))
+	{
+		[disappearing viewWillDisappear:YES];
+        [appearing viewWillAppear:YES];
+	}
     
     self.isAnimating = YES;
     [UIView animateWithDuration:AnimationDuration
