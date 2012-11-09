@@ -12,6 +12,8 @@
 #import "EX2Macros.h"
 #import "NSArray+Additions.h"
 
+static const int ddLogLevel = LOG_LEVEL_VERBOSE;
+
 @implementation UIViewController (EX2TabBarController)
 // No adding instance properties in categories you say? Hogwash! Three cheers for associative references!
 static char key;
@@ -244,11 +246,18 @@ static char key;
 
 - (void)setSelectedIndex:(NSUInteger)index
 {
-    if (_selectedIndex != index)
-    {
-        self.tabBar.selectedItem = [self.tabBar.items objectAtIndex:index];
-        [self tabBar:self.tabBar didSelectItem:self.tabBar.selectedItem];
-    }
+    DDLogVerbose(@"setSelectedIndex called on main thread: %@  stack trace: %@", NSStringFromBOOL([NSThread isMainThread]), [NSThread callStackSymbols]);
+
+    // Ensure this always runs in the main thread, not just always calling runInMainThread because I don't want it to be async all the time
+    void (^block) (void) = ^{
+        if (_selectedIndex != index)
+        {
+            self.tabBar.selectedItem = [self.tabBar.items objectAtIndex:index];
+            [self tabBar:self.tabBar didSelectItem:self.tabBar.selectedItem];
+        }
+    };
+    
+    [NSThread isMainThread] ? block() : [EX2Dispatch runInMainThread:block];
 }
 
 - (void)displayControllerAtIndex:(NSUInteger)index animation:(EX2TabBarControllerAnimation)animationType
