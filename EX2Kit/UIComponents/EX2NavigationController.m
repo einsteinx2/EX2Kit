@@ -92,7 +92,6 @@ static char key;
         {
             UIViewController *controller = [_viewControllers objectAtIndex:i];
             controller.ex2NavigationController = nil;
-            [controller.view removeFromSuperview];
             [_viewControllers removeObjectAtIndexSafe:i];
         }
     }];
