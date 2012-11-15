@@ -29,26 +29,26 @@ EX2NotificationBarPosition;
 // View to place notification bar content. May add any custom subviews, etc. 
 // Think of like UITableViewCell contentView.
 #if __IPHONE_OS_VERSION_MIN_REQUIRED < __IPHONE_5_0
-@property (unsafe_unretained, nonatomic, readonly) IBOutlet UIView *notificationBarContent;
+@property (nonatomic, readonly) IBOutlet UIView *notificationBarContent;
 #else
-@property (weak, nonatomic, readonly) IBOutlet UIView *notificationBarContent;
+@property (nonatomic, readonly) IBOutlet UIView *notificationBarContent;
 #endif
 
 // The notification bar area. Contains the content view and shadows. Always add
 // subviews to the content view, NOT to this view, or they will be placed
 // above the shadows unless you specifically move them backwards in the hierarchy
 #if __IPHONE_OS_VERSION_MIN_REQUIRED < __IPHONE_5_0
-@property (unsafe_unretained, nonatomic, readonly) IBOutlet UIView *notificationBar;
+@property (nonatomic, readonly) IBOutlet UIView *notificationBar;
 #else
-@property (weak, nonatomic, readonly) IBOutlet UIView *notificationBar;
+@property (nonatomic, readonly) IBOutlet UIView *notificationBar;
 #endif
 
 // The view that contains the main view. This is where you would add your UITabBarController,
 // UINavigationController, etc.
 #if __IPHONE_OS_VERSION_MIN_REQUIRED < __IPHONE_5_0
-@property (unsafe_unretained, nonatomic, readonly) IBOutlet UIView *mainViewHolder;
+@property (nonatomic, readonly) IBOutlet UIView *mainViewHolder;
 #else
-@property (weak, nonatomic, readonly) IBOutlet UIView *mainViewHolder;
+@property (nonatomic, readonly) IBOutlet UIView *mainViewHolder;
 #endif
 
 // YES when the notificationBar is visible
@@ -58,7 +58,7 @@ EX2NotificationBarPosition;
 @property (nonatomic, readonly) BOOL isNotificationBarAnimating;
 
 // This can be changed during runtime, but only when isNotificationBarShowing == NO
-@property EX2NotificationBarPosition position;
+@property (nonatomic) EX2NotificationBarPosition notificationBarPosition;
 
 // This is a reference to whatever controller manages the view you placed in mainViewHolder
 @property (nonatomic, strong) IBOutlet UIViewController *mainViewController;
@@ -66,9 +66,9 @@ EX2NotificationBarPosition;
 // The height of the content area when shown
 @property CGFloat notificationBarHeight;
 
-- (id)initWithPosition:(EX2NotificationBarPosition)thePosition;
+- (id)initWithPosition:(EX2NotificationBarPosition)position;
 
-- (id)initWithPosition:(EX2NotificationBarPosition)thePosition mainViewController:(UIViewController *)mainViewController;
+- (id)initWithPosition:(EX2NotificationBarPosition)position mainViewController:(UIViewController *)mainViewController;
 
 
 // Show the notificationBar temporarily, then automatically dismiss

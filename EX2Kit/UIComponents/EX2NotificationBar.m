@@ -17,31 +17,29 @@
 #define ACTUAL_STATUS_HEIGHT [[UIApplication sharedApplication] statusBarFrame].size.height
 
 @interface EX2NotificationBar()
-{
-    EX2NotificationBarPosition _position;
-    __strong UIViewController *_mainViewController;
-}
 @property (nonatomic) BOOL wasStatusBarTallOnStart;
 @property (nonatomic) BOOL changedTabSinceTallHeight;
 @property (nonatomic) BOOL hasViewWillAppearRan;
 @end
 
 @implementation EX2NotificationBar
+@synthesize mainViewController=_mainViewController;
+@synthesize notificationBarPosition=_notificationBarPosition;
 
 #pragma mark - Life Cycle
 
 - (void)setup
 {
 	_notificationBarHeight = DEFAULT_BAR_HEIGHT;
-	_position = EX2NotificationBarPositionTop;
+	_notificationBarPosition = EX2NotificationBarPositionTop;
 }
 
-- (id)initWithPosition:(EX2NotificationBarPosition)thePosition
+- (id)initWithPosition:(EX2NotificationBarPosition)position
 {
 	if ((self = [super initWithNibName:@"EX2NotificationBar" bundle:[EX2Kit resourceBundle]]))
 	{
 		[self setup];
-		_position = thePosition;
+		_notificationBarPosition = position;
 	}
 	return self;
 }
@@ -51,7 +49,7 @@
     if ((self = [super initWithNibName:@"EX2NotificationBar" bundle:[EX2Kit resourceBundle]]))
 	{
 		[self setup];
-		_position = thePosition;
+		_notificationBarPosition = thePosition;
         _mainViewController = mainViewController;
 	}
 	return self;
@@ -228,16 +226,16 @@
 
 #pragma mark - Properties
 
-- (EX2NotificationBarPosition)position
+- (EX2NotificationBarPosition)notificationBarPosition
 {
-	return _position;
+	return _notificationBarPosition;
 }
 
-- (void)setPosition:(EX2NotificationBarPosition)thePosition
+- (void)setNotificationBarPosition:(EX2NotificationBarPosition)notificationBarPosition
 {
 	if (!self.isNotificationBarShowing)
 	{
-		_position = thePosition;
+		_notificationBarPosition = notificationBarPosition;
 	}
 }
 
@@ -329,11 +327,11 @@
 		completionBlock = [completionBlock copy];
 	}
     	
-	if (self.position == EX2NotificationBarPositionTop)
+	if (self.notificationBarPosition == EX2NotificationBarPositionTop)
 	{
 		self.notificationBar.height = 0;
 	}
-	else if (self.position == EX2NotificationBarPositionBottom)
+	else if (self.notificationBarPosition == EX2NotificationBarPositionBottom)
 	{
 		//self.view.y = self.view.superview.height - self.view.height + 20.;
 		//self.view.width = self.view.superview.width;
@@ -344,7 +342,7 @@
     	
 	void (^animations)(void) = ^(void)
 	{
-		if (self.position == EX2NotificationBarPositionTop)
+		if (self.notificationBarPosition == EX2NotificationBarPositionTop)
 		{	
 			self.notificationBar.height = self.notificationBarHeight;
 			self.mainViewHolder.frame = CGRectMake(self.mainViewHolder.x,
@@ -354,7 +352,7 @@
             
             if (self.mainViewHolder.y < 0.) self.mainViewHolder.y = 0.;
 		}
-		else if (self.position == EX2NotificationBarPositionBottom)
+		else if (self.notificationBarPosition == EX2NotificationBarPositionBottom)
 		{
 			self.mainViewHolder.height -= self.notificationBar.height; 
 			//UIView *topView = appDelegateS.mainTabBarController.selectedViewController.view;
@@ -418,7 +416,7 @@
 	
 	void (^animations)(void) = ^(void)
 	{
-		if (self.position == EX2NotificationBarPositionTop)
+		if (self.notificationBarPosition == EX2NotificationBarPositionTop)
 		{
 			self.notificationBar.height = 0.;
 			self.mainViewHolder.frame = CGRectMake(self.mainViewHolder.x, 
@@ -428,7 +426,7 @@
             
             if (self.mainViewHolder.y < 0.) self.mainViewHolder.y = 0.;
 		}
-		else if (self.position == EX2NotificationBarPositionBottom)
+		else if (self.notificationBarPosition == EX2NotificationBarPositionBottom)
 		{
 			self.mainViewHolder.height += self.notificationBar.height; 
 			//UIView *topView = appDelegateS.mainTabBarController.selectedViewController.view;
