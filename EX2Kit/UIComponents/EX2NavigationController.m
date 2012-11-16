@@ -436,7 +436,7 @@ static char key;
 {
     if (!self.isAnimating && self.viewControllers.count > 1)
     {
-        NSArray *array = [NSArray arrayWithObject:[self.viewControllers objectAtIndex:0]];
+        NSArray *array = @[[self.viewControllers objectAtIndex:0]];
         [self setViewControllers:array withAnimation:(animated ? EX2NavigationControllerAnimationLeft : EX2NavigationControllerAnimationNone)];
     }
 }

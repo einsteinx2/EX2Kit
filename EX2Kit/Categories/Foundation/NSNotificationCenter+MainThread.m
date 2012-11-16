@@ -12,9 +12,9 @@
 
 + (void)postNotificationInternal:(NSDictionary *)info
 {
-    NSString *name = [info objectForKey:@"name"];
-    id object = [info objectForKey:@"object"];
-    NSDictionary *userInfo = [info objectForKey:@"userInfo"];
+    NSString *name = info[@"name"];
+    id object = info[@"object"];
+    NSDictionary *userInfo = info[@"userInfo"];
     
     [[NSNotificationCenter defaultCenter] postNotificationName:name object:object userInfo:userInfo];
 }
@@ -36,8 +36,10 @@
 	@autoreleasepool 
 	{
 		NSMutableDictionary *info = [NSMutableDictionary dictionaryWithObject:name forKey:@"name"];
-		if (object) [info setObject:object forKey:@"object"];
-		if (userInfo) [info setObject:userInfo forKey:@"userInfo"];
+		if (object)
+            info[@"object"] = object;
+		if (userInfo)
+            info[@"userInfo"] = userInfo;
 		
 		[NSNotificationCenter performSelectorOnMainThread:@selector(postNotificationInternal:) 
 											   withObject:info

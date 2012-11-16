@@ -93,7 +93,7 @@ static void initialize_navigationBarImages()
 	@synchronized(syncObject)
 	{
 		// If a timer already exists for this name, return
-		if ([gcdTimers objectForKey:name])
+		if (gcdTimers[name])
 			return NO;
 		
 		// As per: http://stackoverflow.com/questions/8906026/synchronizing-a-block-within-a-block
@@ -116,8 +116,7 @@ static void initialize_navigationBarImages()
 		
 		// Add it to the dictionary
 		NSValue *timerValue = [NSValue valueWithPointer:timer];
-		[gcdTimers setObject:timerValue forKey:name];
-        //[gcdTimers setObject:timer forKey:name];
+        gcdTimers[name] = timerValue;
 		
 		// Start the timer
 		dispatch_resume(timer);
@@ -141,7 +140,7 @@ static void initialize_navigationBarImages()
 	@synchronized(syncObject)
 	{
 		// Get the value
-		NSValue *value = [gcdTimers objectForKey:name];
+		NSValue *value = gcdTimers[name];
 		if (value)
 		{
 			// Get the timer pointer

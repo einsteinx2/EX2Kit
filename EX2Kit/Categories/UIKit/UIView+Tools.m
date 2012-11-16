@@ -28,10 +28,7 @@
     newShadow.endPoint = CGPointMake(1.0, 0.5);
 	CGColorRef darkColor  = (CGColorRef)CFRetain([UIColor colorWithWhite:0.0f alpha:shadowAlpha].CGColor);
 	CGColorRef lightColor = (CGColorRef)CFRetain([UIColor clearColor].CGColor);
-	newShadow.colors = [NSArray arrayWithObjects:
-                        (__bridge id)(inverse ? lightColor : darkColor),
-                        (__bridge id)(inverse ? darkColor : lightColor),
-                        nil];
+	newShadow.colors = @[(__bridge id)(inverse ? lightColor : darkColor), (__bridge id)(inverse ? darkColor : lightColor)];
     
     CFRelease(darkColor);
     CFRelease(lightColor);
@@ -85,10 +82,7 @@
     newShadow.endPoint = CGPointMake(0.5, 1.0);
 	CGColorRef darkColor  = (CGColorRef)CFRetain([UIColor colorWithWhite:0.0f alpha:shadowAlpha].CGColor);
 	CGColorRef lightColor = (CGColorRef)CFRetain([UIColor clearColor].CGColor);
-	newShadow.colors = [NSArray arrayWithObjects:
-                        (__bridge id)(inverse ? lightColor : darkColor),
-                        (__bridge id)(inverse ? darkColor : lightColor),
-                        nil];
+	newShadow.colors = @[(__bridge id)(inverse ? lightColor : darkColor), (__bridge id)(inverse ? darkColor : lightColor)];
     
     CFRelease(darkColor);
     CFRelease(lightColor);

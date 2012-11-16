@@ -549,7 +549,7 @@
     {
         if ([object isKindOfClass:[UITabBarController class]])
         {
-            id oldValue = [change objectForKey:NSKeyValueChangeOldKey];
+            id oldValue = change[NSKeyValueChangeOldKey];
             UITabBarController *tabController = (UITabBarController *)object;
             
             if (oldValue != tabController.selectedViewController)

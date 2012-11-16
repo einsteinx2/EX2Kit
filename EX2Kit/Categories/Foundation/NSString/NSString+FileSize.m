@@ -41,9 +41,7 @@
 	double fileSize = [pureNumbers doubleValue];
 	
 	// Extract the size multiplier and apply it if necessary
-	NSArray *sizes = [NSArray arrayWithObjects:@"k", [NSNumber numberWithInt:1024], 
-											   @"m", [NSNumber numberWithInt:1024*1024],
-											   @"g", [NSNumber numberWithInt:1024*1024*1024], nil];
+	NSArray *sizes = @[@"k", @(1024), @"m", @(1024*1024), @"g", @(1024*1024*1024)];
 	for (int i = 0; i < [sizes count]; i+=2)
 	{
 		NSString *sizeString = [sizes objectAtIndex:i];
