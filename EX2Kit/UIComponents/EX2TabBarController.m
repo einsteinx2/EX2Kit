@@ -209,19 +209,24 @@ static char key;
     // Set the ivar
     _tabBarItems = items;
     
-    // Setup the tab bar items
-    self.tabBar.items = [NSArray arrayWithArraySafe:items];
-    
-    _viewControllers = [NSMutableArray arrayWithCapacity:items.count];
-    for (int i = 0; i < _tabBarItems.count; i++)
-    {
-        [_viewControllers addObject:[NSNull null]];
-    }
+    [self addTabBarItemsToTabBar];
     
     // Display the first controller if it exists
-    if (_tabBarItems.count > 0)
+    if (self.tabBarItems.count > 0)
     {
         [self displayControllerAtIndex:0 animation:self.animation];
+    }
+}
+
+- (void)addTabBarItemsToTabBar
+{
+    // Setup the tab bar items
+    self.tabBar.items = [NSArray arrayWithArraySafe:self.tabBarItems];
+    
+    _viewControllers = [NSMutableArray arrayWithCapacity:self.tabBarItems.count];
+    for (int i = 0; i < self.tabBarItems.count; i++)
+    {
+        [_viewControllers addObject:[NSNull null]];
     }
 }
 
@@ -252,8 +257,18 @@ static char key;
     void (^block) (void) = ^{
         if (_selectedIndex != index)
         {
-            self.tabBar.selectedItem = [self.tabBar.items objectAtIndex:index];
-            [self tabBar:self.tabBar didSelectItem:self.tabBar.selectedItem];
+            // Sanity check
+            if (self.tabBar.items.count == 0)
+            {
+                [self addTabBarItemsToTabBar];
+            }
+            
+            // Bounds safety check
+            if (self.tabBar.items.count > index)
+            {
+                self.tabBar.selectedItem = [self.tabBar.items objectAtIndex:index];
+                [self tabBar:self.tabBar didSelectItem:self.tabBar.selectedItem];
+            }
         }
     };
     

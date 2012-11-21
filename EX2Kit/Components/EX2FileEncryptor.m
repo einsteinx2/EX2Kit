@@ -57,6 +57,8 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
 			[[NSFileManager defaultManager] createFileAtPath:_path contents:[NSData data] attributes:nil];
 			_fileHandle = [NSFileHandle fileHandleForWritingAtPath:_path];
 		}
+        
+        [EX2FileDecryptor registerOpenFilePath:_path];
 	}
 	return self;
 }
@@ -145,6 +147,8 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
 	}
 	
 	[self.fileHandle closeFile];
+    
+    [EX2FileDecryptor unregisterOpenFilePath:self.path];
 	
 	return YES;
 }

@@ -11,9 +11,12 @@
 #import "EX2RingBuffer.h"
 #import "DDLog.h"
 
+// Keyed on file path, value is number of references
+static __strong NSMutableDictionary *_activeFilePaths;
+
 @interface EX2FileDecryptor()
 {
-	NSString *key;
+	NSString *_key;
 }
 @property (nonatomic, strong) EX2RingBuffer *tempDecryptBuffer;
 @property (nonatomic, strong) EX2RingBuffer *decryptedBuffer;
@@ -26,6 +29,61 @@
 #define DEFAULT_DECR_CHUNK_SIZE 4096
 
 static const int ddLogLevel = LOG_LEVEL_ERROR;
+
++ (void)registerOpenFilePath:(NSString *)path
+{
+    if (!path)
+        return;
+    
+    @synchronized(self)
+    {
+        // Make sure the dictionary exists
+        if (!_activeFilePaths)
+        {
+            _activeFilePaths = [NSMutableDictionary dictionaryWithCapacity:10];
+        }
+        
+        // Note that if the entry doesn't exist, this still works because [_activeFilePaths[path] unsignedIntegerValue] evaluates to 0
+        NSInteger adjustedValue = [_activeFilePaths[path] integerValue] + 1;
+        _activeFilePaths[path] = @(adjustedValue);
+        
+        DLog(@"_activeFilePaths: %@", _activeFilePaths);
+    }
+}
+
++ (void)unregisterOpenFilePath:(NSString *)path
+{
+    if (!path)
+        return;
+    
+    @synchronized(self)
+    {        
+        NSInteger adjustedValue = [_activeFilePaths[path] integerValue] - 1;
+        if (adjustedValue <= 0)
+        {
+            // If decrementing the value will bring it to 0, remove the entry
+            [_activeFilePaths removeObjectForKey:path];
+        }
+        else
+        {
+            _activeFilePaths[path] = @(adjustedValue);
+        }
+        
+        DLog(@"_activeFilePaths: %@", _activeFilePaths);
+    }
+}
+
++ (BOOL)isFilePathInUse:(NSString *)path
+{
+    if (!path)
+        return NO;
+    
+    @synchronized(self)
+    {
+        // If the dictionary contains this path, then the ref count must be greater than 0
+        return [_activeFilePaths.allKeys containsObject:path];
+    }
+}
 
 - (id)init
 {
@@ -51,9 +109,11 @@ static const int ddLogLevel = LOG_LEVEL_ERROR;
 {
 	if ((self = [self initWithChunkSize:theChunkSize]))
 	{
-		key = [theKey copy];
+		_key = [theKey copy];
 		_path = [aPath copy];
 		_fileHandle = [NSFileHandle fileHandleForReadingAtPath:aPath];
+        
+        [EX2FileDecryptor registerOpenFilePath:_path];
 	}
 	return self;
 }
@@ -147,7 +207,7 @@ static const int ddLogLevel = LOG_LEVEL_ERROR;
 			DDLogVerbose(@"[EX2FileDecryptor] data drained, filled size %u", self.tempDecryptBuffer.filledSpaceLength);
 			NSError *decryptionError;
 			DDLogVerbose(@"[EX2FileDecryptor] decrypting data");
-			NSData *decrypted = [[RNCryptor AES256Cryptor] decryptData:data password:key error:&decryptionError];
+			NSData *decrypted = [[RNCryptor AES256Cryptor] decryptData:data password:_key error:&decryptionError];
 			DDLogVerbose(@"[EX2FileDecryptor] data size: %u  decrypted size: %u", data.length, decrypted.length);
 			if (decryptionError)
 			{
@@ -207,6 +267,8 @@ static const int ddLogLevel = LOG_LEVEL_ERROR;
 	[self.decryptedBuffer reset];
 	[self.fileHandle closeFile];
 	_fileHandle = nil;
+    
+    [EX2FileDecryptor unregisterOpenFilePath:self.path];
 }
 
 - (NSUInteger)encryptedChunkPadding

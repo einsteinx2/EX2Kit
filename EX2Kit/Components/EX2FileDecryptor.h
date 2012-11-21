@@ -16,6 +16,9 @@
 @property (nonatomic, readonly) NSUInteger encryptedChunkSize;
 @property (nonatomic, readonly) NSString *path;
 
+@property (nonatomic, readonly) unsigned long long encryptedFileSizeOnDisk;
+@property (nonatomic, readonly) unsigned long long decryptedFileSizeOnDisk;
+
 - (id)initWithPath:(NSString *)path chunkSize:(NSUInteger)chunkSize key:(NSString *)key;
 
 - (BOOL)seekToOffset:(NSUInteger)offset;
@@ -25,7 +28,8 @@
 
 - (void)closeFile;
 
-@property (nonatomic, readonly) unsigned long long encryptedFileSizeOnDisk;
-@property (nonatomic, readonly) unsigned long long decryptedFileSizeOnDisk;
++ (void)registerOpenFilePath:(NSString *)path;
++ (void)unregisterOpenFilePath:(NSString *)path;
++ (BOOL)isFilePathInUse:(NSString *)path;
 
 @end

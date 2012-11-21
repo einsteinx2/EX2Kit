@@ -67,10 +67,10 @@
 {
 	// Calling dispatch_sync to the main queue from the main thread can cause a deadlock,
 	// so just run the block
-	if ([NSThread isMainThread])
+	if ([NSThread isMainThread] && shouldWait)
 	{
-		block();
-		return;
+        block();
+        return;
 	}
 	
 	[self runInQueue:dispatch_get_main_queue() waitUntilDone:shouldWait block:block];
