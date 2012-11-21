@@ -5,6 +5,10 @@
 //  Created by Casey Marshall on 2/3/11.
 //  Copyright 2011 Modal Domains. All rights reserved.
 //
+//  ---------------------------
+//
+//  Modified by Ben Baron for EX2Kit
+//
 
 #import "EX2NavigationController.h"
 #import <objc/runtime.h>
@@ -52,8 +56,6 @@ static char key;
 
 #define AnimationDuration 0.3
 #define AnimationCurve UIViewAnimationOptionCurveEaseInOut
-
-// The designated initializer.  Override if you create the controller programmatically and want to perform customization that is not appropriate for viewDidLoad.
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -109,16 +111,11 @@ static char key;
 // Implement loadView to create a view hierarchy programmatically, without using a nib.
 - (void)loadView
 {
-	//self.view = [[UIView alloc] initWithFrame: CGRectMake(0, 0, 320, 364)];
-    // TODO: Hacky fix for sizing issue, need to properly fix later
-    //CGFloat height = IS_TALL_SCREEN() ? 452. : 367;
-    //self.view = [[UIView alloc] initWithFrame: CGRectMake(0, 0, 320, height)];
     self.view = [[UIView alloc] initWithFrame: CGRectMake(0, 0, 320, 480)];
 	self.view.autoresizingMask = (UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight);
     
 	self.navigationBar = [self createNavigationBar];
     
-	//self.contentView = [[UIView alloc] initWithFrame:CGRectMake(0, 44, 320, 320)];
 	self.contentView = [[UIView alloc ] initWithFrame:CGRectMake(0, self.navigationBar.bottom, self.view.width, self.view.height - self.navigationBar.height)];
     self.contentView.clipsToBounds = YES;
 	self.contentView.autoresizingMask = (UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight);
@@ -170,11 +167,6 @@ static char key;
 	{
 		[self.viewControllers.lastObject viewWillAppear:animated];
 	}
-    
-    if (self.viewControllers.count > 0)
-    {
-        [self.viewControllers.lastObject viewWillAppear:animated];
-    }
 }
 
 - (void)viewWillDisappear:(BOOL)animated
