@@ -298,7 +298,6 @@
 		53F15F6B162B9FCA00C24FC1 /* ContextFilterLogFormatter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContextFilterLogFormatter.m; sourceTree = "<group>"; };
 		53F15F6C162B9FCA00C24FC1 /* DispatchQueueLogFormatter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DispatchQueueLogFormatter.h; sourceTree = "<group>"; };
 		53F15F6D162B9FCA00C24FC1 /* DispatchQueueLogFormatter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DispatchQueueLogFormatter.m; sourceTree = "<group>"; };
-		53F15F6E162B9FCA00C24FC1 /* README.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.txt; sourceTree = "<group>"; };
 		53F15F6F162B9FCA00C24FC1 /* RNCryptor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RNCryptor.h; sourceTree = "<group>"; };
 		53F15F70162B9FCA00C24FC1 /* RNCryptor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RNCryptor.m; sourceTree = "<group>"; };
 		53F15F71162B9FCA00C24FC1 /* EX2Kit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EX2Kit.h; sourceTree = "<group>"; };
@@ -621,7 +620,6 @@
 				53F15F6B162B9FCA00C24FC1 /* ContextFilterLogFormatter.m */,
 				53F15F6C162B9FCA00C24FC1 /* DispatchQueueLogFormatter.h */,
 				53F15F6D162B9FCA00C24FC1 /* DispatchQueueLogFormatter.m */,
-				53F15F6E162B9FCA00C24FC1 /* README.txt */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
