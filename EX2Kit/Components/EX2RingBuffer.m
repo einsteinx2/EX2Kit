@@ -35,8 +35,11 @@
 
 - (void)reset
 {
-	self.readPosition = 0;
-	self.writePosition = 0;
+    @synchronized(self)
+	{
+        self.readPosition = 0;
+        self.writePosition = 0;
+    }
 }
 
 - (NSUInteger)totalLength
