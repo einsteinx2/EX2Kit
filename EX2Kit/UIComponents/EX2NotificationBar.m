@@ -354,9 +354,7 @@
 		}
 		else if (self.notificationBarPosition == EX2NotificationBarPositionBottom)
 		{
-			self.mainViewHolder.height -= self.notificationBar.height; 
-			//UIView *topView = appDelegateS.mainTabBarController.selectedViewController.view;
-			//topView.height -= self.notificationBar.height; 
+			self.mainViewHolder.height -= self.notificationBar.height;
 		}
 	};
 	
