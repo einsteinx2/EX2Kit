@@ -8,6 +8,7 @@
 
 #import "EX2FileEncryptor.h"
 #import "RNCryptor.h"
+//#import "RNEncryptor.h"
 #import "EX2RingBuffer.h"
 #import "DDLog.h"
 
@@ -77,6 +78,7 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
 		NSError *encryptionError;
 		NSTimeInterval start = [[NSDate date] timeIntervalSince1970];	
 		NSData *encrypted = [[RNCryptor AES256Cryptor] encryptData:data password:_key error:&encryptionError];
+        //NSData *encrypted = [RNEncryptor encryptData:data withSettings:kRNCryptorAES256Settings password:_key error:&encryptionError];
 		DDLogVerbose(@"[EX2FileEncryptor] total time: %f", [[NSDate date] timeIntervalSince1970] - start);
 
 		//DLog(@"data size: %u  encrypted size: %u", data.length, encrypted.length);
@@ -126,6 +128,7 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
 		
 		NSError *encryptionError;
 		NSData *encrypted = [[RNCryptor AES256Cryptor] encryptData:data password:_key error:&encryptionError];
+        //NSData *encrypted = [RNEncryptor encryptData:data withSettings:kRNCryptorAES256Settings password:_key error:&encryptionError];
 		//DLog(@"data size: %u  encrypted size: %u", data.length, encrypted.length);
 		if (encryptionError)
 		{

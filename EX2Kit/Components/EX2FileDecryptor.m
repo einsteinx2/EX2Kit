@@ -8,6 +8,7 @@
 
 #import "EX2FileDecryptor.h"
 #import "RNCryptor.h"
+//#import "RNDecryptor.h"
 #import "EX2RingBuffer.h"
 #import "DDLog.h"
 
@@ -208,6 +209,7 @@ static const int ddLogLevel = LOG_LEVEL_ERROR;
 			NSError *decryptionError;
 			DDLogVerbose(@"[EX2FileDecryptor] decrypting data");
 			NSData *decrypted = [[RNCryptor AES256Cryptor] decryptData:data password:_key error:&decryptionError];
+            //NSData *decrypted = [RNDecryptor decryptData:data withPassword:_key error:&decryptionError];
 			DDLogVerbose(@"[EX2FileDecryptor] data size: %u  decrypted size: %u", data.length, decrypted.length);
 			if (decryptionError)
 			{
