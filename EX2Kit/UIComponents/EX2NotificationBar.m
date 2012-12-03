@@ -8,6 +8,7 @@
 #import "UIView+Tools.h"
 #import "EX2NotificationBar.h"
 #import "EX2Macros.h"
+#import "EX2Kit.h"
 
 #define DEFAULT_HIDE_DURATION 5.0
 #define ANIMATE_DUR 0.3
