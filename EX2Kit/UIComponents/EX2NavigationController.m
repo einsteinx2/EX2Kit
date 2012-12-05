@@ -249,6 +249,8 @@ static char key;
     if (self.isAnimating)
         return;
     
+    self.isAnimating = YES;
+    
     [self.contentView addSubview:appearing.view];
     appearing.view.frame = appearingStart;
     
@@ -259,7 +261,6 @@ static char key;
         [appearing viewWillAppear:YES];
 	}
     
-    self.isAnimating = YES;
     [UIView animateWithDuration:AnimationDuration
                           delay:0.0
                         options:AnimationCurve
