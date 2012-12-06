@@ -10,9 +10,10 @@
 #import "EX2SlidingNotification.h"
 #import "NSArray+Additions.h"
 #import "UIView+Tools.h"
+#import "EX2Kit.h"
 
 #define ANIMATION_DELAY 0.25
-#define DEFAULT_DISPLAY_TIME 2.0
+#define DEFAULT_DISPLAY_TIME 6.0
 
 @interface EX2SlidingNotification()
 @property (nonatomic, strong) EX2SlidingNotification *selfRef;
