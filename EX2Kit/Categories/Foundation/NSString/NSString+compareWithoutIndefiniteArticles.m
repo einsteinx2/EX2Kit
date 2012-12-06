@@ -10,30 +10,29 @@
 
 @implementation NSString (compareWithoutIndefiniteArticles)
 
++ (NSArray *)indefiniteArticles
+{
+    return @[@"the", @"los", @"las", @"les", @"el", @"la", @"le"];
+}
+
 - (NSString *)stringWithoutIndefiniteArticle
 {
-	// Remove: The El La Los Las Le Les from beginning of string
-	if ([self length] > 5)
-	{
-		NSString *artistPrefix = [[self substringToIndex:4] lowercaseString];
-		if ([artistPrefix isEqualToString:@"the "] || [artistPrefix isEqualToString:@"los "] ||
-			[artistPrefix isEqualToString:@"las "] || [artistPrefix isEqualToString:@"les "])
-		{
-			return [NSString stringWithFormat:@"%@, %@", [self substringFromIndex:4], [self substringToIndex:3]];
-		}
-	}
-	else if ([self length] > 4)
-	{
-		NSString *artistPrefix = [[self substringToIndex:4] lowercaseString];
-		if ([artistPrefix isEqualToString:@"el "] || [artistPrefix isEqualToString:@"la "] ||
-			[artistPrefix isEqualToString:@"le "])
-		{
-			return [NSString stringWithFormat:@"%@, %@", [self substringFromIndex:3], [self substringToIndex:2]];
-		}
-	}
-	
-	// Does not contain an article
-	return [self copy];
+    for (NSString *article in [NSString indefiniteArticles])
+    {
+        // See if the string starts with this article, note the space after each article to reduce false positives  
+        if ([self.lowercaseString hasPrefix:[NSString stringWithFormat:@"%@ ", article]])
+        {
+            // Make sure we don't mess with it if there's nothing after the article
+            if (self.length > (article.length + 1))
+            {
+                // Move the article to the end after a comma
+                return [NSString stringWithFormat:@"%@, %@", [self substringFromIndex:(article.length + 1)], [self substringToIndex:article.length]];
+            }
+        }
+    }
+    
+    // Does not contain an article
+    return [self copy];
 }
 
 - (NSComparisonResult)compareWithoutIndefiniteArticles:(NSString *)otherString

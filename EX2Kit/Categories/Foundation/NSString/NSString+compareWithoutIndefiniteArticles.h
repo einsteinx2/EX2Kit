@@ -10,7 +10,10 @@
 
 @interface NSString (compareWithoutIndefiniteArticles)
 
++ (NSArray *)indefiniteArticles;
+
 - (NSString *)stringWithoutIndefiniteArticle;
+
 - (NSComparisonResult)compareWithoutIndefiniteArticles:(NSString *)otherString;
 - (NSComparisonResult)caseInsensitiveCompareWithoutIndefiniteArticles:(NSString *)otherString;
 
