@@ -102,7 +102,7 @@
 		53F15F8E162B9FCA00C24FC1 /* NSMutableDictionary+Safe.m in Sources */ = {isa = PBXBuildFile; fileRef = 53F15F0B162B9FCA00C24FC1 /* NSMutableDictionary+Safe.m */; };
 		53F15F8F162B9FCA00C24FC1 /* NSNotificationCenter+MainThread.m in Sources */ = {isa = PBXBuildFile; fileRef = 53F15F0D162B9FCA00C24FC1 /* NSNotificationCenter+MainThread.m */; };
 		53F15F90162B9FCA00C24FC1 /* NSObject+ListMethods.m in Sources */ = {isa = PBXBuildFile; fileRef = 53F15F0F162B9FCA00C24FC1 /* NSObject+ListMethods.m */; };
-		53F15F91162B9FCA00C24FC1 /* GTMNSString+HTML.m in Sources */ = {isa = PBXBuildFile; fileRef = 53F15F13162B9FCA00C24FC1 /* GTMNSString+HTML.m */; };
+		53F15F91162B9FCA00C24FC1 /* GTMNSString+HTML.m in Sources */ = {isa = PBXBuildFile; fileRef = 53F15F13162B9FCA00C24FC1 /* GTMNSString+HTML.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		53F15F92162B9FCA00C24FC1 /* NSString+Clean.m in Sources */ = {isa = PBXBuildFile; fileRef = 53F15F16162B9FCA00C24FC1 /* NSString+Clean.m */; };
 		53F15F93162B9FCA00C24FC1 /* NSString+compareWithoutIndefiniteArticles.m in Sources */ = {isa = PBXBuildFile; fileRef = 53F15F18162B9FCA00C24FC1 /* NSString+compareWithoutIndefiniteArticles.m */; };
 		53F15F94162B9FCA00C24FC1 /* NSString+cStringUTF8.m in Sources */ = {isa = PBXBuildFile; fileRef = 53F15F1A162B9FCA00C24FC1 /* NSString+cStringUTF8.m */; };
