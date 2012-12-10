@@ -82,7 +82,10 @@ static char key;
 	{
         viewController.ex2NavigationController = self;
 		
-		_viewControllers = [[NSMutableArray alloc] initWithObjects:viewController, nil];
+		if (viewController)
+			_viewControllers = [[NSMutableArray alloc] initWithObjects:viewController, nil];
+		else
+			_viewControllers = [[NSMutableArray alloc] init];
 	}
 	return self;
 }
