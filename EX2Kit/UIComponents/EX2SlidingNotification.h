@@ -19,6 +19,10 @@
 + (id)slidingNotificationOnView:(UIView *)theParentView message:(NSString *)theMessage image:(UIImage*)theImage;
 - (id)initOnView:(UIView *)theParentView message:(NSString *)theMessage image:(UIImage*)theImage;
 
+// Allow user to set main window explicitly instead of trying to figure it out each time
++ (void)setMainWindow:(UIWindow *)mainWindow;
++ (UIWindow *)mainWindow;
+
 @property (nonatomic, strong) IBOutlet UIImageView *backgroundImageView;
 @property (nonatomic, strong) IBOutlet UILabel *messageLabel;
 @property (nonatomic, strong) IBOutlet UIImageView *imageView;
