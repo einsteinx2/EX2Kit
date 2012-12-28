@@ -82,7 +82,10 @@ static char key;
 	{
         viewController.ex2NavigationController = self;
 		
-		_viewControllers = [[NSMutableArray alloc] initWithObjects:viewController, nil];
+		if (viewController)
+			_viewControllers = [[NSMutableArray alloc] initWithObjects:viewController, nil];
+		else
+			_viewControllers = [[NSMutableArray alloc] init];
 	}
 	return self;
 }
@@ -249,6 +252,8 @@ static char key;
     if (self.isAnimating)
         return;
     
+    self.isAnimating = YES;
+    
     [self.contentView addSubview:appearing.view];
     appearing.view.frame = appearingStart;
     
@@ -259,7 +264,6 @@ static char key;
         [appearing viewWillAppear:YES];
 	}
     
-    self.isAnimating = YES;
     [UIView animateWithDuration:AnimationDuration
                           delay:0.0
                         options:AnimationCurve

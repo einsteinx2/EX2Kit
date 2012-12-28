@@ -29,7 +29,7 @@ static __strong NSMutableDictionary *_activeFilePaths;
 
 #define DEFAULT_DECR_CHUNK_SIZE 4096
 
-static const int ddLogLevel = LOG_LEVEL_ERROR;
+static const int ddLogLevel = LOG_LEVEL_INFO;
 
 + (void)registerOpenFilePath:(NSString *)path
 {
@@ -119,6 +119,12 @@ static const int ddLogLevel = LOG_LEVEL_ERROR;
 	return self;
 }
 
+- (void)dealloc
+{
+    // Make sure the file handle is closed and recorded
+    [self closeFile];
+}
+
 - (BOOL)seekToOffset:(NSUInteger)offset
 {
 	BOOL success = YES;
@@ -182,7 +188,7 @@ static const int ddLogLevel = LOG_LEVEL_ERROR;
 		}
 		DDLogVerbose(@"[EX2FileDecryptor] reading length: %u", realLength);
 		
-		DDLogInfo(@"[EX2FileDecryptor] file offset: %llu", self.fileHandle.offsetInFile);
+		DDLogVerbose(@"[EX2FileDecryptor] file offset: %llu", self.fileHandle.offsetInFile);
 		
 		// We need to decrypt some more data
 		[self.tempDecryptBuffer reset];
@@ -265,12 +271,17 @@ static const int ddLogLevel = LOG_LEVEL_ERROR;
 
 - (void)closeFile
 {
-	[self.tempDecryptBuffer reset];
-	[self.decryptedBuffer reset];
-	[self.fileHandle closeFile];
-	_fileHandle = nil;
-    
-    [EX2FileDecryptor unregisterOpenFilePath:self.path];
+    if (self.fileHandle)
+    {
+        DDLogInfo(@"[EX2FileDecryptor] closing file for path: %@", self.path);
+        
+        [self.tempDecryptBuffer reset];
+        [self.decryptedBuffer reset];
+        [self.fileHandle closeFile];
+        _fileHandle = nil;
+        
+        [EX2FileDecryptor unregisterOpenFilePath:self.path];
+    }	
 }
 
 - (NSUInteger)encryptedChunkPadding

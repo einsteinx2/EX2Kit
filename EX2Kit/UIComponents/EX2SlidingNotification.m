@@ -21,6 +21,18 @@
 
 @implementation EX2SlidingNotification
 
+// Allow user to set the window explicitly
+static __strong UIWindow *_mainWindow = nil;
++ (void)setMainWindow:(UIWindow *)mainWindow
+{
+    _mainWindow = mainWindow;
+}
+
++ (UIWindow *)mainWindow
+{
+    return _mainWindow ? _mainWindow : [[UIApplication sharedApplication] keyWindow];
+}
+
 - (id)initOnView:(UIView *)theParentView message:(NSString *)theMessage image:(UIImage*)theImage displayTime:(NSTimeInterval)time
 {
 	if ((self = [super initWithNibName:@"EX2SlidingNotification" bundle:[EX2Kit resourceBundle]])) 
@@ -46,12 +58,12 @@
 
 + (id)slidingNotificationOnMainWindowWithMessage:(NSString *)theMessage image:(UIImage*)theImage
 {
-	return [[self alloc] initOnView:[[UIApplication sharedApplication] keyWindow] message:theMessage image:theImage];
+	return [[self alloc] initOnView:[self mainWindow] message:theMessage image:theImage];
 }
 
 + (id)slidingNotificationOnTopViewWithMessage:(NSString *)theMessage image:(UIImage*)theImage
 {
-	return [[self alloc] initOnView:[[[UIApplication sharedApplication] keyWindow].subviews firstObjectSafe] message:theMessage image:theImage];
+	return [[self alloc] initOnView:[self mainWindow].subviews.firstObjectSafe message:theMessage image:theImage];
 }
 
 + (id)slidingNotificationOnView:(UIView *)theParentView message:(NSString *)theMessage image:(UIImage*)theImage
@@ -117,7 +129,7 @@
     
     // Set the start position
     self.view.y = -self.view.height;
-    if (self.view.superview == [[UIApplication sharedApplication] keyWindow])
+    if (self.view.superview == [self.class mainWindow])
         self.view.y += [[UIApplication sharedApplication] statusBarFrame].size.height;
     
     //DLog(@"current frame: %@", NSStringFromCGRect(self.view.frame));
@@ -125,7 +137,7 @@
      {
          // If we're directly on the UIWindow then add the status bar height
          CGFloat y = 0.;
-         if (self.view.superview == [[UIApplication sharedApplication] keyWindow])
+         if (self.view.superview == [self.class mainWindow])
              y = [[UIApplication sharedApplication] statusBarFrame].size.height;
              
          self.view.y = y;

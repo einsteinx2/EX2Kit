@@ -7,6 +7,7 @@
 //
 
 #import "EX2FileEncryptor.h"
+#import "EX2FileDecryptor.h"
 #import "RNCryptor.h"
 //#import "RNEncryptor.h"
 #import "EX2RingBuffer.h"
@@ -64,6 +65,12 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
 	return self;
 }
 
+- (void)dealloc
+{
+    // Make sure the file handle is closed and recorded
+    [self closeFile];
+}
+
 - (NSUInteger)writeBytes:(const void *)buffer length:(NSUInteger)length
 {
 	if (!self.fileHandle)
@@ -119,41 +126,47 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
 
 - (BOOL)closeFile
 {
-	DDLogInfo(@"[EX2FileEncryptor] Encryptor: closing the file");
-	while (self.encryptionBuffer.filledSpaceLength > 0)
-	{
-		DDLogInfo(@"[EX2FileEncryptor] Encryptor: writing the remaining bytes");
-		NSUInteger length = self.encryptionBuffer.filledSpaceLength >= 4096 ? 4096 : self.encryptionBuffer.filledSpaceLength;
-		NSData *data = [self.encryptionBuffer drainData:length];
-		
-		NSError *encryptionError;
-		NSData *encrypted = [[RNCryptor AES256Cryptor] encryptData:data password:_key error:&encryptionError];
-        //NSData *encrypted = [RNEncryptor encryptData:data withSettings:kRNCryptorAES256Settings password:_key error:&encryptionError];
-		//DLog(@"data size: %u  encrypted size: %u", data.length, encrypted.length);
-		if (encryptionError)
-		{
-			DDLogError(@"[EX2FileEncryptor] ERROR THERE WAS AN ERROR ENCRYPTING THIS CHUNK");
-			//return NO;
-		}
-		else
-		{
-			// Save the data to the file
-			@try
-			{
-				[self.fileHandle writeData:encrypted];
-			}
-			@catch (NSException *exception) 
-			{
-				//return NO;
-			}
-		}
-	}
+    if (self.fileHandle)
+    {
+        DDLogInfo(@"[EX2FileEncryptor] Encryptor: closing the file");
+        while (self.encryptionBuffer.filledSpaceLength > 0)
+        {
+            DDLogInfo(@"[EX2FileEncryptor] Encryptor: writing the remaining bytes");
+            NSUInteger length = self.encryptionBuffer.filledSpaceLength >= 4096 ? 4096 : self.encryptionBuffer.filledSpaceLength;
+            NSData *data = [self.encryptionBuffer drainData:length];
+            
+            NSError *encryptionError;
+            NSData *encrypted = [[RNCryptor AES256Cryptor] encryptData:data password:_key error:&encryptionError];
+            //NSData *encrypted = [RNEncryptor encryptData:data withSettings:kRNCryptorAES256Settings password:_key error:&encryptionError];
+            //DLog(@"data size: %u  encrypted size: %u", data.length, encrypted.length);
+            if (encryptionError)
+            {
+                DDLogError(@"[EX2FileEncryptor] ERROR THERE WAS AN ERROR ENCRYPTING THIS CHUNK");
+                //return NO;
+            }
+            else
+            {
+                // Save the data to the file
+                @try
+                {
+                    [self.fileHandle writeData:encrypted];
+                }
+                @catch (NSException *exception) 
+                {
+                    DDLogError(@"[EX2FileEncryptor] Encryptor: ERROR writing remaining bytes");
+                }
+            }
+        }
+        
+        [self.fileHandle closeFile];
+        _fileHandle = nil;
+        
+        [EX2FileDecryptor unregisterOpenFilePath:self.path];
+        
+        return YES;
+    }
 	
-	[self.fileHandle closeFile];
-    
-    [EX2FileDecryptor unregisterOpenFilePath:self.path];
-	
-	return YES;
+    return NO;
 }
 
 - (NSUInteger)encryptedChunkSize
