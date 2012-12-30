@@ -78,7 +78,7 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
     if (self.isStartConnectionsAutomatically)
         [self startQueue];
     
-	DDLogVerbose(@"[EX2SimpleConnectionQueue] CONNECTION QUEUE REGISTER: %i connections waiting, %i active", self.waitingConnectionStack.count, self.activeConnectionStack.count);
+	DDLogVerbose(@"[EX2SimpleConnectionQueue] CONNECTION QUEUE REGISTER: %lu connections waiting, %lu active", (unsigned long)self.waitingConnectionStack.count, (unsigned long)self.activeConnectionStack.count);
 }
 
 - (void)startNextConnection
@@ -107,7 +107,7 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
          
          [self.activeConnectionStack removeObjectSafe:connection];
          
-         DDLogVerbose(@"[EX2SimpleConnectionQueue] CONNECTION QUEUE FINISHED: %i connections waiting, %i active", self.waitingConnectionStack.count, self.activeConnectionStack.count);
+         DDLogVerbose(@"[EX2SimpleConnectionQueue] CONNECTION QUEUE FINISHED: %lu connections waiting, %lu active", (unsigned long)self.waitingConnectionStack.count, (unsigned long)self.activeConnectionStack.count);
          
          if (self.activeConnectionStack.count + self.waitingConnectionStack.count == 0)
          {

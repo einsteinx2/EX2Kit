@@ -7,16 +7,26 @@
 		<key>EX2Kit.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
-			<integer>4</integer>
+			<integer>2</integer>
+		</dict>
+		<key>EX2KitOSX.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>11</integer>
 		</dict>
 		<key>EX2KitResources.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
-			<integer>8</integer>
+			<integer>4</integer>
 		</dict>
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
+		<key>5304A20E16901857009B2732</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>53D44EA215AA56C700CDD3B8</key>
 		<dict>
 			<key>primary</key>

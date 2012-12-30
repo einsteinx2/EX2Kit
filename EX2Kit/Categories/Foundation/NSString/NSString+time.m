@@ -41,48 +41,48 @@
 	}
 	else if (timeSinceDate > 60 && timeSinceDate <= 3600)
 	{
-		time = (int)(timeSinceDate / 60);
+		time = (NSInteger)(timeSinceDate / 60);
 		
 		if (time == 1)
 			return @"1 minute ago";
 		else
-			return [NSString stringWithFormat:@"%i minutes ago", time];
+			return [NSString stringWithFormat:@"%ld minutes ago", (long)time];
 	}
 	else if (timeSinceDate > 3600 && timeSinceDate <= 86400)
 	{
-		time = (int)(timeSinceDate / 3600);
+		time = (NSInteger)(timeSinceDate / 3600);
 		
 		if (time == 1)
 			return @"1 hour ago";
 		else
-			return [NSString stringWithFormat:@"%i hours ago", time];
+			return [NSString stringWithFormat:@"%ld hours ago", (long)time];
 	}	
 	else if (timeSinceDate > 86400 && timeSinceDate <= 604800)
 	{
-		time = (int)(timeSinceDate / 86400);
+		time = (NSInteger)(timeSinceDate / 86400);
 		
 		if (time == 1)
 			return @"1 day ago";
 		else
-			return [NSString stringWithFormat:@"%i days ago", time];
+			return [NSString stringWithFormat:@"%ld days ago", (long)time];
 	}
 	else if (timeSinceDate > 604800 && timeSinceDate <= 2629743.83)
 	{
-		time = (int)(timeSinceDate / 604800);
+		time = (NSInteger)(timeSinceDate / 604800);
 		
 		if (time == 1)
 			return @"1 week ago";
 		else
-			return [NSString stringWithFormat:@"%i weeks ago", time];
+			return [NSString stringWithFormat:@"%ld weeks ago", (long)time];
 	}
 	else if (timeSinceDate > 2629743.83)
 	{
-		time = (int)(timeSinceDate / 2629743.83);
+		time = (NSInteger)(timeSinceDate / 2629743.83);
 		
 		if (time == 1)
 			return @"1 month ago";
 		else
-			return [NSString stringWithFormat:@"%i months ago", time];
+			return [NSString stringWithFormat:@"%ld months ago", (long)time];
 	}
 	
 	return @"";

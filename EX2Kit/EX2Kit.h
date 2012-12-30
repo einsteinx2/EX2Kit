@@ -13,7 +13,10 @@
 #import "EX2Categories.h"
 #import "EX2Static.h"
 #import "EX2Components.h"
+
+#ifdef IOS
 #import "EX2UIComponents.h"
+#endif
 
 #import "CocoaLumberjack.h"
 
