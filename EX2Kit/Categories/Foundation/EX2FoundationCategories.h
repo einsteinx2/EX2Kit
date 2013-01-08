@@ -19,6 +19,9 @@
 #import "NSData+Gzip.h"
 #import "NSMutableDictionary+Safe.h"
 #import "NSURL+QueryParameterDictionary.h"
+
+#ifdef IOS
 #import "NSURL+SkipBackupAttribute.h"
+#endif
 
 #endif
