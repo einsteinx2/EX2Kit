@@ -26,6 +26,9 @@
 @implementation EX2NotificationBar
 @synthesize mainViewController=_mainViewController;
 @synthesize notificationBarPosition=_notificationBarPosition;
+@synthesize notificationBarContent=_notificationBarContent;
+@synthesize mainViewHolder=_mainViewHolder;
+@synthesize notificationBar=_notificationBar;
 
 #pragma mark - Life Cycle
 
