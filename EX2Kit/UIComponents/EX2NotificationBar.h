@@ -29,33 +29,33 @@ EX2NotificationBarPosition;
 // View to place notification bar content. May add any custom subviews, etc. 
 // Think of like UITableViewCell contentView.
 #if __IPHONE_OS_VERSION_MIN_REQUIRED < __IPHONE_5_0
-@property (nonatomic, readonly) IBOutlet UIView *notificationBarContent;
+@property (nonatomic, readwrite, retain) IBOutlet UIView *notificationBarContent;
 #else
-@property (nonatomic, readonly) IBOutlet UIView *notificationBarContent;
+@property (nonatomic, readwrite, retain) IBOutlet UIView *notificationBarContent;
 #endif
 
 // The notification bar area. Contains the content view and shadows. Always add
 // subviews to the content view, NOT to this view, or they will be placed
 // above the shadows unless you specifically move them backwards in the hierarchy
 #if __IPHONE_OS_VERSION_MIN_REQUIRED < __IPHONE_5_0
-@property (nonatomic, readonly) IBOutlet UIView *notificationBar;
+@property (nonatomic, readwrite, retain) IBOutlet UIView *notificationBar;
 #else
-@property (nonatomic, readonly) IBOutlet UIView *notificationBar;
+@property (nonatomic, readwrite, retain) IBOutlet UIView *notificationBar;
 #endif
 
 // The view that contains the main view. This is where you would add your UITabBarController,
 // UINavigationController, etc.
 #if __IPHONE_OS_VERSION_MIN_REQUIRED < __IPHONE_5_0
-@property (nonatomic, readonly) IBOutlet UIView *mainViewHolder;
+@property (nonatomic, readwrite, retain) IBOutlet UIView *mainViewHolder;
 #else
-@property (nonatomic, readonly) IBOutlet UIView *mainViewHolder;
+@property (nonatomic, readwrite, retain) IBOutlet UIView *mainViewHolder;
 #endif
 
 // YES when the notificationBar is visible
-@property (nonatomic, readonly) BOOL isNotificationBarShowing;
+@property (nonatomic, readwrite) BOOL isNotificationBarShowing;
 
 // YES when the notificationBar is currently transitioning
-@property (nonatomic, readonly) BOOL isNotificationBarAnimating;
+@property (nonatomic, readwrite) BOOL isNotificationBarAnimating;
 
 // This can be changed during runtime, but only when isNotificationBarShowing == NO
 @property (nonatomic) EX2NotificationBarPosition notificationBarPosition;

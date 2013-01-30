@@ -169,7 +169,26 @@
 
 - (BOOL)shouldAutorotate
 {
-    return [self shouldAutorotateToInterfaceOrientation:[UIDevice currentDevice].orientation];
+    UIInterfaceOrientation orientation = UIInterfaceOrientationPortrait;
+    switch([UIDevice currentDevice].orientation)
+    {
+        case UIDeviceOrientationLandscapeLeft:
+            orientation = UIInterfaceOrientationLandscapeLeft;
+            break;
+        case UIDeviceOrientationLandscapeRight:
+            orientation = UIInterfaceOrientationLandscapeRight;
+            break;
+        case UIDeviceOrientationPortrait:
+            orientation = UIInterfaceOrientationPortrait;
+            break;
+        case UIDeviceOrientationPortraitUpsideDown:
+            orientation = UIInterfaceOrientationPortraitUpsideDown;
+            break;
+        default:
+            orientation = UIInterfaceOrientationPortrait;
+    }
+    
+    return [self shouldAutorotateToInterfaceOrientation:orientation];
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)inOrientation 
@@ -380,7 +399,7 @@
 	
 	[UIView animateWithDuration:ANIMATE_DUR 
 						  delay:0.0 
-						options:UIViewAnimationCurveEaseInOut 
+						options:UIViewAnimationOptionCurveEaseInOut
 					 animations:animations
 					 completion:completion];
 }
@@ -454,7 +473,7 @@
 	
 	[UIView animateWithDuration:ANIMATE_DUR 
 						  delay:0. 
-						options:UIViewAnimationCurveEaseInOut 
+						options:UIViewAnimationOptionCurveEaseInOut
 					 animations:animations 
 					 completion:completion];
 }
