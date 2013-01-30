@@ -91,7 +91,7 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
 		//DLog(@"data size: %u  encrypted size: %u", data.length, encrypted.length);
 		if (encryptionError)
 		{
-			DDLogError(@"[EX2FileEncryptor] Encryptor: ERROR THERE WAS AN ERROR ENCRYPTING THIS CHUNK");
+			DDLogError(@"[EX2FileEncryptor] Encryptor: ERROR THERE WAS AN ERROR ENCRYPTING THIS CHUNK: %@", encryptionError);
 			return bytesWritten;
 		}
 		else
@@ -141,7 +141,7 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
             //DLog(@"data size: %u  encrypted size: %u", data.length, encrypted.length);
             if (encryptionError)
             {
-                DDLogError(@"[EX2FileEncryptor] ERROR THERE WAS AN ERROR ENCRYPTING THIS CHUNK");
+                DDLogError(@"[EX2FileEncryptor] ERROR THERE WAS AN ERROR ENCRYPTING THIS CHUNK: %@", encryptionError);
                 //return NO;
             }
             else

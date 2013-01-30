@@ -220,7 +220,7 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
 			if (decryptionError)
 			{
 				_error = decryptionError;
-				DDLogError(@"[EX2FileDecryptor] ERROR THERE WAS AN ERROR DECRYPTING THIS CHUNK");
+				DDLogError(@"[EX2FileDecryptor] ERROR THERE WAS AN ERROR DECRYPTING THIS CHUNK: %@", decryptionError);
 			}
 			else
 			{
