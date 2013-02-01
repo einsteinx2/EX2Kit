@@ -12,14 +12,12 @@
 #ifdef IOS
 #import "EX2FileDecryptor.h"
 #import "EX2FileEncryptor.h"
+#import "EX2NetworkIndicator.h"
+#import "EX2Reachability.h"
 #endif
 
 #import "EX2RingBuffer.h"
 #import "EX2SimpleConnectionQueue.h"
-
-#ifdef IOS
-#import "EX2NetworkIndicator.h"
-#import "EX2Reachability.h"
-#endif
+#import "EX2Language.h"
 
 #endif

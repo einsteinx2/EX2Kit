@@ -245,6 +245,10 @@
 		53F15FC0162BA05A00C24FC1 /* EX2NotificationBar.xib in Resources */ = {isa = PBXBuildFile; fileRef = 53F15F7D162B9FCA00C24FC1 /* EX2NotificationBar.xib */; };
 		53F15FC1162BA05A00C24FC1 /* EX2SlidingNotification.xib in Resources */ = {isa = PBXBuildFile; fileRef = 53F15F80162B9FCA00C24FC1 /* EX2SlidingNotification.xib */; };
 		53F15FC2162BA05A00C24FC1 /* EX2TabBarController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 53F15F83162B9FCA00C24FC1 /* EX2TabBarController.xib */; };
+		53F884CD16BB61C000372A2D /* EX2Language.h in Headers */ = {isa = PBXBuildFile; fileRef = 53F884CB16BB61C000372A2D /* EX2Language.h */; };
+		53F884CE16BB61C000372A2D /* EX2Language.h in Headers */ = {isa = PBXBuildFile; fileRef = 53F884CB16BB61C000372A2D /* EX2Language.h */; };
+		53F884CF16BB61C000372A2D /* EX2Language.m in Sources */ = {isa = PBXBuildFile; fileRef = 53F884CC16BB61C000372A2D /* EX2Language.m */; };
+		53F884D016BB61C000372A2D /* EX2Language.m in Sources */ = {isa = PBXBuildFile; fileRef = 53F884CC16BB61C000372A2D /* EX2Language.m */; };
 		53FA691C1644789900D19576 /* table-fade-bottom.png in Resources */ = {isa = PBXBuildFile; fileRef = 53FA69181644789900D19576 /* table-fade-bottom.png */; };
 		53FA691D1644789900D19576 /* table-fade-bottom@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 53FA69191644789900D19576 /* table-fade-bottom@2x.png */; };
 		53FA691E1644789900D19576 /* table-fade-top.png in Resources */ = {isa = PBXBuildFile; fileRef = 53FA691A1644789900D19576 /* table-fade-top.png */; };
@@ -422,6 +426,8 @@
 		53F15F84162B9FCA00C24FC1 /* EX2UIComponents.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EX2UIComponents.h; sourceTree = "<group>"; };
 		53F15F85162B9FCA00C24FC1 /* SnappySlider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SnappySlider.h; sourceTree = "<group>"; };
 		53F15F86162B9FCA00C24FC1 /* SnappySlider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SnappySlider.m; sourceTree = "<group>"; };
+		53F884CB16BB61C000372A2D /* EX2Language.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EX2Language.h; sourceTree = "<group>"; };
+		53F884CC16BB61C000372A2D /* EX2Language.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EX2Language.m; sourceTree = "<group>"; };
 		53FA69181644789900D19576 /* table-fade-bottom.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "table-fade-bottom.png"; sourceTree = "<group>"; };
 		53FA69191644789900D19576 /* table-fade-bottom@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "table-fade-bottom@2x.png"; sourceTree = "<group>"; };
 		53FA691A1644789900D19576 /* table-fade-top.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "table-fade-top.png"; sourceTree = "<group>"; };
@@ -732,6 +738,8 @@
 				53F15F56162B9FCA00C24FC1 /* EX2RingBuffer.m */,
 				53F15F57162B9FCA00C24FC1 /* EX2SimpleConnectionQueue.h */,
 				53F15F58162B9FCA00C24FC1 /* EX2SimpleConnectionQueue.m */,
+				53F884CB16BB61C000372A2D /* EX2Language.h */,
+				53F884CC16BB61C000372A2D /* EX2Language.m */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -874,6 +882,7 @@
 				5304A29216901939009B2732 /* DDTTYLogger.h in Headers */,
 				5304A29316901939009B2732 /* ContextFilterLogFormatter.h in Headers */,
 				5304A29416901939009B2732 /* DispatchQueueLogFormatter.h in Headers */,
+				53F884CE16BB61C000372A2D /* EX2Language.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -956,6 +965,7 @@
 				53E2F47416684CCE00743BB8 /* CommonKeyDerivation.h in Headers */,
 				53E2F47516684CCE00743BB8 /* CommonKeyDerivationPriv.h in Headers */,
 				53E2F47616684CCE00743BB8 /* RNCryptor.h in Headers */,
+				53F884CD16BB61C000372A2D /* EX2Language.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1021,7 +1031,7 @@
 		53D44E9615AA56C700CDD3B8 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0430;
+				LastUpgradeCheck = 0460;
 			};
 			buildConfigurationList = 53D44E9915AA56C700CDD3B8 /* Build configuration list for PBXProject "EX2Kit" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -1117,6 +1127,7 @@
 				5304A253169018D2009B2732 /* DDTTYLogger.m in Sources */,
 				5304A254169018D2009B2732 /* ContextFilterLogFormatter.m in Sources */,
 				5304A255169018D2009B2732 /* DispatchQueueLogFormatter.m in Sources */,
+				53F884D016BB61C000372A2D /* EX2Language.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1186,6 +1197,7 @@
 				533B3E55165D8FE000ECD75F /* NSURL+SkipBackupAttribute.m in Sources */,
 				53E2F47316684CCE00743BB8 /* CommonKeyDerivation.c in Sources */,
 				53E2F47716684CCE00743BB8 /* RNCryptor.m in Sources */,
+				53F884CF16BB61C000372A2D /* EX2Language.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1299,6 +1311,10 @@
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ARCHS = "$(VALID_ARCHS)";
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
 				DEAD_CODE_STRIPPING = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -1326,6 +1342,10 @@
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ARCHS = "$(VALID_ARCHS)";
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
 				DEAD_CODE_STRIPPING = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu99;

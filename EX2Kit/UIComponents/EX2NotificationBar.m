@@ -172,7 +172,7 @@
 
 - (BOOL)shouldAutorotate
 {
-    return [self shouldAutorotateToInterfaceOrientation:[UIDevice currentDevice].orientation];
+    return [self shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)[UIDevice currentDevice].orientation];
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)inOrientation 
@@ -383,7 +383,7 @@
 	
 	[UIView animateWithDuration:ANIMATE_DUR 
 						  delay:0.0 
-						options:UIViewAnimationCurveEaseInOut 
+						options:UIViewAnimationOptionCurveEaseInOut
 					 animations:animations
 					 completion:completion];
 }
@@ -457,7 +457,7 @@
 	
 	[UIView animateWithDuration:ANIMATE_DUR 
 						  delay:0. 
-						options:UIViewAnimationCurveEaseInOut 
+						options:UIViewAnimationOptionCurveEaseInOut
 					 animations:animations 
 					 completion:completion];
 }
