@@ -207,7 +207,26 @@ static char key;
 
 - (BOOL)shouldAutorotate
 {
-    return [self shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)[UIDevice currentDevice].orientation];
+    UIInterfaceOrientation orientation = UIInterfaceOrientationPortrait;
+    switch([UIDevice currentDevice].orientation)
+    {
+        case UIDeviceOrientationLandscapeLeft:
+            orientation = UIInterfaceOrientationLandscapeLeft;
+            break;
+        case UIDeviceOrientationLandscapeRight:
+            orientation = UIInterfaceOrientationLandscapeRight;
+            break;
+        case UIDeviceOrientationPortrait:
+            orientation = UIInterfaceOrientationPortrait;
+            break;
+        case UIDeviceOrientationPortraitUpsideDown:
+            orientation = UIInterfaceOrientationPortraitUpsideDown;
+            break;
+        default:
+            orientation = UIInterfaceOrientationPortrait;
+    }
+    
+    return [self shouldAutorotateToInterfaceOrientation:orientation];
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
