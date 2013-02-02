@@ -7,8 +7,8 @@
 //
 
 #import "EX2FileDecryptor.h"
-#import "RNCryptor.h"
-//#import "RNDecryptor.h"
+#import "RNCryptorOld.h"
+#import "RNDecryptor.h"
 #import "EX2RingBuffer.h"
 #import "DDLog.h"
 
@@ -23,6 +23,7 @@ static __strong NSMutableDictionary *_activeFilePaths;
 @property (nonatomic, strong) EX2RingBuffer *decryptedBuffer;
 @property (nonatomic) NSUInteger seekOffset;
 @property (nonatomic, strong, readonly) NSFileHandle *fileHandle;
+@property (nonatomic) BOOL useOldDecryptor;
 @end
 
 @implementation EX2FileDecryptor
@@ -212,17 +213,39 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
 			DDLogVerbose(@"[EX2FileDecryptor] draining data");
 			NSData *data = [self.tempDecryptBuffer drainData:encryptedChunkSize];
 			DDLogVerbose(@"[EX2FileDecryptor] data drained, filled size %u", self.tempDecryptBuffer.filledSpaceLength);
+            
+            DDLogVerbose(@"[EX2FileDecryptor] decrypting data");
 			NSError *decryptionError;
-			DDLogVerbose(@"[EX2FileDecryptor] decrypting data");
-			NSData *decrypted = [[RNCryptor AES256Cryptor] decryptData:data password:_key error:&decryptionError];
-            //NSData *decrypted = [RNDecryptor decryptData:data withPassword:_key error:&decryptionError];
-			DDLogVerbose(@"[EX2FileDecryptor] data size: %u  decrypted size: %u", data.length, decrypted.length);
-			if (decryptionError)
+            NSData *decrypted;
+            if (!self.useOldDecryptor)
+            {
+                decrypted = [RNDecryptor decryptData:data withPassword:_key error:&decryptionError];
+                DDLogVerbose(@"[EX2FileDecryptor] data size: %u  decrypted size: %u", data.length, decrypted.length);
+            }
+            
+			if (decryptionError || self.useOldDecryptor)
 			{
-				_error = decryptionError;
-				DDLogError(@"[EX2FileDecryptor] ERROR THERE WAS AN ERROR DECRYPTING THIS CHUNK: %@", decryptionError);
+                if (decryptionError)
+                {
+                    _error = decryptionError;
+                    DDLogError(@"[EX2FileDecryptor] There was an error decrypting this chunk using new decryptor, trying old decryptor: %@", decryptionError);
+                }
+                
+                decryptionError = nil;
+                decrypted = [[RNCryptorOld AES256Cryptor] decryptData:data password:_key error:&decryptionError];
+                DDLogVerbose(@"[EX2FileDecryptor] data size: %u  decrypted size: %u", data.length, decrypted.length);
+                if (decryptionError)
+                {
+                    DDLogError(@"[EX2FileDecryptor] There was an error decrypting this chunk using old decryptor, giving up: %@", decryptionError);
+                }
+                else
+                {
+                    self.useOldDecryptor = YES;
+                    _error = nil;
+                }
 			}
-			else
+            
+			if (!decryptionError)
 			{
 				// Add the data to the decryption buffer
 				if (self.seekOffset > 0)
