@@ -12,4 +12,6 @@
 
 - (UIImage *)croppedImage:(CGRect)cropFrame;
 
+- (UIImage*)imageScaledDownToWidth:(float)width;
+
 @end
