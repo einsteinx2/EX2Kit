@@ -15,7 +15,7 @@
 	if (seconds <= 0)
 		return @"0:00";
 
-	NSUInteger roundedSeconds = ceil(seconds);
+	NSUInteger roundedSeconds = floor(seconds);
 	
 	int mins = (int) roundedSeconds / 60;
 	int secs = (int) roundedSeconds % 60;

@@ -39,6 +39,7 @@
 	{
         self.readPosition = 0;
         self.writePosition = 0;
+        self.totalBytesDrained = 0;
     }
 }
 
@@ -168,6 +169,9 @@
 				// Just copy in the bytes
 				memcpy(byteBuffer, _bufferBackingStore + self.readPosition, bufferLength);
 			}
+            
+            // Add the number of bytes to totalDrainedBytes
+            self.totalBytesDrained += bufferLength;
 			
 			//DLog(@"read %i bytes, free: %i, filled: %i, writPos: %i, readPos: %i", bufferLength, self.freeSpaceLength, self.filledSpaceLength, self.writePosition, self.readPosition);
 			
