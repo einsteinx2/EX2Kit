@@ -18,6 +18,7 @@
 @property (nonatomic, readonly) NSUInteger totalLength;
 @property (nonatomic, readonly) NSUInteger freeSpaceLength;
 @property (nonatomic, readonly) NSUInteger filledSpaceLength;
+@property long long totalBytesDrained;
 
 - (id)initWithBufferLength:(NSUInteger)bytes;
 + (id)ringBufferWithLength:(NSUInteger)bytes;
