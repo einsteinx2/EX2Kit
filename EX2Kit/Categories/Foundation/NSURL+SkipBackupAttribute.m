@@ -30,17 +30,22 @@ static const int ddLogLevel = LOG_LEVEL_ERROR;
         return result == 0;
     }
     else
-    {
-        DLog(@"start value: %@", [self resourceValuesForKeys:@[NSURLIsExcludedFromBackupKey] error:nil]);
-        
+    {        
         // Do the new method
         NSError *error = nil;
-        BOOL success = [self setResourceValue:@(isAdd) forKey:NSURLIsExcludedFromBackupKey error:&error];
-        if(!success)
-            DDLogError(@"Error excluding %@ from backup: %@", self.lastPathComponent, error);
+        BOOL success = NO;
         
-        DLog(@"end value: %@", [self resourceValuesForKeys:@[NSURLIsExcludedFromBackupKey] error:nil]);
-
+        @try
+        {
+            success = [self setResourceValue:@(isAdd) forKey:NSURLIsExcludedFromBackupKey error:&error];
+            if(!success)
+                DDLogError(@"Error excluding %@ from backup: %@", self.lastPathComponent, error);
+        }
+        @catch (NSException *exception)
+        {
+            DDLogError(@"Exception excluding %@ from backup: %@", self.lastPathComponent, exception);
+        }
+        
         return success;
     }
 }

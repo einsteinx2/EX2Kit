@@ -25,6 +25,24 @@
 		return [NSString stringWithFormat:@"%i:%i", mins, secs];
 }
 
++ (NSString *)formatTimeDecimalHours:(double)seconds
+{
+	if (seconds <= 0)
+		return @"0:00";
+    
+    if (seconds < 3600.)
+    {
+        // For less than an hour, show 00:00 style
+        return [self formatTime:seconds];
+    }
+	else
+    {
+        // For an hour or greater, show decimal format
+        double hours = seconds / 60. / 60.;
+        return [NSString stringWithFormat:@"%.1f %@", hours, NSLocalizedString(@"hrs", @"EX2Kit format time, hours string")];
+    }
+}
+
 // Return the time since the date provided, formatted in English
 + (NSString *)relativeTime:(NSDate *)date
 {

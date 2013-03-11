@@ -10,6 +10,7 @@
 #import "EX2FileDecryptor.h"
 //#import "RNCryptor.h"
 #import "RNEncryptor.h"
+#import "RNDecryptor.h"
 #import "EX2RingBuffer.h"
 #import "DDLog.h"
 
@@ -100,6 +101,7 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
 			@try
 			{
 				[self.fileHandle writeData:encrypted];
+                [self.fileHandle synchronizeFile];
 				bytesWritten += self.chunkSize;
 			}
 			@catch (NSException *exception) 
@@ -139,6 +141,9 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
             //NSData *encrypted = [[RNCryptor AES256Cryptor] encryptData:data password:_key error:&encryptionError];
             NSData *encrypted = [RNEncryptor encryptData:data withSettings:kRNCryptorAES256Settings password:_key error:&encryptionError];
             //DLog(@"data size: %u  encrypted size: %u", data.length, encrypted.length);
+            
+            NSData *decrypted = [RNDecryptor decryptData:encrypted withPassword:_key error:nil];
+            NSLog(@"decrypted length: %u", decrypted.length);
             if (encryptionError)
             {
                 DDLogError(@"[EX2FileEncryptor] ERROR THERE WAS AN ERROR ENCRYPTING THIS CHUNK: %@", encryptionError);
@@ -158,6 +163,7 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
             }
         }
         
+        [self.fileHandle synchronizeFile];
         [self.fileHandle closeFile];
         _fileHandle = nil;
         
@@ -192,6 +198,14 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
 	unsigned long long numberOfEncryptedChunks = (encryptedSize / self.encryptedChunkSize);
 	unsigned long long filePadding = numberOfEncryptedChunks * chunkPadding;
 	
+    // Calculate padding remainder
+    int remainder = encryptedSize % self.encryptedChunkSize;
+    if (remainder > 0)
+    {
+        // There is a partial chunk, so just assume full padding size (sometimes it can be a bit under for some reason, don't know why yet)
+        filePadding += chunkPadding;
+    }
+    
 	// Calculate the decrypted size
 	unsigned long long decryptedSize = encryptedSize - filePadding;
 	

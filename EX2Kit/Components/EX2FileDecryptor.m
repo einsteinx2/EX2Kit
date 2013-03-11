@@ -128,27 +128,35 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
 
 - (BOOL)seekToOffset:(NSUInteger)offset
 {
-	BOOL success = YES;
+	BOOL success = NO;
 	
 	NSUInteger padding = ((int)(offset / self.chunkSize) * self.encryptedChunkPadding); // Calculate the encryption padding
 	NSUInteger mod = (offset + padding) % self.encryptedChunkSize;
 	NSUInteger realOffset = (offset + padding) - mod; // only seek in increments of the encryption blocks
-	
-	self.seekOffset = mod;
-	
-	DDLogVerbose(@"[EX2FileDecryptor] offset: %u  padding: %u  realOffset: %u  mod: %u:", offset, padding, realOffset, mod);
-	
-	@try {
-		[self.fileHandle seekToFileOffset:realOffset];
-	} @catch (NSException *exception) {
-		success = NO;
-	}
-	
-	if (success)
-	{
-		[self.tempDecryptBuffer reset];
-		[self.decryptedBuffer reset];
-	}
+    
+    // Check if this much of the file even exists
+    if (self.encryptedFileSizeOnDisk >= realOffset + mod)
+    {
+        self.seekOffset = mod;
+        
+        DDLogVerbose(@"[EX2FileDecryptor] offset: %u  padding: %u  realOffset: %u  mod: %u:  for path: %@", offset, padding, realOffset, mod, self.path);
+        
+        @try 
+        {
+            [self.fileHandle seekToFileOffset:realOffset];
+            success = YES;
+        } 
+        @catch (NSException *exception) 
+        {
+            DDLogError(@"[EX2FileDecryptor] exception seeking to offset %u, %@ for path: %@", offset, exception, self.path);
+        }
+        
+        if (success)
+        {
+            [self.tempDecryptBuffer reset];
+            [self.decryptedBuffer reset];
+        }
+    }
 	
 	return success;
 }
@@ -160,7 +168,7 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
 		NSUInteger encryptedChunkSize = self.encryptedChunkSize;
 		
 		DDLogVerbose(@"[EX2FileDecryptor]   ");
-		DDLogVerbose(@"[EX2FileDecryptor] asked to read length: %u", length);
+		DDLogVerbose(@"[EX2FileDecryptor] asked to read length: %u for path: %@", length, self.path);
 		// Round up the read to the next block
 		//length = self.decryptedBuffer.filledSpaceLength - length;
 		NSUInteger realLength = self.seekOffset + length;
@@ -171,7 +179,7 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
 			realLength += self.encryptedChunkSize;
 		}
 		
-		DDLogVerbose(@"[EX2FileDecryptor] seek offset %u   realLength %u", self.seekOffset, realLength);
+		DDLogVerbose(@"[EX2FileDecryptor] seek offset %u  realLength %u for path: %@", self.seekOffset, realLength, self.path);
 		NSUInteger mod = realLength % encryptedChunkSize;
 		if (mod > self.chunkSize)
 		{
@@ -179,7 +187,7 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
 			mod -= self.chunkSize;
 		}
 		
-		DDLogVerbose(@"[EX2FileDecryptor] mod %u", mod);
+		DDLogVerbose(@"[EX2FileDecryptor] mod %u for path: %@", mod, self.path);
 		//if (mod != 0)
 		if (realLength % encryptedChunkSize != 0)
 		{
@@ -187,9 +195,9 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
 			//realLength += ENCR_CHUNK_SIZE - mod; 
 			realLength = ((int)(realLength / encryptedChunkSize) * encryptedChunkSize) + encryptedChunkSize;
 		}
-		DDLogVerbose(@"[EX2FileDecryptor] reading length: %u", realLength);
+		DDLogVerbose(@"[EX2FileDecryptor] reading length: %u for path: %@", realLength, self.path);
 		
-		DDLogVerbose(@"[EX2FileDecryptor] file offset: %llu", self.fileHandle.offsetInFile);
+		DDLogVerbose(@"[EX2FileDecryptor] file offset: %llu for path: %@", self.fileHandle.offsetInFile, self.path);
 		
 		// We need to decrypt some more data
 		[self.tempDecryptBuffer reset];
@@ -199,28 +207,28 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
 		} @catch (NSException *exception) {
 			readData = nil;
 		}
-		DDLogVerbose(@"[EX2FileDecryptor] read data length %u", readData.length);
+		DDLogVerbose(@"[EX2FileDecryptor] read data length %u for path: %@", readData.length, self.path);
 		
 		if (readData)
 		{
-			DDLogVerbose(@"[EX2FileDecryptor] filling temp buffer with data");
+			DDLogVerbose(@"[EX2FileDecryptor] filling temp buffer with data for path: %@", self.path);
 			[self.tempDecryptBuffer fillWithData:readData];
-			DDLogVerbose(@"[EX2FileDecryptor] temp buffer filled size %u", self.tempDecryptBuffer.filledSpaceLength);
+			DDLogVerbose(@"[EX2FileDecryptor] temp buffer filled size %u for path: %@", self.tempDecryptBuffer.filledSpaceLength, self.path);
 		}
 		
 		while (self.tempDecryptBuffer.filledSpaceLength >= encryptedChunkSize)
 		{
-			DDLogVerbose(@"[EX2FileDecryptor] draining data");
+			DDLogVerbose(@"[EX2FileDecryptor] draining data for path: %@", self.path);
 			NSData *data = [self.tempDecryptBuffer drainData:encryptedChunkSize];
-			DDLogVerbose(@"[EX2FileDecryptor] data drained, filled size %u", self.tempDecryptBuffer.filledSpaceLength);
+			DDLogVerbose(@"[EX2FileDecryptor] data drained, filled size %u for path: %@", self.tempDecryptBuffer.filledSpaceLength, self.path);
             
-            DDLogVerbose(@"[EX2FileDecryptor] decrypting data");
+            DDLogVerbose(@"[EX2FileDecryptor] decrypting data for path: %@", self.path);
 			NSError *decryptionError;
             NSData *decrypted;
             if (!self.useOldDecryptor)
             {
                 decrypted = [RNDecryptor decryptData:data withPassword:_key error:&decryptionError];
-                DDLogVerbose(@"[EX2FileDecryptor] data size: %u  decrypted size: %u", data.length, decrypted.length);
+                DDLogVerbose(@"[EX2FileDecryptor] data size: %u  decrypted size: %u for path: %@", data.length, decrypted.length, self.path);
             }
             
 			if (decryptionError || self.useOldDecryptor)
@@ -228,15 +236,15 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
                 if (decryptionError)
                 {
                     _error = decryptionError;
-                    DDLogError(@"[EX2FileDecryptor] There was an error decrypting this chunk using new decryptor, trying old decryptor: %@", decryptionError);
+                    DDLogError(@"[EX2FileDecryptor] There was an error decrypting this chunk using new decryptor, trying old decryptor: %@ for path: %@", decryptionError, self.path);
                 }
                 
                 decryptionError = nil;
                 decrypted = [[RNCryptorOld AES256Cryptor] decryptData:data password:_key error:&decryptionError];
-                DDLogVerbose(@"[EX2FileDecryptor] data size: %u  decrypted size: %u", data.length, decrypted.length);
+                DDLogVerbose(@"[EX2FileDecryptor] data size: %u  decrypted size: %u for path: %@", data.length, decrypted.length, self.path);
                 if (decryptionError)
                 {
-                    DDLogError(@"[EX2FileDecryptor] There was an error decrypting this chunk using old decryptor, giving up: %@", decryptionError);
+                    DDLogError(@"[EX2FileDecryptor] There was an error decrypting this chunk using old decryptor, giving up: %@  for path: %@", decryptionError, self.path);
                 }
                 else
                 {
@@ -250,18 +258,18 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
 				// Add the data to the decryption buffer
 				if (self.seekOffset > 0)
 				{
-					DDLogVerbose(@"[EX2FileDecryptor] seek offset greater than 0");
+					DDLogVerbose(@"[EX2FileDecryptor] seek offset greater than 0 for path: %@", self.path);
 					const void *tempBuff = decrypted.bytes;
-					DDLogVerbose(@"[EX2FileDecryptor] filling decrypted buffer length %u", self.chunkSize - self.seekOffset);
+					DDLogVerbose(@"[EX2FileDecryptor] filling decrypted buffer length %u for path: %@", self.chunkSize - self.seekOffset, self.path);
 					[self.decryptedBuffer fillWithBytes:tempBuff+self.seekOffset length:self.chunkSize-self.seekOffset];
 					self.seekOffset = 0;
-					DDLogVerbose(@"[EX2FileDecryptor] setting seekOffset to 0");
+					DDLogVerbose(@"[EX2FileDecryptor] setting seekOffset to 0 for path: %@", self.path);
 				}
 				else
 				{
-					DDLogVerbose(@"[EX2FileDecryptor] filling decrypted buffer with data length %u", decrypted.length);
+					DDLogVerbose(@"[EX2FileDecryptor] filling decrypted buffer with data length %u for path: %@", decrypted.length, self.path);
 					[self.decryptedBuffer fillWithData:decrypted];
-					DDLogVerbose(@"[EX2FileDecryptor] filled decrypted buffer");
+					DDLogVerbose(@"[EX2FileDecryptor] filled decrypted buffer for path: %@", self.path);
 				}
 			}
 		}
@@ -271,10 +279,14 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
 	NSUInteger bytesRead = self.decryptedBuffer.filledSpaceLength >= length ? length : self.decryptedBuffer.filledSpaceLength;
 	if (bytesRead > 0)
 	{
-		DDLogVerbose(@"[EX2FileDecryptor] draining bytes into buffer length %u", bytesRead);
+		DDLogVerbose(@"[EX2FileDecryptor] draining bytes into buffer length %u for path: %@", bytesRead, self.path);
 		[self.decryptedBuffer drainBytes:buffer length:bytesRead];
-		DDLogVerbose(@"[EX2FileDecryptor] bytes drained");
+		DDLogVerbose(@"[EX2FileDecryptor] bytes drained for path: %@", self.path);
 	}
+    else
+    {
+        DDLogVerbose(@"[EX2FileDecryptor] bytes read was 0 so not draining anything for path: %@", self.path);
+    }
 
 	return bytesRead;
 }
@@ -288,7 +300,7 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
 	{
 		returnData = [NSData dataWithBytesNoCopy:buffer length:realLength freeWhenDone:YES];
 	}
-	DDLogVerbose(@"[EX2FileDecryptor] read bytes length %u", realLength);
+	DDLogVerbose(@"[EX2FileDecryptor] read bytes length %u for path: %@", realLength, self.path);
 	return returnData;
 }
 
