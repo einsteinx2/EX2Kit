@@ -20,5 +20,6 @@
 #import "UIImage+Tint.h"
 #import "UIImage+CustomStretch.h"
 #import "UIImage+Cropping.h"
+#import "UIWebView+HideShadows.h"
 
 #endif
