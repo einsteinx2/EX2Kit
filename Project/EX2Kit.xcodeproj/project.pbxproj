@@ -106,6 +106,10 @@
 		53145C18163F5E6400DE22F1 /* NSURL+QueryParameterDictionary.m in Sources */ = {isa = PBXBuildFile; fileRef = 53145C16163F5E6400DE22F1 /* NSURL+QueryParameterDictionary.m */; };
 		531CF183163D064A008F8AA7 /* UIImage+Cropping.h in Headers */ = {isa = PBXBuildFile; fileRef = 531CF181163D064A008F8AA7 /* UIImage+Cropping.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		531CF184163D064A008F8AA7 /* UIImage+Cropping.m in Sources */ = {isa = PBXBuildFile; fileRef = 531CF182163D064A008F8AA7 /* UIImage+Cropping.m */; };
+		531F4F4017062C3300D7F8B0 /* NSFileHandle+Hash.h in Headers */ = {isa = PBXBuildFile; fileRef = 531F4F3E17062C3300D7F8B0 /* NSFileHandle+Hash.h */; };
+		531F4F4117062C3300D7F8B0 /* NSFileHandle+Hash.h in Headers */ = {isa = PBXBuildFile; fileRef = 531F4F3E17062C3300D7F8B0 /* NSFileHandle+Hash.h */; };
+		531F4F4217062C3300D7F8B0 /* NSFileHandle+Hash.m in Sources */ = {isa = PBXBuildFile; fileRef = 531F4F3F17062C3300D7F8B0 /* NSFileHandle+Hash.m */; };
+		531F4F4317062C3300D7F8B0 /* NSFileHandle+Hash.m in Sources */ = {isa = PBXBuildFile; fileRef = 531F4F3F17062C3300D7F8B0 /* NSFileHandle+Hash.m */; };
 		5339E1821635E93A007628C0 /* NSString+HasValue.h in Headers */ = {isa = PBXBuildFile; fileRef = 5339E1801635E93A007628C0 /* NSString+HasValue.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		5339E1831635E93A007628C0 /* NSString+HasValue.m in Sources */ = {isa = PBXBuildFile; fileRef = 5339E1811635E93A007628C0 /* NSString+HasValue.m */; };
 		5339E20416360B9F007628C0 /* EX2Kit.m in Sources */ = {isa = PBXBuildFile; fileRef = 5339E20316360B9E007628C0 /* EX2Kit.m */; };
@@ -179,6 +183,10 @@
 		5373A974162DD7430016A019 /* DDTTYLogger.h in Headers */ = {isa = PBXBuildFile; fileRef = 53F15F67162B9FCA00C24FC1 /* DDTTYLogger.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		5373A975162DD7430016A019 /* ContextFilterLogFormatter.h in Headers */ = {isa = PBXBuildFile; fileRef = 53F15F6A162B9FCA00C24FC1 /* ContextFilterLogFormatter.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		5373A976162DD7430016A019 /* DispatchQueueLogFormatter.h in Headers */ = {isa = PBXBuildFile; fileRef = 53F15F6C162B9FCA00C24FC1 /* DispatchQueueLogFormatter.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		5380B5C3170667F90010AED2 /* NSData+Hash.h in Headers */ = {isa = PBXBuildFile; fileRef = 5380B5C1170667F90010AED2 /* NSData+Hash.h */; };
+		5380B5C4170667F90010AED2 /* NSData+Hash.h in Headers */ = {isa = PBXBuildFile; fileRef = 5380B5C1170667F90010AED2 /* NSData+Hash.h */; };
+		5380B5C5170667F90010AED2 /* NSData+Hash.m in Sources */ = {isa = PBXBuildFile; fileRef = 5380B5C2170667F90010AED2 /* NSData+Hash.m */; };
+		5380B5C6170667F90010AED2 /* NSData+Hash.m in Sources */ = {isa = PBXBuildFile; fileRef = 5380B5C2170667F90010AED2 /* NSData+Hash.m */; };
 		5398D07D16EE80BE002D8548 /* UIWebView+HideShadows.h in Headers */ = {isa = PBXBuildFile; fileRef = 5398D07B16EE80BE002D8548 /* UIWebView+HideShadows.h */; };
 		5398D07E16EE80BE002D8548 /* UIWebView+HideShadows.m in Sources */ = {isa = PBXBuildFile; fileRef = 5398D07C16EE80BE002D8548 /* UIWebView+HideShadows.m */; };
 		53E2F47316684CCE00743BB8 /* CommonKeyDerivation.c in Sources */ = {isa = PBXBuildFile; fileRef = 53E2F46E16684CCE00743BB8 /* CommonKeyDerivation.c */; };
@@ -304,11 +312,15 @@
 		53145C16163F5E6400DE22F1 /* NSURL+QueryParameterDictionary.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSURL+QueryParameterDictionary.m"; sourceTree = "<group>"; };
 		531CF181163D064A008F8AA7 /* UIImage+Cropping.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+Cropping.h"; sourceTree = "<group>"; };
 		531CF182163D064A008F8AA7 /* UIImage+Cropping.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Cropping.m"; sourceTree = "<group>"; };
+		531F4F3E17062C3300D7F8B0 /* NSFileHandle+Hash.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSFileHandle+Hash.h"; sourceTree = "<group>"; };
+		531F4F3F17062C3300D7F8B0 /* NSFileHandle+Hash.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSFileHandle+Hash.m"; sourceTree = "<group>"; };
 		5339E1801635E93A007628C0 /* NSString+HasValue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+HasValue.h"; sourceTree = "<group>"; };
 		5339E1811635E93A007628C0 /* NSString+HasValue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+HasValue.m"; sourceTree = "<group>"; };
 		5339E20316360B9E007628C0 /* EX2Kit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EX2Kit.m; sourceTree = "<group>"; };
 		533B3E52165D8FE000ECD75F /* NSURL+SkipBackupAttribute.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSURL+SkipBackupAttribute.h"; sourceTree = "<group>"; };
 		533B3E53165D8FE000ECD75F /* NSURL+SkipBackupAttribute.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSURL+SkipBackupAttribute.m"; sourceTree = "<group>"; };
+		5380B5C1170667F90010AED2 /* NSData+Hash.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSData+Hash.h"; sourceTree = "<group>"; };
+		5380B5C2170667F90010AED2 /* NSData+Hash.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSData+Hash.m"; sourceTree = "<group>"; };
 		5398D07B16EE80BE002D8548 /* UIWebView+HideShadows.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIWebView+HideShadows.h"; sourceTree = "<group>"; };
 		5398D07C16EE80BE002D8548 /* UIWebView+HideShadows.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIWebView+HideShadows.m"; sourceTree = "<group>"; };
 		53D44EA715AA56C700CDD3B8 /* EX2Kit-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "EX2Kit-Info.plist"; sourceTree = "<group>"; };
@@ -678,6 +690,10 @@
 				53F15F10162B9FCA00C24FC1 /* NSString */,
 				533B3E52165D8FE000ECD75F /* NSURL+SkipBackupAttribute.h */,
 				533B3E53165D8FE000ECD75F /* NSURL+SkipBackupAttribute.m */,
+				531F4F3E17062C3300D7F8B0 /* NSFileHandle+Hash.h */,
+				531F4F3F17062C3300D7F8B0 /* NSFileHandle+Hash.m */,
+				5380B5C1170667F90010AED2 /* NSData+Hash.h */,
+				5380B5C2170667F90010AED2 /* NSData+Hash.m */,
 			);
 			path = Foundation;
 			sourceTree = "<group>";
@@ -957,6 +973,8 @@
 				53F8851116BB855B00372A2D /* RNOpenSSLCryptor.h in Headers */,
 				53F8851516BB855B00372A2D /* RNOpenSSLDecryptor.h in Headers */,
 				53F8851916BB855B00372A2D /* RNOpenSSLEncryptor.h in Headers */,
+				531F4F4117062C3300D7F8B0 /* NSFileHandle+Hash.h in Headers */,
+				5380B5C4170667F90010AED2 /* NSData+Hash.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1049,6 +1067,8 @@
 				53F8851816BB855B00372A2D /* RNOpenSSLEncryptor.h in Headers */,
 				53F8851F16BB8EF900372A2D /* RNCryptorOld.h in Headers */,
 				5398D07D16EE80BE002D8548 /* UIWebView+HideShadows.h in Headers */,
+				531F4F4017062C3300D7F8B0 /* NSFileHandle+Hash.h in Headers */,
+				5380B5C3170667F90010AED2 /* NSData+Hash.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1211,6 +1231,8 @@
 				5304A254169018D2009B2732 /* ContextFilterLogFormatter.m in Sources */,
 				5304A255169018D2009B2732 /* DispatchQueueLogFormatter.m in Sources */,
 				53F884D016BB61C000372A2D /* EX2Language.m in Sources */,
+				531F4F4317062C3300D7F8B0 /* NSFileHandle+Hash.m in Sources */,
+				5380B5C6170667F90010AED2 /* NSData+Hash.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1289,6 +1311,8 @@
 				53F8851A16BB855B00372A2D /* RNOpenSSLEncryptor.m in Sources */,
 				53F8852016BB8EF900372A2D /* RNCryptorOld.m in Sources */,
 				5398D07E16EE80BE002D8548 /* UIWebView+HideShadows.m in Sources */,
+				531F4F4217062C3300D7F8B0 /* NSFileHandle+Hash.m in Sources */,
+				5380B5C5170667F90010AED2 /* NSData+Hash.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
