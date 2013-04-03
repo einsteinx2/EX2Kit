@@ -189,6 +189,8 @@
 		5380B5C6170667F90010AED2 /* NSData+Hash.m in Sources */ = {isa = PBXBuildFile; fileRef = 5380B5C2170667F90010AED2 /* NSData+Hash.m */; };
 		5398D07D16EE80BE002D8548 /* UIWebView+HideShadows.h in Headers */ = {isa = PBXBuildFile; fileRef = 5398D07B16EE80BE002D8548 /* UIWebView+HideShadows.h */; };
 		5398D07E16EE80BE002D8548 /* UIWebView+HideShadows.m in Sources */ = {isa = PBXBuildFile; fileRef = 5398D07C16EE80BE002D8548 /* UIWebView+HideShadows.m */; };
+		53CFE2F6170B83B000347CC8 /* UIButton+StretchBackground.h in Headers */ = {isa = PBXBuildFile; fileRef = 53CFE2F4170B83B000347CC8 /* UIButton+StretchBackground.h */; };
+		53CFE2F7170B83B000347CC8 /* UIButton+StretchBackground.m in Sources */ = {isa = PBXBuildFile; fileRef = 53CFE2F5170B83B000347CC8 /* UIButton+StretchBackground.m */; };
 		53E2F47316684CCE00743BB8 /* CommonKeyDerivation.c in Sources */ = {isa = PBXBuildFile; fileRef = 53E2F46E16684CCE00743BB8 /* CommonKeyDerivation.c */; };
 		53E2F47416684CCE00743BB8 /* CommonKeyDerivation.h in Headers */ = {isa = PBXBuildFile; fileRef = 53E2F46F16684CCE00743BB8 /* CommonKeyDerivation.h */; };
 		53E2F47516684CCE00743BB8 /* CommonKeyDerivationPriv.h in Headers */ = {isa = PBXBuildFile; fileRef = 53E2F47016684CCE00743BB8 /* CommonKeyDerivationPriv.h */; };
@@ -323,6 +325,8 @@
 		5380B5C2170667F90010AED2 /* NSData+Hash.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSData+Hash.m"; sourceTree = "<group>"; };
 		5398D07B16EE80BE002D8548 /* UIWebView+HideShadows.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIWebView+HideShadows.h"; sourceTree = "<group>"; };
 		5398D07C16EE80BE002D8548 /* UIWebView+HideShadows.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIWebView+HideShadows.m"; sourceTree = "<group>"; };
+		53CFE2F4170B83B000347CC8 /* UIButton+StretchBackground.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIButton+StretchBackground.h"; sourceTree = "<group>"; };
+		53CFE2F5170B83B000347CC8 /* UIButton+StretchBackground.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIButton+StretchBackground.m"; sourceTree = "<group>"; };
 		53D44EA715AA56C700CDD3B8 /* EX2Kit-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "EX2Kit-Info.plist"; sourceTree = "<group>"; };
 		53D44EA915AA56C700CDD3B8 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		53D44EAB15AA56C700CDD3B8 /* EX2Kit-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "EX2Kit-Prefix.pch"; sourceTree = "<group>"; };
@@ -791,6 +795,8 @@
 				531CF182163D064A008F8AA7 /* UIImage+Cropping.m */,
 				5398D07B16EE80BE002D8548 /* UIWebView+HideShadows.h */,
 				5398D07C16EE80BE002D8548 /* UIWebView+HideShadows.m */,
+				53CFE2F4170B83B000347CC8 /* UIButton+StretchBackground.h */,
+				53CFE2F5170B83B000347CC8 /* UIButton+StretchBackground.m */,
 			);
 			path = UIKit;
 			sourceTree = "<group>";
@@ -1069,6 +1075,7 @@
 				5398D07D16EE80BE002D8548 /* UIWebView+HideShadows.h in Headers */,
 				531F4F4017062C3300D7F8B0 /* NSFileHandle+Hash.h in Headers */,
 				5380B5C3170667F90010AED2 /* NSData+Hash.h in Headers */,
+				53CFE2F6170B83B000347CC8 /* UIButton+StretchBackground.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1313,6 +1320,7 @@
 				5398D07E16EE80BE002D8548 /* UIWebView+HideShadows.m in Sources */,
 				531F4F4217062C3300D7F8B0 /* NSFileHandle+Hash.m in Sources */,
 				5380B5C5170667F90010AED2 /* NSData+Hash.m in Sources */,
+				53CFE2F7170B83B000347CC8 /* UIButton+StretchBackground.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

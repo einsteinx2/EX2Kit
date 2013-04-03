@@ -12,5 +12,6 @@
 
 - (NSString *)systemBuild;
 - (NSString *)completeVersionString;
+- (BOOL)isJailbroken;
 
 @end

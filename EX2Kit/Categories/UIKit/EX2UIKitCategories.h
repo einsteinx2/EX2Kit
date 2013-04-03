@@ -21,5 +21,6 @@
 #import "UIImage+CustomStretch.h"
 #import "UIImage+Cropping.h"
 #import "UIWebView+HideShadows.h"
+#import "UIButton+StretchBackground.h"
 
 #endif

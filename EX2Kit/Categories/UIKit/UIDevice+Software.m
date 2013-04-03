@@ -32,4 +32,28 @@
 	return [NSString stringWithFormat:@"%@ %@ (%@)", [self systemName], [self systemVersion], [self systemBuild]];
 }
 
+// Soluton adapted from answers to this question: http://stackoverflow.com/questions/12342571/no-jailbreak-detection
+- (BOOL)isJailbroken
+{
+    //If the app is running on the simulator
+#if TARGET_IPHONE_SIMULATOR
+    return NO;
+    
+    //If its running on an actual device
+#else
+    BOOL isJailbroken = NO;
+    
+    //These lines checks for the existence of Cydia
+    isJailbroken = [[NSFileManager defaultManager] fileExistsAtPath:@"/Applications/Cydia.app"];
+    if (!isJailbroken)
+        isJailbroken = [[UIApplication sharedApplication] canOpenURL:[NSURL URLWithString:@"cydia://"]];
+    
+    // This is an additional check to see if bash is accessible
+    if (!isJailbroken)
+        isJailbroken = [[NSFileManager defaultManager] fileExistsAtPath: @"/bin/bash"];
+    
+    return isJailbroken;
+#endif
+}
+
 @end
