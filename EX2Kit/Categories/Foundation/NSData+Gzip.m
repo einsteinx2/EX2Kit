@@ -63,7 +63,7 @@
         return nil;
     
     unsigned full_length = (unsigned)self.length;
-    unsigned half_length = self.length / 2;
+    unsigned half_length = (unsigned)self.length / 2;
     
     NSMutableData *decompressed = [NSMutableData dataWithLength: full_length + half_length];
     BOOL done = NO;
