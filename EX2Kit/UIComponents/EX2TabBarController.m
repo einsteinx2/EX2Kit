@@ -271,8 +271,6 @@ static char key;
 
 - (void)setSelectedIndex:(NSUInteger)index
 {
-    DDLogVerbose(@"setSelectedIndex called on main thread: %@  stack trace: %@", NSStringFromBOOL([NSThread isMainThread]), [NSThread callStackSymbols]);
-
     // Ensure this always runs in the main thread, not just always calling runInMainThread because I don't want it to be async all the time
     void (^block) (void) = ^{
         if (_selectedIndex != index)
