@@ -456,4 +456,9 @@ static char key;
     }
 }
 
+- (BOOL)isRootViewController:(UIViewController *)viewController
+{
+    return viewController == [self.viewControllers firstObjectSafe];
+}
+
 @end

@@ -65,4 +65,6 @@ EX2NavigationControllerAnimation;
 
 - (void)popToRootViewControllerAnimated:(BOOL)animated;
 
+- (BOOL)isRootViewController:(UIViewController *)viewController;
+
 @end
