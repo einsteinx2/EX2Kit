@@ -116,12 +116,20 @@ static char key;
 {
     self.view = [[UIView alloc] initWithFrame: CGRectMake(0, 0, 320, 480)];
 	self.view.autoresizingMask = (UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight);
+    self.view.clipsToBounds = YES;
     
 	self.navigationBar = [self createNavigationBar];
     
 	self.contentView = [[UIView alloc ] initWithFrame:CGRectMake(0, self.navigationBar.bottom, self.view.width, self.view.height - self.navigationBar.height)];
     self.contentView.clipsToBounds = YES;
 	self.contentView.autoresizingMask = (UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight);
+    
+    // Handle the case where we set the isNavigationBarHidden property before the view loads
+    if (self.isNavigationBarHidden)
+    {
+        self.navigationBar.bottom = 0.;
+        self.contentView.frame = self.view.bounds;
+    }
     
 	[self.view addSubview:self.navigationBar];
 	[self.view addSubview:self.contentView];
@@ -459,6 +467,35 @@ static char key;
 - (BOOL)isRootViewController:(UIViewController *)viewController
 {
     return viewController == [self.viewControllers firstObjectSafe];
+}
+
+- (void)setNavigationBarHidden:(BOOL)navigationBarHidden
+{
+    [self setNavigationBarHidden:navigationBarHidden animated:NO];
+}
+
+- (void)setNavigationBarHidden:(BOOL)hidden animated:(BOOL)animated
+{
+    if (_navigationBarHidden == hidden)
+        return;
+    
+    _navigationBarHidden = hidden;
+    
+    void (^animationBlock)(void) = ^
+    {
+        if (hidden)
+        {
+            self.navigationBar.bottom = 0.;
+            self.contentView.frame = self.view.bounds;
+        }
+        else
+        {
+            self.navigationBar.y = 0.;
+            self.contentView.frame = CGRectMake(0, self.navigationBar.bottom, self.view.width, self.view.height - self.navigationBar.height);
+        }
+    };
+    
+    animated ? [UIView animateWithDuration:.33 animations:animationBlock] : animationBlock();
 }
 
 @end
