@@ -24,7 +24,7 @@ static char key;
     
     // This ensures that if this controller is inside another and so it's property
     // was not set directly, we'll still get the reference
-    if (!navController)
+    if (!navController && [self respondsToSelector:@selector(parentViewController)])
     {
         // Check it's parent controllers
         UIViewController *parent = self.parentViewController;
