@@ -115,6 +115,8 @@
 		5339E20416360B9F007628C0 /* EX2Kit.m in Sources */ = {isa = PBXBuildFile; fileRef = 5339E20316360B9E007628C0 /* EX2Kit.m */; };
 		533B3E54165D8FE000ECD75F /* NSURL+SkipBackupAttribute.h in Headers */ = {isa = PBXBuildFile; fileRef = 533B3E52165D8FE000ECD75F /* NSURL+SkipBackupAttribute.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		533B3E55165D8FE000ECD75F /* NSURL+SkipBackupAttribute.m in Sources */ = {isa = PBXBuildFile; fileRef = 533B3E53165D8FE000ECD75F /* NSURL+SkipBackupAttribute.m */; };
+		5355F242172795470020873D /* EX2InfinitePagingScrollView.h in Headers */ = {isa = PBXBuildFile; fileRef = 5355F240172795470020873D /* EX2InfinitePagingScrollView.h */; };
+		5355F243172795470020873D /* EX2InfinitePagingScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5355F241172795470020873D /* EX2InfinitePagingScrollView.m */; };
 		5373A931162DD71F0016A019 /* EX2Kit.h in Headers */ = {isa = PBXBuildFile; fileRef = 53F15F71162B9FCA00C24FC1 /* EX2Kit.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		5373A932162DD71F0016A019 /* EX2Categories.h in Headers */ = {isa = PBXBuildFile; fileRef = 53F15EF7162B9FCA00C24FC1 /* EX2Categories.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		5373A933162DD71F0016A019 /* EX2FoundationCategories.h in Headers */ = {isa = PBXBuildFile; fileRef = 53F15EF9162B9FCA00C24FC1 /* EX2FoundationCategories.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -321,6 +323,8 @@
 		5339E20316360B9E007628C0 /* EX2Kit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EX2Kit.m; sourceTree = "<group>"; };
 		533B3E52165D8FE000ECD75F /* NSURL+SkipBackupAttribute.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSURL+SkipBackupAttribute.h"; sourceTree = "<group>"; };
 		533B3E53165D8FE000ECD75F /* NSURL+SkipBackupAttribute.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSURL+SkipBackupAttribute.m"; sourceTree = "<group>"; };
+		5355F240172795470020873D /* EX2InfinitePagingScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EX2InfinitePagingScrollView.h; sourceTree = "<group>"; };
+		5355F241172795470020873D /* EX2InfinitePagingScrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EX2InfinitePagingScrollView.m; sourceTree = "<group>"; };
 		5380B5C1170667F90010AED2 /* NSData+Hash.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSData+Hash.h"; sourceTree = "<group>"; };
 		5380B5C2170667F90010AED2 /* NSData+Hash.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSData+Hash.m"; sourceTree = "<group>"; };
 		5398D07B16EE80BE002D8548 /* UIWebView+HideShadows.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIWebView+HideShadows.h"; sourceTree = "<group>"; };
@@ -902,6 +906,8 @@
 				53F15F83162B9FCA00C24FC1 /* EX2TabBarController.xib */,
 				53F15F85162B9FCA00C24FC1 /* SnappySlider.h */,
 				53F15F86162B9FCA00C24FC1 /* SnappySlider.m */,
+				5355F240172795470020873D /* EX2InfinitePagingScrollView.h */,
+				5355F241172795470020873D /* EX2InfinitePagingScrollView.m */,
 			);
 			path = UIComponents;
 			sourceTree = "<group>";
@@ -1076,6 +1082,7 @@
 				531F4F4017062C3300D7F8B0 /* NSFileHandle+Hash.h in Headers */,
 				5380B5C3170667F90010AED2 /* NSData+Hash.h in Headers */,
 				53CFE2F6170B83B000347CC8 /* UIButton+StretchBackground.h in Headers */,
+				5355F242172795470020873D /* EX2InfinitePagingScrollView.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1321,6 +1328,7 @@
 				531F4F4217062C3300D7F8B0 /* NSFileHandle+Hash.m in Sources */,
 				5380B5C5170667F90010AED2 /* NSData+Hash.m in Sources */,
 				53CFE2F7170B83B000347CC8 /* UIButton+StretchBackground.m in Sources */,
+				5355F243172795470020873D /* EX2InfinitePagingScrollView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

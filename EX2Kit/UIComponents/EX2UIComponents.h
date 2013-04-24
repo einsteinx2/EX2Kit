@@ -14,5 +14,6 @@
 #import "EX2NavigationController.h"
 #import "EX2TabBarController.h"
 #import "EX2SlidingNotification.h"
+#import "EX2InfinitePagingScrollView.h"
 
 #endif
