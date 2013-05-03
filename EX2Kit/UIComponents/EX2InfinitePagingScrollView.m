@@ -162,7 +162,7 @@
     NSInteger index = self.currentPageIndex - 1;
     if (index < 0 && self.isWrapLeft)
     {
-        index--;
+        index = self.numberOfPages - 1;
     }
     else if (index < 0)
     {
@@ -178,7 +178,7 @@
     NSInteger index = self.currentPageIndex + 1;
     if (index >= self.numberOfPages && self.isWrapRight)
     {
-        index++;
+        index = 0;
     }
     else if (index >= self.numberOfPages)
     {
