@@ -13,7 +13,7 @@
 #import "EX2Kit.h"
 
 #define ANIMATION_DELAY 0.25
-#define DEFAULT_DISPLAY_TIME 6.0
+#define DEFAULT_DISPLAY_TIME 5.0
 
 @interface EX2SlidingNotification()
 @property (nonatomic, strong) EX2SlidingNotification *selfRef;
