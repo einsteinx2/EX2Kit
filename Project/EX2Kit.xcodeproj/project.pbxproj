@@ -185,6 +185,12 @@
 		5373A974162DD7430016A019 /* DDTTYLogger.h in Headers */ = {isa = PBXBuildFile; fileRef = 53F15F67162B9FCA00C24FC1 /* DDTTYLogger.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		5373A975162DD7430016A019 /* ContextFilterLogFormatter.h in Headers */ = {isa = PBXBuildFile; fileRef = 53F15F6A162B9FCA00C24FC1 /* ContextFilterLogFormatter.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		5373A976162DD7430016A019 /* DispatchQueueLogFormatter.h in Headers */ = {isa = PBXBuildFile; fileRef = 53F15F6C162B9FCA00C24FC1 /* DispatchQueueLogFormatter.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		537CBC90173DB935001989CE /* EX2LargerTouchScrollView.h in Headers */ = {isa = PBXBuildFile; fileRef = 537CBC8E173DB935001989CE /* EX2LargerTouchScrollView.h */; };
+		537CBC91173DB935001989CE /* EX2LargerTouchScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 537CBC8F173DB935001989CE /* EX2LargerTouchScrollView.m */; };
+		537CBC98173DDE61001989CE /* NSNumber+CleanString.h in Headers */ = {isa = PBXBuildFile; fileRef = 537CBC96173DDE61001989CE /* NSNumber+CleanString.h */; };
+		537CBC99173DDE61001989CE /* NSNumber+CleanString.m in Sources */ = {isa = PBXBuildFile; fileRef = 537CBC97173DDE61001989CE /* NSNumber+CleanString.m */; };
+		537CBC9C173DDF76001989CE /* NSNull+CleanString.h in Headers */ = {isa = PBXBuildFile; fileRef = 537CBC9A173DDF75001989CE /* NSNull+CleanString.h */; };
+		537CBC9D173DDF76001989CE /* NSNull+CleanString.m in Sources */ = {isa = PBXBuildFile; fileRef = 537CBC9B173DDF75001989CE /* NSNull+CleanString.m */; };
 		5380B5C3170667F90010AED2 /* NSData+Hash.h in Headers */ = {isa = PBXBuildFile; fileRef = 5380B5C1170667F90010AED2 /* NSData+Hash.h */; };
 		5380B5C4170667F90010AED2 /* NSData+Hash.h in Headers */ = {isa = PBXBuildFile; fileRef = 5380B5C1170667F90010AED2 /* NSData+Hash.h */; };
 		5380B5C5170667F90010AED2 /* NSData+Hash.m in Sources */ = {isa = PBXBuildFile; fileRef = 5380B5C2170667F90010AED2 /* NSData+Hash.m */; };
@@ -325,6 +331,12 @@
 		533B3E53165D8FE000ECD75F /* NSURL+SkipBackupAttribute.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSURL+SkipBackupAttribute.m"; sourceTree = "<group>"; };
 		5355F240172795470020873D /* EX2InfinitePagingScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EX2InfinitePagingScrollView.h; sourceTree = "<group>"; };
 		5355F241172795470020873D /* EX2InfinitePagingScrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EX2InfinitePagingScrollView.m; sourceTree = "<group>"; };
+		537CBC8E173DB935001989CE /* EX2LargerTouchScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EX2LargerTouchScrollView.h; sourceTree = "<group>"; };
+		537CBC8F173DB935001989CE /* EX2LargerTouchScrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EX2LargerTouchScrollView.m; sourceTree = "<group>"; };
+		537CBC96173DDE61001989CE /* NSNumber+CleanString.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSNumber+CleanString.h"; sourceTree = "<group>"; };
+		537CBC97173DDE61001989CE /* NSNumber+CleanString.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSNumber+CleanString.m"; sourceTree = "<group>"; };
+		537CBC9A173DDF75001989CE /* NSNull+CleanString.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSNull+CleanString.h"; sourceTree = "<group>"; };
+		537CBC9B173DDF75001989CE /* NSNull+CleanString.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSNull+CleanString.m"; sourceTree = "<group>"; };
 		5380B5C1170667F90010AED2 /* NSData+Hash.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSData+Hash.h"; sourceTree = "<group>"; };
 		5380B5C2170667F90010AED2 /* NSData+Hash.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSData+Hash.m"; sourceTree = "<group>"; };
 		5398D07B16EE80BE002D8548 /* UIWebView+HideShadows.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIWebView+HideShadows.h"; sourceTree = "<group>"; };
@@ -702,6 +714,10 @@
 				531F4F3F17062C3300D7F8B0 /* NSFileHandle+Hash.m */,
 				5380B5C1170667F90010AED2 /* NSData+Hash.h */,
 				5380B5C2170667F90010AED2 /* NSData+Hash.m */,
+				537CBC96173DDE61001989CE /* NSNumber+CleanString.h */,
+				537CBC97173DDE61001989CE /* NSNumber+CleanString.m */,
+				537CBC9A173DDF75001989CE /* NSNull+CleanString.h */,
+				537CBC9B173DDF75001989CE /* NSNull+CleanString.m */,
 			);
 			path = Foundation;
 			sourceTree = "<group>";
@@ -908,6 +924,8 @@
 				53F15F86162B9FCA00C24FC1 /* SnappySlider.m */,
 				5355F240172795470020873D /* EX2InfinitePagingScrollView.h */,
 				5355F241172795470020873D /* EX2InfinitePagingScrollView.m */,
+				537CBC8E173DB935001989CE /* EX2LargerTouchScrollView.h */,
+				537CBC8F173DB935001989CE /* EX2LargerTouchScrollView.m */,
 			);
 			path = UIComponents;
 			sourceTree = "<group>";
@@ -1083,6 +1101,9 @@
 				5380B5C3170667F90010AED2 /* NSData+Hash.h in Headers */,
 				53CFE2F6170B83B000347CC8 /* UIButton+StretchBackground.h in Headers */,
 				5355F242172795470020873D /* EX2InfinitePagingScrollView.h in Headers */,
+				537CBC90173DB935001989CE /* EX2LargerTouchScrollView.h in Headers */,
+				537CBC98173DDE61001989CE /* NSNumber+CleanString.h in Headers */,
+				537CBC9C173DDF76001989CE /* NSNull+CleanString.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1329,6 +1350,9 @@
 				5380B5C5170667F90010AED2 /* NSData+Hash.m in Sources */,
 				53CFE2F7170B83B000347CC8 /* UIButton+StretchBackground.m in Sources */,
 				5355F243172795470020873D /* EX2InfinitePagingScrollView.m in Sources */,
+				537CBC91173DB935001989CE /* EX2LargerTouchScrollView.m in Sources */,
+				537CBC99173DDE61001989CE /* NSNumber+CleanString.m in Sources */,
+				537CBC9D173DDF76001989CE /* NSNull+CleanString.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

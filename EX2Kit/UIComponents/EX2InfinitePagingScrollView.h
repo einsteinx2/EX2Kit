@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "EX2LargerTouchScrollView.h"
 
 @class  EX2InfinitePagingScrollView;
 @protocol EX2InfinitePagingScrollViewDelegate <NSObject>
@@ -21,7 +22,7 @@
 
 @end
 
-@interface EX2InfinitePagingScrollView : UIScrollView <UIScrollViewDelegate>
+@interface EX2InfinitePagingScrollView : EX2LargerTouchScrollView <UIScrollViewDelegate>
 
 @property (nonatomic, unsafe_unretained) id<EX2InfinitePagingScrollViewDelegate> pagingDelegate;
 

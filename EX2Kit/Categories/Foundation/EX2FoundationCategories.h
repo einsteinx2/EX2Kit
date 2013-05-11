@@ -21,6 +21,8 @@
 #import "NSURL+QueryParameterDictionary.h"
 #import "NSFileHandle+Hash.h"
 #import "NSData+Hash.h"
+#import "NSNumber+CleanString.h"
+#import "NSNull+CleanString.h"
 
 #ifdef IOS
 #import "NSURL+SkipBackupAttribute.h"
