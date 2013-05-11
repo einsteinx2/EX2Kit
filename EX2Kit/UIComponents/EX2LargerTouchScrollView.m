@@ -59,6 +59,10 @@
 
 - (BOOL)pointInside:(CGPoint)point withEvent:(UIEvent *)event
 {
+    // If we're not matching the superview's touch area, and we have no padding set, then act like a regular scrollview
+    if (!self.isTouchAreaFillsSuperview && UIEdgeInsetsEqualToEdgeInsets(self.touchAreaPadding, UIEdgeInsetsZero))
+        return [super pointInside:point withEvent:event];
+    
     if (self.isTouchAreaFillsSuperview)
     {
         // Make the touch area cover the whole parent view
