@@ -23,6 +23,7 @@
 #import "NSData+Hash.h"
 #import "NSNumber+CleanString.h"
 #import "NSNull+CleanString.h"
+#import "NSObject+UserInfo.h"
 
 #ifdef IOS
 #import "NSURL+SkipBackupAttribute.h"

@@ -110,6 +110,10 @@
 		531F4F4117062C3300D7F8B0 /* NSFileHandle+Hash.h in Headers */ = {isa = PBXBuildFile; fileRef = 531F4F3E17062C3300D7F8B0 /* NSFileHandle+Hash.h */; };
 		531F4F4217062C3300D7F8B0 /* NSFileHandle+Hash.m in Sources */ = {isa = PBXBuildFile; fileRef = 531F4F3F17062C3300D7F8B0 /* NSFileHandle+Hash.m */; };
 		531F4F4317062C3300D7F8B0 /* NSFileHandle+Hash.m in Sources */ = {isa = PBXBuildFile; fileRef = 531F4F3F17062C3300D7F8B0 /* NSFileHandle+Hash.m */; };
+		53293F1C17418ADF007211CB /* NSObject+UserInfo.h in Headers */ = {isa = PBXBuildFile; fileRef = 53293F1A17418ADF007211CB /* NSObject+UserInfo.h */; };
+		53293F1D17418ADF007211CB /* NSObject+UserInfo.h in Headers */ = {isa = PBXBuildFile; fileRef = 53293F1A17418ADF007211CB /* NSObject+UserInfo.h */; };
+		53293F1E17418ADF007211CB /* NSObject+UserInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 53293F1B17418ADF007211CB /* NSObject+UserInfo.m */; };
+		53293F1F17418ADF007211CB /* NSObject+UserInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 53293F1B17418ADF007211CB /* NSObject+UserInfo.m */; };
 		5339E1821635E93A007628C0 /* NSString+HasValue.h in Headers */ = {isa = PBXBuildFile; fileRef = 5339E1801635E93A007628C0 /* NSString+HasValue.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		5339E1831635E93A007628C0 /* NSString+HasValue.m in Sources */ = {isa = PBXBuildFile; fileRef = 5339E1811635E93A007628C0 /* NSString+HasValue.m */; };
 		5339E20416360B9F007628C0 /* EX2Kit.m in Sources */ = {isa = PBXBuildFile; fileRef = 5339E20316360B9E007628C0 /* EX2Kit.m */; };
@@ -324,6 +328,8 @@
 		531CF182163D064A008F8AA7 /* UIImage+Cropping.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Cropping.m"; sourceTree = "<group>"; };
 		531F4F3E17062C3300D7F8B0 /* NSFileHandle+Hash.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSFileHandle+Hash.h"; sourceTree = "<group>"; };
 		531F4F3F17062C3300D7F8B0 /* NSFileHandle+Hash.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSFileHandle+Hash.m"; sourceTree = "<group>"; };
+		53293F1A17418ADF007211CB /* NSObject+UserInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+UserInfo.h"; sourceTree = "<group>"; };
+		53293F1B17418ADF007211CB /* NSObject+UserInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+UserInfo.m"; sourceTree = "<group>"; };
 		5339E1801635E93A007628C0 /* NSString+HasValue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+HasValue.h"; sourceTree = "<group>"; };
 		5339E1811635E93A007628C0 /* NSString+HasValue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+HasValue.m"; sourceTree = "<group>"; };
 		5339E20316360B9E007628C0 /* EX2Kit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EX2Kit.m; sourceTree = "<group>"; };
@@ -718,6 +724,8 @@
 				537CBC97173DDE61001989CE /* NSNumber+CleanString.m */,
 				537CBC9A173DDF75001989CE /* NSNull+CleanString.h */,
 				537CBC9B173DDF75001989CE /* NSNull+CleanString.m */,
+				53293F1A17418ADF007211CB /* NSObject+UserInfo.h */,
+				53293F1B17418ADF007211CB /* NSObject+UserInfo.m */,
 			);
 			path = Foundation;
 			sourceTree = "<group>";
@@ -1005,6 +1013,7 @@
 				53F8851916BB855B00372A2D /* RNOpenSSLEncryptor.h in Headers */,
 				531F4F4117062C3300D7F8B0 /* NSFileHandle+Hash.h in Headers */,
 				5380B5C4170667F90010AED2 /* NSData+Hash.h in Headers */,
+				53293F1D17418ADF007211CB /* NSObject+UserInfo.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1104,6 +1113,7 @@
 				537CBC90173DB935001989CE /* EX2LargerTouchScrollView.h in Headers */,
 				537CBC98173DDE61001989CE /* NSNumber+CleanString.h in Headers */,
 				537CBC9C173DDF76001989CE /* NSNull+CleanString.h in Headers */,
+				53293F1C17418ADF007211CB /* NSObject+UserInfo.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1268,6 +1278,7 @@
 				53F884D016BB61C000372A2D /* EX2Language.m in Sources */,
 				531F4F4317062C3300D7F8B0 /* NSFileHandle+Hash.m in Sources */,
 				5380B5C6170667F90010AED2 /* NSData+Hash.m in Sources */,
+				53293F1F17418ADF007211CB /* NSObject+UserInfo.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1353,6 +1364,7 @@
 				537CBC91173DB935001989CE /* EX2LargerTouchScrollView.m in Sources */,
 				537CBC99173DDE61001989CE /* NSNumber+CleanString.m in Sources */,
 				537CBC9D173DDF76001989CE /* NSNull+CleanString.m in Sources */,
+				53293F1E17418ADF007211CB /* NSObject+UserInfo.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

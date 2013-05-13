@@ -16,7 +16,7 @@
 @implementation UIViewController (EX2NavigationController)
 
 // No adding instance properties in categories you say? Hogwash! Three cheers for associative references!
-static char key;
+static void *key;
 - (EX2NavigationController *)ex2NavigationController
 {
     // Try to get the reference
