@@ -281,4 +281,34 @@
     }
 }
 
+// Convert the view for use in Arabic/Hebrew layout
+- (void)convertToRTL
+{
+    for (UIView *subview in self.subviews)
+    {
+        // Adjust the position
+        subview.right = subview.superview.width - subview.x;
+        
+        // Adjust the struts if necessary
+        if (!(subview.autoresizingMask & UIViewAutoresizingFlexibleLeftMargin) && (subview.autoresizingMask & UIViewAutoresizingFlexibleRightMargin))
+        {
+            // If the view is locked to the left side, lock it to the right side
+            subview.autoresizingMask &= ~UIViewAutoresizingFlexibleRightMargin;
+            subview.autoresizingMask |= UIViewAutoresizingFlexibleLeftMargin;
+        }
+        else if (!(subview.autoresizingMask & UIViewAutoresizingFlexibleRightMargin) && (subview.autoresizingMask & UIViewAutoresizingFlexibleLeftMargin))
+        {
+            // If the view is locked to the right side, lock it to the left side
+            subview.autoresizingMask &= ~UIViewAutoresizingFlexibleLeftMargin;
+            subview.autoresizingMask |= UIViewAutoresizingFlexibleRightMargin;
+        }
+        
+        // Switch the text alignment if necessary
+        if ([subview isKindOfClass:[UILabel class]])
+        {
+            ((UILabel *)subview).textAlignment = UITextAlignmentRight;
+        }
+    }
+}
+
 @end
