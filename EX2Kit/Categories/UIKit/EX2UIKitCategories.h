@@ -22,5 +22,6 @@
 #import "UIImage+Cropping.h"
 #import "UIWebView+HideShadows.h"
 #import "UIButton+StretchBackground.h"
+#import "UIView+Glow.h"
 
 #endif

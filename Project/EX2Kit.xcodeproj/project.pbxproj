@@ -102,6 +102,10 @@
 		5304A29A1690195D009B2732 /* table-fade-top.png in Resources */ = {isa = PBXBuildFile; fileRef = 53FA691A1644789900D19576 /* table-fade-top.png */; };
 		5304A29B1690195D009B2732 /* table-fade-top@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 53FA691B1644789900D19576 /* table-fade-top@2x.png */; };
 		5304A29E16901BD0009B2732 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 5304A29C16901BC6009B2732 /* libz.dylib */; };
+		5311346C174C312A00DB199B /* UIView+Glow.h in Headers */ = {isa = PBXBuildFile; fileRef = 5311346A174C312A00DB199B /* UIView+Glow.h */; };
+		5311346D174C312A00DB199B /* UIView+Glow.m in Sources */ = {isa = PBXBuildFile; fileRef = 5311346B174C312A00DB199B /* UIView+Glow.m */; };
+		53113470174C361900DB199B /* EX2GlowButton.h in Headers */ = {isa = PBXBuildFile; fileRef = 5311346E174C361900DB199B /* EX2GlowButton.h */; };
+		53113471174C361900DB199B /* EX2GlowButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 5311346F174C361900DB199B /* EX2GlowButton.m */; };
 		53145C17163F5E6400DE22F1 /* NSURL+QueryParameterDictionary.h in Headers */ = {isa = PBXBuildFile; fileRef = 53145C15163F5E6400DE22F1 /* NSURL+QueryParameterDictionary.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		53145C18163F5E6400DE22F1 /* NSURL+QueryParameterDictionary.m in Sources */ = {isa = PBXBuildFile; fileRef = 53145C16163F5E6400DE22F1 /* NSURL+QueryParameterDictionary.m */; };
 		531CF183163D064A008F8AA7 /* UIImage+Cropping.h in Headers */ = {isa = PBXBuildFile; fileRef = 531CF181163D064A008F8AA7 /* UIImage+Cropping.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -322,6 +326,10 @@
 		5304A21816901857009B2732 /* EX2KitOSX-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "EX2KitOSX-Info.plist"; sourceTree = "<group>"; };
 		5304A21A16901857009B2732 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		5304A29C16901BC6009B2732 /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.8.sdk/usr/lib/libz.dylib; sourceTree = DEVELOPER_DIR; };
+		5311346A174C312A00DB199B /* UIView+Glow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+Glow.h"; sourceTree = "<group>"; };
+		5311346B174C312A00DB199B /* UIView+Glow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+Glow.m"; sourceTree = "<group>"; };
+		5311346E174C361900DB199B /* EX2GlowButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EX2GlowButton.h; sourceTree = "<group>"; };
+		5311346F174C361900DB199B /* EX2GlowButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EX2GlowButton.m; sourceTree = "<group>"; };
 		53145C15163F5E6400DE22F1 /* NSURL+QueryParameterDictionary.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSURL+QueryParameterDictionary.h"; sourceTree = "<group>"; };
 		53145C16163F5E6400DE22F1 /* NSURL+QueryParameterDictionary.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSURL+QueryParameterDictionary.m"; sourceTree = "<group>"; };
 		531CF181163D064A008F8AA7 /* UIImage+Cropping.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+Cropping.h"; sourceTree = "<group>"; };
@@ -825,6 +833,8 @@
 				5398D07C16EE80BE002D8548 /* UIWebView+HideShadows.m */,
 				53CFE2F4170B83B000347CC8 /* UIButton+StretchBackground.h */,
 				53CFE2F5170B83B000347CC8 /* UIButton+StretchBackground.m */,
+				5311346A174C312A00DB199B /* UIView+Glow.h */,
+				5311346B174C312A00DB199B /* UIView+Glow.m */,
 			);
 			path = UIKit;
 			sourceTree = "<group>";
@@ -934,6 +944,8 @@
 				5355F241172795470020873D /* EX2InfinitePagingScrollView.m */,
 				537CBC8E173DB935001989CE /* EX2LargerTouchScrollView.h */,
 				537CBC8F173DB935001989CE /* EX2LargerTouchScrollView.m */,
+				5311346E174C361900DB199B /* EX2GlowButton.h */,
+				5311346F174C361900DB199B /* EX2GlowButton.m */,
 			);
 			path = UIComponents;
 			sourceTree = "<group>";
@@ -1114,6 +1126,8 @@
 				537CBC98173DDE61001989CE /* NSNumber+CleanString.h in Headers */,
 				537CBC9C173DDF76001989CE /* NSNull+CleanString.h in Headers */,
 				53293F1C17418ADF007211CB /* NSObject+UserInfo.h in Headers */,
+				5311346C174C312A00DB199B /* UIView+Glow.h in Headers */,
+				53113470174C361900DB199B /* EX2GlowButton.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1365,6 +1379,8 @@
 				537CBC99173DDE61001989CE /* NSNumber+CleanString.m in Sources */,
 				537CBC9D173DDF76001989CE /* NSNull+CleanString.m in Sources */,
 				53293F1E17418ADF007211CB /* NSObject+UserInfo.m in Sources */,
+				5311346D174C312A00DB199B /* UIView+Glow.m in Sources */,
+				53113471174C361900DB199B /* EX2GlowButton.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
