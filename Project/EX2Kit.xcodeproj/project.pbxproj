@@ -123,6 +123,16 @@
 		5339E20416360B9F007628C0 /* EX2Kit.m in Sources */ = {isa = PBXBuildFile; fileRef = 5339E20316360B9E007628C0 /* EX2Kit.m */; };
 		533B3E54165D8FE000ECD75F /* NSURL+SkipBackupAttribute.h in Headers */ = {isa = PBXBuildFile; fileRef = 533B3E52165D8FE000ECD75F /* NSURL+SkipBackupAttribute.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		533B3E55165D8FE000ECD75F /* NSURL+SkipBackupAttribute.m in Sources */ = {isa = PBXBuildFile; fileRef = 533B3E53165D8FE000ECD75F /* NSURL+SkipBackupAttribute.m */; };
+		533DA5C0174EAC080064A3E1 /* EX2ActionQueue.h in Headers */ = {isa = PBXBuildFile; fileRef = 533DA5BE174EAC080064A3E1 /* EX2ActionQueue.h */; };
+		533DA5C1174EAC080064A3E1 /* EX2ActionQueue.h in Headers */ = {isa = PBXBuildFile; fileRef = 533DA5BE174EAC080064A3E1 /* EX2ActionQueue.h */; };
+		533DA5C2174EAC080064A3E1 /* EX2ActionQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = 533DA5BF174EAC080064A3E1 /* EX2ActionQueue.m */; };
+		533DA5C3174EAC080064A3E1 /* EX2ActionQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = 533DA5BF174EAC080064A3E1 /* EX2ActionQueue.m */; };
+		533DA5C5174EAC490064A3E1 /* EX2Action.h in Headers */ = {isa = PBXBuildFile; fileRef = 533DA5C4174EAC490064A3E1 /* EX2Action.h */; };
+		533DA5C6174EAC490064A3E1 /* EX2Action.h in Headers */ = {isa = PBXBuildFile; fileRef = 533DA5C4174EAC490064A3E1 /* EX2Action.h */; };
+		533DA5C9174EAD570064A3E1 /* EX2ActionBlock.h in Headers */ = {isa = PBXBuildFile; fileRef = 533DA5C7174EAD570064A3E1 /* EX2ActionBlock.h */; };
+		533DA5CA174EAD570064A3E1 /* EX2ActionBlock.h in Headers */ = {isa = PBXBuildFile; fileRef = 533DA5C7174EAD570064A3E1 /* EX2ActionBlock.h */; };
+		533DA5CB174EAD570064A3E1 /* EX2ActionBlock.m in Sources */ = {isa = PBXBuildFile; fileRef = 533DA5C8174EAD570064A3E1 /* EX2ActionBlock.m */; };
+		533DA5CC174EAD570064A3E1 /* EX2ActionBlock.m in Sources */ = {isa = PBXBuildFile; fileRef = 533DA5C8174EAD570064A3E1 /* EX2ActionBlock.m */; };
 		5355F242172795470020873D /* EX2InfinitePagingScrollView.h in Headers */ = {isa = PBXBuildFile; fileRef = 5355F240172795470020873D /* EX2InfinitePagingScrollView.h */; };
 		5355F243172795470020873D /* EX2InfinitePagingScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5355F241172795470020873D /* EX2InfinitePagingScrollView.m */; };
 		5373A931162DD71F0016A019 /* EX2Kit.h in Headers */ = {isa = PBXBuildFile; fileRef = 53F15F71162B9FCA00C24FC1 /* EX2Kit.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -343,6 +353,11 @@
 		5339E20316360B9E007628C0 /* EX2Kit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EX2Kit.m; sourceTree = "<group>"; };
 		533B3E52165D8FE000ECD75F /* NSURL+SkipBackupAttribute.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSURL+SkipBackupAttribute.h"; sourceTree = "<group>"; };
 		533B3E53165D8FE000ECD75F /* NSURL+SkipBackupAttribute.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSURL+SkipBackupAttribute.m"; sourceTree = "<group>"; };
+		533DA5BE174EAC080064A3E1 /* EX2ActionQueue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EX2ActionQueue.h; sourceTree = "<group>"; };
+		533DA5BF174EAC080064A3E1 /* EX2ActionQueue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EX2ActionQueue.m; sourceTree = "<group>"; };
+		533DA5C4174EAC490064A3E1 /* EX2Action.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EX2Action.h; sourceTree = "<group>"; };
+		533DA5C7174EAD570064A3E1 /* EX2ActionBlock.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EX2ActionBlock.h; sourceTree = "<group>"; };
+		533DA5C8174EAD570064A3E1 /* EX2ActionBlock.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EX2ActionBlock.m; sourceTree = "<group>"; };
 		5355F240172795470020873D /* EX2InfinitePagingScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EX2InfinitePagingScrollView.h; sourceTree = "<group>"; };
 		5355F241172795470020873D /* EX2InfinitePagingScrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EX2InfinitePagingScrollView.m; sourceTree = "<group>"; };
 		537CBC8E173DB935001989CE /* EX2LargerTouchScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EX2LargerTouchScrollView.h; sourceTree = "<group>"; };
@@ -857,6 +872,11 @@
 				53F15F58162B9FCA00C24FC1 /* EX2SimpleConnectionQueue.m */,
 				53F884CB16BB61C000372A2D /* EX2Language.h */,
 				53F884CC16BB61C000372A2D /* EX2Language.m */,
+				533DA5BE174EAC080064A3E1 /* EX2ActionQueue.h */,
+				533DA5BF174EAC080064A3E1 /* EX2ActionQueue.m */,
+				533DA5C4174EAC490064A3E1 /* EX2Action.h */,
+				533DA5C7174EAD570064A3E1 /* EX2ActionBlock.h */,
+				533DA5C8174EAD570064A3E1 /* EX2ActionBlock.m */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -1026,6 +1046,9 @@
 				531F4F4117062C3300D7F8B0 /* NSFileHandle+Hash.h in Headers */,
 				5380B5C4170667F90010AED2 /* NSData+Hash.h in Headers */,
 				53293F1D17418ADF007211CB /* NSObject+UserInfo.h in Headers */,
+				533DA5C1174EAC080064A3E1 /* EX2ActionQueue.h in Headers */,
+				533DA5C6174EAC490064A3E1 /* EX2Action.h in Headers */,
+				533DA5CA174EAD570064A3E1 /* EX2ActionBlock.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1128,6 +1151,9 @@
 				53293F1C17418ADF007211CB /* NSObject+UserInfo.h in Headers */,
 				5311346C174C312A00DB199B /* UIView+Glow.h in Headers */,
 				53113470174C361900DB199B /* EX2GlowButton.h in Headers */,
+				533DA5C0174EAC080064A3E1 /* EX2ActionQueue.h in Headers */,
+				533DA5C5174EAC490064A3E1 /* EX2Action.h in Headers */,
+				533DA5C9174EAD570064A3E1 /* EX2ActionBlock.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1293,6 +1319,8 @@
 				531F4F4317062C3300D7F8B0 /* NSFileHandle+Hash.m in Sources */,
 				5380B5C6170667F90010AED2 /* NSData+Hash.m in Sources */,
 				53293F1F17418ADF007211CB /* NSObject+UserInfo.m in Sources */,
+				533DA5C3174EAC080064A3E1 /* EX2ActionQueue.m in Sources */,
+				533DA5CC174EAD570064A3E1 /* EX2ActionBlock.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1381,6 +1409,8 @@
 				53293F1E17418ADF007211CB /* NSObject+UserInfo.m in Sources */,
 				5311346D174C312A00DB199B /* UIView+Glow.m in Sources */,
 				53113471174C361900DB199B /* EX2GlowButton.m in Sources */,
+				533DA5C2174EAC080064A3E1 /* EX2ActionQueue.m in Sources */,
+				533DA5CB174EAD570064A3E1 /* EX2ActionBlock.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

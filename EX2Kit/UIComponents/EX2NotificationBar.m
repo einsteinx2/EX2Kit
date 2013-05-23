@@ -394,7 +394,6 @@
             }
         }
         
-        DLog(@"Notification bar SHOW completed, finished: %@", NSStringFromBOOL(finished));
         _isNotificationBarAnimating = NO;
 	};
 	
@@ -421,7 +420,6 @@
     }
     _isNotificationBarShowing = NO;
     
-    DLog(@"Notification bar HIDE called, is animating: %@", NSStringFromBOOL(self.isNotificationBarAnimating));
     if (!self.isNotificationBarAnimating)
     {
         // If currently animating, cancel all animations
@@ -468,7 +466,6 @@
             }
         }
         
-        DLog(@"Notification bar HIDE completed, finished: %@", NSStringFromBOOL(finished));
         _isNotificationBarAnimating = NO;
 	};
 	

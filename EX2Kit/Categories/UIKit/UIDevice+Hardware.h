@@ -72,6 +72,7 @@ typedef enum {
 - (NSString *) platformCode;
 - (BOOL) isOldDevice;
 
+- (NSUInteger) cpuCores;
 - (NSUInteger) cpuFrequency;
 - (NSUInteger) busFrequency;
 - (NSUInteger) totalMemory;

@@ -79,6 +79,11 @@
 	return (NSUInteger) results;
 }
 
+- (NSUInteger) cpuCores
+{
+    return [self getSysInfo:HW_NCPU];
+}
+
 - (NSUInteger) cpuFrequency
 {
 	return [self getSysInfo:HW_CPU_FREQ];
