@@ -106,7 +106,7 @@ static char* GLOWVIEW_KEY = "GLOWVIEW";
     int64_t delayInSeconds = 2.0;
     dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, delayInSeconds * NSEC_PER_SEC);
     dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
-        [self stopGlowing];
+        [self stopGlowingAnimated:NO];
     });
 }
 
@@ -116,7 +116,7 @@ static char* GLOWVIEW_KEY = "GLOWVIEW";
     int64_t delayInSeconds = 2.0;
     dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, delayInSeconds * NSEC_PER_SEC);
     dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
-        [self stopGlowing];
+        [self stopGlowingAnimated:NO];
     });
     
 }
@@ -133,9 +133,22 @@ static char* GLOWVIEW_KEY = "GLOWVIEW";
 
 // Stop glowing by removing the glowing view from the superview 
 // and removing the association between it and this object.
-- (void) stopGlowing {
-    [[self glowView] removeFromSuperview];
-    [self setGlowView:nil];
+- (void) stopGlowingAnimated:(BOOL)animated {
+    
+    if (animated)
+    {
+        [UIView animateWithDuration:.2 animations:^{
+            [self glowView].alpha = 0.;
+        } completion:^(BOOL finished) {
+            [[self glowView] removeFromSuperview];
+            [self setGlowView:nil];
+        }];
+    }
+    else
+    {
+        [[self glowView] removeFromSuperview];
+        [self setGlowView:nil];
+    }
 }
 
 @end

@@ -14,17 +14,23 @@
 
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
 {
-    [self startGlowingWithColor:UIColor.whiteColor fromIntensity:1. toIntensity:1. radius:20. overdub:3 animated:NO repeat:NO];
+    [super touchesBegan:touches withEvent:event];
+    
+    [self startGlowingWithColor:UIColor.whiteColor fromIntensity:1. toIntensity:1. radius:20. overdub:2 animated:NO repeat:NO];
 }
 
 - (void)touchesCancelled:(NSSet *)touches withEvent:(UIEvent *)event
 {
-    [self stopGlowing];
+    [super touchesCancelled:touches withEvent:event];
+    
+    [self stopGlowingAnimated:YES];
 }
 
 - (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event
 {
-    [self stopGlowing];
+    [super touchesEnded:touches withEvent:event];
+    
+    [self stopGlowingAnimated:YES];
 }
 
 @end

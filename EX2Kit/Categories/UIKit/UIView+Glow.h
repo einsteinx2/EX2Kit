@@ -26,6 +26,6 @@
 - (void) startGlowingWithColor:(UIColor *)color intensity:(CGFloat)intensity animated:(BOOL)animated;
 - (void) startGlowingWithColor:(UIColor*)color fromIntensity:(CGFloat)fromIntensity toIntensity:(CGFloat)toIntensity radius:(CGFloat)radius overdub:(NSUInteger)overdub animated:(BOOL)animated repeat:(BOOL)repeat;
 
-- (void) stopGlowing;
+- (void) stopGlowingAnimated:(BOOL)animated;
 
 @end
