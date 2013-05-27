@@ -136,6 +136,9 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
 
 - (void)queueAction:(id<EX2Action>)action
 {
+    if (!action)
+        return;
+    
     @synchronized(self.actionQueue)
     {
         DDLogVerbose(@"[EX2ActionQueue] queueAction: %@", action);
@@ -152,13 +155,16 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
     @synchronized(self.actionQueue)
     {
         DDLogVerbose(@"[EX2ActionQueue] cancelAction: %@", action);
-
-        // Remove the object from the queue
-        [self.actionQueue removeObjectIdenticalTo:action];
         
         // Set the state
         action.actionState = EX2ActionState_Cancelled;
         action.actionQueue = nil;
+        
+        // Remove the object from the queue
+        if (action)
+        {
+            [self.actionQueue removeObjectIdenticalTo:action];
+        }
         
         // Attempt to cancel the action
         return [action cancelAction];
@@ -176,7 +182,10 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
         action.actionQueue = nil;
         
         // For now just remove from the queue and start the next action, later we'll add automatic retrying
-        [self.actionQueue removeObjectIdenticalTo:action];
+        if (action)
+        {
+            [self.actionQueue removeObjectIdenticalTo:action];
+        }
     }
     
     // Run the next actions if needed
@@ -184,7 +193,10 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
 }
 
 - (void)actionFinished:(id<EX2Action>)action
-{    
+{
+    if (!action)
+        return;
+    
     @synchronized(self.actionQueue)
     {
         DDLogVerbose(@"[EX2ActionQueue] actionFinished: %@", action);
