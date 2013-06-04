@@ -149,6 +149,9 @@
     }
     
     [self clearInvisiblePages];
+    
+    // Ensure that the content offset is set properly in case an animation was in progress
+    [self setContentOffset:self.centerOffset animated:YES];
 }
 
 - (void)setCurrentPageIndex:(NSInteger)index
@@ -194,7 +197,7 @@
     if (index == self.currentPageIndex - 1 || index == self.currentPageIndex + 1)
     {
         CGFloat offset = index == self.currentPageIndex - 1 ? -self.width : self.width;
-        [self setContentOffset:CGPointMake(self.contentOffset.x + offset, 0.) animated:YES];
+        [self setContentOffset:CGPointMake(self.centerOffset.x + offset, 0.) animated:YES];
     }
     else if (self.currentPageIndex != index)
     {
