@@ -458,7 +458,7 @@ static void *key;
     
     if (SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"5.0"))
     {
-        [viewController addChildViewController:self];
+        [self addChildViewController:viewController];
     }
 	
     viewController.ex2NavigationController = self;
