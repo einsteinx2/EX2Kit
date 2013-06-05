@@ -48,7 +48,6 @@ static void *key;
 @end
 
 @interface EX2NavigationController()
-@property (strong, nonatomic) NSMutableArray *viewControllers;
 @property (nonatomic) BOOL isAnimating;
 @end
 
@@ -81,12 +80,16 @@ static void *key;
 	if (self = [super init])
 	{
         viewController.ex2NavigationController = self;
+        if (SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"5.0"))
+        {
+            [self addChildViewController:viewController];
+        }
 		
 		if (viewController)
 			_viewControllers = [[NSMutableArray alloc] initWithObjects:viewController, nil];
 		else
 			_viewControllers = [[NSMutableArray alloc] init];
-	}
+    }
 	return self;
 }
 
@@ -133,6 +136,11 @@ static void *key;
     
 	[self.view addSubview:self.navigationBar];
 	[self.view addSubview:self.contentView];
+    
+    if (SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"5.0"))
+    {
+        [[self.viewControllers firstObjectSafe] didMoveToParentViewController:self];
+    }
 }
 
 // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
@@ -377,6 +385,29 @@ static void *key;
 	{
         c.ex2NavigationController = nil;
 	}
+    
+    BOOL isAppearingAlreadyInStack = [self.viewControllers containsObject:appearing];
+
+    if (SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"5.0"))
+    {
+        for (UIViewController *controller in self.viewControllers)
+        {
+            if (controller != appearing)
+            {
+                [controller willMoveToParentViewController:nil];
+                [controller removeFromParentViewController];
+            }
+        }
+        
+        for (UIViewController *controller in vc)
+        {
+            if (controller == appearing && isAppearingAlreadyInStack)
+                continue;
+            
+            [self addChildViewController:controller];
+        }
+    }
+    
 	[self.viewControllers removeAllObjects];
 	[self.viewControllers addObjectsFromArraySafe:vc];
 	
@@ -397,6 +428,17 @@ static void *key;
 		[c.navigationItem.backBarButtonItem setAction:@selector(backItemTapped:)];
 	}
 	[self.navigationBar setItems:newItems animated:(animation != EX2NavigationControllerAnimationNone)];
+    
+    if (SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"5.0"))
+    {
+        for (UIViewController *controller in self.viewControllers)
+        {
+            if (controller == appearing && isAppearingAlreadyInStack)
+                continue;
+            
+            [controller didMoveToParentViewController:self];
+        }
+    }
 }
 
 - (void)pushViewController:(UIViewController *)viewController animated:(BOOL)animated
@@ -413,6 +455,11 @@ static void *key;
     {
         [self.delegate ex2NavigationController:self willShowViewController:viewController animated:(animation != EX2NavigationControllerAnimationNone)];
     }
+    
+    if (SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"5.0"))
+    {
+        [viewController addChildViewController:self];
+    }
 	
     viewController.ex2NavigationController = self;
 	UIViewController *disappearing = nil;
@@ -427,6 +474,11 @@ static void *key;
 	[self.navigationBar pushNavigationItem:viewController.navigationItem animated:(animation != EX2NavigationControllerAnimationNone)];
 	[self.navigationBar.topItem.backBarButtonItem setTarget: self];
 	[self.navigationBar.topItem.backBarButtonItem setAction: @selector(backItemTapped:)];
+    
+    if (SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"5.0"))
+    {
+        [viewController didMoveToParentViewController:self];
+    }
 }
 
 - (void)popViewControllerAnimated:(BOOL)animated
@@ -440,6 +492,13 @@ static void *key;
 		return;
     
 	UIViewController *disappearing = self.viewControllers.lastObject;
+    
+    if (SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"5.0"))
+    {
+        [disappearing willMoveToParentViewController:nil];
+        [disappearing removeFromParentViewController];
+    }
+    
     disappearing.ex2NavigationController = nil;
 	[self.viewControllers removeLastObject];
 	UIViewController *appearing = self.viewControllers.lastObject;

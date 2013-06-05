@@ -52,6 +52,8 @@ EX2NavigationControllerAnimation;
 @property (strong, nonatomic) IBOutlet UIView *contentView;
 @property (strong, nonatomic) IBOutlet id<EX2NavigationControllerDelegate> delegate;
 
+@property (strong, nonatomic) NSMutableArray *viewControllers;
+
 @property (nonatomic, getter=isNavigationBarHidden) BOOL navigationBarHidden;
 
 - (id)initWithRootViewController:(UIViewController *)viewController;
