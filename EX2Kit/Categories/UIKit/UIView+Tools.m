@@ -311,4 +311,32 @@
     }
 }
 
+- (BOOL)isChildOfView:(UIView *)aView
+{
+    UIView *superview = self.superview;
+    while (superview)
+    {
+        if (superview == aView)
+        {
+            return YES;
+        }
+        superview = superview.superview;
+    }
+    return NO;
+}
+
+- (BOOL)isChildOfViewType:(Class)aClass
+{
+    UIView *superview = self.superview;
+    while (superview)
+    {
+        if ([superview isKindOfClass:aClass])
+        {
+            return YES;
+        }
+        superview = superview.superview;
+    }
+    return NO;
+}
+
 @end

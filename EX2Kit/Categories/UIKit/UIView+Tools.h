@@ -47,4 +47,7 @@
 // Convert view from left to right to right to left layout for switching to Arabic/Hebrew
 - (void)convertToRTL;
 
+- (BOOL)isChildOfView:(UIView *)aView;
+- (BOOL)isChildOfViewType:(Class)aClass;
+
 @end
