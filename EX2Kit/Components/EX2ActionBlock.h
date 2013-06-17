@@ -22,7 +22,7 @@ typedef enum
 @property EX2ActionBlockRunType runType;
 
 // EX2Action protocol
-@property (unsafe_unretained) EX2ActionQueue *actionQueue;
+@property (weak) EX2ActionQueue *actionQueue;
 @property EX2ActionState actionState;
 - (void)runAction;
 

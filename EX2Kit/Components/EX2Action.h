@@ -22,7 +22,7 @@ typedef enum
 @protocol EX2Action <NSObject>
 
 @required
-@property (unsafe_unretained) EX2ActionQueue *actionQueue;
+@property (weak) EX2ActionQueue *actionQueue;
 @property EX2ActionState actionState;
 - (void)runAction;
 - (BOOL)cancelAction;

@@ -84,8 +84,6 @@
 		5304A28116901939009B2732 /* EX2Macros.h in Headers */ = {isa = PBXBuildFile; fileRef = 53F15F73162B9FCA00C24FC1 /* EX2Macros.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		5304A28216901939009B2732 /* EX2Static.h in Headers */ = {isa = PBXBuildFile; fileRef = 53F15F77162B9FCA00C24FC1 /* EX2Static.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		5304A28316901939009B2732 /* EX2Dispatch.h in Headers */ = {isa = PBXBuildFile; fileRef = 53F15F75162B9FCA00C24FC1 /* EX2Dispatch.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		5304A28A16901939009B2732 /* CommonKeyDerivation.h in Headers */ = {isa = PBXBuildFile; fileRef = 53E2F46F16684CCE00743BB8 /* CommonKeyDerivation.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		5304A28B16901939009B2732 /* CommonKeyDerivationPriv.h in Headers */ = {isa = PBXBuildFile; fileRef = 53E2F47016684CCE00743BB8 /* CommonKeyDerivationPriv.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		5304A28D16901939009B2732 /* CocoaLumberjack.h in Headers */ = {isa = PBXBuildFile; fileRef = 53F15F5E162B9FCA00C24FC1 /* CocoaLumberjack.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		5304A28E16901939009B2732 /* DDAbstractDatabaseLogger.h in Headers */ = {isa = PBXBuildFile; fileRef = 53F15F5F162B9FCA00C24FC1 /* DDAbstractDatabaseLogger.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		5304A28F16901939009B2732 /* DDASLLogger.h in Headers */ = {isa = PBXBuildFile; fileRef = 53F15F61162B9FCA00C24FC1 /* DDASLLogger.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -217,9 +215,6 @@
 		5398D07E16EE80BE002D8548 /* UIWebView+HideShadows.m in Sources */ = {isa = PBXBuildFile; fileRef = 5398D07C16EE80BE002D8548 /* UIWebView+HideShadows.m */; };
 		53CFE2F6170B83B000347CC8 /* UIButton+StretchBackground.h in Headers */ = {isa = PBXBuildFile; fileRef = 53CFE2F4170B83B000347CC8 /* UIButton+StretchBackground.h */; };
 		53CFE2F7170B83B000347CC8 /* UIButton+StretchBackground.m in Sources */ = {isa = PBXBuildFile; fileRef = 53CFE2F5170B83B000347CC8 /* UIButton+StretchBackground.m */; };
-		53E2F47316684CCE00743BB8 /* CommonKeyDerivation.c in Sources */ = {isa = PBXBuildFile; fileRef = 53E2F46E16684CCE00743BB8 /* CommonKeyDerivation.c */; };
-		53E2F47416684CCE00743BB8 /* CommonKeyDerivation.h in Headers */ = {isa = PBXBuildFile; fileRef = 53E2F46F16684CCE00743BB8 /* CommonKeyDerivation.h */; };
-		53E2F47516684CCE00743BB8 /* CommonKeyDerivationPriv.h in Headers */ = {isa = PBXBuildFile; fileRef = 53E2F47016684CCE00743BB8 /* CommonKeyDerivationPriv.h */; };
 		53E2F47616684CCE00743BB8 /* RNCryptor.h in Headers */ = {isa = PBXBuildFile; fileRef = 53E2F47116684CCE00743BB8 /* RNCryptor.h */; };
 		53E2F47716684CCE00743BB8 /* RNCryptor.m in Sources */ = {isa = PBXBuildFile; fileRef = 53E2F47216684CCE00743BB8 /* RNCryptor.m */; };
 		53F15EDA162B9F1B00C24FC1 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 53F15ED9162B9F1B00C24FC1 /* Foundation.framework */; };
@@ -375,9 +370,6 @@
 		53D44EA715AA56C700CDD3B8 /* EX2Kit-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "EX2Kit-Info.plist"; sourceTree = "<group>"; };
 		53D44EA915AA56C700CDD3B8 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		53D44EAB15AA56C700CDD3B8 /* EX2Kit-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "EX2Kit-Prefix.pch"; sourceTree = "<group>"; };
-		53E2F46E16684CCE00743BB8 /* CommonKeyDerivation.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = CommonKeyDerivation.c; sourceTree = "<group>"; };
-		53E2F46F16684CCE00743BB8 /* CommonKeyDerivation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommonKeyDerivation.h; sourceTree = "<group>"; };
-		53E2F47016684CCE00743BB8 /* CommonKeyDerivationPriv.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommonKeyDerivationPriv.h; sourceTree = "<group>"; };
 		53E2F47116684CCE00743BB8 /* RNCryptor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RNCryptor.h; sourceTree = "<group>"; };
 		53E2F47216684CCE00743BB8 /* RNCryptor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RNCryptor.m; sourceTree = "<group>"; };
 		53F15ED7162B9F1B00C24FC1 /* libEX2Kit.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libEX2Kit.a; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -653,9 +645,6 @@
 			isa = PBXGroup;
 			children = (
 				53F8851C16BB8EE200372A2D /* Old */,
-				53E2F46E16684CCE00743BB8 /* CommonKeyDerivation.c */,
-				53E2F46F16684CCE00743BB8 /* CommonKeyDerivation.h */,
-				53E2F47016684CCE00743BB8 /* CommonKeyDerivationPriv.h */,
 				53E2F47116684CCE00743BB8 /* RNCryptor.h */,
 				53E2F47216684CCE00743BB8 /* RNCryptor.m */,
 				53F884F516BB855A00372A2D /* RNCryptor+Private.h */,
@@ -1025,8 +1014,6 @@
 				5304A28116901939009B2732 /* EX2Macros.h in Headers */,
 				5304A28216901939009B2732 /* EX2Static.h in Headers */,
 				5304A28316901939009B2732 /* EX2Dispatch.h in Headers */,
-				5304A28A16901939009B2732 /* CommonKeyDerivation.h in Headers */,
-				5304A28B16901939009B2732 /* CommonKeyDerivationPriv.h in Headers */,
 				5304A28D16901939009B2732 /* CocoaLumberjack.h in Headers */,
 				5304A28E16901939009B2732 /* DDAbstractDatabaseLogger.h in Headers */,
 				5304A28F16901939009B2732 /* DDASLLogger.h in Headers */,
@@ -1128,8 +1115,6 @@
 				53145C17163F5E6400DE22F1 /* NSURL+QueryParameterDictionary.h in Headers */,
 				531CF183163D064A008F8AA7 /* UIImage+Cropping.h in Headers */,
 				533B3E54165D8FE000ECD75F /* NSURL+SkipBackupAttribute.h in Headers */,
-				53E2F47416684CCE00743BB8 /* CommonKeyDerivation.h in Headers */,
-				53E2F47516684CCE00743BB8 /* CommonKeyDerivationPriv.h in Headers */,
 				53E2F47616684CCE00743BB8 /* RNCryptor.h in Headers */,
 				53F884CD16BB61C000372A2D /* EX2Language.h in Headers */,
 				53F8850216BB855B00372A2D /* RNCryptor+Private.h in Headers */,
@@ -1388,7 +1373,6 @@
 				531CF184163D064A008F8AA7 /* UIImage+Cropping.m in Sources */,
 				53145C18163F5E6400DE22F1 /* NSURL+QueryParameterDictionary.m in Sources */,
 				533B3E55165D8FE000ECD75F /* NSURL+SkipBackupAttribute.m in Sources */,
-				53E2F47316684CCE00743BB8 /* CommonKeyDerivation.c in Sources */,
 				53E2F47716684CCE00743BB8 /* RNCryptor.m in Sources */,
 				53F884CF16BB61C000372A2D /* EX2Language.m in Sources */,
 				53F8850616BB855B00372A2D /* RNCryptorEngine.m in Sources */,
@@ -1594,7 +1578,7 @@
 				);
 				GCC_TREAT_WARNINGS_AS_ERRORS = YES;
 				HEADER_SEARCH_PATHS = "\"$(SRCROOT)\"/**";
-				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				ONLY_ACTIVE_ARCH = NO;
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1622,7 +1606,7 @@
 				GCC_PREPROCESSOR_DEFINITIONS = "IOS=1";
 				GCC_TREAT_WARNINGS_AS_ERRORS = YES;
 				HEADER_SEARCH_PATHS = "\"$(SRCROOT)\"/**";
-				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PUBLIC_HEADERS_FOLDER_PATH = "include/$(TARGET_NAME)";

@@ -24,7 +24,7 @@
 
 @interface EX2InfinitePagingScrollView : EX2LargerTouchScrollView <UIScrollViewDelegate>
 
-@property (nonatomic, unsafe_unretained) id<EX2InfinitePagingScrollViewDelegate> pagingDelegate;
+@property (nonatomic, weak) id<EX2InfinitePagingScrollViewDelegate> pagingDelegate;
 
 // Keyed on NSNumber of index, works like sparse array
 @property (nonatomic, strong) NSMutableDictionary *pageViews;

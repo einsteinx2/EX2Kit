@@ -33,7 +33,7 @@ EX2TabBarControllerAnimation;
 
 @interface EX2TabBarController : UIViewController <UITabBarDelegate>
 
-@property (nonatomic, unsafe_unretained) IBOutlet id<EX2TabBarControllerDelegate> ex2Delegate;
+@property (nonatomic, weak) IBOutlet id<EX2TabBarControllerDelegate> ex2Delegate;
 
 @property (nonatomic, strong) IBOutlet UIView *containerView;
 @property (nonatomic, strong) IBOutlet UITabBar *tabBar;
