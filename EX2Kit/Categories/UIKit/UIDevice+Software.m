@@ -8,6 +8,8 @@
 
 #import "UIDevice+Software.h"
 #import <sys/sysctl.h>
+#import <CoreTelephony/CTCallCenter.h>
+#import <CoreTelephony/CTCall.h>
 
 @implementation UIDevice (Software)
 
@@ -54,6 +56,17 @@
     
     return isJailbroken;
 #endif
+}
+
+- (BOOL)isOnPhoneCall
+{
+    CTCallCenter *callCenter = [[CTCallCenter alloc] init];
+    for (CTCall *call in callCenter.currentCalls)
+    {
+        if (call.callState != CTCallStateDisconnected)
+            return YES;
+    }
+    return NO;
 }
 
 @end
