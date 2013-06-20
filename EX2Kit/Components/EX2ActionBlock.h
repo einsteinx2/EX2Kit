@@ -26,6 +26,7 @@ typedef enum
 @property EX2ActionState actionState;
 - (void)runAction;
 
++ (id)block:(void(^)(void))actionBlock;
 - (id)initWithActionBlock:(void(^)(void))actionBlock;
 
 @end

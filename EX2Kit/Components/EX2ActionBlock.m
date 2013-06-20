@@ -10,6 +10,11 @@
 
 @implementation EX2ActionBlock
 
++ (id)block:(void(^)(void))actionBlock
+{
+    return [[EX2ActionBlock alloc] initWithActionBlock:actionBlock];
+}
+
 - (id)initWithActionBlock:(void(^)(void))actionBlock
 {
     if ((self = [super init]))
