@@ -33,6 +33,11 @@ static __strong NSMutableDictionary *_activeFilePaths;
 
 static const int ddLogLevel = LOG_LEVEL_INFO;
 
++ (NSDictionary *)openFilePaths
+{
+    return [NSDictionary dictionaryWithDictionary:_activeFilePaths];
+}
+
 + (void)registerOpenFilePath:(NSString *)path
 {
     if (!path)

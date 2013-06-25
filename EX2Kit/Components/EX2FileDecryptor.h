@@ -29,6 +29,7 @@
 
 - (void)closeFile;
 
++ (NSDictionary *)openFilePaths;
 + (void)registerOpenFilePath:(NSString *)path;
 + (void)unregisterOpenFilePath:(NSString *)path;
 + (BOOL)isFilePathInUse:(NSString *)path;
