@@ -27,6 +27,9 @@ typedef enum
 @property NSUInteger numberOfConcurrentActions;
 @property NSTimeInterval delayBetweenActions;
 
+- (BOOL)isActionInQueue:(id<EX2Action>)action;
+- (BOOL)isActionOfTypeInQueue:(Class)type;
+
 - (void)startQueue;
 - (void)stopQueue:(BOOL)cancelRunningActions;
 - (void)clearQueue;

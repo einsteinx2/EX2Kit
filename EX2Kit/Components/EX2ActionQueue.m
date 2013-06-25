@@ -60,6 +60,29 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
     }
 }
 
+- (BOOL)isActionInQueue:(id<EX2Action>)action
+{
+    @synchronized(self.actionQueue)
+    {
+        return [self.actionQueue containsObject:action];
+    }
+}
+
+- (BOOL)isActionOfTypeInQueue:(Class)type
+{
+    @synchronized(self.actionQueue)
+    {
+        for (id object in self.actionQueue)
+        {
+            if ([object isKindOfClass:type])
+            {
+                return YES;
+            }
+        }
+        return NO;
+    }
+}
+
 - (void)startQueue
 {                 
     @synchronized(self.actionQueue)
