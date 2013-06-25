@@ -79,6 +79,7 @@
     if (frame.size.height == 0)
     {
         frame.size.height = 40.;
+        self.frame = frame;
     }
     if (frame.size.width == 0)
     {
@@ -150,6 +151,33 @@
 - (NSInteger)selectedSegmentIndex
 {
     return _selectedSegmentIndex;
+}
+
+- (void)setSegmentMargin:(CGFloat)segmentMargin
+{
+    if (_segmentMargin != segmentMargin)
+    {
+        _segmentMargin = segmentMargin;
+        [self adjustSize];
+    }
+}
+
+- (void)setSelectedFont:(UIFont *)selectedFont
+{
+    if (![_selectedFont isEqual:selectedFont])
+    {
+        _selectedFont = selectedFont;
+        [self adjustSize];
+    }
+}
+
+- (void)setUnselectedFont:(UIFont *)unselectedFont
+{
+    if (![_unselectedFont isEqual:unselectedFont])
+    {
+        _unselectedFont = unselectedFont;
+        [self adjustSize];
+    }
 }
 
 #pragma mark - Helper Methods

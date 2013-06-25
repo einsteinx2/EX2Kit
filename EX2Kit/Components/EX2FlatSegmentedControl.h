@@ -19,7 +19,7 @@
 @property (nonatomic, strong) UIFont *selectedFont;
 @property (nonatomic, strong) UIFont *unselectedFont;
 
-@property CGFloat segmentMargin;
+@property (nonatomic) CGFloat segmentMargin;
 @property (nonatomic, strong) NSArray *items;
 
 @end
