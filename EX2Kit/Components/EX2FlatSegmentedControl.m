@@ -68,7 +68,7 @@
     self.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin;
     
     self.layer.borderColor = gray.CGColor;
-    self.layer.borderWidth = 1.;
+    self.layer.borderWidth = .5;
     self.layer.cornerRadius = 5.;
     self.clipsToBounds = YES;
 }
@@ -222,7 +222,7 @@
 
 - (UIView *)createSpacerView:(UIView *)segmentView
 {
-    UIView *spacerView = [[UIView alloc] initWithFrame:CGRectMake(segmentView.width - 1., 0., 2., self.height)];
+    UIView *spacerView = [[UIView alloc] initWithFrame:CGRectMake(segmentView.width - .5, 0., 1., self.height)];
     spacerView.backgroundColor = self.borderColor;
     spacerView.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleLeftMargin;
     return spacerView;
