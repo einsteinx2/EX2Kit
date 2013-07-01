@@ -56,6 +56,8 @@ EX2NavigationControllerAnimation;
 
 @property (nonatomic, getter=isNavigationBarHidden) BOOL navigationBarHidden;
 
+@property (nonatomic, readonly) UIViewController *rootViewController;
+
 - (id)initWithRootViewController:(UIViewController *)viewController;
 
 - (void)setViewControllers:(NSArray *)vc withAnimation:(EX2NavigationControllerAnimation)animation;

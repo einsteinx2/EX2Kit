@@ -557,4 +557,9 @@ static void *key;
     animated ? [UIView animateWithDuration:.33 animations:animationBlock] : animationBlock();
 }
 
+- (UIViewController *)rootViewController
+{
+    return [self.viewControllers firstObjectSafe];
+}
+
 @end
