@@ -339,4 +339,19 @@
     return NO;
 }
 
+- (void)centerHorizontally
+{
+    self.center = CGPointMake(self.superview.width / 2., self.center.y);
+}
+
+- (void)centerVertically
+{
+    self.center = CGPointMake(self.center.x, self.superview.height / 2.);
+}
+
+- (void)centerHorizontallyAndVertically
+{
+    self.center = CGPointMake(self.superview.width / 2., self.superview.height / 2.);
+}
+
 @end

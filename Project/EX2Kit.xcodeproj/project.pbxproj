@@ -104,6 +104,8 @@
 		530BAD0E1771A31B00208A9E /* NSArray+Plist.h in Headers */ = {isa = PBXBuildFile; fileRef = 530BAD0B1771A31B00208A9E /* NSArray+Plist.h */; };
 		530BAD0F1771A31B00208A9E /* NSArray+Plist.m in Sources */ = {isa = PBXBuildFile; fileRef = 530BAD0C1771A31B00208A9E /* NSArray+Plist.m */; };
 		530BAD101771A31B00208A9E /* NSArray+Plist.m in Sources */ = {isa = PBXBuildFile; fileRef = 530BAD0C1771A31B00208A9E /* NSArray+Plist.m */; };
+		530EAC3E1781D20000346E4E /* UIImage+Reflection.h in Headers */ = {isa = PBXBuildFile; fileRef = 530EAC3C1781D20000346E4E /* UIImage+Reflection.h */; };
+		530EAC3F1781D20000346E4E /* UIImage+Reflection.m in Sources */ = {isa = PBXBuildFile; fileRef = 530EAC3D1781D20000346E4E /* UIImage+Reflection.m */; };
 		5311346C174C312A00DB199B /* UIView+Glow.h in Headers */ = {isa = PBXBuildFile; fileRef = 5311346A174C312A00DB199B /* UIView+Glow.h */; };
 		5311346D174C312A00DB199B /* UIView+Glow.m in Sources */ = {isa = PBXBuildFile; fileRef = 5311346B174C312A00DB199B /* UIView+Glow.m */; };
 		53113470174C361900DB199B /* EX2GlowButton.h in Headers */ = {isa = PBXBuildFile; fileRef = 5311346E174C361900DB199B /* EX2GlowButton.h */; };
@@ -339,6 +341,8 @@
 		5304A29C16901BC6009B2732 /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.8.sdk/usr/lib/libz.dylib; sourceTree = DEVELOPER_DIR; };
 		530BAD0B1771A31B00208A9E /* NSArray+Plist.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSArray+Plist.h"; sourceTree = "<group>"; };
 		530BAD0C1771A31B00208A9E /* NSArray+Plist.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSArray+Plist.m"; sourceTree = "<group>"; };
+		530EAC3C1781D20000346E4E /* UIImage+Reflection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+Reflection.h"; sourceTree = "<group>"; };
+		530EAC3D1781D20000346E4E /* UIImage+Reflection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Reflection.m"; sourceTree = "<group>"; };
 		5311346A174C312A00DB199B /* UIView+Glow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+Glow.h"; sourceTree = "<group>"; };
 		5311346B174C312A00DB199B /* UIView+Glow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+Glow.m"; sourceTree = "<group>"; };
 		5311346E174C361900DB199B /* EX2GlowButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EX2GlowButton.h; sourceTree = "<group>"; };
@@ -851,6 +855,8 @@
 				53CFE2F5170B83B000347CC8 /* UIButton+StretchBackground.m */,
 				5311346A174C312A00DB199B /* UIView+Glow.h */,
 				5311346B174C312A00DB199B /* UIView+Glow.m */,
+				530EAC3C1781D20000346E4E /* UIImage+Reflection.h */,
+				530EAC3D1781D20000346E4E /* UIImage+Reflection.m */,
 			);
 			path = UIKit;
 			sourceTree = "<group>";
@@ -1156,6 +1162,7 @@
 				533DA5C9174EAD570064A3E1 /* EX2ActionBlock.h in Headers */,
 				530BAD0D1771A31B00208A9E /* NSArray+Plist.h in Headers */,
 				535C7F691779BFB800C4FA45 /* EX2FlatSegmentedControl.h in Headers */,
+				530EAC3E1781D20000346E4E /* UIImage+Reflection.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1415,6 +1422,7 @@
 				533DA5CB174EAD570064A3E1 /* EX2ActionBlock.m in Sources */,
 				530BAD0F1771A31B00208A9E /* NSArray+Plist.m in Sources */,
 				535C7F6A1779BFB800C4FA45 /* EX2FlatSegmentedControl.m in Sources */,
+				530EAC3F1781D20000346E4E /* UIImage+Reflection.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

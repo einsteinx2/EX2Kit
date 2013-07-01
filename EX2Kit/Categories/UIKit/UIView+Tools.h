@@ -50,4 +50,8 @@
 - (BOOL)isChildOfView:(UIView *)aView;
 - (BOOL)isChildOfViewType:(Class)aClass;
 
+- (void)centerHorizontally;
+- (void)centerVertically;
+- (void)centerHorizontallyAndVertically;
+
 @end

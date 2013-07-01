@@ -14,6 +14,7 @@
 #import "UIDevice+Software.h"
 #import "UIViewController+IsVisible.h"
 #import "UITableView+Shadows.h"
+#import "UIImage+Reflection.h"
 #import "UIImageView+Reflection.h"
 #import "UIBezierPath+Smoothing.h"
 #import "UIColor+ColorWithHex.h"
