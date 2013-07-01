@@ -55,6 +55,7 @@
     _selectedSegmentIndex = -1;
     _items = [NSMutableArray array];
     _segmentMargin = 20.;
+    _borderWidth = .5;
     
     UIColor *gray = [UIColor colorWithHexString:@"707070"];
     
@@ -68,7 +69,7 @@
     self.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin;
     
     self.layer.borderColor = gray.CGColor;
-    self.layer.borderWidth = .5;
+    self.layer.borderWidth = _borderWidth;
     self.layer.cornerRadius = 5.;
     self.clipsToBounds = YES;
 }
@@ -180,27 +181,48 @@
     }
 }
 
+- (void)setBorderWidth:(CGFloat)borderWidth
+{
+    _borderWidth = borderWidth;
+    self.layer.borderWidth = _borderWidth;
+}
+
+- (void)setStaticWidth:(CGFloat)staticWidth
+{
+    _staticWidth = staticWidth;
+    [self adjustSize];
+}
+
 #pragma mark - Helper Methods
 
 // Adjust size so that all segments are equally sized and fit
 - (void)adjustSize
 {
-    // Find the largest label size
-    __block CGFloat maxWidth = 0.;
-    for (UILabel *item in _items)
+    if (self.items.count == 0)
     {
-        // Use the largest font for sizing
-        UIFont *sizingFont = self.selectedFont;
-        if (self.unselectedFont.pointSize > self.selectedFont.pointSize)
-            sizingFont = self.unselectedFont;
-        
-        CGFloat width = [item.text sizeWithFont:sizingFont].width;
-        if (width > maxWidth)
-            maxWidth = width;
+        self.width = 0.;
+        return;
     }
     
-    // Add the margins
-    maxWidth += (self.segmentMargin * 2);
+    // Find the largest label size or use the static size
+    __block CGFloat maxWidth = self.staticWidth / self.items.count;
+    if (maxWidth == 0.)
+    {
+        for (UILabel *item in _items)
+        {
+            // Use the largest font for sizing
+            UIFont *sizingFont = self.selectedFont;
+            if (self.unselectedFont.pointSize > self.selectedFont.pointSize)
+                sizingFont = self.unselectedFont;
+            
+            CGFloat width = [item.text sizeWithFont:sizingFont].width;
+            if (width > maxWidth)
+                maxWidth = width;
+        }
+        
+        // Add the margins
+        maxWidth += (self.segmentMargin * 2);
+    }
     
     // Adjust all segments to match that size
     [_items enumerateObjectsUsingBlock:^(UILabel *item, NSUInteger index, BOOL *stop)

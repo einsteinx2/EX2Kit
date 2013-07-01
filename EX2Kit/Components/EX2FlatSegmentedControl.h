@@ -20,6 +20,8 @@
 @property (nonatomic, strong) UIFont *unselectedFont;
 
 @property (nonatomic) CGFloat segmentMargin;
+@property (nonatomic) CGFloat borderWidth;
+@property (nonatomic) CGFloat staticWidth; // Use a predefined width instead of auto-sizing based on the text
 @property (nonatomic, strong) NSArray *items;
 
 @end
