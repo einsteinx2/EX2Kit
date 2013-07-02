@@ -51,7 +51,8 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
             _activeFilePaths = [NSMutableDictionary dictionaryWithCapacity:10];
         }
         
-        // Note that if the entry doesn't exist, this still works because [_activeFilePaths[path] unsignedIntegerValue] evaluates to 0
+        // Note that if the entry doesn't exist, this still works because [_activeFilePaths[path] integerValue] evaluates to 0
+        // when _activeFilePaths[path] is nil
         NSInteger adjustedValue = [_activeFilePaths[path] integerValue] + 1;
         _activeFilePaths[path] = @(adjustedValue);
         
