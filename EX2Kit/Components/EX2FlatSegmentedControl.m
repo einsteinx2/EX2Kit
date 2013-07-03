@@ -329,7 +329,7 @@
     }
     
     // Adjust the selected segment index if necessary
-    if (self.selectedSegmentIndex >= index)
+    if (self.selectedSegmentIndex >= index && self.selectedSegmentIndex != _items.count - 1)
     {
         self.selectedSegmentIndex++;
     }
