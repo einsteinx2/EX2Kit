@@ -54,4 +54,8 @@
 - (void)centerVertically;
 - (void)centerHorizontallyAndVertically;
 
+- (void)centerHorizontallyInBounds:(CGRect)bounds;
+- (void)centerVerticallyInBounds:(CGRect)bounds;
+- (void)centerHorizontallyAndVerticallyInBounds:(CGRect)bounds;
+
 @end

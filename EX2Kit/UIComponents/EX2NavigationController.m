@@ -134,8 +134,8 @@ static void *key;
         self.contentView.frame = self.view.bounds;
     }
     
+    [self.view addSubview:self.contentView];
 	[self.view addSubview:self.navigationBar];
-	[self.view addSubview:self.contentView];
     
     if (SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"5.0"))
     {

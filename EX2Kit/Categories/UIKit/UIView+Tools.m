@@ -341,17 +341,32 @@
 
 - (void)centerHorizontally
 {
-    self.center = CGPointMake(self.superview.width / 2., self.center.y);
+    [self centerHorizontallyInBounds:self.superview.bounds];
 }
 
 - (void)centerVertically
 {
-    self.center = CGPointMake(self.center.x, self.superview.height / 2.);
+    [self centerVerticallyInBounds:self.superview.bounds];
 }
 
 - (void)centerHorizontallyAndVertically
 {
-    self.center = CGPointMake(self.superview.width / 2., self.superview.height / 2.);
+    [self centerHorizontallyAndVerticallyInBounds:self.superview.bounds];
+}
+
+- (void)centerHorizontallyInBounds:(CGRect)bounds
+{
+    self.center = CGPointMake(bounds.size.width / 2., self.center.y);
+}
+
+- (void)centerVerticallyInBounds:(CGRect)bounds
+{
+    self.center = CGPointMake(self.center.x, bounds.size.height / 2.);
+}
+
+- (void)centerHorizontallyAndVerticallyInBounds:(CGRect)bounds
+{
+    self.center = CGPointMake(bounds.size.width / 2., bounds.size.height / 2.);
 }
 
 @end
