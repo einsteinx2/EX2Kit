@@ -25,19 +25,29 @@
 		return [NSString stringWithFormat:@"%i:%i", mins, secs];
 }
 
-+ (NSString *)formatTimeHoursMinutes:(double)seconds
++ (NSString *)formatTimeHoursMinutes:(double)seconds hideHoursIfZero:(BOOL)hideHoursIfZero
 {
 	if (seconds <= 0)
-		return @"0h00m";
+		return  hideHoursIfZero ? @"00m" : @"0h00m";
     
 	NSUInteger roundedSeconds = floor(seconds);
 	
     int hours = (int) roundedSeconds / 3600;
 	int mins = (int) (roundedSeconds % 3600) / 60;
-	if (mins < 10)
-		return [NSString stringWithFormat:@"%ih0%im", hours, mins];
-	else
-		return [NSString stringWithFormat:@"%ih%im", hours, mins];
+    if (hideHoursIfZero && hours == 0)
+    {
+        if (mins < 10)
+            return [NSString stringWithFormat:@"0%im", mins];
+        else
+            return [NSString stringWithFormat:@"%im", mins];
+    }
+    else
+    {
+        if (mins < 10)
+            return [NSString stringWithFormat:@"%ih0%im", hours, mins];
+        else
+            return [NSString stringWithFormat:@"%ih%im", hours, mins];
+    }
 }
 
 + (NSString *)formatTimeDecimalHours:(double)seconds
