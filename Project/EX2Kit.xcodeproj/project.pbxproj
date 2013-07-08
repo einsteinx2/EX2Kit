@@ -141,6 +141,8 @@
 		5355F243172795470020873D /* EX2InfinitePagingScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5355F241172795470020873D /* EX2InfinitePagingScrollView.m */; };
 		535C7F691779BFB800C4FA45 /* EX2FlatSegmentedControl.h in Headers */ = {isa = PBXBuildFile; fileRef = 535C7F671779BFB800C4FA45 /* EX2FlatSegmentedControl.h */; };
 		535C7F6A1779BFB800C4FA45 /* EX2FlatSegmentedControl.m in Sources */ = {isa = PBXBuildFile; fileRef = 535C7F681779BFB800C4FA45 /* EX2FlatSegmentedControl.m */; };
+		53621DBB178AB4D000C605FA /* NSArray+Reverse.h in Headers */ = {isa = PBXBuildFile; fileRef = 53621DB9178AB4D000C605FA /* NSArray+Reverse.h */; };
+		53621DBC178AB4D000C605FA /* NSArray+Reverse.m in Sources */ = {isa = PBXBuildFile; fileRef = 53621DBA178AB4D000C605FA /* NSArray+Reverse.m */; };
 		5373A931162DD71F0016A019 /* EX2Kit.h in Headers */ = {isa = PBXBuildFile; fileRef = 53F15F71162B9FCA00C24FC1 /* EX2Kit.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		5373A932162DD71F0016A019 /* EX2Categories.h in Headers */ = {isa = PBXBuildFile; fileRef = 53F15EF7162B9FCA00C24FC1 /* EX2Categories.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		5373A933162DD71F0016A019 /* EX2FoundationCategories.h in Headers */ = {isa = PBXBuildFile; fileRef = 53F15EF9162B9FCA00C24FC1 /* EX2FoundationCategories.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -369,6 +371,8 @@
 		5355F241172795470020873D /* EX2InfinitePagingScrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EX2InfinitePagingScrollView.m; sourceTree = "<group>"; };
 		535C7F671779BFB800C4FA45 /* EX2FlatSegmentedControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EX2FlatSegmentedControl.h; path = ../Components/EX2FlatSegmentedControl.h; sourceTree = "<group>"; };
 		535C7F681779BFB800C4FA45 /* EX2FlatSegmentedControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = EX2FlatSegmentedControl.m; path = ../Components/EX2FlatSegmentedControl.m; sourceTree = "<group>"; };
+		53621DB9178AB4D000C605FA /* NSArray+Reverse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSArray+Reverse.h"; sourceTree = "<group>"; };
+		53621DBA178AB4D000C605FA /* NSArray+Reverse.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSArray+Reverse.m"; sourceTree = "<group>"; };
 		537CBC8E173DB935001989CE /* EX2LargerTouchScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EX2LargerTouchScrollView.h; sourceTree = "<group>"; };
 		537CBC8F173DB935001989CE /* EX2LargerTouchScrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EX2LargerTouchScrollView.m; sourceTree = "<group>"; };
 		537CBC96173DDE61001989CE /* NSNumber+CleanString.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSNumber+CleanString.h"; sourceTree = "<group>"; };
@@ -768,6 +772,8 @@
 				53F15F01162B9FCA00C24FC1 /* NSMutableArray+Safe.m */,
 				530BAD0B1771A31B00208A9E /* NSArray+Plist.h */,
 				530BAD0C1771A31B00208A9E /* NSArray+Plist.m */,
+				53621DB9178AB4D000C605FA /* NSArray+Reverse.h */,
+				53621DBA178AB4D000C605FA /* NSArray+Reverse.m */,
 			);
 			path = NSArray;
 			sourceTree = "<group>";
@@ -1163,6 +1169,7 @@
 				530BAD0D1771A31B00208A9E /* NSArray+Plist.h in Headers */,
 				535C7F691779BFB800C4FA45 /* EX2FlatSegmentedControl.h in Headers */,
 				530EAC3E1781D20000346E4E /* UIImage+Reflection.h in Headers */,
+				53621DBB178AB4D000C605FA /* NSArray+Reverse.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1423,6 +1430,7 @@
 				530BAD0F1771A31B00208A9E /* NSArray+Plist.m in Sources */,
 				535C7F6A1779BFB800C4FA45 /* EX2FlatSegmentedControl.m in Sources */,
 				530EAC3F1781D20000346E4E /* UIImage+Reflection.m in Sources */,
+				53621DBC178AB4D000C605FA /* NSArray+Reverse.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
