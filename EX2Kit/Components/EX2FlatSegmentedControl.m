@@ -9,6 +9,9 @@
 #import "EX2FlatSegmentedControl.h"
 #import <QuartzCore/QuartzCore.h>
 
+#define UnselectedGradientName @"unselected"
+#define SelectedGradientName @"selected"
+
 @implementation EX2FlatSegmentedControl
 {
     NSUInteger _selectedSegmentIndex;
@@ -104,7 +107,8 @@
     NSMutableArray *itemStrings = [NSMutableArray array];
     for (UILabel *item in _items)
     {
-        [itemStrings addObjectSafe:item.text];
+        UILabel *label = item.subviews.firstObjectSafe;
+        [itemStrings addObjectSafe:label.text];
     }
     return [NSArray arrayWithArray:itemStrings];
 }
@@ -122,7 +126,8 @@
     // Fix the spacer colors
     for (UIView *item in _items)
     {
-        UIView *spacer = item.subviews.firstObjectSafe;
+        UILabel *label = item.subviews.firstObjectSafe;
+        UIView *spacer = label.subviews.firstObjectSafe;
         spacer.backgroundColor = borderColor;
     }
 }
@@ -131,6 +136,34 @@
 {
     _selectedBackgroundColor = selectedBackgroundColor;
     [self highlightSelectedSegment];
+}
+
+- (void)setUnselectedBackgroundGradientStart:(UIColor *)unselectedBackgroundGradientStart
+{
+    _unselectedBackgroundGradientStart = unselectedBackgroundGradientStart;
+    
+    self.isUseGradient ? [self createGradientLayersForItems] : [self removeGradientLayersForItems];
+}
+
+- (void)setUnselectedBackgroundGradientEnd:(UIColor *)unselectedBackgroundGradientEnd
+{
+    _unselectedBackgroundGradientEnd = unselectedBackgroundGradientEnd;
+    
+    self.isUseGradient ? [self createGradientLayersForItems] : [self removeGradientLayersForItems];
+}
+
+- (void)setSelectedBackgroundGradientStart:(UIColor *)selectedBackgroundGradientStart
+{
+    _selectedBackgroundGradientStart = selectedBackgroundGradientStart;
+    
+    self.isUseGradient ? [self createGradientLayersForItems] : [self removeGradientLayersForItems];
+}
+
+- (void)setSelectedBackgroundGradientEnd:(UIColor *)selectedBackgroundGradientEnd
+{
+    _selectedBackgroundGradientEnd = selectedBackgroundGradientEnd;
+    
+    self.isUseGradient ? [self createGradientLayersForItems] : [self removeGradientLayersForItems];
 }
 
 - (void)setSelectedTextColor:(UIColor *)selectedTextColor
@@ -229,6 +262,11 @@
     [_items enumerateObjectsUsingBlock:^(UILabel *item, NSUInteger index, BOOL *stop)
      {
          item.frame = CGRectMake(index * maxWidth, 0., maxWidth, self.height);
+         
+         if (self.isUseGradient)
+         {
+             [self adjustGradientLayerSizesForItems];
+         }
      }];
     
     self.width = _items.count * maxWidth;
@@ -237,9 +275,28 @@
 - (void)highlightSelectedSegment
 {
     [_items enumerateObjectsUsingBlock:^(UILabel *item, NSUInteger index, BOOL *stop) {
-        item.backgroundColor = index == self.selectedSegmentIndex ? self.selectedBackgroundColor : UIColor.clearColor;
-        item.textColor = index == self.selectedSegmentIndex ? self.selectedTextColor : self.unselectedTextColor;
-        item.font = index == self.selectedSegmentIndex ? self.selectedFont : self.unselectedFont;
+        if (self.isUseGradient)
+        {
+            for (CALayer *layer in item.layer.sublayers)
+            {
+                if ([layer.name isEqualToString:SelectedGradientName])
+                {
+                    layer.opacity = index == self.selectedSegmentIndex ? 1. : 0.;
+                }
+                else if ([layer.name isEqualToString:UnselectedGradientName])
+                {
+                    layer.opacity = index == self.selectedSegmentIndex ? 0. : 1.;
+                }
+            }
+        }
+        else
+        {
+            item.backgroundColor = index == self.selectedSegmentIndex ? self.selectedBackgroundColor : UIColor.clearColor;
+        }
+        
+        UILabel *label = item.subviews.firstObjectSafe;
+        label.textColor = index == self.selectedSegmentIndex ? self.selectedTextColor : self.unselectedTextColor;
+        label.font = index == self.selectedSegmentIndex ? self.selectedFont : self.unselectedFont;
     }];
 }
 
@@ -304,8 +361,18 @@
     segmentView.font = self.unselectedFont;
     segmentView.backgroundColor = UIColor.clearColor;
     segmentView.userInteractionEnabled = YES;
-    segmentView.autoresizingMask = UIViewAutoresizingFlexibleHeight;
+    segmentView.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
     [segmentView addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleSelect:)]];
+    
+    // Create the holder view
+    UIView *holderView = [[UIView alloc] init];
+    [holderView addSubview:segmentView];
+    
+    // Add the gradient if necessary
+    if (self.isUseGradient)
+    {
+        [self createGradientLayersForItem:holderView];
+    }
     
     // Insert it at the correct position
     index = index >= self.numberOfSegments ? self.numberOfSegments : index;
@@ -315,8 +382,8 @@
         [segmentView addSubview:[self createSpacerView:segmentView]];
         
         // Insert the segment
-        [self insertSubview:segmentView belowSubview:_items[index]];
-        [_items insertObject:segmentView atIndex:index];
+        [self insertSubview:holderView belowSubview:_items[index]];
+        [_items insertObject:holderView atIndex:index];
     }
     else
     {
@@ -324,8 +391,8 @@
         [_items.lastObject addSubview:[self createSpacerView:_items.lastObject]];
         
         // Add the segment to the end
-        [self addSubview:segmentView];
-        [_items addObject:segmentView];
+        [self addSubview:holderView];
+        [_items addObject:holderView];
     }
     
     // Adjust the selected segment index if necessary
@@ -345,6 +412,95 @@
     else
     {
         [self adjustSize];
+    }
+}
+
+- (BOOL)isUseGradient
+{
+    return self.unselectedBackgroundGradientStart && self.unselectedBackgroundGradientEnd && self.selectedBackgroundGradientStart && self.selectedBackgroundGradientEnd;
+}
+            
+- (CAGradientLayer *)createGradientLayerForItem:(UIView *)item startColor:(UIColor *)startColor endColor:(UIColor *)endColor
+{
+    CAGradientLayer *gradient = [[CAGradientLayer alloc] init];
+    gradient.bounds = item.layer.bounds;
+    gradient.contentsScale = item.layer.contentsScale;
+    gradient.colors = @[(__bridge id)startColor.CGColor, (__bridge id)endColor.CGColor];
+    gradient.startPoint = CGPointMake(.5, 0.);
+    gradient.endPoint = CGPointMake(.5, 1.);
+    return gradient;
+}
+
+- (void)removeGradientLayersForItem:(UIView *)item
+{
+    for (CALayer *layer in item.layer.sublayers)
+    {
+        if ([layer.name isEqualToString:UnselectedGradientName] || [layer.name isEqualToString:SelectedGradientName])
+        {
+            [layer removeFromSuperlayer];
+        }
+    }
+}
+
+- (void)removeGradientLayersForItems
+{
+    for (UIView *item in _items)
+    {
+        [self removeGradientLayersForItem:item];
+    }
+    
+    [self highlightSelectedSegment];
+}
+
+- (void)createGradientLayersForItem:(UIView *)item
+{
+    // Remove existing gradient layers
+    [self removeGradientLayersForItem:item];
+    
+    // Add gradient layers
+    CAGradientLayer *unselectedGradient = [self createGradientLayerForItem:item
+                                                                startColor:self.unselectedBackgroundGradientStart
+                                                                  endColor:self.unselectedBackgroundGradientEnd];
+    unselectedGradient.name = UnselectedGradientName;
+    CAGradientLayer *selectedGradient = [self createGradientLayerForItem:item
+                                                              startColor:self.selectedBackgroundGradientStart
+                                                                endColor:self.selectedBackgroundGradientEnd];
+    selectedGradient.name = SelectedGradientName;
+    selectedGradient.opacity = 0.;
+    [item.layer insertSublayer:selectedGradient atIndex:0];
+    [item.layer insertSublayer:unselectedGradient atIndex:0];
+}
+
+- (void)createGradientLayersForItems
+{
+    for (UIView *item in _items)
+    {
+        [self createGradientLayersForItem:item];
+    }
+    
+    [self highlightSelectedSegment];
+}
+
+- (void)adjustGradientLayerSizeForItem:(UIView *)item
+{
+    for (CALayer *layer in item.layer.sublayers)
+    {
+        if ([layer.name isEqualToString:UnselectedGradientName] || [layer.name isEqualToString:SelectedGradientName])
+        {
+            CGRect bounds = item.layer.bounds;
+            bounds.size.width *= layer.contentsScale;
+            bounds.size.height *= layer.contentsScale;
+            
+            layer.frame = bounds;
+        }
+    }
+}
+
+- (void)adjustGradientLayerSizesForItems
+{
+    for (UIView *item in _items)
+    {
+        [self adjustGradientLayerSizeForItem:item];
     }
 }
 
@@ -397,7 +553,7 @@
 
 - (void)handleSelect:(UIGestureRecognizer *)gestureRecognizer
 {
-    NSUInteger index = [_items indexOfObject:gestureRecognizer.view];
+    NSUInteger index = [_items indexOfObject:gestureRecognizer.view.superview];
     if (index != NSNotFound)
     {
         // Set the new selected index
