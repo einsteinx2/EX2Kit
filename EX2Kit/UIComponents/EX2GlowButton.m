@@ -12,11 +12,44 @@
 
 @implementation EX2GlowButton
 
+- (void)setup
+{
+    _glowColor = UIColor.whiteColor;
+    _fromIntensity = 1.;
+    _toIntensity = 1.;
+    _radius = 20.;
+    _overdub = 2;
+}
+
+- (id)initWithCoder:(NSCoder *)aDecoder
+{
+    if (self = [super initWithCoder:aDecoder])
+    {
+        [self setup];
+    }
+    return self;
+}
+
+- (id)initWithFrame:(CGRect)frame
+{
+    if (self = [super initWithFrame:frame])
+    {
+        [self setup];
+    }
+    return self;
+}
+
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
 {
     [super touchesBegan:touches withEvent:event];
     
-    [self startGlowingWithColor:UIColor.whiteColor fromIntensity:1. toIntensity:1. radius:20. overdub:2 animated:NO repeat:NO];
+    [self startGlowingWithColor:self.glowColor
+                  fromIntensity:self.fromIntensity
+                    toIntensity:self.toIntensity
+                         radius:self.radius
+                        overdub:self.overdub
+                       animated:NO
+                         repeat:NO];
 }
 
 - (void)touchesCancelled:(NSSet *)touches withEvent:(UIEvent *)event

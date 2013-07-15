@@ -10,4 +10,10 @@
 
 @interface EX2GlowButton : UIButton
 
+@property (nonatomic, strong) UIColor *glowColor;
+@property (nonatomic) CGFloat fromIntensity;
+@property (nonatomic) CGFloat toIntensity;
+@property (nonatomic) CGFloat radius;
+@property (nonatomic) NSUInteger overdub;
+
 @end
