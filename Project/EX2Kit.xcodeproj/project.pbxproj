@@ -127,6 +127,8 @@
 		5339E20416360B9F007628C0 /* EX2Kit.m in Sources */ = {isa = PBXBuildFile; fileRef = 5339E20316360B9E007628C0 /* EX2Kit.m */; };
 		533B3E54165D8FE000ECD75F /* NSURL+SkipBackupAttribute.h in Headers */ = {isa = PBXBuildFile; fileRef = 533B3E52165D8FE000ECD75F /* NSURL+SkipBackupAttribute.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		533B3E55165D8FE000ECD75F /* NSURL+SkipBackupAttribute.m in Sources */ = {isa = PBXBuildFile; fileRef = 533B3E53165D8FE000ECD75F /* NSURL+SkipBackupAttribute.m */; };
+		533C369317970138002AC317 /* UIView+SetNeedsLayoutSafe.h in Headers */ = {isa = PBXBuildFile; fileRef = 533C369117970138002AC317 /* UIView+SetNeedsLayoutSafe.h */; };
+		533C369417970138002AC317 /* UIView+SetNeedsLayoutSafe.m in Sources */ = {isa = PBXBuildFile; fileRef = 533C369217970138002AC317 /* UIView+SetNeedsLayoutSafe.m */; };
 		533DA5C0174EAC080064A3E1 /* EX2ActionQueue.h in Headers */ = {isa = PBXBuildFile; fileRef = 533DA5BE174EAC080064A3E1 /* EX2ActionQueue.h */; };
 		533DA5C1174EAC080064A3E1 /* EX2ActionQueue.h in Headers */ = {isa = PBXBuildFile; fileRef = 533DA5BE174EAC080064A3E1 /* EX2ActionQueue.h */; };
 		533DA5C2174EAC080064A3E1 /* EX2ActionQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = 533DA5BF174EAC080064A3E1 /* EX2ActionQueue.m */; };
@@ -362,6 +364,8 @@
 		5339E20316360B9E007628C0 /* EX2Kit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EX2Kit.m; sourceTree = "<group>"; };
 		533B3E52165D8FE000ECD75F /* NSURL+SkipBackupAttribute.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSURL+SkipBackupAttribute.h"; sourceTree = "<group>"; };
 		533B3E53165D8FE000ECD75F /* NSURL+SkipBackupAttribute.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSURL+SkipBackupAttribute.m"; sourceTree = "<group>"; };
+		533C369117970138002AC317 /* UIView+SetNeedsLayoutSafe.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+SetNeedsLayoutSafe.h"; sourceTree = "<group>"; };
+		533C369217970138002AC317 /* UIView+SetNeedsLayoutSafe.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+SetNeedsLayoutSafe.m"; sourceTree = "<group>"; };
 		533DA5BE174EAC080064A3E1 /* EX2ActionQueue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EX2ActionQueue.h; sourceTree = "<group>"; };
 		533DA5BF174EAC080064A3E1 /* EX2ActionQueue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EX2ActionQueue.m; sourceTree = "<group>"; };
 		533DA5C4174EAC490064A3E1 /* EX2Action.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EX2Action.h; sourceTree = "<group>"; };
@@ -863,6 +867,8 @@
 				5311346B174C312A00DB199B /* UIView+Glow.m */,
 				530EAC3C1781D20000346E4E /* UIImage+Reflection.h */,
 				530EAC3D1781D20000346E4E /* UIImage+Reflection.m */,
+				533C369117970138002AC317 /* UIView+SetNeedsLayoutSafe.h */,
+				533C369217970138002AC317 /* UIView+SetNeedsLayoutSafe.m */,
 			);
 			path = UIKit;
 			sourceTree = "<group>";
@@ -1170,6 +1176,7 @@
 				535C7F691779BFB800C4FA45 /* EX2FlatSegmentedControl.h in Headers */,
 				530EAC3E1781D20000346E4E /* UIImage+Reflection.h in Headers */,
 				53621DBB178AB4D000C605FA /* NSArray+Reverse.h in Headers */,
+				533C369317970138002AC317 /* UIView+SetNeedsLayoutSafe.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1431,6 +1438,7 @@
 				535C7F6A1779BFB800C4FA45 /* EX2FlatSegmentedControl.m in Sources */,
 				530EAC3F1781D20000346E4E /* UIImage+Reflection.m in Sources */,
 				53621DBC178AB4D000C605FA /* NSArray+Reverse.m in Sources */,
+				533C369417970138002AC317 /* UIView+SetNeedsLayoutSafe.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
