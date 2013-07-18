@@ -12,6 +12,39 @@
 #define UnselectedGradientName @"unselected"
 #define SelectedGradientName @"selected"
 
+// Custom UIView to draw 1px lines on retina displays, because setting a UIView width to .5 makes it disappear
+@interface EX2FlatSegmentedControlVerticalLine : UIView
+@property (nonatomic) CGFloat lineWidth;
+@property (nonatomic, strong) UIColor *lineColor;
+@end
+@implementation EX2FlatSegmentedControlVerticalLine
+
+- (void)drawRect:(CGRect)rect
+{
+    // Draw a vertical line the height of the view
+    UIBezierPath *path = [[UIBezierPath alloc] init];
+    path.lineWidth = self.lineWidth;
+    [path moveToPoint:CGPointMake(self.width / 2., 0.)];
+    [path addLineToPoint:CGPointMake(self.width / 2., self.height)];
+    
+    [self.lineColor setStroke];
+    [path stroke];
+}
+
+- (void)setLineWidth:(CGFloat)lineWidth
+{
+    _lineWidth = lineWidth;
+    [self setNeedsDisplaySafe];
+}
+
+- (void)setLineColor:(UIColor *)lineColor
+{
+    _lineColor = lineColor;
+    [self setNeedsDisplaySafe];
+}
+
+@end
+
 @implementation EX2FlatSegmentedControl
 {
     NSUInteger _selectedSegmentIndex;
@@ -127,8 +160,11 @@
     for (UIView *item in _items)
     {
         UILabel *label = item.subviews.firstObjectSafe;
-        UIView *spacer = label.subviews.firstObjectSafe;
-        spacer.backgroundColor = borderColor;
+        EX2FlatSegmentedControlVerticalLine *spacer = label.subviews.firstObjectSafe;
+        if ([spacer isKindOfClass:[EX2FlatSegmentedControlVerticalLine class]])
+        {
+            spacer.lineColor = borderColor;
+        }
     }
 }
 
@@ -219,6 +255,16 @@
 {
     _borderWidth = borderWidth;
     self.layer.borderWidth = _borderWidth;
+    
+    for (UIView *item in _items)
+    {
+        UILabel *label = item.subviews.firstObjectSafe;
+        EX2FlatSegmentedControlVerticalLine *spacer = label.subviews.firstObjectSafe;
+        if ([spacer isKindOfClass:[EX2FlatSegmentedControlVerticalLine class]])
+        {
+            spacer.lineWidth = borderWidth;
+        }
+    }
 }
 
 - (void)setStaticWidth:(CGFloat)staticWidth
@@ -302,8 +348,11 @@
 
 - (UIView *)createSpacerView:(UIView *)segmentView
 {
-    UIView *spacerView = [[UIView alloc] initWithFrame:CGRectMake(segmentView.width - .5, 0., 1., self.height)];
-    spacerView.backgroundColor = self.borderColor;
+    CGRect frame = CGRectMake(segmentView.width - .5, 0., 1., self.height);
+    EX2FlatSegmentedControlVerticalLine *spacerView = [[EX2FlatSegmentedControlVerticalLine alloc] initWithFrame:frame];
+    spacerView.backgroundColor = UIColor.clearColor;
+    spacerView.lineColor = self.borderColor;
+    spacerView.lineWidth = self.borderWidth;
     spacerView.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleLeftMargin;
     return spacerView;
 }
