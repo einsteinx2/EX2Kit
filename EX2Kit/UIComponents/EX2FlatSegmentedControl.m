@@ -380,8 +380,12 @@
     if (segment < self.numberOfSegments)
     {
         // Set the title
-        UILabel *segmentView = _items[segment];
-        segmentView.text = title;
+        UIView *segmentView = _items[segment];
+        UILabel *segmentLabel = segmentView.subviews.firstObjectSafe;
+        if ([segmentLabel isKindOfClass:[UILabel class]])
+        {
+            segmentLabel.text = title;
+        }
         
         // Adjust the size of the control so each items have the same width
         [self adjustSize];
@@ -392,8 +396,12 @@
 {
     if (segment < self.numberOfSegments)
     {
-        UILabel *segmentView = _items[segment];
-        return segmentView.text;
+        UIView *segmentView = _items[segment];
+        UILabel *segmentLabel = segmentView.subviews.firstObjectSafe;
+        if ([segmentLabel isKindOfClass:[UILabel class]])
+        {
+            return segmentLabel.text;
+        }
     }
     
     return nil;
