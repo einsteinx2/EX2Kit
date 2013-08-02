@@ -14,5 +14,6 @@
 #import "NSMutableArray+Safe.h"
 #import "NSArray+Plist.h"
 #import "NSArray+Reverse.h"
+#import "NSArray+FilterBlock.h"
 
 #endif
