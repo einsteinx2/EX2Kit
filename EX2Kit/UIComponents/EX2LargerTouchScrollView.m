@@ -19,6 +19,7 @@
 {
     _touchAreaPadding = UIEdgeInsetsZero;
     _touchFrameInWindow = [self convertRect:self.frame toView:[[UIApplication sharedApplication] keyWindow]];
+    self.scrollsToTop = NO;
 }
 
 - (id)initWithCoder:(NSCoder *)aDecoder

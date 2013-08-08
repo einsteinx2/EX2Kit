@@ -19,6 +19,7 @@
     self.showsHorizontalScrollIndicator = NO;
     self.showsVerticalScrollIndicator = NO;
     self.delegate = self;
+    self.scrollsToTop = NO;
     
     _pageViews = [[NSMutableDictionary alloc] initWithCapacity:10];
 }
