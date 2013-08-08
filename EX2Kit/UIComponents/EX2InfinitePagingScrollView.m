@@ -142,9 +142,12 @@
             {
                 // This view doesn't exist yet, so load one and place it
                 view = [self.pagingDelegate infinitePagingScrollView:self pageForIndex:loadIndex];
-                view.frame = rect;
-                [self addSubview:view];
-                self.pageViews[key] = view;
+                if (view)
+                {
+                    view.frame = rect;
+                    [self addSubview:view];
+                    self.pageViews[key] = view;
+                }
             }
         }
     }
