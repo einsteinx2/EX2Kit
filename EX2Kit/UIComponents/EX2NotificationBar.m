@@ -17,6 +17,13 @@
 #define LARGE_STATUS_HEIGHT 40.
 #define ACTUAL_STATUS_HEIGHT [[UIApplication sharedApplication] statusBarFrame].size.height
 
+#define TopY (SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"7") ? 20. : 0.)
+
+NSString * const EX2NotificationBarWillShow = @"EX2NotificationBarWillShow";
+NSString * const EX2NotificationBarWillHide = @"EX2NotificationBarWillHide";
+NSString * const EX2NotificationBarDidShow = @"EX2NotificationBarDidShow";
+NSString * const EX2NotificationBarDidHide = @"EX2NotificationBarDidHide";
+
 @interface EX2NotificationBar()
 @property (nonatomic) BOOL wasStatusBarTallOnStart;
 @property (nonatomic) BOOL changedTabSinceTallHeight;
@@ -105,6 +112,18 @@
 	{
 		[self.mainViewController viewWillAppear:animated];
 	}
+    
+    // Fix for iOS 7 status bar
+    if (SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"7"))
+    {
+        if (self.mainViewHolder.y == 0.)
+        {
+            self.mainViewHolder.y = 20.;
+            self.mainViewHolder.height -= 20.;
+            
+            self.notificationBar.y = 20.;
+        }
+    }
 }
 
 - (void)viewWillDisappear:(BOOL)animated
@@ -121,7 +140,7 @@
 - (void)viewDidAppear:(BOOL)animated
 {
 	[super viewDidAppear:animated];
-	
+	   
 	// In iOS 4 make sure to pass this message
 	if (SYSTEM_VERSION_LESS_THAN(@"5.0"))
 	{
@@ -240,7 +259,6 @@
 			{
 				// Must shift down the navigation controller after switching tabs
 				UINavigationController *navController = (UINavigationController *)tabController.selectedViewController;
-				//navController.view.y += STATUS_HEIGHT; // attempt to fix the moving down on rotation bug
 				navController.view.y = ACTUAL_STATUS_HEIGHT;
 			}
 		}
@@ -336,7 +354,6 @@
     }
     _isNotificationBarShowing = YES;
     
-    DLog(@"Notification bar SHOW called, is animating: %@", NSStringFromBOOL(self.isNotificationBarAnimating));
     if (!self.isNotificationBarAnimating)
     {
         // If currently animating, cancel all animations
@@ -360,7 +377,7 @@
 		//self.view.width = self.view.superview.width;
 		//self.view.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleTopMargin;
 		
-		self.notificationBar.y = self.view.height - self.notificationBar.height;
+		self.notificationBar.y = TopY + (self.view.height - self.notificationBar.height);
 	}
     	
 	void (^animations)(void) = ^(void)
@@ -373,7 +390,8 @@
                                                    self.mainViewHolder.width,
                                                    self.mainViewHolder.height - self.notificationBarHeight);
             
-            if (self.mainViewHolder.y < 0.) self.mainViewHolder.y = 0.;
+            if (self.mainViewHolder.y < TopY)
+                self.mainViewHolder.y = TopY;
 		}
 		else if (self.notificationBarPosition == EX2NotificationBarPositionBottom)
 		{
@@ -561,7 +579,6 @@
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
 {
     self.changedTabSinceTallHeight = ACTUAL_STATUS_HEIGHT > SMALL_STATUS_HEIGHT;
-    DLog(@"changedTabSinceTallHeight: %@", NSStringFromBOOL(self.changedTabSinceTallHeight));
 
     if ([keyPath isEqualToString:@"selectedViewController"])
     {
@@ -612,7 +629,6 @@
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
-    DLog(@"didReceiveMemoryWarning");
 }
 
 @end
