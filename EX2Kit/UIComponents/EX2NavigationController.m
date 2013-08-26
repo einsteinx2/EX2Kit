@@ -16,7 +16,7 @@
 @implementation UIViewController (EX2NavigationController)
 
 // No adding instance properties in categories you say? Hogwash! Three cheers for associative references!
-static char key;
+static void *key;
 - (EX2NavigationController *)ex2NavigationController
 {
     // Try to get the reference
@@ -24,7 +24,7 @@ static char key;
     
     // This ensures that if this controller is inside another and so it's property
     // was not set directly, we'll still get the reference
-    if (!navController)
+    if (!navController && [self respondsToSelector:@selector(parentViewController)])
     {
         // Check it's parent controllers
         UIViewController *parent = self.parentViewController;
@@ -48,7 +48,6 @@ static char key;
 @end
 
 @interface EX2NavigationController()
-@property (strong, nonatomic) NSMutableArray *viewControllers;
 @property (nonatomic) BOOL isAnimating;
 @end
 
@@ -81,12 +80,16 @@ static char key;
 	if (self = [super init])
 	{
         viewController.ex2NavigationController = self;
+        if (SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"5.0"))
+        {
+            [self addChildViewController:viewController];
+        }
 		
 		if (viewController)
 			_viewControllers = [[NSMutableArray alloc] initWithObjects:viewController, nil];
 		else
 			_viewControllers = [[NSMutableArray alloc] init];
-	}
+    }
 	return self;
 }
 
@@ -116,6 +119,7 @@ static char key;
 {
     self.view = [[UIView alloc] initWithFrame: CGRectMake(0, 0, 320, 480)];
 	self.view.autoresizingMask = (UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight);
+    self.view.clipsToBounds = YES;
     
 	self.navigationBar = [self createNavigationBar];
     
@@ -123,8 +127,20 @@ static char key;
     self.contentView.clipsToBounds = YES;
 	self.contentView.autoresizingMask = (UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight);
     
+    // Handle the case where we set the isNavigationBarHidden property before the view loads
+    if (self.isNavigationBarHidden)
+    {
+        self.navigationBar.bottom = 0.;
+        self.contentView.frame = self.view.bounds;
+    }
+    
+    [self.view addSubview:self.contentView];
 	[self.view addSubview:self.navigationBar];
-	[self.view addSubview:self.contentView];
+    
+    if (SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"5.0"))
+    {
+        [[self.viewControllers firstObjectSafe] didMoveToParentViewController:self];
+    }
 }
 
 // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
@@ -369,6 +385,29 @@ static char key;
 	{
         c.ex2NavigationController = nil;
 	}
+    
+    BOOL isAppearingAlreadyInStack = [self.viewControllers containsObject:appearing];
+
+    if (SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"5.0"))
+    {
+        for (UIViewController *controller in self.viewControllers)
+        {
+            if (controller != appearing)
+            {
+                [controller willMoveToParentViewController:nil];
+                [controller removeFromParentViewController];
+            }
+        }
+        
+        for (UIViewController *controller in vc)
+        {
+            if (controller == appearing && isAppearingAlreadyInStack)
+                continue;
+            
+            [self addChildViewController:controller];
+        }
+    }
+    
 	[self.viewControllers removeAllObjects];
 	[self.viewControllers addObjectsFromArraySafe:vc];
 	
@@ -389,6 +428,17 @@ static char key;
 		[c.navigationItem.backBarButtonItem setAction:@selector(backItemTapped:)];
 	}
 	[self.navigationBar setItems:newItems animated:(animation != EX2NavigationControllerAnimationNone)];
+    
+    if (SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"5.0"))
+    {
+        for (UIViewController *controller in self.viewControllers)
+        {
+            if (controller == appearing && isAppearingAlreadyInStack)
+                continue;
+            
+            [controller didMoveToParentViewController:self];
+        }
+    }
 }
 
 - (void)pushViewController:(UIViewController *)viewController animated:(BOOL)animated
@@ -405,6 +455,11 @@ static char key;
     {
         [self.delegate ex2NavigationController:self willShowViewController:viewController animated:(animation != EX2NavigationControllerAnimationNone)];
     }
+    
+    if (SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"5.0"))
+    {
+        [self addChildViewController:viewController];
+    }
 	
     viewController.ex2NavigationController = self;
 	UIViewController *disappearing = nil;
@@ -419,6 +474,11 @@ static char key;
 	[self.navigationBar pushNavigationItem:viewController.navigationItem animated:(animation != EX2NavigationControllerAnimationNone)];
 	[self.navigationBar.topItem.backBarButtonItem setTarget: self];
 	[self.navigationBar.topItem.backBarButtonItem setAction: @selector(backItemTapped:)];
+    
+    if (SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"5.0"))
+    {
+        [viewController didMoveToParentViewController:self];
+    }
 }
 
 - (void)popViewControllerAnimated:(BOOL)animated
@@ -432,6 +492,13 @@ static char key;
 		return;
     
 	UIViewController *disappearing = self.viewControllers.lastObject;
+    
+    if (SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"5.0"))
+    {
+        [disappearing willMoveToParentViewController:nil];
+        [disappearing removeFromParentViewController];
+    }
+    
     disappearing.ex2NavigationController = nil;
 	[self.viewControllers removeLastObject];
 	UIViewController *appearing = self.viewControllers.lastObject;
@@ -454,6 +521,45 @@ static char key;
         NSArray *array = @[[self.viewControllers objectAtIndex:0]];
         [self setViewControllers:array withAnimation:(animated ? EX2NavigationControllerAnimationLeft : EX2NavigationControllerAnimationNone)];
     }
+}
+
+- (BOOL)isRootViewController:(UIViewController *)viewController
+{
+    return viewController == [self.viewControllers firstObjectSafe];
+}
+
+- (void)setNavigationBarHidden:(BOOL)navigationBarHidden
+{
+    [self setNavigationBarHidden:navigationBarHidden animated:NO];
+}
+
+- (void)setNavigationBarHidden:(BOOL)hidden animated:(BOOL)animated
+{
+    if (_navigationBarHidden == hidden)
+        return;
+    
+    _navigationBarHidden = hidden;
+    
+    void (^animationBlock)(void) = ^
+    {
+        if (hidden)
+        {
+            self.navigationBar.bottom = 0.;
+            self.contentView.frame = self.view.bounds;
+        }
+        else
+        {
+            self.navigationBar.y = 0.;
+            self.contentView.frame = CGRectMake(0, self.navigationBar.bottom, self.view.width, self.view.height - self.navigationBar.height);
+        }
+    };
+    
+    animated ? [UIView animateWithDuration:.33 animations:animationBlock] : animationBlock();
+}
+
+- (UIViewController *)rootViewController
+{
+    return [self.viewControllers firstObjectSafe];
 }
 
 @end

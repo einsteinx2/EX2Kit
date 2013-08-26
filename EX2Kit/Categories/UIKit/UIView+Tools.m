@@ -281,4 +281,92 @@
     }
 }
 
+// Convert the view for use in Arabic/Hebrew layout
+- (void)convertToRTL
+{
+    for (UIView *subview in self.subviews)
+    {
+        // Adjust the position
+        subview.right = subview.superview.width - subview.x;
+        
+        // Adjust the struts if necessary
+        if (!(subview.autoresizingMask & UIViewAutoresizingFlexibleLeftMargin) && (subview.autoresizingMask & UIViewAutoresizingFlexibleRightMargin))
+        {
+            // If the view is locked to the left side, lock it to the right side
+            subview.autoresizingMask &= ~UIViewAutoresizingFlexibleRightMargin;
+            subview.autoresizingMask |= UIViewAutoresizingFlexibleLeftMargin;
+        }
+        else if (!(subview.autoresizingMask & UIViewAutoresizingFlexibleRightMargin) && (subview.autoresizingMask & UIViewAutoresizingFlexibleLeftMargin))
+        {
+            // If the view is locked to the right side, lock it to the left side
+            subview.autoresizingMask &= ~UIViewAutoresizingFlexibleLeftMargin;
+            subview.autoresizingMask |= UIViewAutoresizingFlexibleRightMargin;
+        }
+        
+        // Switch the text alignment if necessary
+        if ([subview isKindOfClass:[UILabel class]])
+        {
+            ((UILabel *)subview).textAlignment = UITextAlignmentRight;
+        }
+    }
+}
+
+- (BOOL)isChildOfView:(UIView *)aView
+{
+    UIView *superview = self.superview;
+    while (superview)
+    {
+        if (superview == aView)
+        {
+            return YES;
+        }
+        superview = superview.superview;
+    }
+    return NO;
+}
+
+- (BOOL)isChildOfViewType:(Class)aClass
+{
+    UIView *superview = self.superview;
+    while (superview)
+    {
+        if ([superview isKindOfClass:aClass])
+        {
+            return YES;
+        }
+        superview = superview.superview;
+    }
+    return NO;
+}
+
+- (void)centerHorizontally
+{
+    [self centerHorizontallyInBounds:self.superview.bounds];
+}
+
+- (void)centerVertically
+{
+    [self centerVerticallyInBounds:self.superview.bounds];
+}
+
+- (void)centerHorizontallyAndVertically
+{
+    [self centerHorizontallyAndVerticallyInBounds:self.superview.bounds];
+}
+
+- (void)centerHorizontallyInBounds:(CGRect)bounds
+{
+    self.center = CGPointMake(bounds.size.width / 2., self.center.y);
+}
+
+- (void)centerVerticallyInBounds:(CGRect)bounds
+{
+    self.center = CGPointMake(self.center.x, bounds.size.height / 2.);
+}
+
+- (void)centerHorizontallyAndVerticallyInBounds:(CGRect)bounds
+{
+    self.center = CGPointMake(bounds.size.width / 2., bounds.size.height / 2.);
+}
+
 @end

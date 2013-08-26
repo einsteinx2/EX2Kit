@@ -124,4 +124,6 @@
 // Temporary hack, need a proper solution
 #define IS_TALL_SCREEN() (CGSizeEqualToSize([[UIScreen mainScreen] preferredMode].size, CGSizeMake(640, 1136)))
 
+#define NSIndexPathMake(section, row) ([NSIndexPath indexPathForRow:row inSection:section])
+
 #endif

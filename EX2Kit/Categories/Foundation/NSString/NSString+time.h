@@ -9,6 +9,7 @@
 @interface NSString (time)
 
 + (NSString *)formatTime:(double)seconds;
++ (NSString *)formatTimeHoursMinutes:(double)seconds hideHoursIfZero:(BOOL)hideHoursIfZero;
 + (NSString *)formatTimeDecimalHours:(double)seconds;
 + (NSString *)relativeTime:(NSDate *)date;
 

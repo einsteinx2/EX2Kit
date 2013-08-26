@@ -18,6 +18,7 @@ static __strong NSMutableDictionary *_activeFilePaths;
 @interface EX2FileDecryptor()
 {
 	NSString *_key;
+    NSArray *_alternateKeys;
 }
 @property (nonatomic, strong) EX2RingBuffer *tempDecryptBuffer;
 @property (nonatomic, strong) EX2RingBuffer *decryptedBuffer;
@@ -32,6 +33,11 @@ static __strong NSMutableDictionary *_activeFilePaths;
 
 static const int ddLogLevel = LOG_LEVEL_INFO;
 
++ (NSDictionary *)openFilePaths
+{
+    return [NSDictionary dictionaryWithDictionary:_activeFilePaths];
+}
+
 + (void)registerOpenFilePath:(NSString *)path
 {
     if (!path)
@@ -45,7 +51,8 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
             _activeFilePaths = [NSMutableDictionary dictionaryWithCapacity:10];
         }
         
-        // Note that if the entry doesn't exist, this still works because [_activeFilePaths[path] unsignedIntegerValue] evaluates to 0
+        // Note that if the entry doesn't exist, this still works because [_activeFilePaths[path] integerValue] evaluates to 0
+        // when _activeFilePaths[path] is nil
         NSInteger adjustedValue = [_activeFilePaths[path] integerValue] + 1;
         _activeFilePaths[path] = @(adjustedValue);
         
@@ -107,17 +114,23 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
 	return self;
 }
 
-- (id)initWithPath:(NSString *)aPath chunkSize:(NSUInteger)theChunkSize key:(NSString *)theKey
+- (id)initWithPath:(NSString *)aPath chunkSize:(NSUInteger)theChunkSize key:(NSString *)theKey alternateKeys:(NSArray *)alternateKeys
 {
 	if ((self = [self initWithChunkSize:theChunkSize]))
 	{
 		_key = [theKey copy];
 		_path = [aPath copy];
 		_fileHandle = [NSFileHandle fileHandleForReadingAtPath:aPath];
+        _alternateKeys = [alternateKeys copy];
         
         [EX2FileDecryptor registerOpenFilePath:_path];
 	}
 	return self;
+}
+
+- (id)initWithPath:(NSString *)aPath chunkSize:(NSUInteger)theChunkSize key:(NSString *)theKey
+{
+    return [self initWithPath:aPath chunkSize:theChunkSize key:theKey alternateKeys:nil];
 }
 
 - (void)dealloc
@@ -230,6 +243,33 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
                 decrypted = [RNDecryptor decryptData:data withPassword:_key error:&decryptionError];
                 DDLogVerbose(@"[EX2FileDecryptor] data size: %u  decrypted size: %u for path: %@", data.length, decrypted.length, self.path);
             }
+            
+            if (decryptionError && _alternateKeys)
+			{
+                if (decryptionError)
+                {
+                    _error = decryptionError;
+                    DDLogError(@"[EX2FileDecryptor] There was an error decrypting this chunk using new decryptor, trying the alternate keys: %@ for path: %@", decryptionError, self.path);
+                }
+                
+                decryptionError = nil;
+                for (NSString *alternate in _alternateKeys)
+                {
+                    decrypted = [RNDecryptor decryptData:data withPassword:alternate error:&decryptionError];
+                    DDLogVerbose(@"[EX2FileDecryptor] data size: %u  decrypted size: %u for path: %@", data.length, decrypted.length, self.path);
+                    if (decryptionError)
+                    {
+                        DDLogError(@"[EX2FileDecryptor] There was an error decrypting this chunk using an alternate key: %@  for path: %@", decryptionError, self.path);
+                    }
+                    else
+                    {
+                        DDLogError(@"[EX2FileDecryptor] The alternate key was successful, storing that as the new key for path: %@", self.path);
+                        _key = alternate;
+                        _error = nil;
+                        break;
+                    }
+                }
+			}
             
 			if (decryptionError || self.useOldDecryptor)
 			{

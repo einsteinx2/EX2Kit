@@ -19,5 +19,8 @@
 #import "EX2RingBuffer.h"
 #import "EX2SimpleConnectionQueue.h"
 #import "EX2Language.h"
+#import "EX2ActionQueue.h"
+#import "EX2Action.h"
+#import "EX2ActionBlock.h"
 
 #endif

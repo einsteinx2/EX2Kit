@@ -13,5 +13,6 @@
 - (NSString *)systemBuild;
 - (NSString *)completeVersionString;
 - (BOOL)isJailbroken;
+- (BOOL)isOnPhoneCall;
 
 @end

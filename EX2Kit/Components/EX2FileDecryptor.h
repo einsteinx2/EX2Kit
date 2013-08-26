@@ -20,6 +20,7 @@
 @property (nonatomic, readonly) unsigned long long decryptedFileSizeOnDisk;
 
 - (id)initWithPath:(NSString *)path chunkSize:(NSUInteger)chunkSize key:(NSString *)key;
+- (id)initWithPath:(NSString *)path chunkSize:(NSUInteger)chunkSize key:(NSString *)key alternateKeys:(NSArray *)alternateKeys;
 
 - (BOOL)seekToOffset:(NSUInteger)offset;
 
@@ -28,6 +29,7 @@
 
 - (void)closeFile;
 
++ (NSDictionary *)openFilePaths;
 + (void)registerOpenFilePath:(NSString *)path;
 + (void)unregisterOpenFilePath:(NSString *)path;
 + (BOOL)isFilePathInUse:(NSString *)path;

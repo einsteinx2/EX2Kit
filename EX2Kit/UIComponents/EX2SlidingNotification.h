@@ -23,6 +23,9 @@
 + (void)setMainWindow:(UIWindow *)mainWindow;
 + (UIWindow *)mainWindow;
 
++ (BOOL)isThrottlingEnabled;
++ (void)setIsThrottlingEnabled:(BOOL)throttlingEnabled;
+
 @property (nonatomic, strong) IBOutlet UIImageView *backgroundImageView;
 @property (nonatomic, strong) IBOutlet UILabel *messageLabel;
 @property (nonatomic, strong) IBOutlet UIImageView *imageView;
@@ -38,9 +41,9 @@
 @property (copy) void (^tapBlock)(void);
 
 
-- (void)showAndHideSlidingNotification;
-- (void)showAndHideSlidingNotification:(NSTimeInterval)showTime;
-- (void)showSlidingNotification;
+- (BOOL)showAndHideSlidingNotification;
+- (BOOL)showAndHideSlidingNotification:(NSTimeInterval)showTime;
+- (BOOL)showSlidingNotification;
 - (void)hideSlidingNotification;
 
 - (void)sizeToFit;

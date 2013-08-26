@@ -58,11 +58,7 @@
 // Class
 @interface EX2SimpleConnectionQueue : NSObject
 
-#if __IPHONE_OS_VERSION_MIN_REQUIRED < __IPHONE_5_0
-@property (unsafe_unretained) id <EX2SimpleConnectionQueueDelegate> delegate;
-#else
 @property (weak) id <EX2SimpleConnectionQueueDelegate> delegate;
-#endif
 
 @property NSUInteger numberOfConcurrentConnections;
 @property NSTimeInterval delayBetweenConnections;

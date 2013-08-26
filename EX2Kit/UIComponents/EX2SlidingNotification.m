@@ -13,7 +13,7 @@
 #import "EX2Kit.h"
 
 #define ANIMATION_DELAY 0.25
-#define DEFAULT_DISPLAY_TIME 6.0
+#define DEFAULT_DISPLAY_TIME 5.0
 
 @interface EX2SlidingNotification()
 @property (nonatomic, strong) EX2SlidingNotification *selfRef;
@@ -31,6 +31,63 @@ static __strong UIWindow *_mainWindow = nil;
 + (UIWindow *)mainWindow
 {
     return _mainWindow ? _mainWindow : [[UIApplication sharedApplication] keyWindow];
+}
+
+static __strong NSMutableArray *_activeMessages = nil;
+
++ (BOOL)showingMessage:(NSString *)message
+{
+    @synchronized(_activeMessages)
+    {
+        if (!_isThrottlingEnabled)
+        {
+            // Always display if throttling is not enabled
+            return YES;
+        }
+        else if ([_activeMessages containsObject:message])
+        {
+            // Already showing, so return false to ignore this one
+            return NO;
+        }
+        else
+        {
+            [_activeMessages addObject:message];
+            return YES;
+        }
+    }
+}
+
++ (void)hidingMessage:(NSString *)message
+{
+    @synchronized(_activeMessages)
+    {
+        [_activeMessages removeObject:message];
+    }
+}
+
+static BOOL _isThrottlingEnabled = YES;
++ (BOOL)isThrottlingEnabled
+{
+    @synchronized(_activeMessages)
+    {
+        return _isThrottlingEnabled;
+    }
+}
+
++ (void)setIsThrottlingEnabled:(BOOL)throttlingEnabled
+{
+    @synchronized(_activeMessages)
+    {
+        _isThrottlingEnabled = throttlingEnabled;
+    }
+}
+
++ (void)initialize
+{
+    if (self == [EX2SlidingNotification class])
+    {
+        _activeMessages = [NSMutableArray arrayWithCapacity:0];
+    }
 }
 
 - (id)initOnView:(UIView *)theParentView message:(NSString *)theMessage image:(UIImage*)theImage displayTime:(NSTimeInterval)time
@@ -108,46 +165,62 @@ static __strong UIWindow *_mainWindow = nil;
 	}
 }
 
-- (void)showAndHideSlidingNotification
+- (BOOL)showAndHideSlidingNotification
 {
-	[self showSlidingNotification];
+	if ([self showSlidingNotification])
+    {
+        [self performSelector:@selector(hideSlidingNotification) withObject:nil afterDelay:self.displayTime];
+        
+        return YES;
+    }
 	
-	[self performSelector:@selector(hideSlidingNotification) withObject:nil afterDelay:self.displayTime];
+	return NO;
 }
 
-- (void)showAndHideSlidingNotification:(NSTimeInterval)showTime
+- (BOOL)showAndHideSlidingNotification:(NSTimeInterval)showTime
 {
     self.displayTime = showTime;
     
-    [self showAndHideSlidingNotification];
+    return [self showAndHideSlidingNotification];
 }
 
-- (void)showSlidingNotification
+- (BOOL)showSlidingNotification
 {
-	if (!self.selfRef)
-        self.selfRef = self;
-    
-    // Set the start position
-    self.view.y = -self.view.height;
-    if (self.view.superview == [self.class mainWindow])
-        self.view.y += [[UIApplication sharedApplication] statusBarFrame].size.height;
-    
-    //DLog(@"current frame: %@", NSStringFromCGRect(self.view.frame));
-	[UIView animateWithDuration:ANIMATION_DELAY animations:^(void)
-     {
-         // If we're directly on the UIWindow then add the status bar height
-         CGFloat y = 0.;
-         if (self.view.superview == [self.class mainWindow])
-             y = [[UIApplication sharedApplication] statusBarFrame].size.height;
+    if ([self.class showingMessage:self.message])
+    {
+        if (!self.selfRef)
+            self.selfRef = self;
+        
+        // Set the start position
+        self.view.y = -self.view.height;
+        if (self.view.superview == [self.class mainWindow])
+            self.view.y += [[UIApplication sharedApplication] statusBarFrame].size.height;
+        
+        //DLog(@"current frame: %@", NSStringFromCGRect(self.view.frame));
+        [UIView animateWithDuration:ANIMATION_DELAY animations:^(void)
+         {
+             // If we're directly on the UIWindow then add the status bar height
+             CGFloat y = 0.;
+             if (self.view.superview == [self.class mainWindow])
+                 y = [[UIApplication sharedApplication] statusBarFrame].size.height;
              
-         self.view.y = y;
-         
-         //DLog(@"new frame: %@", NSStringFromCGRect(self.view.frame));
-     }];
+             self.view.y = y;
+             
+             //DLog(@"new frame: %@", NSStringFromCGRect(self.view.frame));
+         }];
+        
+        return YES;
+    }
+	
+    // Remove the view since it won't be displayed
+    [self.view removeFromSuperview];
+    return NO;
 }
 
 - (void)hideSlidingNotification
 {
+    [self.class hidingMessage:self.message];
+    
 	[NSObject cancelPreviousPerformRequestsWithTarget:self selector:@selector(hide) object:nil];
 	
 	[UIView animateWithDuration:ANIMATION_DELAY animations:^(void)

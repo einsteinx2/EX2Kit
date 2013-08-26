@@ -44,4 +44,18 @@
 - (void)removeTopShadow;
 + (CAGradientLayer *)horizontalShadowWithAlpha:(CGFloat)shadowAlpha inverse:(BOOL)inverse;
 
+// Convert view from left to right to right to left layout for switching to Arabic/Hebrew
+- (void)convertToRTL;
+
+- (BOOL)isChildOfView:(UIView *)aView;
+- (BOOL)isChildOfViewType:(Class)aClass;
+
+- (void)centerHorizontally;
+- (void)centerVertically;
+- (void)centerHorizontallyAndVertically;
+
+- (void)centerHorizontallyInBounds:(CGRect)bounds;
+- (void)centerVerticallyInBounds:(CGRect)bounds;
+- (void)centerHorizontallyAndVerticallyInBounds:(CGRect)bounds;
+
 @end

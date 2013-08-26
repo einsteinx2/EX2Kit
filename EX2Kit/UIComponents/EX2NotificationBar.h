@@ -12,10 +12,10 @@
 
 #import <UIKit/UIKit.h>
 
-#define EX2NotificationBarWillShow @"EX2NotificationBarWillShow"
-#define EX2NotificationBarWillHide @"EX2NotificationBarWillHide"
-#define EX2NotificationBarDidShow @"EX2NotificationBarDidShow"
-#define EX2NotificationBarDidHide @"EX2NotificationBarDidHide"
+extern NSString * const EX2NotificationBarWillShow;
+extern NSString * const EX2NotificationBarWillHide;
+extern NSString * const EX2NotificationBarDidShow;
+extern NSString * const EX2NotificationBarDidHide;
 
 typedef enum 
 {
