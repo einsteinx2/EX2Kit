@@ -10,6 +10,16 @@
 #import "EX2LargerTouchScrollView.h"
 
 @class  EX2InfinitePagingScrollView;
+
+typedef enum
+{
+    EX2AutoScrollDirection_None,
+    EX2AutoScrollDirection_Left,
+    EX2AutoScrollDirection_Right
+} EX2AutoScrollDirection;
+
+typedef UIView * (^EX2InfinitePagingScrollViewPageBlock)(EX2InfinitePagingScrollView *scrollView, NSInteger index);
+
 @protocol EX2InfinitePagingScrollViewDelegate <NSObject>
 
 @required
@@ -26,6 +36,9 @@
 
 @property (nonatomic, weak) id<EX2InfinitePagingScrollViewDelegate> pagingDelegate;
 
+// Optional block to be used instead of the delegate to create pages
+@property (nonatomic, copy) EX2InfinitePagingScrollViewPageBlock createPageBlock;
+
 // Keyed on NSNumber of index, works like sparse array
 @property (nonatomic, strong) NSMutableDictionary *pageViews;
 
@@ -34,11 +47,17 @@
 @property (nonatomic) BOOL isWrapLeft;
 @property (nonatomic) BOOL isWrapRight;
 
+@property (nonatomic) EX2AutoScrollDirection autoScrollDirection;
+@property (nonatomic) NSTimeInterval autoScrollInterval;
+
 - (void)clearAllPages;
 - (void)setupPages;
 
 - (void)scrollToPageIndexAnimated:(NSInteger)index;
 - (void)scrollToPrevPageAnimated;
 - (void)scrollToNextPageAnimated;
+
+- (void)startAutoScrolling;
+- (void)stopAutoScrolling;
 
 @end

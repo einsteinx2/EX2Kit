@@ -10,6 +10,12 @@
 
 #define CENTER_OFFSET CGPointMake(self.frame.size.width * 2., 0.)
 
+#define DEFAULT_AUTOSCROLL_INTERVAL 10.
+
+@interface EX2InfinitePagingScrollView ()
+@property (nonatomic, strong) NSTimer *autoScrollTimer;
+@end
+
 @implementation EX2InfinitePagingScrollView
 
 - (void)setup
@@ -141,7 +147,10 @@
             else
             {
                 // This view doesn't exist yet, so load one and place it
-                view = [self.pagingDelegate infinitePagingScrollView:self pageForIndex:loadIndex];
+                if (self.createPageBlock)
+                    view = self.createPageBlock(self, loadIndex);
+                else
+                    view = [self.pagingDelegate infinitePagingScrollView:self pageForIndex:loadIndex];
                 if (view)
                 {
                     view.frame = rect;
@@ -257,6 +266,30 @@
             [self.pagingDelegate infinitePagingScrollViewDidEndDecelerating:self];
         }];
     }
+}
+
+- (void)startAutoScrolling
+{
+    // Cancel any existing timer
+    if (self.autoScrollTimer)
+        [self.autoScrollTimer invalidate];
+    
+    // Set some defaults
+    if (self.autoScrollDirection == EX2AutoScrollDirection_None)
+        self.autoScrollDirection = EX2AutoScrollDirection_Right;
+    if (self.autoScrollInterval == 0.)
+        self.autoScrollInterval = DEFAULT_AUTOSCROLL_INTERVAL;
+    
+    // Choose the correct selector
+    SEL selector = self.autoScrollDirection == EX2AutoScrollDirection_Right ? @selector(scrollToNextPageAnimated) : @selector(scrollToPrevPageAnimated);
+    
+    self.autoScrollTimer = [NSTimer scheduledTimerWithTimeInterval:self.autoScrollInterval target:self selector:selector userInfo:nil repeats:YES];
+}
+
+- (void)stopAutoScrolling
+{
+    [self.autoScrollTimer invalidate];
+    self.autoScrollTimer = nil;
 }
 
 @end
