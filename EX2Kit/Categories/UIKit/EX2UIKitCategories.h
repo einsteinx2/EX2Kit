@@ -25,5 +25,6 @@
 #import "UIButton+StretchBackground.h"
 #import "UIView+Glow.h"
 #import "UIView+SetNeedsLayoutSafe.h"
+#import "UIImageView+ImageAnimated.h"
 
 #endif

@@ -239,6 +239,8 @@
 		5380B5C6170667F90010AED2 /* NSData+Hash.m in Sources */ = {isa = PBXBuildFile; fileRef = 5380B5C2170667F90010AED2 /* NSData+Hash.m */; };
 		5398D07D16EE80BE002D8548 /* UIWebView+HideShadows.h in Headers */ = {isa = PBXBuildFile; fileRef = 5398D07B16EE80BE002D8548 /* UIWebView+HideShadows.h */; };
 		5398D07E16EE80BE002D8548 /* UIWebView+HideShadows.m in Sources */ = {isa = PBXBuildFile; fileRef = 5398D07C16EE80BE002D8548 /* UIWebView+HideShadows.m */; };
+		539DC3FC17D649FF001FE630 /* UIImageView+ImageAnimated.h in Headers */ = {isa = PBXBuildFile; fileRef = 539DC3FA17D649FF001FE630 /* UIImageView+ImageAnimated.h */; };
+		539DC3FD17D649FF001FE630 /* UIImageView+ImageAnimated.m in Sources */ = {isa = PBXBuildFile; fileRef = 539DC3FB17D649FF001FE630 /* UIImageView+ImageAnimated.m */; };
 		53CFE2F6170B83B000347CC8 /* UIButton+StretchBackground.h in Headers */ = {isa = PBXBuildFile; fileRef = 53CFE2F4170B83B000347CC8 /* UIButton+StretchBackground.h */; };
 		53CFE2F7170B83B000347CC8 /* UIButton+StretchBackground.m in Sources */ = {isa = PBXBuildFile; fileRef = 53CFE2F5170B83B000347CC8 /* UIButton+StretchBackground.m */; };
 		53E2F47616684CCE00743BB8 /* RNCryptor.h in Headers */ = {isa = PBXBuildFile; fileRef = 53E2F47116684CCE00743BB8 /* RNCryptor.h */; };
@@ -409,6 +411,8 @@
 		5380B5C2170667F90010AED2 /* NSData+Hash.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSData+Hash.m"; sourceTree = "<group>"; };
 		5398D07B16EE80BE002D8548 /* UIWebView+HideShadows.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIWebView+HideShadows.h"; sourceTree = "<group>"; };
 		5398D07C16EE80BE002D8548 /* UIWebView+HideShadows.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIWebView+HideShadows.m"; sourceTree = "<group>"; };
+		539DC3FA17D649FF001FE630 /* UIImageView+ImageAnimated.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImageView+ImageAnimated.h"; sourceTree = "<group>"; };
+		539DC3FB17D649FF001FE630 /* UIImageView+ImageAnimated.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImageView+ImageAnimated.m"; sourceTree = "<group>"; };
 		53CFE2F4170B83B000347CC8 /* UIButton+StretchBackground.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIButton+StretchBackground.h"; sourceTree = "<group>"; };
 		53CFE2F5170B83B000347CC8 /* UIButton+StretchBackground.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIButton+StretchBackground.m"; sourceTree = "<group>"; };
 		53D44EA715AA56C700CDD3B8 /* EX2Kit-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "EX2Kit-Info.plist"; sourceTree = "<group>"; };
@@ -901,6 +905,8 @@
 				530EAC3D1781D20000346E4E /* UIImage+Reflection.m */,
 				533C369117970138002AC317 /* UIView+SetNeedsLayoutSafe.h */,
 				533C369217970138002AC317 /* UIView+SetNeedsLayoutSafe.m */,
+				539DC3FA17D649FF001FE630 /* UIImageView+ImageAnimated.h */,
+				539DC3FB17D649FF001FE630 /* UIImageView+ImageAnimated.m */,
 			);
 			path = UIKit;
 			sourceTree = "<group>";
@@ -1217,6 +1223,7 @@
 				533C369317970138002AC317 /* UIView+SetNeedsLayoutSafe.h in Headers */,
 				53E3940417A7B1AA00C618F9 /* EX2FlatSegmentedControl.h in Headers */,
 				53059A3E17ABB3CF00FA04B2 /* NSArray+FilterBlock.h in Headers */,
+				539DC3FC17D649FF001FE630 /* UIImageView+ImageAnimated.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1487,6 +1494,7 @@
 				533C369417970138002AC317 /* UIView+SetNeedsLayoutSafe.m in Sources */,
 				53E3940517A7B1AA00C618F9 /* EX2FlatSegmentedControl.m in Sources */,
 				53059A4017ABB3CF00FA04B2 /* NSArray+FilterBlock.m in Sources */,
+				539DC3FD17D649FF001FE630 /* UIImageView+ImageAnimated.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
