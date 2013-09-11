@@ -17,7 +17,7 @@
 #define LARGE_STATUS_HEIGHT 40.
 #define ACTUAL_STATUS_HEIGHT [[UIApplication sharedApplication] statusBarFrame].size.height
 
-#define TopY 0.//(SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"7") ? 20. : 0.)
+#define TopY (SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"7") ? 20. : 0.)
 
 NSString * const EX2NotificationBarWillShow = @"EX2NotificationBarWillShow";
 NSString * const EX2NotificationBarWillHide = @"EX2NotificationBarWillHide";
@@ -113,7 +113,7 @@ NSString * const EX2NotificationBarDidHide = @"EX2NotificationBarDidHide";
 		[self.mainViewController viewWillAppear:animated];
 	}
     
-    /*// Fix for iOS 7 status bar
+    // Fix for iOS 7 status bar
     if (SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"7"))
     {
         if (self.mainViewHolder.y == 0.)
@@ -123,7 +123,7 @@ NSString * const EX2NotificationBarDidHide = @"EX2NotificationBarDidHide";
             
             self.notificationBar.y = 20.;
         }
-    }*/
+    }
 }
 
 - (void)viewWillDisappear:(BOOL)animated
@@ -290,7 +290,9 @@ NSString * const EX2NotificationBarDidHide = @"EX2NotificationBarDidHide";
 	// Remove the old controller's view, if there is one
 	for (UIView *subview in _mainViewHolder.subviews)
 	{
+        [subview.viewController willMoveToParentViewController:nil];
 		[subview removeFromSuperview];
+        [subview.viewController removeFromParentViewController];
 	}
         
 	// Set the new controller
@@ -300,7 +302,9 @@ NSString * const EX2NotificationBarDidHide = @"EX2NotificationBarDidHide";
     _mainViewController.view.frame = self.mainViewHolder.bounds;
 	
 	// Add the new controller's view
+    [self addChildViewController:_mainViewController];
 	[self.mainViewHolder addSubview:_mainViewController.view];
+    [_mainViewController didMoveToParentViewController:self];
 	
 	// Handle UITabBarController weirdness
 	if ([_mainViewController isKindOfClass:[UITabBarController class]])
