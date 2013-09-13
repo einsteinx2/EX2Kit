@@ -163,8 +163,15 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
             }
         }
         
-        [self.fileHandle synchronizeFile];
-        [self.fileHandle closeFile];
+        @try
+        {
+            [self.fileHandle synchronizeFile];
+            [self.fileHandle closeFile];
+        }
+        @catch (NSException *exception)
+        {
+            DDLogError(@"[EX2FileEncryptor] Exception synchronizing and closing file handle: %@", exception);
+        }
         _fileHandle = nil;
         
         [EX2FileDecryptor unregisterOpenFilePath:self.path];
