@@ -50,6 +50,9 @@
 
 + (UIColor *)colorWithHexString:(NSString *)hexadecimal
 {
+    if (!hexadecimal)
+        return nil;
+    
 	// Convert Objective-C NSString to C string
 	const char *cString = [hexadecimal cStringUsingEncoding: NSASCIIStringEncoding];
 	long int hex;
@@ -86,6 +89,9 @@
 
 + (UIColor *)colorWithAlphaHexString:(NSString *)hexadecimal
 {
+    if (!hexadecimal)
+        return nil;
+    
 	const char *cString = [hexadecimal cStringUsingEncoding: NSASCIIStringEncoding];
 	long long int hex;
 	
@@ -103,6 +109,9 @@
 
 + (NSString *)hexStringFromColor: (UIColor *)color
 {
+    if (!color)
+        return nil;
+    
 	// Get the color components of the color
 	const NSUInteger totalComponents = CGColorGetNumberOfComponents([color CGColor]);
 	const CGFloat *components = CGColorGetComponents([color CGColor]);
