@@ -104,7 +104,7 @@
 		hex = strtoll(cString, NULL, 16);
 	}
 	
-	return [UIColor colorWithAlphaHex: hex];
+	return [UIColor colorWithAlphaHex: (unsigned long)hex];
 }
 
 + (NSString *)hexStringFromColor: (UIColor *)color

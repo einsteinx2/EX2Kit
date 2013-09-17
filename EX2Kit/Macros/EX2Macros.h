@@ -69,9 +69,6 @@
 #define SCREEN_SCALE() ([[NSScreen mainScreen] respondsToSelector:@selector(backingScaleFactor)] ? [[NSScreen mainScreen] backingScaleFactor] : 1.0f)
 #endif
 
-// Multitasking support check
-#define IS_MULTITASKING() ([[UIDevice currentDevice] respondsToSelector:@selector(multitaskingSupported)] ? [UIDevice currentDevice].multitaskingSupported : false)
-
 // Check if simulator
 #if TARGET_IPHONE_SIMULATOR
 #define IS_SIMULATOR() (true)
