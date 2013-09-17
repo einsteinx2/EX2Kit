@@ -470,6 +470,8 @@
     {
         [self adjustSize];
     }
+    
+    [self highlightSelectedSegment];
 }
 
 - (BOOL)isUseGradient
