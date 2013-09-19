@@ -26,5 +26,6 @@
 #import "UIView+Glow.h"
 #import "UIView+SetNeedsLayoutSafe.h"
 #import "UIImageView+ImageAnimated.h"
+#import "UIImage+Color.h"
 
 #endif

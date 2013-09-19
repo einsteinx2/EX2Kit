@@ -245,6 +245,8 @@
 		5398D07E16EE80BE002D8548 /* UIWebView+HideShadows.m in Sources */ = {isa = PBXBuildFile; fileRef = 5398D07C16EE80BE002D8548 /* UIWebView+HideShadows.m */; };
 		539DC3FC17D649FF001FE630 /* UIImageView+ImageAnimated.h in Headers */ = {isa = PBXBuildFile; fileRef = 539DC3FA17D649FF001FE630 /* UIImageView+ImageAnimated.h */; };
 		539DC3FD17D649FF001FE630 /* UIImageView+ImageAnimated.m in Sources */ = {isa = PBXBuildFile; fileRef = 539DC3FB17D649FF001FE630 /* UIImageView+ImageAnimated.m */; };
+		53A1C30817EB88980039DA81 /* UIImage+Color.h in Headers */ = {isa = PBXBuildFile; fileRef = 53A1C30617EB88980039DA81 /* UIImage+Color.h */; };
+		53A1C30917EB88980039DA81 /* UIImage+Color.m in Sources */ = {isa = PBXBuildFile; fileRef = 53A1C30717EB88980039DA81 /* UIImage+Color.m */; };
 		53CFE2F6170B83B000347CC8 /* UIButton+StretchBackground.h in Headers */ = {isa = PBXBuildFile; fileRef = 53CFE2F4170B83B000347CC8 /* UIButton+StretchBackground.h */; };
 		53CFE2F7170B83B000347CC8 /* UIButton+StretchBackground.m in Sources */ = {isa = PBXBuildFile; fileRef = 53CFE2F5170B83B000347CC8 /* UIButton+StretchBackground.m */; };
 		53E2F47616684CCE00743BB8 /* RNCryptor.h in Headers */ = {isa = PBXBuildFile; fileRef = 53E2F47116684CCE00743BB8 /* RNCryptor.h */; };
@@ -419,6 +421,8 @@
 		5398D07C16EE80BE002D8548 /* UIWebView+HideShadows.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIWebView+HideShadows.m"; sourceTree = "<group>"; };
 		539DC3FA17D649FF001FE630 /* UIImageView+ImageAnimated.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImageView+ImageAnimated.h"; sourceTree = "<group>"; };
 		539DC3FB17D649FF001FE630 /* UIImageView+ImageAnimated.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImageView+ImageAnimated.m"; sourceTree = "<group>"; };
+		53A1C30617EB88980039DA81 /* UIImage+Color.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+Color.h"; sourceTree = "<group>"; };
+		53A1C30717EB88980039DA81 /* UIImage+Color.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Color.m"; sourceTree = "<group>"; };
 		53CFE2F4170B83B000347CC8 /* UIButton+StretchBackground.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIButton+StretchBackground.h"; sourceTree = "<group>"; };
 		53CFE2F5170B83B000347CC8 /* UIButton+StretchBackground.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIButton+StretchBackground.m"; sourceTree = "<group>"; };
 		53D44EA715AA56C700CDD3B8 /* EX2Kit-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "EX2Kit-Info.plist"; sourceTree = "<group>"; };
@@ -915,6 +919,8 @@
 				533C369217970138002AC317 /* UIView+SetNeedsLayoutSafe.m */,
 				539DC3FA17D649FF001FE630 /* UIImageView+ImageAnimated.h */,
 				539DC3FB17D649FF001FE630 /* UIImageView+ImageAnimated.m */,
+				53A1C30617EB88980039DA81 /* UIImage+Color.h */,
+				53A1C30717EB88980039DA81 /* UIImage+Color.m */,
 			);
 			path = UIKit;
 			sourceTree = "<group>";
@@ -1187,6 +1193,7 @@
 				5373A950162DD71F0016A019 /* CALayer+ImageFromLayer.h in Headers */,
 				5373A951162DD71F0016A019 /* CALayer+SublayerWithName.h in Headers */,
 				5373A952162DD71F0016A019 /* EX2UIKitCategories.h in Headers */,
+				53A1C30817EB88980039DA81 /* UIImage+Color.h in Headers */,
 				5373A953162DD71F0016A019 /* UIBezierPath+Smoothing.h in Headers */,
 				5373A954162DD71F0016A019 /* UIColor+ColorWithHex.h in Headers */,
 				5373A955162DD71F0016A019 /* UIDevice+Hardware.h in Headers */,
@@ -1495,6 +1502,7 @@
 				537CBC99173DDE61001989CE /* NSNumber+CleanString.m in Sources */,
 				537CBC9D173DDF76001989CE /* NSNull+CleanString.m in Sources */,
 				53293F1E17418ADF007211CB /* NSObject+UserInfo.m in Sources */,
+				53A1C30917EB88980039DA81 /* UIImage+Color.m in Sources */,
 				5311346D174C312A00DB199B /* UIView+Glow.m in Sources */,
 				53113471174C361900DB199B /* EX2GlowButton.m in Sources */,
 				533DA5C2174EAC080064A3E1 /* EX2ActionQueue.m in Sources */,

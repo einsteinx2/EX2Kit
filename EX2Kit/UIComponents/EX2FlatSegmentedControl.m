@@ -492,7 +492,8 @@
 
 - (void)removeGradientLayersForItem:(UIView *)item
 {
-    for (CALayer *layer in item.layer.sublayers)
+    NSArray *sublayers = [NSArray arrayWithArray:item.layer.sublayers];
+    for (CALayer *layer in sublayers)
     {
         if ([layer.name isEqualToString:UnselectedGradientName] || [layer.name isEqualToString:SelectedGradientName])
         {
