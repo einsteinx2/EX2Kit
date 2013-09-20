@@ -163,6 +163,8 @@
 		5355F243172795470020873D /* EX2InfinitePagingScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5355F241172795470020873D /* EX2InfinitePagingScrollView.m */; };
 		53621DBB178AB4D000C605FA /* NSArray+Reverse.h in Headers */ = {isa = PBXBuildFile; fileRef = 53621DB9178AB4D000C605FA /* NSArray+Reverse.h */; };
 		53621DBC178AB4D000C605FA /* NSArray+Reverse.m in Sources */ = {isa = PBXBuildFile; fileRef = 53621DBA178AB4D000C605FA /* NSArray+Reverse.m */; };
+		53703CB317ED05DF007F3011 /* UIButton+Colors.h in Headers */ = {isa = PBXBuildFile; fileRef = 53703CB117ED05DF007F3011 /* UIButton+Colors.h */; };
+		53703CB417ED05DF007F3011 /* UIButton+Colors.m in Sources */ = {isa = PBXBuildFile; fileRef = 53703CB217ED05DF007F3011 /* UIButton+Colors.m */; };
 		5373A931162DD71F0016A019 /* EX2Kit.h in Headers */ = {isa = PBXBuildFile; fileRef = 53F15F71162B9FCA00C24FC1 /* EX2Kit.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		5373A932162DD71F0016A019 /* EX2Categories.h in Headers */ = {isa = PBXBuildFile; fileRef = 53F15EF7162B9FCA00C24FC1 /* EX2Categories.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		5373A933162DD71F0016A019 /* EX2FoundationCategories.h in Headers */ = {isa = PBXBuildFile; fileRef = 53F15EF9162B9FCA00C24FC1 /* EX2FoundationCategories.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -409,6 +411,8 @@
 		5355F241172795470020873D /* EX2InfinitePagingScrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EX2InfinitePagingScrollView.m; sourceTree = "<group>"; };
 		53621DB9178AB4D000C605FA /* NSArray+Reverse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSArray+Reverse.h"; sourceTree = "<group>"; };
 		53621DBA178AB4D000C605FA /* NSArray+Reverse.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSArray+Reverse.m"; sourceTree = "<group>"; };
+		53703CB117ED05DF007F3011 /* UIButton+Colors.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIButton+Colors.h"; sourceTree = "<group>"; };
+		53703CB217ED05DF007F3011 /* UIButton+Colors.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIButton+Colors.m"; sourceTree = "<group>"; };
 		537CBC8E173DB935001989CE /* EX2LargerTouchScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EX2LargerTouchScrollView.h; sourceTree = "<group>"; };
 		537CBC8F173DB935001989CE /* EX2LargerTouchScrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EX2LargerTouchScrollView.m; sourceTree = "<group>"; };
 		537CBC96173DDE61001989CE /* NSNumber+CleanString.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSNumber+CleanString.h"; sourceTree = "<group>"; };
@@ -921,6 +925,8 @@
 				539DC3FB17D649FF001FE630 /* UIImageView+ImageAnimated.m */,
 				53A1C30617EB88980039DA81 /* UIImage+Color.h */,
 				53A1C30717EB88980039DA81 /* UIImage+Color.m */,
+				53703CB117ED05DF007F3011 /* UIButton+Colors.h */,
+				53703CB217ED05DF007F3011 /* UIButton+Colors.m */,
 			);
 			path = UIKit;
 			sourceTree = "<group>";
@@ -1197,6 +1203,7 @@
 				5373A953162DD71F0016A019 /* UIBezierPath+Smoothing.h in Headers */,
 				5373A954162DD71F0016A019 /* UIColor+ColorWithHex.h in Headers */,
 				5373A955162DD71F0016A019 /* UIDevice+Hardware.h in Headers */,
+				53703CB317ED05DF007F3011 /* UIButton+Colors.h in Headers */,
 				5373A956162DD71F0016A019 /* UIDevice+Software.h in Headers */,
 				5373A957162DD71F0016A019 /* UIImage+CustomStretch.h in Headers */,
 				5373A958162DD71F0016A019 /* UIImage+Tint.h in Headers */,
@@ -1478,6 +1485,7 @@
 				53F15FBE162B9FCA00C24FC1 /* EX2TabBarController.m in Sources */,
 				53F15FBF162B9FCA00C24FC1 /* SnappySlider.m in Sources */,
 				5339E1831635E93A007628C0 /* NSString+HasValue.m in Sources */,
+				53703CB417ED05DF007F3011 /* UIButton+Colors.m in Sources */,
 				5339E20416360B9F007628C0 /* EX2Kit.m in Sources */,
 				531CF184163D064A008F8AA7 /* UIImage+Cropping.m in Sources */,
 				53145C18163F5E6400DE22F1 /* NSURL+QueryParameterDictionary.m in Sources */,
