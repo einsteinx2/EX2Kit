@@ -210,9 +210,8 @@
 
 - (void)setSelectedSegmentIndex:(NSInteger)selectedSegmentIndex
 {
-    if (_selectedSegmentIndex != selectedSegmentIndex)
+    if (_selectedSegmentIndex != selectedSegmentIndex && selectedSegmentIndex < _items.count)
     {
-        NSParameterAssert(selectedSegmentIndex < (NSInteger)_items.count);
         _selectedSegmentIndex = selectedSegmentIndex;
         
         [self highlightSelectedSegment];
