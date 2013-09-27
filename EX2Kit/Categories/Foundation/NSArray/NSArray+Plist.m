@@ -6,6 +6,8 @@
 //
 //
 
+static const int ddLogLevel = LOG_LEVEL_VERBOSE;
+
 #import "NSArray+Plist.h"
 
 @implementation NSArray (Plist)
@@ -16,6 +18,15 @@
     if (data)
     {
         return [data writeToFile:path atomically:YES];;
+    }
+    else
+    {
+        NSError *error;
+        [[NSFileManager defaultManager] removeItemAtPath:path error:&error];
+        if (error)
+        {
+            DDLogError(@"[NSArray] error writing plist to path: %@  error: %@", path, error);
+        }
     }
     return NO;
 }
