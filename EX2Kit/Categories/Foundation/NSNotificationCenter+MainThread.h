@@ -14,6 +14,7 @@
 + (void)postNotificationToMainThreadWithName:(NSString *)name object:(id)object userInfo:(NSDictionary *)userInfo;
 
 + (void)addObserverOnMainThread:(id)notificationObserver selector:(SEL)notificationSelector name:(NSString *)notificationName object:(id)notificationSender;
++ (void)addObserverOnMainThreadAsync:(id)notificationObserver selector:(SEL)notificationSelector name:(NSString *)notificationName object:(id)notificationSender;
 
 + (void)removeObserverOnMainThread:(id)notificationObserver;
 + (void)removeObserverOnMainThread:(id)notificationObserver name:(NSString *)notificationName object:(id)notificationSender;

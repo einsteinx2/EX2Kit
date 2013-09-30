@@ -74,6 +74,14 @@
     }];
 }
 
++ (void)addObserverOnMainThreadAsync:(id)notificationObserver selector:(SEL)notificationSelector name:(NSString *)notificationName object:(id)notificationSender
+{
+    // Ensure this runs in the main thread
+    [EX2Dispatch runInMainThreadAndWaitUntilDone:NO block:^{
+        [[NSNotificationCenter defaultCenter] addObserver:notificationObserver selector:notificationSelector name:notificationName object:notificationSender];
+    }];
+}
+
 /*
 *
 */
