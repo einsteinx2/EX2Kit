@@ -22,6 +22,9 @@
 {
     if (object)
     {
+        if (index > self.count)
+            index = self.count;
+        
         [self insertObject:object atIndex:index];
     }
 }
