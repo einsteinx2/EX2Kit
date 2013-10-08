@@ -28,5 +28,6 @@
 #import "UIImageView+ImageAnimated.h"
 #import "UIImage+Color.h"
 #import "UIButton+Colors.h"
+#import "UIColor+ColorWithInt.h"
 
 #endif

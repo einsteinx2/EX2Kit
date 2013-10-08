@@ -251,6 +251,8 @@
 		53A1C30917EB88980039DA81 /* UIImage+Color.m in Sources */ = {isa = PBXBuildFile; fileRef = 53A1C30717EB88980039DA81 /* UIImage+Color.m */; };
 		53CFE2F6170B83B000347CC8 /* UIButton+StretchBackground.h in Headers */ = {isa = PBXBuildFile; fileRef = 53CFE2F4170B83B000347CC8 /* UIButton+StretchBackground.h */; };
 		53CFE2F7170B83B000347CC8 /* UIButton+StretchBackground.m in Sources */ = {isa = PBXBuildFile; fileRef = 53CFE2F5170B83B000347CC8 /* UIButton+StretchBackground.m */; };
+		53E09E0518049BA5001C5CAB /* UIColor+ColorWithInt.h in Headers */ = {isa = PBXBuildFile; fileRef = 53E09E0318049BA5001C5CAB /* UIColor+ColorWithInt.h */; };
+		53E09E0618049BA5001C5CAB /* UIColor+ColorWithInt.m in Sources */ = {isa = PBXBuildFile; fileRef = 53E09E0418049BA5001C5CAB /* UIColor+ColorWithInt.m */; };
 		53E2F47616684CCE00743BB8 /* RNCryptor.h in Headers */ = {isa = PBXBuildFile; fileRef = 53E2F47116684CCE00743BB8 /* RNCryptor.h */; };
 		53E2F47716684CCE00743BB8 /* RNCryptor.m in Sources */ = {isa = PBXBuildFile; fileRef = 53E2F47216684CCE00743BB8 /* RNCryptor.m */; };
 		53E3940417A7B1AA00C618F9 /* EX2FlatSegmentedControl.h in Headers */ = {isa = PBXBuildFile; fileRef = 53E3940217A7B1AA00C618F9 /* EX2FlatSegmentedControl.h */; };
@@ -432,6 +434,8 @@
 		53D44EA715AA56C700CDD3B8 /* EX2Kit-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "EX2Kit-Info.plist"; sourceTree = "<group>"; };
 		53D44EA915AA56C700CDD3B8 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		53D44EAB15AA56C700CDD3B8 /* EX2Kit-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "EX2Kit-Prefix.pch"; sourceTree = "<group>"; };
+		53E09E0318049BA5001C5CAB /* UIColor+ColorWithInt.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+ColorWithInt.h"; sourceTree = "<group>"; };
+		53E09E0418049BA5001C5CAB /* UIColor+ColorWithInt.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+ColorWithInt.m"; sourceTree = "<group>"; };
 		53E2F47116684CCE00743BB8 /* RNCryptor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RNCryptor.h; sourceTree = "<group>"; };
 		53E2F47216684CCE00743BB8 /* RNCryptor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RNCryptor.m; sourceTree = "<group>"; };
 		53E3940217A7B1AA00C618F9 /* EX2FlatSegmentedControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EX2FlatSegmentedControl.h; sourceTree = "<group>"; };
@@ -927,6 +931,8 @@
 				53A1C30717EB88980039DA81 /* UIImage+Color.m */,
 				53703CB117ED05DF007F3011 /* UIButton+Colors.h */,
 				53703CB217ED05DF007F3011 /* UIButton+Colors.m */,
+				53E09E0318049BA5001C5CAB /* UIColor+ColorWithInt.h */,
+				53E09E0418049BA5001C5CAB /* UIColor+ColorWithInt.m */,
 			);
 			path = UIKit;
 			sourceTree = "<group>";
@@ -1187,6 +1193,7 @@
 				5373A944162DD71F0016A019 /* NSString+cStringUTF8.h in Headers */,
 				5373A945162DD71F0016A019 /* NSString+FileSize.h in Headers */,
 				5373A946162DD71F0016A019 /* NSString+Gzip.h in Headers */,
+				53E09E0518049BA5001C5CAB /* UIColor+ColorWithInt.h in Headers */,
 				5373A947162DD71F0016A019 /* NSString+hex.h in Headers */,
 				5373A948162DD71F0016A019 /* NSString+md5.h in Headers */,
 				5373A949162DD71F0016A019 /* NSString+rfcEncode.h in Headers */,
@@ -1491,6 +1498,7 @@
 				53145C18163F5E6400DE22F1 /* NSURL+QueryParameterDictionary.m in Sources */,
 				533B3E55165D8FE000ECD75F /* NSURL+SkipBackupAttribute.m in Sources */,
 				53E2F47716684CCE00743BB8 /* RNCryptor.m in Sources */,
+				53E09E0618049BA5001C5CAB /* UIColor+ColorWithInt.m in Sources */,
 				53F884CF16BB61C000372A2D /* EX2Language.m in Sources */,
 				53F8850616BB855B00372A2D /* RNCryptorEngine.m in Sources */,
 				53F8850A16BB855B00372A2D /* RNDecryptor.m in Sources */,
