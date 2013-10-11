@@ -107,6 +107,8 @@
 #define SYSTEM_VERSION_LESS_THAN(v)                 ([[[UIDevice currentDevice] systemVersion] compare:v options:NSNumericSearch] == NSOrderedAscending)
 #define SYSTEM_VERSION_LESS_THAN_OR_EQUAL_TO(v)     ([[[UIDevice currentDevice] systemVersion] compare:v options:NSNumericSearch] != NSOrderedDescending)
 
+#define IS_IOS7() (SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"7"))
+
 // Shim to support @YES and @NO in Xcode 4.4
 // From this SO answer: http://stackoverflow.com/a/11697204/299262
 #ifndef __IPHONE_6_0
