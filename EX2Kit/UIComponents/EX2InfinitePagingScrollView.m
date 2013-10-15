@@ -103,6 +103,9 @@
 
 - (void)setupPages
 {
+    // Fix content size in case we've been resized
+    self.contentSize = CGSizeMake(self.width * 5., self.height);
+    
     // We always scroll to the center page to start, and then load the appropriate pages on the left, center, and right
     self.contentOffset = self.centerOffset;
     
