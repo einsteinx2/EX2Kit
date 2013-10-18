@@ -179,11 +179,7 @@
 - (void)scrollToPrevPageAnimated
 {
     NSInteger index = self.currentPageIndex - 1;
-    if (index < 0 && self.isWrapLeft)
-    {
-        index = self.numberOfPages - 1;
-    }
-    else if (index < 0)
+    if (index < 0 && !self.isWrapLeft)
     {
         // Do nothing
         return;
@@ -195,11 +191,7 @@
 - (void)scrollToNextPageAnimated
 {
     NSInteger index = self.currentPageIndex + 1;
-    if (index >= self.numberOfPages && self.isWrapRight)
-    {
-        index = 0;
-    }
-    else if (index >= self.numberOfPages)
+    if (index >= self.numberOfPages && !self.isWrapRight)
     {
         // Do nothing
         return;
@@ -262,6 +254,13 @@
 
 - (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView
 {
+    // If we're auto-scrolling, restart the timer
+    if (self.autoScrollTimer)
+    {
+        [self startAutoScrolling];
+    }
+    
+    // Call the delegate
     if ([self.pagingDelegate respondsToSelector:@selector(infinitePagingScrollViewDidEndDecelerating:)])
     {
         // Run async
