@@ -66,6 +66,9 @@ EX2NotificationBarPosition;
 // The height of the content area when shown
 @property CGFloat notificationBarHeight;
 
+// Adjust sizes for iOS 7 status bar
+@property (nonatomic) BOOL isEnableiOS7Fix;
+
 - (id)initWithPosition:(EX2NotificationBarPosition)position;
 
 - (id)initWithPosition:(EX2NotificationBarPosition)position mainViewController:(UIViewController *)mainViewController;

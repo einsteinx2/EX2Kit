@@ -17,7 +17,7 @@
 #define LARGE_STATUS_HEIGHT 40.
 #define ACTUAL_STATUS_HEIGHT [[UIApplication sharedApplication] statusBarFrame].size.height
 
-#define TopY (SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"7") ? 20. : 0.)
+#define TopY (self.isEnableiOS7Fix && SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"7") ? 20. : 0.)
 
 NSString * const EX2NotificationBarWillShow = @"EX2NotificationBarWillShow";
 NSString * const EX2NotificationBarWillHide = @"EX2NotificationBarWillHide";
@@ -114,7 +114,7 @@ NSString * const EX2NotificationBarDidHide = @"EX2NotificationBarDidHide";
 	}
     
     // Fix for iOS 7 status bar
-    if (SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"7"))
+    if (self.isEnableiOS7Fix && IS_IOS7())
     {
         if (self.mainViewHolder.y == 0.)
         {
