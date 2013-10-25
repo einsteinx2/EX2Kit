@@ -281,6 +281,21 @@
     }
 }
 
+- (CGSize)realSizeDidRotate
+{
+    UIDeviceOrientation orientation = [[UIDevice currentDevice] orientation];
+    CGSize size = self.frame.size;
+    if ((orientation == UIDeviceOrientationLandscapeLeft || orientation == UIDeviceOrientationLandscapeRight) &&
+        size.width < size.height)
+    {
+        // flip width and height
+        CGFloat f = size.width;
+        size.width = size.height;
+        size.height = f;
+    }
+    return size;
+}
+
 // Convert the view for use in Arabic/Hebrew layout
 - (void)convertToRTL
 {

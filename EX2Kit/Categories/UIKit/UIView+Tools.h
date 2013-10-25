@@ -25,6 +25,7 @@
 @property (nonatomic) CGSize size;
 
 @property (nonatomic, readonly) UIViewController *viewController;
+- (CGSize)realSizeDidRotate;
 
 - (void)addLeftShadowWithWidth:(CGFloat)shadowWidth alpha:(CGFloat)shadowAlpha;
 - (void)addLeftShadow;
