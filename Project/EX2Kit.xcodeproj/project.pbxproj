@@ -348,6 +348,8 @@
 		53FA691D1644789900D19576 /* table-fade-bottom@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 53FA69191644789900D19576 /* table-fade-bottom@2x.png */; };
 		53FA691E1644789900D19576 /* table-fade-top.png in Resources */ = {isa = PBXBuildFile; fileRef = 53FA691A1644789900D19576 /* table-fade-top.png */; };
 		53FA691F1644789900D19576 /* table-fade-top@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 53FA691B1644789900D19576 /* table-fade-top@2x.png */; };
+		FC488817182C880A00356DE7 /* UIViewController+Tools.h in Headers */ = {isa = PBXBuildFile; fileRef = FC488815182C880A00356DE7 /* UIViewController+Tools.h */; };
+		FC488818182C880A00356DE7 /* UIViewController+Tools.m in Sources */ = {isa = PBXBuildFile; fileRef = FC488816182C880A00356DE7 /* UIViewController+Tools.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -594,6 +596,8 @@
 		53FA69191644789900D19576 /* table-fade-bottom@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "table-fade-bottom@2x.png"; sourceTree = "<group>"; };
 		53FA691A1644789900D19576 /* table-fade-top.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "table-fade-top.png"; sourceTree = "<group>"; };
 		53FA691B1644789900D19576 /* table-fade-top@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "table-fade-top@2x.png"; sourceTree = "<group>"; };
+		FC488815182C880A00356DE7 /* UIViewController+Tools.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+Tools.h"; sourceTree = "<group>"; };
+		FC488816182C880A00356DE7 /* UIViewController+Tools.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+Tools.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -933,6 +937,8 @@
 				53703CB217ED05DF007F3011 /* UIButton+Colors.m */,
 				53E09E0318049BA5001C5CAB /* UIColor+ColorWithInt.h */,
 				53E09E0418049BA5001C5CAB /* UIColor+ColorWithInt.m */,
+				FC488815182C880A00356DE7 /* UIViewController+Tools.h */,
+				FC488816182C880A00356DE7 /* UIViewController+Tools.m */,
 			);
 			path = UIKit;
 			sourceTree = "<group>";
@@ -1233,6 +1239,7 @@
 				53F8851416BB855B00372A2D /* RNOpenSSLDecryptor.h in Headers */,
 				53F8851816BB855B00372A2D /* RNOpenSSLEncryptor.h in Headers */,
 				53F8851F16BB8EF900372A2D /* RNCryptorOld.h in Headers */,
+				FC488817182C880A00356DE7 /* UIViewController+Tools.h in Headers */,
 				5398D07D16EE80BE002D8548 /* UIWebView+HideShadows.h in Headers */,
 				531F4F4017062C3300D7F8B0 /* NSFileHandle+Hash.h in Headers */,
 				5380B5C3170667F90010AED2 /* NSData+Hash.h in Headers */,
@@ -1448,6 +1455,7 @@
 				53F15F90162B9FCA00C24FC1 /* NSObject+ListMethods.m in Sources */,
 				53F15F91162B9FCA00C24FC1 /* GTMNSString+HTML.m in Sources */,
 				53F15F92162B9FCA00C24FC1 /* NSString+Clean.m in Sources */,
+				FC488818182C880A00356DE7 /* UIViewController+Tools.m in Sources */,
 				53F15F93162B9FCA00C24FC1 /* NSString+compareWithoutIndefiniteArticles.m in Sources */,
 				53F15F94162B9FCA00C24FC1 /* NSString+cStringUTF8.m in Sources */,
 				53F15F95162B9FCA00C24FC1 /* NSString+FileSize.m in Sources */,

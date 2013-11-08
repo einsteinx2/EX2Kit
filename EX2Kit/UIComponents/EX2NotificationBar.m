@@ -66,6 +66,8 @@ NSString * const EX2NotificationBarDidHide = @"EX2NotificationBarDidHide";
 	return self;
 }
 
+
+
 - (id)init
 {
 	return [self initWithPosition:EX2NotificationBarPositionTop];
@@ -290,9 +292,7 @@ NSString * const EX2NotificationBarDidHide = @"EX2NotificationBarDidHide";
 	// Remove the old controller's view, if there is one
 	for (UIView *subview in _mainViewHolder.subviews)
 	{
-        [subview.viewController willMoveToParentViewController:nil];
-		[subview removeFromSuperview];
-        [subview.viewController removeFromParentViewController];
+        [subview.viewController removeFromParentContainerViewController];
 	}
         
 	// Set the new controller
@@ -302,9 +302,7 @@ NSString * const EX2NotificationBarDidHide = @"EX2NotificationBarDidHide";
     _mainViewController.view.frame = self.mainViewHolder.bounds;
 	
 	// Add the new controller's view
-    [self addChildViewController:_mainViewController];
-	[self.mainViewHolder addSubview:_mainViewController.view];
-    [_mainViewController didMoveToParentViewController:self];
+    [self insertAsChildViewController:_mainViewController];
 	
 	// Handle UITabBarController weirdness
 	if ([_mainViewController isKindOfClass:[UITabBarController class]])

@@ -10,6 +10,7 @@
 #define EX2Kit_EX2UIKitCategories_h
 
 #import "UIView+Tools.h"
+#import "UIViewController+Tools.h"
 #import "UIDevice+Hardware.h"
 #import "UIDevice+Software.h"
 #import "UIViewController+IsVisible.h"
