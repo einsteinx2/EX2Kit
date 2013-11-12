@@ -13,6 +13,9 @@
 #define DEFAULT_AUTOSCROLL_INTERVAL 10.
 
 @interface EX2InfinitePagingScrollView ()
+{
+    BOOL isAutoscrolling;
+}
 @property (nonatomic, strong) NSTimer *autoScrollTimer;
 @end
 
@@ -36,6 +39,7 @@
     {
         [self setup];
     }
+    isAutoscrolling = NO;
     return self;
 }
 
@@ -45,6 +49,7 @@
     {
         [self setup];
     }
+    isAutoscrolling = NO;
     return self;
 }
 
@@ -220,6 +225,8 @@
     {
         [self.pagingDelegate infinitePagingScrollViewWillBeginDragging:self];
     }
+    if (self.autoScrollTimer)
+        [self.autoScrollTimer invalidate];
 }
 
 - (void)scrollViewDidScroll:(UIScrollView *)sender
@@ -255,7 +262,7 @@
 - (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView
 {
     // If we're auto-scrolling, restart the timer
-    if (self.autoScrollTimer)
+    if (isAutoscrolling)
     {
         [self startAutoScrolling];
     }
@@ -272,6 +279,7 @@
 
 - (void)startAutoScrolling
 {
+    isAutoscrolling = YES;
     // Cancel any existing timer
     if (self.autoScrollTimer)
         [self.autoScrollTimer invalidate];
@@ -290,6 +298,7 @@
 
 - (void)stopAutoScrolling
 {
+    isAutoscrolling = NO;
     [self.autoScrollTimer invalidate];
     self.autoScrollTimer = nil;
 }

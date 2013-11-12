@@ -283,10 +283,11 @@
 
 - (CGSize)realSizeDidRotate
 {
-    UIDeviceOrientation orientation = [[UIDevice currentDevice] orientation];
+    UIInterfaceOrientation orientation = [[UIApplication sharedApplication] statusBarOrientation];
+    
     CGSize size = self.frame.size;
-    if ((orientation == UIDeviceOrientationLandscapeLeft || orientation == UIDeviceOrientationLandscapeRight) &&
-        size.width < size.height)
+    if ((UIInterfaceOrientationIsLandscape(orientation) && size.width < size.height) ||
+        (UIInterfaceOrientationIsPortrait(orientation) && size.width > size.height))
     {
         // flip width and height
         CGFloat f = size.width;
