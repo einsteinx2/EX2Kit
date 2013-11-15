@@ -207,7 +207,7 @@ static BOOL _isThrottlingEnabled = YES;
          {
              // If we're directly on the UIWindow then add the status bar height
              CGFloat y = 0.;
-             if (self.view.superview == [self.class mainWindow])
+             if (self.view.superview == [self.class mainWindow] && !IS_IOS7())
                  y = [[UIApplication sharedApplication] statusBarFrame].size.height;
              
              self.view.y = y;
