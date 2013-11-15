@@ -252,7 +252,7 @@
         if ([self.pagingDelegate respondsToSelector:@selector(infinitePagingScrollViewDidChangePages:)])
         {
             // Run async
-            [EX2Dispatch runInMainThread:^{
+            [EX2Dispatch runInMainThreadAsync:^{
                 [self.pagingDelegate infinitePagingScrollViewDidChangePages:self];
             }];
         }
@@ -271,7 +271,7 @@
     if ([self.pagingDelegate respondsToSelector:@selector(infinitePagingScrollViewDidEndDecelerating:)])
     {
         // Run async
-        [EX2Dispatch runInMainThread:^{
+        [EX2Dispatch runInMainThreadAsync:^{
             [self.pagingDelegate infinitePagingScrollViewDidEndDecelerating:self];
         }];
     }

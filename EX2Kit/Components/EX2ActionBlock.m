@@ -42,7 +42,7 @@
         }
         case EX2ActionBlockRunType_Async:
         {
-            [EX2Dispatch runInMainThread:^
+            [EX2Dispatch runInMainThreadAsync:^
              {
                  self.actionBlock();
                  [self.actionQueue actionFinished:self];
@@ -51,7 +51,7 @@
         }
         case EX2ActionBlockRunType_Background:
         {
-            [EX2Dispatch runInBackground:^
+            [EX2Dispatch runInBackgroundAsync:^
              {
                  self.actionBlock();
                  [self.actionQueue actionFinished:self];
