@@ -18,7 +18,7 @@
     }
     else
     {
-        [EX2Dispatch runInMainThread:^{ [self setNeedsLayout]; }];
+        [EX2Dispatch runInMainThreadAsync:^{ [self setNeedsLayout]; }];
     }
 }
 
@@ -30,7 +30,7 @@
     }
     else
     {
-        [EX2Dispatch runInMainThread:^{ [self setNeedsDisplay]; }];
+        [EX2Dispatch runInMainThreadAsync:^{ [self setNeedsDisplay]; }];
     }
 }
 
@@ -42,7 +42,7 @@
     }
     else
     {
-        [EX2Dispatch runInMainThread:^{ [self setNeedsDisplayInRect:rect]; }];
+        [EX2Dispatch runInMainThreadAsync:^{ [self setNeedsDisplayInRect:rect]; }];
     }
 }
 

@@ -19,11 +19,6 @@
 	dispatch_after(dispatch_time(DISPATCH_TIME_NOW, delay * NSEC_PER_SEC), queue, block);
 }
 
-+ (void)runInCurrentQueueAfterDelay:(NSTimeInterval)delay block:(void (^)(void))block
-{
-	[self runInQueue:dispatch_get_current_queue() delay:delay block:block];
-}
-
 + (void)runInMainThreadAfterDelay:(NSTimeInterval)delay block:(void (^)(void))block
 {
 	[self runInQueue:dispatch_get_main_queue() delay:delay block:block];
@@ -42,12 +37,12 @@
 	dispatch_async(queue, block);
 }
 
-+ (void)runInBackground:(void (^)(void))block
++ (void)runInBackgroundAsync:(void (^)(void))block
 {
 	[self runAsync:dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0) block:block];
 }
 
-+ (void)runInMainThread:(void (^)(void))block
++ (void)runInMainThreadAsync:(void (^)(void))block
 {
 	[self runAsync:dispatch_get_main_queue() block:block];
 }
@@ -130,11 +125,6 @@ static void initialize_navigationBarImages()
 	return [self timerInQueue:dispatch_get_main_queue() afterDelay:delay withName:name repeats:repeats performBlock:block];
 }
 
-+ (BOOL)timerInCurrentQueueAfterDelay:(NSTimeInterval)delay withName:(NSString *)name repeats:(BOOL)repeats performBlock:(void (^)(void))block
-{
-	return [self timerInQueue:dispatch_get_current_queue() afterDelay:delay withName:name repeats:repeats performBlock:block];
-}
-
 + (void)cancelTimerBlockWithName:(NSString *)name
 {
 	@synchronized(syncObject)
@@ -158,7 +148,7 @@ static void initialize_navigationBarImages()
 	}
 }
 
-+ (void)gcdCancelAllTimerBlocks
++ (void)cancelAllTimerBlocks
 {
 	@synchronized(syncObject)
 	{

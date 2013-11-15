@@ -290,7 +290,7 @@ static char key;
         }
     };
     
-    [NSThread isMainThread] ? block() : [EX2Dispatch runInMainThread:block];
+    [NSThread isMainThread] ? block() : [EX2Dispatch runInMainThreadAsync:block];
 }
 
 - (void)displayControllerAtIndex:(NSUInteger)index animation:(EX2TabBarControllerAnimation)animationType
