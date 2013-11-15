@@ -101,6 +101,12 @@ static BOOL _isThrottlingEnabled = YES;
 		
 		// If we're directly on the UIWindow, add 20 points for the status bar
 		self.view.frame = CGRectMake(0., 0, _parentView.width, self.view.height);
+        if (IS_IOS7())
+        {
+            self.view.height += 20.;
+            self.imageView.y += 15.;
+            self.messageLabel.y += 15.;
+        }
 		
 		[_parentView addSubview:self.view];
 	}
