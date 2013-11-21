@@ -289,8 +289,8 @@ static void *key;
     
     self.isAnimating = YES;
     
-    [self.contentView addSubview:appearing.view];
     appearing.view.frame = appearingStart;
+    [self.contentView addSubview:appearing.view];
     
     // In iOS 4, these messages don't happen automatically
 	if (SYSTEM_VERSION_LESS_THAN(@"5.0"))
