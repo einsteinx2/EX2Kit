@@ -122,48 +122,54 @@
     if (!self.isWrapRight)
         end = end > self.numberOfPages - 1 ? self.numberOfPages - 1 : end;
     
-    for (int i = start; i <= end; i++)
+    if (self.numberOfPages == 1)
     {
-        @autoreleasepool
+        UIView *view = [self.pagingDelegate infinitePagingScrollView:self pageForIndex:0];
+        view.frame = CGRectMake(self.centerOffset.x, 0., self.width, self.height);
+        [self addSubview:view];
+        self.pageViews[@(0)] = view;
+    }
+    else
+    {
+        for (int i = start; i <= end; i++)
         {
-            // Special handling for wrapping pages
-            NSInteger loadIndex = i;
-            if (self.numberOfPages == 1)
+            @autoreleasepool
             {
-                loadIndex = 0;
-            }
-            if (self.isWrapRight && i > 0 && i > self.numberOfPages - 1)
-            {
-                loadIndex = i - self.numberOfPages;
-            }
-            else if (self.isWrapLeft && loadIndex < 0)
-            {
-                loadIndex = self.numberOfPages + i;
-            }
-            
-            // First try to see if a page for this index already exists, if so we'll just move it instead of loading a new one
-            NSNumber *key = @(i);
-            UIView *view = self.pageViews[key];
-            CGFloat x = (CGFloat)((int)self.centerOffset.x + ((int)self.frame.size.width * (i - self.currentPageIndex)));
-            CGRect rect = CGRectMake(x, 0., self.width, self.height);
-            
-            if (view)
-            {
-                // This view already exists, it just isn't in the right place
-                view.frame = rect;
-            }
-            else
-            {
-                // This view doesn't exist yet, so load one and place it
-                if (self.createPageBlock)
-                    view = self.createPageBlock(self, loadIndex);
-                else
-                    view = [self.pagingDelegate infinitePagingScrollView:self pageForIndex:loadIndex];
+                // Special handling for wrapping pages
+                NSInteger loadIndex = i;
+                if (self.isWrapRight && i > 0 && i > self.numberOfPages - 1)
+                {
+                    loadIndex = i - self.numberOfPages;
+                }
+                else if (self.isWrapLeft && loadIndex < 0)
+                {
+                    loadIndex = self.numberOfPages + i;
+                }
+                
+                // First try to see if a page for this index already exists, if so we'll just move it instead of loading a new one
+                NSNumber *key = @(i);
+                UIView *view = self.pageViews[key];
+                CGFloat x = (CGFloat)((int)self.centerOffset.x + ((int)self.frame.size.width * (i - self.currentPageIndex)));
+                CGRect rect = CGRectMake(x, 0., self.width, self.height);
+                
                 if (view)
                 {
+                    // This view already exists, it just isn't in the right place
                     view.frame = rect;
-                    [self addSubview:view];
-                    self.pageViews[key] = view;
+                }
+                else
+                {
+                    // This view doesn't exist yet, so load one and place it
+                    if (self.createPageBlock)
+                        view = self.createPageBlock(self, loadIndex);
+                    else
+                        view = [self.pagingDelegate infinitePagingScrollView:self pageForIndex:loadIndex];
+                    if (view)
+                    {
+                        view.frame = rect;
+                        [self addSubview:view];
+                        self.pageViews[key] = view;
+                    }
                 }
             }
         }
