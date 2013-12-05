@@ -40,6 +40,8 @@
 - (void)addBottomShadow;
 - (void)removeBottomShadow;
 
+- (CGPoint)centerOfBounds;
+
 - (void)addTopShadowWithWidth:(CGFloat)shadowWidth alpha:(CGFloat)shadowAlpha;
 - (void)addTopShadow;
 - (void)removeTopShadow;

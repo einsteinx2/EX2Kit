@@ -177,6 +177,11 @@
     self.frame = frame;
 }
 
+- (CGPoint)centerOfBounds
+{
+    return CGPointMake(self.bounds.size.width / 2.0, self.bounds.size.height / 2.0);
+}
+
 
 - (CGFloat)x
 {

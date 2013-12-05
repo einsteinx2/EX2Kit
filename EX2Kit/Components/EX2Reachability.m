@@ -102,7 +102,7 @@ static void ReachabilityCallback(SCNetworkReachabilityRef target, SCNetworkReach
 - (BOOL) startNotifier
 {
 	BOOL retVal = NO;
-	SCNetworkReachabilityContext	context = {0, self, NULL, NULL, NULL};
+	SCNetworkReachabilityContext	 context = {0, self, NULL, NULL, NULL};
 	if(SCNetworkReachabilitySetCallback(reachabilityRef, ReachabilityCallback, &context))
 	{
 		if(SCNetworkReachabilityScheduleWithRunLoop(reachabilityRef, CFRunLoopGetCurrent(), kCFRunLoopDefaultMode))
