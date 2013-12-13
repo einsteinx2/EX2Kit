@@ -54,7 +54,7 @@ static void *key;
 @implementation EX2NavigationController
 
 #define AnimationDuration 0.3
-#define AnimationCurve UIViewAnimationOptionCurveEaseInOut
+#define AnimationCurve IS_IOS7() ? UIViewAnimationOptionCurveEaseOut : UIViewAnimationOptionCurveEaseInOut
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
