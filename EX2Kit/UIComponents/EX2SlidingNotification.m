@@ -169,6 +169,10 @@ static BOOL _isThrottlingEnabled = YES;
 		CALayer *shadow = [[self.view.layer sublayers] objectAtIndexSafe:0];
 		shadow.frame = CGRectMake(shadow.frame.origin.x, shadow.frame.origin.y, 1024., shadow.frame.size.height);
 	}
+    
+    // Add 20 points for the status bar if we're on iOS 7.
+    if (IS_IOS7())
+        self.view.height += 20.;
 }
 
 - (BOOL)showAndHideSlidingNotification
