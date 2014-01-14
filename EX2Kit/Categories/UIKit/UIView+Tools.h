@@ -47,6 +47,8 @@
 - (void)removeTopShadow;
 + (CAGradientLayer *)horizontalShadowWithAlpha:(CGFloat)shadowAlpha inverse:(BOOL)inverse;
 
+- (void)addBottomLine;
+
 // Convert view from left to right to right to left layout for switching to Arabic/Hebrew
 - (void)convertToRTL;
 
