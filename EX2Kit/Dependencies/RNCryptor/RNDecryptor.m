@@ -31,12 +31,59 @@
 
 static const NSUInteger kPreambleSize = 2;
 
+@interface NSData (RNCryptor_ConsistentCompare)
+
+/** Compare two NSData in time proportional to the compared data (otherData)
+ *
+ * isEqual:-based comparisons stop comparing at the first difference. This can be used by attackers, in some situations,
+ * to determine a secret value by considering the time required to compare the values.
+ *
+ * It is slightly better to call this as [secret rnc_isEqualInConsistentTime:attackersData] rather than the reverse,
+ * but it is not a major issue either way. In the first case, the time required is proportional to the attacker's data,
+ * which provides the attacker no information about the length of secret. In the second case, the time is proportional
+ * to the length of secret, which leaks a small amount of informaiont, but in a way that does not varry in proportion to
+ * the attacker's data.
+ *
+ * @param otherData data to compare
+ * @returns YES if values are equal
+ */
+- (BOOL)rnc_isEqualInConsistentTime:(NSData *)otherData;
+
+@end
+
+@implementation NSData (RNCryptor_ConstantCompare)
+
+- (BOOL)rnc_isEqualInConsistentTime:(NSData *)otherData {
+  // The point of this routine is XOR the bytes of each data and accumulate the results with OR.
+  // If any bytes are different, then the OR will accumulate some non-0 value.
+
+  uint8_t result = otherData.length - self.length;  // Start with 0 (equal) only if our lengths are equal
+
+  const uint8_t *myBytes = [self bytes];
+  const NSUInteger myLength = [self length];
+  const uint8_t *otherBytes = [otherData bytes];
+  const NSUInteger otherLength = [otherData length];
+
+  for (NSUInteger i = 0; i < otherLength; ++i) {
+    // Use mod to wrap around ourselves if they are longer than we are.
+    // Remember, we already broke equality if our lengths are different.
+    result |= myBytes[i % myLength] ^ otherBytes[i];
+  }
+
+  return result == 0;
+}
+
+@end
+
+
 @interface RNDecryptor ()
 @property (nonatomic, readonly, strong) NSMutableData *inData;
 @property (nonatomic, readwrite, copy) NSData *encryptionKey;
 @property (nonatomic, readwrite, copy) NSData *HMACKey;
 @property (nonatomic, readwrite, copy) NSString *password;
 @property (nonatomic, readwrite, assign) BOOL hasV1HMAC;
+
+@property (nonatomic, readwrite, assign) RNCryptorSettings settings;
 
 @end
 
@@ -48,6 +95,24 @@ static const NSUInteger kPreambleSize = 2;
 @synthesize encryptionKey = _encryptionKey;
 @synthesize HMACKey = _HMACKey;
 @synthesize password = _password;
+@synthesize settings = _settings;
+
++ (NSData *)decryptData:(NSData *)theCipherText withSettings:(RNCryptorSettings)settings password:(NSString *)aPassword error:(NSError **)anError
+{
+  RNDecryptor *cryptor = [[self alloc] initWithPassword:aPassword
+                                                handler:^(RNCryptor *c, NSData *d) {}];
+  cryptor.settings = settings;
+  return [self synchronousResultForCryptor:cryptor data:theCipherText error:anError];
+}
+
++ (NSData *)decryptData:(NSData *)theCipherText withSettings:(RNCryptorSettings)settings encryptionKey:(NSData *)encryptionKey HMACKey:(NSData *)HMACKey error:(NSError **)anError
+{
+  RNDecryptor *cryptor = [[self alloc] initWithEncryptionKey:encryptionKey
+                                                     HMACKey:HMACKey
+                                                     handler:^(RNCryptor *c, NSData *d) {}];
+  cryptor.settings = settings;
+  return [self synchronousResultForCryptor:cryptor data:theCipherText error:anError];
+}
 
 + (NSData *)decryptData:(NSData *)theCipherText withPassword:(NSString *)aPassword error:(NSError **)anError
 {
@@ -62,7 +127,6 @@ static const NSUInteger kPreambleSize = 2;
                                                      HMACKey:HMACKey
                                                      handler:^(RNCryptor *c, NSData *d) {}];
   return [self synchronousResultForCryptor:cryptor data:theCipherText error:anError];
-
 }
 
 - (RNDecryptor *)initWithEncryptionKey:(NSData *)anEncryptionKey HMACKey:(NSData *)anHMACKey handler:(RNCryptorHandler)aHandler
@@ -71,6 +135,7 @@ static const NSUInteger kPreambleSize = 2;
   if (self) {
     _encryptionKey = [anEncryptionKey copy];
     _HMACKey = [anHMACKey copy];
+    _settings = kRNCryptorAES256Settings;
   }
 
   return self;
@@ -82,7 +147,8 @@ static const NSUInteger kPreambleSize = 2;
 
   self = [self initWithEncryptionKey:nil HMACKey:nil handler:aHandler];
   if (self) {
-    _password = aPassword;
+    _password = [aPassword copy];
+    _settings = kRNCryptorAES256Settings;
   }
   return self;
 }
@@ -138,22 +204,30 @@ static const NSUInteger kPreambleSize = 2;
   }
 }
 
-- (BOOL)getSettings:(RNCryptorSettings *)settings forPreamble:(NSData *)preamble
+- (BOOL)updateOptionsForPreamble:(NSData *)preamble
 {
   const uint8_t *bytes = [preamble bytes];
 
   // See http://robnapier.net/blog/rncryptor-hmac-vulnerability-827 for information on the v1 bad HMAC
 #ifdef RNCRYPTOR_ALLOW_V1_BAD_HMAC
-  if (bytes[0] == 1 || bytes[0] == 0) {
-    *settings = kRNCryptorAES256Settings;
+  if (bytes[0] == 1) {
     self.options = bytes[1];
     self.hasV1HMAC = YES;
     return YES;
   }
 #endif
 
+  if (bytes[0] == 2) {
+    self.options = bytes[1];
+
+    RNCryptorSettings settings = self.settings;
+    settings.keySettings.hasV2Password = YES;
+    settings.HMACKeySettings.hasV2Password = YES;
+    self.settings = settings;
+    return YES;
+  }
+
   if (bytes[0] == kRNCryptorFileVersion) {
-    *settings = kRNCryptorAES256Settings;
     self.options = bytes[1];
     return YES;
   }
@@ -167,17 +241,17 @@ static const NSUInteger kPreambleSize = 2;
     return;
   }
 
-  RNCryptorSettings settings;
-  if (![self getSettings:&settings forPreamble:[data subdataWithRange:NSMakeRange(0, kPreambleSize)]]) {
+  if (![self updateOptionsForPreamble:[data subdataWithRange:NSMakeRange(0, kPreambleSize)]]) {
     [self cleanupAndNotifyWithError:[NSError errorWithDomain:kRNCryptorErrorDomain
                                                         code:kRNCryptorUnknownHeader
                                                     userInfo:[NSDictionary dictionaryWithObject:@"Unknown header" /* DNL */
                                                                                          forKey:NSLocalizedDescriptionKey]]];
+    return;
   }
 
-  NSUInteger headerSize = kPreambleSize + settings.IVSize;
+  NSUInteger headerSize = kPreambleSize + self.settings.IVSize;
   if (self.options & kRNCryptorOptionHasPassword) {
-    headerSize += settings.keySettings.saltSize + settings.HMACKeySettings.saltSize;
+    headerSize += self.settings.keySettings.saltSize + self.settings.HMACKeySettings.saltSize;
   }
 
   if (data.length < headerSize) {
@@ -192,17 +266,17 @@ static const NSUInteger kPreambleSize = 2;
   if (self.options & kRNCryptorOptionHasPassword) {
     NSAssert(!self.encryptionKey && !self.HMACKey, @"Both password and the key (%d) or HMACKey (%d) are set.", self.encryptionKey != nil, self.HMACKey != nil);
 
-    NSData *encryptionKeySalt = [data _RNConsumeToIndex:settings.keySettings.saltSize];
-    NSData *HMACKeySalt = [data _RNConsumeToIndex:settings.HMACKeySettings.saltSize];
-    self.encryptionKey = [[self class] keyForPassword:self.password salt:encryptionKeySalt settings:settings.keySettings];
-    self.HMACKey = [[self class] keyForPassword:self.password salt:HMACKeySalt settings:settings.HMACKeySettings];
+    NSData *encryptionKeySalt = [data _RNConsumeToIndex:self.settings.keySettings.saltSize];
+    NSData *HMACKeySalt = [data _RNConsumeToIndex:self.settings.HMACKeySettings.saltSize];
+    self.encryptionKey = [[self class] keyForPassword:self.password salt:encryptionKeySalt settings:self.settings.keySettings];
+    self.HMACKey = [[self class] keyForPassword:self.password salt:HMACKeySalt settings:self.settings.HMACKeySettings];
 
     self.password = nil;  // Don't need this anymore.
   }
 
-  NSData *IV = [data _RNConsumeToIndex:settings.IVSize];
+  NSData *IV = [data _RNConsumeToIndex:self.settings.IVSize];
 
-  self.engine = [[RNCryptorEngine alloc] initWithOperation:kCCDecrypt settings:settings key:self.encryptionKey IV:IV error:&error];
+  self.engine = [[RNCryptorEngine alloc] initWithOperation:kCCDecrypt settings:self.settings key:self.encryptionKey IV:IV error:&error];
   self.encryptionKey = nil; // Don't need this anymore
   if (!self.engine) {
     [self cleanupAndNotifyWithError:error];
@@ -210,8 +284,8 @@ static const NSUInteger kPreambleSize = 2;
   }
 
   if (self.HMACKey) {
-    CCHmacInit(&_HMACContext, settings.HMACAlgorithm, self.HMACKey.bytes, self.HMACKey.length);
-    self.HMACLength = settings.HMACLength;
+    CCHmacInit(&_HMACContext, self.settings.HMACAlgorithm, self.HMACKey.bytes, self.HMACKey.length);
+    self.HMACLength = self.settings.HMACLength;
     self.HMACKey = nil; // Don't need this anymore
 
     if (! self.hasV1HMAC) {
@@ -240,7 +314,7 @@ static const NSUInteger kPreambleSize = 2;
       NSMutableData *HMACData = [NSMutableData dataWithLength:self.HMACLength];
       CCHmacFinal(&_HMACContext, [HMACData mutableBytes]);
 
-      if (![HMACData isEqualToData:self.inData]) {
+      if (![HMACData rnc_isEqualInConsistentTime:self.inData]) {
         [self cleanupAndNotifyWithError:[NSError errorWithDomain:kRNCryptorErrorDomain
                                                             code:kRNCryptorHMACMismatch
                                                         userInfo:[NSDictionary dictionaryWithObject:@"HMAC Mismatch" /* DNL */
