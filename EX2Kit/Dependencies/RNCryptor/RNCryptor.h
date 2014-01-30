@@ -39,7 +39,6 @@ typedef struct _RNCryptorKeyDerivationSettings
   CCPBKDFAlgorithm PBKDFAlgorithm;
   CCPseudoRandomAlgorithm PRF;
   uint rounds;
-  BOOL hasV2Password; // See Issue #77. V2 incorrectly handled multi-byte characters.
 } RNCryptorKeyDerivationSettings;
 
 typedef struct _RNCryptorSettings
@@ -67,7 +66,7 @@ static const RNCryptorSettings kRNCryptorAES256Settings = {
         .saltSize = 8,
         .PBKDFAlgorithm = kCCPBKDF2,
         .PRF = kCCPRFHmacAlgSHA1,
-        .rounds = 10000
+        .rounds = 10
     },
 
     .HMACKeySettings = {
@@ -75,7 +74,7 @@ static const RNCryptorSettings kRNCryptorAES256Settings = {
         .saltSize = 8,
         .PBKDFAlgorithm = kCCPBKDF2,
         .PRF = kCCPRFHmacAlgSHA1,
-        .rounds = 10000
+        .rounds = 10
     }
 };
 
