@@ -13,8 +13,6 @@
 #import "NSArray+Additions.h"
 
 
-static const int ddLogLevel = LOG_LEVEL_VERBOSE;
-
 @implementation UIViewController (EX2TabBarController)
 // No adding instance properties in categories you say? Hogwash! Three cheers for associative references!
 static char key;

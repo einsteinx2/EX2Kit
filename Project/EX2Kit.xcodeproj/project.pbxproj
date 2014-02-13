@@ -350,6 +350,8 @@
 		53FA691F1644789900D19576 /* table-fade-top@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 53FA691B1644789900D19576 /* table-fade-top@2x.png */; };
 		FC488817182C880A00356DE7 /* UIViewController+Tools.h in Headers */ = {isa = PBXBuildFile; fileRef = FC488815182C880A00356DE7 /* UIViewController+Tools.h */; };
 		FC488818182C880A00356DE7 /* UIViewController+Tools.m in Sources */ = {isa = PBXBuildFile; fileRef = FC488816182C880A00356DE7 /* UIViewController+Tools.m */; };
+		FCA12C9918AD561B00D5EDE7 /* UIImage+RoundedImage.h in Headers */ = {isa = PBXBuildFile; fileRef = FCA12C9718AD561B00D5EDE7 /* UIImage+RoundedImage.h */; };
+		FCA12C9A18AD561B00D5EDE7 /* UIImage+RoundedImage.m in Sources */ = {isa = PBXBuildFile; fileRef = FCA12C9818AD561B00D5EDE7 /* UIImage+RoundedImage.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -598,6 +600,8 @@
 		53FA691B1644789900D19576 /* table-fade-top@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "table-fade-top@2x.png"; sourceTree = "<group>"; };
 		FC488815182C880A00356DE7 /* UIViewController+Tools.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+Tools.h"; sourceTree = "<group>"; };
 		FC488816182C880A00356DE7 /* UIViewController+Tools.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+Tools.m"; sourceTree = "<group>"; };
+		FCA12C9718AD561B00D5EDE7 /* UIImage+RoundedImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+RoundedImage.h"; sourceTree = "<group>"; };
+		FCA12C9818AD561B00D5EDE7 /* UIImage+RoundedImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+RoundedImage.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -939,6 +943,8 @@
 				53E09E0418049BA5001C5CAB /* UIColor+ColorWithInt.m */,
 				FC488815182C880A00356DE7 /* UIViewController+Tools.h */,
 				FC488816182C880A00356DE7 /* UIViewController+Tools.m */,
+				FCA12C9718AD561B00D5EDE7 /* UIImage+RoundedImage.h */,
+				FCA12C9818AD561B00D5EDE7 /* UIImage+RoundedImage.m */,
 			);
 			path = UIKit;
 			sourceTree = "<group>";
@@ -1195,6 +1201,7 @@
 				5373A940162DD71F0016A019 /* GTMNSString+HTML.h in Headers */,
 				5373A941162DD71F0016A019 /* NSString+Additions.h in Headers */,
 				5373A942162DD71F0016A019 /* NSString+Clean.h in Headers */,
+				FCA12C9918AD561B00D5EDE7 /* UIImage+RoundedImage.h in Headers */,
 				5373A943162DD71F0016A019 /* NSString+compareWithoutIndefiniteArticles.h in Headers */,
 				5373A944162DD71F0016A019 /* NSString+cStringUTF8.h in Headers */,
 				5373A945162DD71F0016A019 /* NSString+FileSize.h in Headers */,
@@ -1473,6 +1480,7 @@
 				53F15FA1162B9FCA00C24FC1 /* UIBezierPath+Smoothing.m in Sources */,
 				53F15FA2162B9FCA00C24FC1 /* UIColor+ColorWithHex.m in Sources */,
 				53F15FA3162B9FCA00C24FC1 /* UIDevice+Hardware.m in Sources */,
+				FCA12C9A18AD561B00D5EDE7 /* UIImage+RoundedImage.m in Sources */,
 				53F15FA4162B9FCA00C24FC1 /* UIDevice+Software.m in Sources */,
 				53F15FA5162B9FCA00C24FC1 /* UIImage+CustomStretch.m in Sources */,
 				53F15FA6162B9FCA00C24FC1 /* UIImage+Tint.m in Sources */,
