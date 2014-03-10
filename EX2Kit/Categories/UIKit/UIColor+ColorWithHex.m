@@ -55,7 +55,7 @@
     
 	// Convert Objective-C NSString to C string
 	const char *cString = [hexadecimal cStringUsingEncoding: NSASCIIStringEncoding];
-	long int hex;
+	int hex;
 	
 	/*
 	 If the string contains hash tag (#)
@@ -64,11 +64,11 @@
 	 */
 	if (cString[0] == '#')
 	{
-		hex = strtol(cString + 1, NULL, 16);
+		hex = (int)strtol(cString + 1, NULL, 16);
 	}
 	else
 	{
-		hex = strtol(cString, NULL, 16);
+		hex = (int)strtol(cString, NULL, 16);
 	}
 	
 	return [UIColor colorWithHex: hex];
@@ -93,18 +93,18 @@
         return nil;
     
 	const char *cString = [hexadecimal cStringUsingEncoding: NSASCIIStringEncoding];
-	long long int hex;
+	int hex;
 	
 	if (cString[0] == '#')
 	{
-		hex = strtoll(cString + 1, NULL, 16);
+		hex = (int)strtol(cString + 1, NULL, 16);
 	}
 	else
 	{
-		hex = strtoll(cString, NULL, 16);
+		hex = (int)strtol(cString, NULL, 16);
 	}
 	
-	return [UIColor colorWithAlphaHex: (unsigned long)hex];
+	return [UIColor colorWithAlphaHex: hex];
 }
 
 + (NSString *)hexStringFromColor: (UIColor *)color
@@ -146,7 +146,7 @@
 	if (!generated)
 	{
 		generated = YES;
-		srandom(time(NULL));
+		srandom((uint)time(NULL));
 	}
 	
 	// Generate a random number and divide it using the

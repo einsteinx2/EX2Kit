@@ -143,7 +143,7 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
             //DLog(@"data size: %u  encrypted size: %u", data.length, encrypted.length);
             
             NSData *decrypted = [RNDecryptor decryptData:encrypted withPassword:_key error:nil];
-            NSLog(@"decrypted length: %u", decrypted.length);
+            NSLog(@"decrypted length: %lu", (unsigned long)decrypted.length);
             if (encryptionError)
             {
                 DDLogError(@"[EX2FileEncryptor] ERROR THERE WAS AN ERROR ENCRYPTING THIS CHUNK: %@", encryptionError);
