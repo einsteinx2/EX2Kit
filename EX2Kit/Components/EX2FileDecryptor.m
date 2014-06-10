@@ -54,6 +54,8 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
         // Note that if the entry doesn't exist, this still works because [_activeFilePaths[path] integerValue] evaluates to 0
         // when _activeFilePaths[path] is nil
         NSInteger adjustedValue = [_activeFilePaths[path] integerValue] + 1;
+        
+        NSLog(@"EX2FileDecryptor: incremented \"%@\" (%li)", path, (long)adjustedValue);
         _activeFilePaths[path] = @(adjustedValue);
         
         DLog(@"_activeFilePaths: %@", _activeFilePaths);
@@ -72,10 +74,12 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
         {
             // If decrementing the value will bring it to 0, remove the entry
             [_activeFilePaths removeObjectForKey:path];
+            NSLog(@"EX2FileDecryptor: removing \"%@\" (%li)", path, (long)adjustedValue);
         }
         else
         {
             _activeFilePaths[path] = @(adjustedValue);
+            NSLog(@"EX2FileDecryptor: decremented \"%@\" (%li)", path, (long)adjustedValue);
         }
         
         DLog(@"_activeFilePaths: %@", _activeFilePaths);

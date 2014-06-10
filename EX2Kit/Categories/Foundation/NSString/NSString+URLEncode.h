@@ -10,5 +10,6 @@
 
 + (NSString *)URLEncodeString:(NSString *)string; 
 - (NSString *)URLEncodeString; 
+- (NSString *)URLDecode;
 
 @end
