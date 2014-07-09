@@ -77,7 +77,7 @@ NSData *RNOpenSSLCryptorGetKey(NSString *password, NSData *salt, RNCryptorKeyDer
         // IV = MD5(Key + password + salt)
         unsigned char md[CC_MD5_DIGEST_LENGTH];
         CC_MD5([passwordSalt bytes], (CC_LONG)[passwordSalt length], md);
-        key = [NSData dataWithBytes:md length:sizeof(md)];
+        key = [[NSData dataWithBytes:md length:sizeof(md)] mutableCopy];
         
     } else {
         // Hash0 = ''

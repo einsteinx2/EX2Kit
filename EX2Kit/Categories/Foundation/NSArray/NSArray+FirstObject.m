@@ -10,11 +10,6 @@
 
 @implementation NSArray (FirstObject)
 
-- (id)firstObject
-{
-	return [self objectAtIndex:0];
-}
-
 - (id)firstObjectSafe
 {
 	return [self objectAtIndexSafe:0];
