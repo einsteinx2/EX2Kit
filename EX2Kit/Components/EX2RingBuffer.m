@@ -11,10 +11,21 @@
 @interface EX2RingBuffer ()
 {
 	void *_bufferBackingStore;
+    long long _totalBytesDrained;
 }
 @end
 
 @implementation EX2RingBuffer
+
+- (long long)totalBytesDrained
+{
+    return _totalBytesDrained;
+}
+
+- (void)setTotalBytesDrained:(long long)totalBytesDrained
+{
+    _totalBytesDrained = totalBytesDrained;
+}
 
 - (id)initWithBufferLength:(NSUInteger)bytes
 {
@@ -39,7 +50,7 @@
 	{
         self.readPosition = 0;
         self.writePosition = 0;
-        self.totalBytesDrained = 0;
+        _totalBytesDrained = 0;
     }
 }
 
@@ -171,7 +182,7 @@
 			}
             
             // Add the number of bytes to totalDrainedBytes
-            self.totalBytesDrained += bufferLength;
+            _totalBytesDrained += bufferLength;
 			
 			//DLog(@"read %i bytes, free: %i, filled: %i, writPos: %i, readPos: %i", bufferLength, self.freeSpaceLength, self.filledSpaceLength, self.writePosition, self.readPosition);
 			
