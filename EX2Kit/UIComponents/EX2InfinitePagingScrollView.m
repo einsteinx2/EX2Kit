@@ -285,28 +285,35 @@
 
 - (void)startAutoScrolling
 {
-    isAutoscrolling = YES;
-    // Cancel any existing timer
-    if (self.autoScrollTimer)
-        [self.autoScrollTimer invalidate];
-    
-    // Set some defaults
-    if (self.autoScrollDirection == EX2AutoScrollDirection_None)
-        self.autoScrollDirection = EX2AutoScrollDirection_Right;
-    if (self.autoScrollInterval == 0.)
-        self.autoScrollInterval = DEFAULT_AUTOSCROLL_INTERVAL;
-    
-    // Choose the correct selector
-    SEL selector = self.autoScrollDirection == EX2AutoScrollDirection_Right ? @selector(scrollToNextPageAnimated) : @selector(scrollToPrevPageAnimated);
-    
-    self.autoScrollTimer = [NSTimer scheduledTimerWithTimeInterval:self.autoScrollInterval target:self selector:selector userInfo:nil repeats:YES];
+    // Defensive: prevent auto-scrolling when there's only 1 page view
+    if (self.pageViews.count > 1)
+    {
+        isAutoscrolling = YES;
+        // Cancel any existing timer
+        if (self.autoScrollTimer)
+            [self.autoScrollTimer invalidate];
+        
+        // Set some defaults
+        if (self.autoScrollDirection == EX2AutoScrollDirection_None)
+            self.autoScrollDirection = EX2AutoScrollDirection_Right;
+        if (self.autoScrollInterval == 0.)
+            self.autoScrollInterval = DEFAULT_AUTOSCROLL_INTERVAL;
+        
+        // Choose the correct selector
+        SEL selector = self.autoScrollDirection == EX2AutoScrollDirection_Right ? @selector(scrollToNextPageAnimated) : @selector(scrollToPrevPageAnimated);
+        
+        self.autoScrollTimer = [NSTimer scheduledTimerWithTimeInterval:self.autoScrollInterval target:self selector:selector userInfo:nil repeats:YES];
+    }
 }
 
 - (void)stopAutoScrolling
 {
-    isAutoscrolling = NO;
-    [self.autoScrollTimer invalidate];
-    self.autoScrollTimer = nil;
+    if (self.autoScrollTimer)
+    {
+        isAutoscrolling = NO;
+        [self.autoScrollTimer invalidate];
+        self.autoScrollTimer = nil;
+    }
 }
 
 @end
