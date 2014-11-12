@@ -55,10 +55,10 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
         // when _activeFilePaths[path] is nil
         NSInteger adjustedValue = [_activeFilePaths[path] integerValue] + 1;
         
-        NSLog(@"EX2FileDecryptor: incremented \"%@\" (%li)", path, (long)adjustedValue);
+        DDLogVerbose(@"EX2FileDecryptor: incremented \"%@\" (%li)", path, (long)adjustedValue);
         _activeFilePaths[path] = @(adjustedValue);
         
-        DLog(@"_activeFilePaths: %@", _activeFilePaths);
+        DDLogVerbose(@"_activeFilePaths: %@", _activeFilePaths);
     }
 }
 
@@ -74,12 +74,12 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
         {
             // If decrementing the value will bring it to 0, remove the entry
             [_activeFilePaths removeObjectForKey:path];
-            NSLog(@"EX2FileDecryptor: removing \"%@\" (%li)", path, (long)adjustedValue);
+            DDLogVerbose(@"EX2FileDecryptor: removing \"%@\" (%li)", path, (long)adjustedValue);
         }
         else
         {
             _activeFilePaths[path] = @(adjustedValue);
-            NSLog(@"EX2FileDecryptor: decremented \"%@\" (%li)", path, (long)adjustedValue);
+            DDLogVerbose(@"EX2FileDecryptor: decremented \"%@\" (%li)", path, (long)adjustedValue);
         }
         
         DLog(@"_activeFilePaths: %@", _activeFilePaths);
@@ -350,17 +350,24 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
 
 - (void)closeFile
 {
+    DDLogVerbose(@"[EX2FileDecryptor] closing file for path: %@", self.path);
+    
     if (self.fileHandle)
     {
-        DDLogInfo(@"[EX2FileDecryptor] closing file for path: %@", self.path);
-        
         [self.tempDecryptBuffer reset];
         [self.decryptedBuffer reset];
         [self.fileHandle closeFile];
         _fileHandle = nil;
         
-        [EX2FileDecryptor unregisterOpenFilePath:self.path];
-    }	
+        DDLogVerbose(@"[EX2FileDecryptor] deallocated handle for path: %@", self.path);
+    }
+    else
+    {
+        DDLogVerbose(@"[EX2FileDecryptor] no handle was found for path: %@", self.path);
+    }
+    
+    DDLogVerbose(@"[EX2FileDecryptor] unregistering path: %@", self.path);
+    [EX2FileDecryptor unregisterOpenFilePath:self.path];
 }
 
 - (NSUInteger)encryptedChunkPadding
