@@ -26,7 +26,7 @@ static __strong NSBundle *_bundle = nil;
  */
 + (void)setLanguage:(NSString *)language
 {
-    [[NSUserDefaults standardUserDefaults] setObject:[NSArray arrayWithObjects:@"language", nil] forKey:@"AppleLanguages"];
+    [[NSUserDefaults standardUserDefaults] setObject:@[@"language"] forKey:@"AppleLanguages"];
     [[NSUserDefaults standardUserDefaults] synchronize];
     
     
