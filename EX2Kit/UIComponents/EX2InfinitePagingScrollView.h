@@ -42,6 +42,8 @@ typedef UIView * (^EX2InfinitePagingScrollViewPageBlock)(EX2InfinitePagingScroll
 // Keyed on NSNumber of index, works like sparse array
 @property (nonatomic, strong) NSMutableDictionary *pageViews;
 
+@property CGFloat pageSpacing;
+
 @property (nonatomic) NSInteger currentPageIndex;
 @property (nonatomic) NSUInteger numberOfPages;
 @property (nonatomic) BOOL isWrapLeft;

@@ -29,6 +29,7 @@
     self.showsVerticalScrollIndicator = NO;
     self.delegate = self;
     self.scrollsToTop = NO;
+    self.pageSpacing = 0;
     
     _pageViews = [[NSMutableDictionary alloc] initWithCapacity:10];
 }
@@ -109,7 +110,7 @@
 - (void)setupPages
 {
     // Fix content size in case we've been resized
-    self.contentSize = CGSizeMake(self.width * 5., self.height);
+    self.contentSize = CGSizeMake((self.width * 5.) + (self.pageSpacing * 4), self.height);
     
     // We always scroll to the center page to start, and then load the appropriate pages on the left, center, and right
     self.contentOffset = self.centerOffset;
@@ -149,7 +150,8 @@
                 // First try to see if a page for this index already exists, if so we'll just move it instead of loading a new one
                 NSNumber *key = @(i);
                 UIView *view = self.pageViews[key];
-                CGFloat x = (CGFloat)((int)self.centerOffset.x + ((int)self.frame.size.width * (i - self.currentPageIndex)));
+                CGFloat x = (CGFloat)((int)self.centerOffset.x + ((self.frame.size.width + self.pageSpacing) * (i - self.currentPageIndex)));
+ 
                 CGRect rect = CGRectMake(x, 0., self.width, self.height);
                 
                 if (view)
