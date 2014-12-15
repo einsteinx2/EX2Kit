@@ -80,6 +80,7 @@ static void PrintReachabilityFlags(SCNetworkReachabilityFlags    flags, const ch
 #endif
 }
 
+NSString * const EX2ReachabilityNotification_ReachabilityChanged = @"EX2ReachabilityNotification_ReachabilityChanged";
 
 @implementation EX2Reachability
 static void ReachabilityCallback(SCNetworkReachabilityRef target, SCNetworkReachabilityFlags flags, void* info)
@@ -94,7 +95,7 @@ static void ReachabilityCallback(SCNetworkReachabilityRef target, SCNetworkReach
 	
 	EX2Reachability* noteObject = (EX2Reachability*) info;
 	// Post a notification to notify the client that the network reachability changed.
-	[NSNotificationCenter postNotificationToMainThreadWithName:kReachabilityChangedNotification object:noteObject];
+	[NSNotificationCenter postNotificationToMainThreadWithName:EX2ReachabilityNotification_ReachabilityChanged object:noteObject];
 	
 	[myPool release];
 }

@@ -126,6 +126,8 @@
 		5311346D174C312A00DB199B /* UIView+Glow.m in Sources */ = {isa = PBXBuildFile; fileRef = 5311346B174C312A00DB199B /* UIView+Glow.m */; };
 		53113470174C361900DB199B /* EX2GlowButton.h in Headers */ = {isa = PBXBuildFile; fileRef = 5311346E174C361900DB199B /* EX2GlowButton.h */; };
 		53113471174C361900DB199B /* EX2GlowButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 5311346F174C361900DB199B /* EX2GlowButton.m */; };
+		5311C3231A35033300054941 /* UITableViewCell+TableView.h in Headers */ = {isa = PBXBuildFile; fileRef = 5311C3211A35033300054941 /* UITableViewCell+TableView.h */; };
+		5311C3241A35033300054941 /* UITableViewCell+TableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5311C3221A35033300054941 /* UITableViewCell+TableView.m */; };
 		53145C17163F5E6400DE22F1 /* NSURL+QueryParameterDictionary.h in Headers */ = {isa = PBXBuildFile; fileRef = 53145C15163F5E6400DE22F1 /* NSURL+QueryParameterDictionary.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		53145C18163F5E6400DE22F1 /* NSURL+QueryParameterDictionary.m in Sources */ = {isa = PBXBuildFile; fileRef = 53145C16163F5E6400DE22F1 /* NSURL+QueryParameterDictionary.m */; };
 		531CC54D17DA639F001A97EB /* NSOrderedSet+FilterBlock.h in Headers */ = {isa = PBXBuildFile; fileRef = 531CC54B17DA639F001A97EB /* NSOrderedSet+FilterBlock.h */; };
@@ -391,6 +393,8 @@
 		5311346B174C312A00DB199B /* UIView+Glow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+Glow.m"; sourceTree = "<group>"; };
 		5311346E174C361900DB199B /* EX2GlowButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EX2GlowButton.h; sourceTree = "<group>"; };
 		5311346F174C361900DB199B /* EX2GlowButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EX2GlowButton.m; sourceTree = "<group>"; };
+		5311C3211A35033300054941 /* UITableViewCell+TableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UITableViewCell+TableView.h"; sourceTree = "<group>"; };
+		5311C3221A35033300054941 /* UITableViewCell+TableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITableViewCell+TableView.m"; sourceTree = "<group>"; };
 		53145C15163F5E6400DE22F1 /* NSURL+QueryParameterDictionary.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSURL+QueryParameterDictionary.h"; sourceTree = "<group>"; };
 		53145C16163F5E6400DE22F1 /* NSURL+QueryParameterDictionary.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSURL+QueryParameterDictionary.m"; sourceTree = "<group>"; };
 		531CC54B17DA639F001A97EB /* NSOrderedSet+FilterBlock.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSOrderedSet+FilterBlock.h"; sourceTree = "<group>"; };
@@ -903,48 +907,50 @@
 				53F15F36162B9FCA00C24FC1 /* EX2UIKitCategories.h */,
 				53F15F37162B9FCA00C24FC1 /* UIBezierPath+Smoothing.h */,
 				53F15F38162B9FCA00C24FC1 /* UIBezierPath+Smoothing.m */,
+				53703CB117ED05DF007F3011 /* UIButton+Colors.h */,
+				53703CB217ED05DF007F3011 /* UIButton+Colors.m */,
+				53CFE2F4170B83B000347CC8 /* UIButton+StretchBackground.h */,
+				53CFE2F5170B83B000347CC8 /* UIButton+StretchBackground.m */,
 				53F15F39162B9FCA00C24FC1 /* UIColor+ColorWithHex.h */,
 				53F15F3A162B9FCA00C24FC1 /* UIColor+ColorWithHex.m */,
+				53E09E0318049BA5001C5CAB /* UIColor+ColorWithInt.h */,
+				53E09E0418049BA5001C5CAB /* UIColor+ColorWithInt.m */,
 				53F15F3B162B9FCA00C24FC1 /* UIDevice+Hardware.h */,
 				53F15F3C162B9FCA00C24FC1 /* UIDevice+Hardware.m */,
 				53F15F3D162B9FCA00C24FC1 /* UIDevice+Software.h */,
 				53F15F3E162B9FCA00C24FC1 /* UIDevice+Software.m */,
+				53A1C30617EB88980039DA81 /* UIImage+Color.h */,
+				53A1C30717EB88980039DA81 /* UIImage+Color.m */,
+				531CF181163D064A008F8AA7 /* UIImage+Cropping.h */,
+				531CF182163D064A008F8AA7 /* UIImage+Cropping.m */,
 				53F15F3F162B9FCA00C24FC1 /* UIImage+CustomStretch.h */,
 				53F15F40162B9FCA00C24FC1 /* UIImage+CustomStretch.m */,
+				530EAC3C1781D20000346E4E /* UIImage+Reflection.h */,
+				530EAC3D1781D20000346E4E /* UIImage+Reflection.m */,
+				FCA12C9718AD561B00D5EDE7 /* UIImage+RoundedImage.h */,
+				FCA12C9818AD561B00D5EDE7 /* UIImage+RoundedImage.m */,
 				53F15F41162B9FCA00C24FC1 /* UIImage+Tint.h */,
 				53F15F42162B9FCA00C24FC1 /* UIImage+Tint.m */,
+				539DC3FA17D649FF001FE630 /* UIImageView+ImageAnimated.h */,
+				539DC3FB17D649FF001FE630 /* UIImageView+ImageAnimated.m */,
 				53F15F43162B9FCA00C24FC1 /* UIImageView+Reflection.h */,
 				53F15F44162B9FCA00C24FC1 /* UIImageView+Reflection.m */,
 				53F15F45162B9FCA00C24FC1 /* UITableView+Shadows.h */,
 				53F15F46162B9FCA00C24FC1 /* UITableView+Shadows.m */,
-				53F15F47162B9FCA00C24FC1 /* UIView+Tools.h */,
-				53F15F48162B9FCA00C24FC1 /* UIView+Tools.m */,
-				53F15F49162B9FCA00C24FC1 /* UIViewController+IsVisible.h */,
-				53F15F4A162B9FCA00C24FC1 /* UIViewController+IsVisible.m */,
-				531CF181163D064A008F8AA7 /* UIImage+Cropping.h */,
-				531CF182163D064A008F8AA7 /* UIImage+Cropping.m */,
-				5398D07B16EE80BE002D8548 /* UIWebView+HideShadows.h */,
-				5398D07C16EE80BE002D8548 /* UIWebView+HideShadows.m */,
-				53CFE2F4170B83B000347CC8 /* UIButton+StretchBackground.h */,
-				53CFE2F5170B83B000347CC8 /* UIButton+StretchBackground.m */,
+				5311C3211A35033300054941 /* UITableViewCell+TableView.h */,
+				5311C3221A35033300054941 /* UITableViewCell+TableView.m */,
 				5311346A174C312A00DB199B /* UIView+Glow.h */,
 				5311346B174C312A00DB199B /* UIView+Glow.m */,
-				530EAC3C1781D20000346E4E /* UIImage+Reflection.h */,
-				530EAC3D1781D20000346E4E /* UIImage+Reflection.m */,
 				533C369117970138002AC317 /* UIView+SetNeedsLayoutSafe.h */,
 				533C369217970138002AC317 /* UIView+SetNeedsLayoutSafe.m */,
-				539DC3FA17D649FF001FE630 /* UIImageView+ImageAnimated.h */,
-				539DC3FB17D649FF001FE630 /* UIImageView+ImageAnimated.m */,
-				53A1C30617EB88980039DA81 /* UIImage+Color.h */,
-				53A1C30717EB88980039DA81 /* UIImage+Color.m */,
-				53703CB117ED05DF007F3011 /* UIButton+Colors.h */,
-				53703CB217ED05DF007F3011 /* UIButton+Colors.m */,
-				53E09E0318049BA5001C5CAB /* UIColor+ColorWithInt.h */,
-				53E09E0418049BA5001C5CAB /* UIColor+ColorWithInt.m */,
+				53F15F47162B9FCA00C24FC1 /* UIView+Tools.h */,
+				53F15F48162B9FCA00C24FC1 /* UIView+Tools.m */,
 				FC488815182C880A00356DE7 /* UIViewController+Tools.h */,
 				FC488816182C880A00356DE7 /* UIViewController+Tools.m */,
-				FCA12C9718AD561B00D5EDE7 /* UIImage+RoundedImage.h */,
-				FCA12C9818AD561B00D5EDE7 /* UIImage+RoundedImage.m */,
+				53F15F49162B9FCA00C24FC1 /* UIViewController+IsVisible.h */,
+				53F15F4A162B9FCA00C24FC1 /* UIViewController+IsVisible.m */,
+				5398D07B16EE80BE002D8548 /* UIWebView+HideShadows.h */,
+				5398D07C16EE80BE002D8548 /* UIWebView+HideShadows.m */,
 			);
 			path = UIKit;
 			sourceTree = "<group>";
@@ -1181,6 +1187,7 @@
 				5373A972162DD7430016A019 /* DDFileLogger.h in Headers */,
 				530F684E17B23CF600FD5FB1 /* NSOrderedSet+FirstObject.h in Headers */,
 				5373A973162DD7430016A019 /* DDLog.h in Headers */,
+				5311C3231A35033300054941 /* UITableViewCell+TableView.h in Headers */,
 				5373A974162DD7430016A019 /* DDTTYLogger.h in Headers */,
 				5373A975162DD7430016A019 /* ContextFilterLogFormatter.h in Headers */,
 				5373A976162DD7430016A019 /* DispatchQueueLogFormatter.h in Headers */,
@@ -1334,7 +1341,7 @@
 		53D44E9615AA56C700CDD3B8 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0500;
+				LastUpgradeCheck = 0610;
 			};
 			buildConfigurationList = 53D44E9915AA56C700CDD3B8 /* Build configuration list for PBXProject "EX2Kit" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -1476,6 +1483,7 @@
 				53F15F9D162B9FCA00C24FC1 /* NSString+URLEncode.m in Sources */,
 				53F15F9E162B9FCA00C24FC1 /* NSString+Validation.m in Sources */,
 				53F15F9F162B9FCA00C24FC1 /* CALayer+ImageFromLayer.m in Sources */,
+				5311C3241A35033300054941 /* UITableViewCell+TableView.m in Sources */,
 				53F15FA0162B9FCA00C24FC1 /* CALayer+SublayerWithName.m in Sources */,
 				53F15FA1162B9FCA00C24FC1 /* UIBezierPath+Smoothing.m in Sources */,
 				53F15FA2162B9FCA00C24FC1 /* UIColor+ColorWithHex.m in Sources */,
@@ -1655,15 +1663,23 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = (
+					armv7,
+					armv7s,
+					arm64,
+				);
+				"ARCHS[sdk=iphonesimulator*]" = i386;
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
 				DEAD_CODE_STRIPPING = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
@@ -1692,15 +1708,23 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = (
+					armv7,
+					armv7s,
+					arm64,
+				);
+				"ARCHS[sdk=iphonesimulator*]" = i386;
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
 				DEAD_CODE_STRIPPING = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_PREPROCESSOR_DEFINITIONS = RNCRYPTOR_ALLOW_V1_BAD_HMAC;
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
@@ -1742,7 +1766,6 @@
 				GCC_WARN_64_TO_32_BIT_CONVERSION = NO;
 				HEADER_SEARCH_PATHS = "\"$(SRCROOT)\"/**";
 				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
-				ONLY_ACTIVE_ARCH = NO;
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PUBLIC_HEADERS_FOLDER_PATH = "include/$(TARGET_NAME)";
