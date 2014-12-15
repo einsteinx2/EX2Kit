@@ -31,5 +31,6 @@
 #import "UIImage+Color.h"
 #import "UIButton+Colors.h"
 #import "UIColor+ColorWithInt.h"
+#import "UITableViewCell+TableView.h"
 
 #endif
