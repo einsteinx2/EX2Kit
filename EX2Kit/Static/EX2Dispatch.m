@@ -3,7 +3,7 @@
 //  EX2Kit
 //
 //  Created by Ben Baron on 4/26/12.
-//  Copyright (c) 2012 Ben Baron. All rights reserved.
+//  Copyright (c) 2012 Anghami. All rights reserved.
 //
 
 #import "EX2Dispatch.h"

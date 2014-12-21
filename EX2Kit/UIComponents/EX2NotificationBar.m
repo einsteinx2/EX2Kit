@@ -2,7 +2,7 @@
 //  EX2NotificationBar.m
 //
 //  Created by Ben Baron on 4/17/12.
-//  Copyright (c) 2012 Ben Baron. All rights reserved.
+//  Copyright (c) 2012 Anghami. All rights reserved.
 //
 
 #import "UIView+Tools.h"
