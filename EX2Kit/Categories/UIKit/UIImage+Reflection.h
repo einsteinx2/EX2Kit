@@ -10,6 +10,6 @@
 
 @interface UIImage (Reflection)
 
-- (UIImage *)reflectedImageWithHeight:(NSUInteger)height;
+- (UIImage *)reflectedImageWithHeight:(CGFloat)height;
 
 @end
