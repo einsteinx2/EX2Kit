@@ -3,7 +3,7 @@
 //  Anghami
 //
 //  Created by Benjamin Baron on 9/25/12.
-//  Copyright (c) 2012 Anghami. All rights reserved.
+//  Copyright (c) 2012 Ben Baron. All rights reserved.
 //
 
 #import "NSString+HasValue.h"
