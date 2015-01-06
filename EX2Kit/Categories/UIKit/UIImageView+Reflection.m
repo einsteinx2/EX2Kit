@@ -3,7 +3,7 @@
 //  EX2Kit
 //
 //  Created by Ben Baron on 2/9/12.
-//  Copyright (c) 2012 Anghami. All rights reserved.
+//  Copyright (c) 2012 Ben Baron. All rights reserved.
 //
 
 #import "UIImageView+Reflection.h"
@@ -11,7 +11,7 @@
 
 @implementation UIImageView (Reflection)
 
-- (UIImage *)reflectedImageWithHeight:(NSUInteger)height
+- (UIImage *)reflectedImageWithHeight:(CGFloat)height
 {
     return [self.image reflectedImageWithHeight:height];
 }

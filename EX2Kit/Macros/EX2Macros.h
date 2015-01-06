@@ -3,7 +3,7 @@
 //  EX2Kit
 //
 //  Created by Ben Baron on 3/10/12.
-//  Copyright (c) 2012 Anghami. All rights reserved.
+//  Copyright (c) 2012 Ben Baron. All rights reserved.
 //
 
 #ifndef EX2Kit_Macros_h
@@ -21,11 +21,7 @@
 #define IS_IPAD_HW() ([[[UIDevice currentDevice] model] hasPrefix:@"iPad"])
 
 // iPad app type detection (will detect as iPhone if running an iPhone only app on an iPad)
-#ifdef UI_USER_INTERFACE_IDIOM
 #define IS_IPAD() (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
-#else
-#define IS_IPAD() (false)
-#endif
 
 // Lite version build switch
 #ifdef LITE

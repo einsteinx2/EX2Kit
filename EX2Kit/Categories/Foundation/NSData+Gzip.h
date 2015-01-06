@@ -3,7 +3,7 @@
 //  Anghami
 //
 //  Created by Ben Baron on 9/6/12.
-//  Copyright (c) 2012 Anghami. All rights reserved.
+//  Copyright (c) 2012 Ben Baron. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
