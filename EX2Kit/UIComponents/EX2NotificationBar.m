@@ -400,7 +400,8 @@ NSString * const EX2NotificationBarDidHide = @"EX2NotificationBarDidHide";
 			self.mainViewHolder.height -= self.notificationBar.height;
 		}
 	};
-	
+    
+    __block void (^copied_block)(void) = [completionBlock copy];
 	void (^completion)(BOOL) = ^(BOOL finished)
 	{
         if (finished)
@@ -408,9 +409,9 @@ NSString * const EX2NotificationBarDidHide = @"EX2NotificationBarDidHide";
             [[NSNotificationCenter defaultCenter] postNotificationName:EX2NotificationBarDidShow object:nil];
             [[NSNotificationCenter defaultCenter] postNotificationName:UIDeviceOrientationDidChangeNotification object:nil];
             
-            if (completionBlock != NULL)
+            if (copied_block != NULL)
             {
-                completionBlock();
+                copied_block();
             }
         }
         
