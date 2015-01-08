@@ -60,7 +60,7 @@ static CGContextRef CreateReflectionBitmapContext(CGSize size)
     return bitmapContext;
 }
 
-- (UIImage *)reflectedImageWithHeight:(NSUInteger)height
+- (UIImage *)reflectedImageWithHeight:(CGFloat)height
 {
     if(height == 0)
 		return nil;

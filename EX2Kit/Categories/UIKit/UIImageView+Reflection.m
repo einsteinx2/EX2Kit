@@ -11,7 +11,7 @@
 
 @implementation UIImageView (Reflection)
 
-- (UIImage *)reflectedImageWithHeight:(NSUInteger)height
+- (UIImage *)reflectedImageWithHeight:(CGFloat)height
 {
     return [self.image reflectedImageWithHeight:height];
 }
