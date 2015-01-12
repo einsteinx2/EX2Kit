@@ -871,29 +871,39 @@
 #pragma mark DDLogger Protocol
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
+static int exception_count = 0;
 - (void)logMessage:(DDLogMessage *)logMessage
 {
-	NSString *logMsg = logMessage->logMsg;
-	
-	if (formatter)
-	{
-		logMsg = [formatter formatLogMessage:logMessage];
-	}
-	
-	if (logMsg)
-	{
-		if (![logMsg hasSuffix:@"\n"])
-		{
-			logMsg = [logMsg stringByAppendingString:@"\n"];
-		}
-		
-		NSData *logData = [logMsg dataUsingEncoding:NSUTF8StringEncoding];
-		
-		[[self currentLogFileHandle] writeData:logData];
-		
-		[self maybeRollLogFileDueToSize];
-	}
-}
+    NSString *logMsg = logMessage->logMsg;
+    
+    if (formatter)
+    {
+        logMsg = [formatter formatLogMessage:logMessage];
+    }
+    
+    if (logMsg)
+    {
+        if (![logMsg hasSuffix:@"\n"])
+        {
+            logMsg = [logMsg stringByAppendingString:@"\n"];
+        }
+        
+        NSData *logData = [logMsg dataUsingEncoding:NSUTF8StringEncoding];
+        
+        @try {
+            [[self currentLogFileHandle] writeData:logData];
+            
+            [self maybeRollLogFileDueToSize];
+        }
+        @catch (NSException *exception) {
+            exception_count++;
+            if (exception_count <= 10) {
+                NSLogError(@"DDFileLogger.logMessage: %@", exception);
+                if (exception_count == 10)
+                    NSLogError(@"DDFileLogger.logMessage: Too many exceptions -- will not log any more of them.");
+            }
+        }
+    }}
 
 - (void)willRemoveLogger
 {
