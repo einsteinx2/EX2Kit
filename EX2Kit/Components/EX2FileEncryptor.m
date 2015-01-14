@@ -17,6 +17,7 @@
 @interface EX2FileEncryptor()
 {
 	NSString *_key;
+    NSObject *_fileHandlerAccessLock;
 }
 @property (nonatomic, strong, readonly) EX2RingBuffer *encryptionBuffer;
 @property (nonatomic, strong, readonly) NSFileHandle *fileHandle;
@@ -39,6 +40,8 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
 	{
 		_chunkSize = theChunkSize;
 		_encryptionBuffer = [[EX2RingBuffer alloc] initWithBufferLength:_chunkSize * 10];
+        
+        _fileHandlerAccessLock = [[NSObject alloc] init];
 	}
 	return self;
 }
@@ -74,45 +77,48 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
 
 - (NSUInteger)writeBytes:(const void *)buffer length:(NSUInteger)length
 {
-	if (!self.fileHandle)
-		return 0;
-	
-	[self.encryptionBuffer fillWithBytes:buffer length:length];
-	
-	NSUInteger bytesWritten = 0;
-	while (self.encryptionBuffer.filledSpaceLength >= self.chunkSize)
-	{
-		NSData *data = [self.encryptionBuffer drainData:self.chunkSize];
-		NSError *encryptionError;
-		NSTimeInterval start = [[NSDate date] timeIntervalSince1970];	
-		//NSData *encrypted = [[RNCryptor AES256Cryptor] encryptData:data password:_key error:&encryptionError];
-        NSData *encrypted = [RNEncryptor encryptData:data withSettings:kRNCryptorAES256Settings password:_key error:&encryptionError];
-		DDLogVerbose(@"[EX2FileEncryptor] total time: %f", [[NSDate date] timeIntervalSince1970] - start);
+    @synchronized(_fileHandlerAccessLock)
+    {
+        if (!_fileHandle)
+            return 0;
+        
+        [self.encryptionBuffer fillWithBytes:buffer length:length];
+        
+        NSUInteger bytesWritten = 0;
+        while (self.encryptionBuffer.filledSpaceLength >= self.chunkSize)
+        {
+            NSData *data = [self.encryptionBuffer drainData:self.chunkSize];
+            NSError *encryptionError;
+            NSTimeInterval start = [[NSDate date] timeIntervalSince1970];	
+            //NSData *encrypted = [[RNCryptor AES256Cryptor] encryptData:data password:_key error:&encryptionError];
+            NSData *encrypted = [RNEncryptor encryptData:data withSettings:kRNCryptorAES256Settings password:_key error:&encryptionError];
+            DDLogVerbose(@"[EX2FileEncryptor] total time: %f", [[NSDate date] timeIntervalSince1970] - start);
 
-		//DLog(@"data size: %u  encrypted size: %u", data.length, encrypted.length);
-		if (encryptionError)
-		{
-			DDLogError(@"[EX2FileEncryptor] Encryptor: ERROR THERE WAS AN ERROR ENCRYPTING THIS CHUNK: %@", encryptionError);
-			return bytesWritten;
-		}
-		else
-		{
-			// Save the data to the file
-			@try
-			{
-				[self.fileHandle writeData:encrypted];
-                [self.fileHandle synchronizeFile];
-				bytesWritten += self.chunkSize;
-			}
-			@catch (NSException *exception) 
-			{
-				DDLogError(@"[EX2FileEncryptor] Encryptor: Failed to write to file");
-				@throw(exception);
-			}
-		}
-	}
+            //DLog(@"data size: %u  encrypted size: %u", data.length, encrypted.length);
+            if (encryptionError)
+            {
+                DDLogError(@"[EX2FileEncryptor] Encryptor: ERROR THERE WAS AN ERROR ENCRYPTING THIS CHUNK: %@", encryptionError);
+                return bytesWritten;
+            }
+            else
+            {
+                // Save the data to the file
+                @try
+                {
+                    [_fileHandle writeData:encrypted];
+                    [_fileHandle synchronizeFile];
+                    bytesWritten += self.chunkSize;
+                }
+                @catch (NSException *exception) 
+                {
+                    DDLogError(@"[EX2FileEncryptor] Encryptor: Failed to write to file");
+                    @throw(exception);
+                }
+            }
+        }
 	
-	return bytesWritten;
+        return bytesWritten;
+    }
 }
 
 - (NSUInteger)writeData:(NSData *)data
@@ -128,55 +134,58 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
 
 - (BOOL)closeFile
 {
-    if (self.fileHandle)
+    @synchronized(_fileHandlerAccessLock)
     {
-        DDLogInfo(@"[EX2FileEncryptor] Encryptor: closing the file");
-        while (self.encryptionBuffer.filledSpaceLength > 0)
+        if (self.fileHandle)
         {
-            DDLogInfo(@"[EX2FileEncryptor] Encryptor: writing the remaining bytes");
-            NSUInteger length = self.encryptionBuffer.filledSpaceLength >= 4096 ? 4096 : self.encryptionBuffer.filledSpaceLength;
-            NSData *data = [self.encryptionBuffer drainData:length];
-            
-            NSError *encryptionError;
-            //NSData *encrypted = [[RNCryptor AES256Cryptor] encryptData:data password:_key error:&encryptionError];
-            NSData *encrypted = [RNEncryptor encryptData:data withSettings:kRNCryptorAES256Settings password:_key error:&encryptionError];
-            //DLog(@"data size: %u  encrypted size: %u", data.length, encrypted.length);
-            
-            NSData *decrypted = [RNDecryptor decryptData:encrypted withPassword:_key error:nil];
-            NSLog(@"decrypted length: %lu", (unsigned long)decrypted.length);
-            if (encryptionError)
+            DDLogInfo(@"[EX2FileEncryptor] Encryptor: closing the file");
+            while (self.encryptionBuffer.filledSpaceLength > 0)
             {
-                DDLogError(@"[EX2FileEncryptor] ERROR THERE WAS AN ERROR ENCRYPTING THIS CHUNK: %@", encryptionError);
-                //return NO;
+                DDLogInfo(@"[EX2FileEncryptor] Encryptor: writing the remaining bytes");
+                NSUInteger length = self.encryptionBuffer.filledSpaceLength >= 4096 ? 4096 : self.encryptionBuffer.filledSpaceLength;
+                NSData *data = [self.encryptionBuffer drainData:length];
+                
+                NSError *encryptionError;
+                //NSData *encrypted = [[RNCryptor AES256Cryptor] encryptData:data password:_key error:&encryptionError];
+                NSData *encrypted = [RNEncryptor encryptData:data withSettings:kRNCryptorAES256Settings password:_key error:&encryptionError];
+                //DLog(@"data size: %u  encrypted size: %u", data.length, encrypted.length);
+                
+                NSData *decrypted = [RNDecryptor decryptData:encrypted withPassword:_key error:nil];
+                NSLog(@"decrypted length: %lu", (unsigned long)decrypted.length);
+                if (encryptionError)
+                {
+                    DDLogError(@"[EX2FileEncryptor] ERROR THERE WAS AN ERROR ENCRYPTING THIS CHUNK: %@", encryptionError);
+                    //return NO;
+                }
+                else
+                {
+                    // Save the data to the file
+                    @try
+                    {
+                        [self.fileHandle writeData:encrypted];
+                    }
+                    @catch (NSException *exception) 
+                    {
+                        DDLogError(@"[EX2FileEncryptor] Encryptor: ERROR writing remaining bytes");
+                    }
+                }
             }
-            else
+            
+            @try
             {
-                // Save the data to the file
-                @try
-                {
-                    [self.fileHandle writeData:encrypted];
-                }
-                @catch (NSException *exception) 
-                {
-                    DDLogError(@"[EX2FileEncryptor] Encryptor: ERROR writing remaining bytes");
-                }
+                [self.fileHandle synchronizeFile];
+                [self.fileHandle closeFile];
             }
+            @catch (NSException *exception)
+            {
+                DDLogError(@"[EX2FileEncryptor] Exception synchronizing and closing file handle: %@", exception);
+            }
+            _fileHandle = nil;
+            
+            [EX2FileDecryptor unregisterOpenFilePath:self.path];
+            
+            return YES;
         }
-        
-        @try
-        {
-            [self.fileHandle synchronizeFile];
-            [self.fileHandle closeFile];
-        }
-        @catch (NSException *exception)
-        {
-            DDLogError(@"[EX2FileEncryptor] Exception synchronizing and closing file handle: %@", exception);
-        }
-        _fileHandle = nil;
-        
-        [EX2FileDecryptor unregisterOpenFilePath:self.path];
-        
-        return YES;
     }
 	
     return NO;
