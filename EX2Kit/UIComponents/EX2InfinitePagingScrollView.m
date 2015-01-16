@@ -24,7 +24,7 @@
 - (void)setup
 {
     self.contentSize = CGSizeMake(self.width * 5., self.height);
-    self.pagingEnabled = YES;
+    self.pagingEnabled = NO;
     self.showsHorizontalScrollIndicator = NO;
     self.showsVerticalScrollIndicator = NO;
     self.delegate = self;
@@ -231,6 +231,18 @@
     }
 }
 
+- (void)scrollViewWillEndDragging:(UIScrollView *)scrollView withVelocity:(CGPoint)velocity targetContentOffset:(inout CGPoint *)targetContentOffset
+{
+    CGFloat distanceFromCenter = targetContentOffset->x - self.centerOffset.x;
+    
+    NSInteger indexDiff = 0;
+    if (fabs(distanceFromCenter) >= (self.bounds.size.width + self.pageSpacing)/2.)
+    {
+        indexDiff = distanceFromCenter < 0 ? -1 : 1;
+    }
+    targetContentOffset->x = self.centerOffset.x + (self.width + self.pageSpacing) * indexDiff;
+}
+
 - (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView
 {
     if ([self.pagingDelegate respondsToSelector:@selector(infinitePagingScrollViewWillBeginDragging:)])
@@ -246,7 +258,7 @@
     CGFloat distanceFromCenter = self.contentOffset.x - self.centerOffset.x;
     
     // See if we need to change the index and shuffle pages
-    if (fabs(distanceFromCenter) >= self.bounds.size.width)
+    if (fabs(distanceFromCenter) >= self.bounds.size.width + self.pageSpacing)
     {
         NSInteger index = distanceFromCenter < 0 ? self.currentPageIndex-1 : self.currentPageIndex+1;
         if (index < 0 && self.isWrapLeft)
