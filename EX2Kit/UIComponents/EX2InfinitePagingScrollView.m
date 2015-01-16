@@ -187,6 +187,12 @@
     [self setContentOffset:self.centerOffset animated:YES];
 }
 
+- (void)didMoveToSuperview
+{
+    [super didMoveToSuperview];
+    [self setupPages];
+}
+
 - (void)setCurrentPageIndex:(NSInteger)index
 {
     _currentPageIndex = index;
