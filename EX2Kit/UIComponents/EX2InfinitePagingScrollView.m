@@ -225,14 +225,18 @@
 
 - (void)scrollToPageIndexAnimated:(NSInteger)index
 {
-    if (index == self.currentPageIndex - 1 || index == self.currentPageIndex + 1)
+    NSInteger indexDiff = (index-self.currentPageIndex);
+    if (indexDiff == 0) {
+        return;
+    }
+    if (abs(indexDiff) == 1)
     {
-        CGFloat offset = index == self.currentPageIndex - 1 ? -self.width : self.width;
+        CGFloat offset = indexDiff * (self.width + self.pageSpacing);
         [self setContentOffset:CGPointMake(self.centerOffset.x + offset, 0.) animated:YES];
     }
-    else if (self.currentPageIndex != index)
+    else
     {
-        // Different pages, but too far, so just set it with no animation
+        // too far, so just set it with no animation
         self.currentPageIndex = index;
     }
 }
