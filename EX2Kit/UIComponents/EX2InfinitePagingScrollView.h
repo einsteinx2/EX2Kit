@@ -44,6 +44,11 @@ typedef UIView * (^EX2InfinitePagingScrollViewPageBlock)(EX2InfinitePagingScroll
 
 @property CGFloat pageSpacing;
 
+// width of a single page as a fraction of the total width
+// Note: allowing more than 3 views to show at once(fraction < 0.33)
+// will cause problems. Don't do it
+@property (nonatomic) CGFloat pageWidthFraction;
+
 @property (nonatomic) NSInteger currentPageIndex;
 @property (nonatomic) NSUInteger numberOfPages;
 @property (nonatomic) BOOL isWrapLeft;

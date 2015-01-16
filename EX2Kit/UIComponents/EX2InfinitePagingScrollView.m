@@ -8,7 +8,8 @@
 
 #import "EX2InfinitePagingScrollView.h"
 
-#define CENTER_OFFSET CGPointMake((self.frame.size.width+self.pageSpacing) * 2., 0.)
+#define PAGE_WIDTH (self.frame.size.width*self.pageWidthFraction)
+#define CENTER_OFFSET CGPointMake((PAGE_WIDTH * 2. + self.pageSpacing * 2 - (1-self.pageWidthFraction)/2.*self.frame.size.width), 0.)
 
 #define DEFAULT_AUTOSCROLL_INTERVAL 10.
 
@@ -23,13 +24,14 @@
 
 - (void)setup
 {
-    self.contentSize = CGSizeMake(self.width * 5., self.height);
     self.pagingEnabled = NO;
     self.showsHorizontalScrollIndicator = NO;
     self.showsVerticalScrollIndicator = NO;
     self.delegate = self;
     self.scrollsToTop = NO;
     self.pageSpacing = 0;
+    self.pageWidthFraction = 1;
+    self.contentSize = CGSizeMake(PAGE_WIDTH * 5., self.height);
     
     _pageViews = [[NSMutableDictionary alloc] initWithCapacity:10];
 }
@@ -98,11 +100,13 @@
     }
     else if (!self.isWrapLeft && self.currentPageIndex < 2)
     {
-        return CGPointMake((self.size.width * (self.currentPageIndex + 2)) - CENTER_OFFSET.x, 0.);
+        return CGPointMake((PAGE_WIDTH+self.pageSpacing)*self.currentPageIndex, 0);
     }
     else if (!self.isWrapRight && self.currentPageIndex > self.numberOfPages - 3)
     {
-        return CGPointMake((self.size.width * (self.numberOfPages - self.currentPageIndex - 1)) + CENTER_OFFSET.x, 0.);
+        NSInteger offset = self.numberOfPages-self.currentPageIndex;
+        DLog(@"%lu %ld %ld %g", (unsigned long)self.numberOfPages, (long)self.currentPageIndex, (long)offset, self.contentSize.width-offset*PAGE_WIDTH-(offset-1)*self.pageSpacing);
+        return CGPointMake(self.contentSize.width-offset*PAGE_WIDTH-(offset-1)*self.pageSpacing, 0.);
     }
     return CENTER_OFFSET;
 }
@@ -110,7 +114,7 @@
 - (void)setupPages
 {
     // Fix content size in case we've been resized
-    self.contentSize = CGSizeMake((self.width * 5.) + (self.pageSpacing * 4), self.height);
+    self.contentSize = CGSizeMake((PAGE_WIDTH * 5) + (self.pageSpacing * 4), self.height);
     
     // We always scroll to the center page to start, and then load the appropriate pages on the left, center, and right
     self.contentOffset = self.centerOffset;
@@ -120,69 +124,56 @@
     start = start < 0 && !self.isWrapLeft ? 0 : start;
     
     int end = self.currentPageIndex + 2;
-    if (!self.isWrapRight)
-        end = end > self.numberOfPages - 1 ? self.numberOfPages - 1 : end;
-    
-    if (self.numberOfPages == 1)
-    {
-        UIView * view;
-        if (self.createPageBlock)
-            view = self.createPageBlock(self, 0);
-        else
-            view = [self.pagingDelegate infinitePagingScrollView:self pageForIndex:0];
-        
-        view.frame = CGRectMake(self.centerOffset.x, 0., self.width, self.height);
-        [self addSubview:view];
-        self.pageViews[@(0)] = view;
+    if (!self.isWrapRight && end >= self.numberOfPages) {
+        end = self.numberOfPages - 1;
+        start = end - 4;
     }
-    else
+    
+    for (int i = start; i <= end; i++)
     {
-        for (int i = start; i <= end; i++)
+        @autoreleasepool
         {
-            @autoreleasepool
+            // Special handling for wrapping pages
+            NSInteger loadIndex = i;
+            if (i > 0 && i > self.numberOfPages - 1)
             {
-                // Special handling for wrapping pages
-                NSInteger loadIndex = i;
-                if (self.isWrapRight && i > 0 && i > self.numberOfPages - 1)
-                {
-                    loadIndex = i - self.numberOfPages;
-                }
-                else if (self.isWrapLeft && loadIndex < 0)
-                {
-                    loadIndex = self.numberOfPages + i;
-                }
-                
-                // First try to see if a page for this index already exists, if so we'll just move it instead of loading a new one
-                NSNumber *key = @(i);
-                UIView *view = self.pageViews[key];
-                CGFloat x = (CGFloat)((int)self.centerOffset.x + ((self.frame.size.width + self.pageSpacing) * (i - self.currentPageIndex)));
-                CGRect rect = CGRectMake(x, 0., self.width, self.height);
-                
+                loadIndex = i - self.numberOfPages;
+            }
+            else if (loadIndex < 0)
+            {
+                loadIndex = self.numberOfPages + i;
+            }
+            
+            // First try to see if a page for this index already exists, if so we'll just move it instead of loading a new one
+            NSNumber *key = @(i);
+            UIView *view = self.pageViews[key];
+            CGFloat x = (i-start)*(PAGE_WIDTH+self.pageSpacing);
+            CGRect rect = CGRectMake(x, 0., PAGE_WIDTH, self.height);
+            
+            if (view)
+            {
+                // This view already exists, it just isn't in the right place
+                view.frame = rect;
+            }
+            else
+            {
+                // This view doesn't exist yet, so load one and place it
+                if (self.createPageBlock)
+                    view = self.createPageBlock(self, loadIndex);
+                else
+                    view = [self.pagingDelegate infinitePagingScrollView:self pageForIndex:loadIndex];
                 if (view)
                 {
-                    // This view already exists, it just isn't in the right place
                     view.frame = rect;
-                }
-                else
-                {
-                    // This view doesn't exist yet, so load one and place it
-                    if (self.createPageBlock)
-                        view = self.createPageBlock(self, loadIndex);
-                    else
-                        view = [self.pagingDelegate infinitePagingScrollView:self pageForIndex:loadIndex];
-                    if (view)
-                    {
-                        view.frame = rect;
-                        [self addSubview:view];
-                        self.pageViews[key] = view;
-                    }
+                    [self addSubview:view];
+                    self.pageViews[key] = view;
                 }
             }
         }
     }
-    
+
     [self clearInvisiblePages];
-    
+
     // Ensure that the content offset is set properly in case an animation was in progress
     [self setContentOffset:self.centerOffset animated:YES];
 }
@@ -231,7 +222,7 @@
     }
     if (abs(indexDiff) == 1)
     {
-        CGFloat offset = indexDiff * (self.width + self.pageSpacing);
+        CGFloat offset = indexDiff * (PAGE_WIDTH + self.pageSpacing);
         [self setContentOffset:CGPointMake(self.centerOffset.x + offset, 0.) animated:YES];
     }
     else
@@ -246,11 +237,11 @@
     CGFloat distanceFromCenter = targetContentOffset->x - self.centerOffset.x;
     
     NSInteger indexDiff = 0;
-    if (fabs(distanceFromCenter) >= (self.bounds.size.width + self.pageSpacing)/2.)
+    if (fabs(distanceFromCenter) >= (PAGE_WIDTH + self.pageSpacing)/2.)
     {
         indexDiff = distanceFromCenter < 0 ? -1 : 1;
     }
-    targetContentOffset->x = self.centerOffset.x + (self.width + self.pageSpacing) * indexDiff;
+    targetContentOffset->x = self.centerOffset.x + (PAGE_WIDTH + self.pageSpacing) * indexDiff;
 }
 
 - (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView
@@ -268,7 +259,7 @@
     CGFloat distanceFromCenter = self.contentOffset.x - self.centerOffset.x;
     
     // See if we need to change the index and shuffle pages
-    if (fabs(distanceFromCenter) >= self.bounds.size.width + self.pageSpacing)
+    if (fabs(distanceFromCenter) >= PAGE_WIDTH + self.pageSpacing)
     {
         NSInteger index = distanceFromCenter < 0 ? self.currentPageIndex-1 : self.currentPageIndex+1;
         if (index < 0 && self.isWrapLeft)
@@ -342,6 +333,21 @@
         [self.autoScrollTimer invalidate];
         self.autoScrollTimer = nil;
     }
+}
+
+- (CGFloat)pageWidthFraction
+{
+    // no wrapping and fractional pages don't mix well together in the current system
+    if (self.numberOfPages == 1 || !self.isWrapLeft || !self.isWrapRight) {
+        return 1;
+    }
+    return _pageWidthFraction;
+}
+
+- (void)setNumberOfPages:(NSUInteger)numberOfPages
+{
+    self.scrollEnabled = numberOfPages != 1;
+    _numberOfPages = numberOfPages;
 }
 
 @end
