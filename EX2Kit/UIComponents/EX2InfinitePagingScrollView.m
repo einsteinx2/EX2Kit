@@ -125,7 +125,12 @@
     
     if (self.numberOfPages == 1)
     {
-        UIView *view = [self.pagingDelegate infinitePagingScrollView:self pageForIndex:0];
+        UIView * view;
+        if (self.createPageBlock)
+            view = self.createPageBlock(self, 0);
+        else
+            view = [self.pagingDelegate infinitePagingScrollView:self pageForIndex:0];
+        
         view.frame = CGRectMake(self.centerOffset.x, 0., self.width, self.height);
         [self addSubview:view];
         self.pageViews[@(0)] = view;
