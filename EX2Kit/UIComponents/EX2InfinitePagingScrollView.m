@@ -8,7 +8,7 @@
 
 #import "EX2InfinitePagingScrollView.h"
 
-#define CENTER_OFFSET CGPointMake(self.frame.size.width * 2., 0.)
+#define CENTER_OFFSET CGPointMake((self.frame.size.width+self.pageSpacing) * 2., 0.)
 
 #define DEFAULT_AUTOSCROLL_INTERVAL 10.
 
