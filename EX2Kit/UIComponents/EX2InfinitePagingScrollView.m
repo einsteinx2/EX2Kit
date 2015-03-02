@@ -335,6 +335,11 @@
     }
 }
 
+- (BOOL) isAutoScrolling
+{
+    return isAutoscrolling;
+}
+
 - (CGFloat)pageWidthFraction
 {
     // no wrapping and fractional pages don't mix well together in the current system

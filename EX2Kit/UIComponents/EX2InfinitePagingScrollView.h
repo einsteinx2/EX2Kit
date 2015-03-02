@@ -66,5 +66,6 @@ typedef UIView * (^EX2InfinitePagingScrollViewPageBlock)(EX2InfinitePagingScroll
 
 - (void)startAutoScrolling;
 - (void)stopAutoScrolling;
+@property (nonatomic, readonly) BOOL isAutoScrolling;
 
 @end
