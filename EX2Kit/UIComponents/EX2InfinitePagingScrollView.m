@@ -241,6 +241,11 @@
     {
         indexDiff = distanceFromCenter < 0 ? -1 : 1;
     }
+    if (indexDiff == -1 && self.contentOffset.x > self.centerOffset.x) {
+        indexDiff = 0;
+    } else if (indexDiff == 1 && self.contentOffset.x < self.centerOffset.x) {
+        indexDiff = 0;
+    }
     targetContentOffset->x = self.centerOffset.x + (PAGE_WIDTH + self.pageSpacing) * indexDiff;
 }
 
