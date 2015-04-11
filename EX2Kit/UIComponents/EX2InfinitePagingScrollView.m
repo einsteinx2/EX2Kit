@@ -220,7 +220,7 @@
     if (indexDiff == 0) {
         return;
     }
-    if (abs(indexDiff) == 1)
+    if (labs(indexDiff) == 1)
     {
         CGFloat offset = indexDiff * (PAGE_WIDTH + self.pageSpacing);
         [self setContentOffset:CGPointMake(self.centerOffset.x + offset, 0.) animated:YES];
