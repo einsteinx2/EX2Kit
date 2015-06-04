@@ -125,6 +125,11 @@ void *NewBase64Decode(
 			outputBuffer[j + 1] = (accumulated[1] << 4) | (accumulated[2] >> 2);  
 		if(accumulateIndex >= 4)  
 			outputBuffer[j + 2] = (accumulated[2] << 6) | accumulated[3];
+        
+        if (accumulateIndex == 0) {
+            j = 0;
+            break;
+        }
 		j += accumulateIndex - 1;
 	}
 	
@@ -280,6 +285,10 @@ char *NewBase64Encode(
 	NSData *data = [aString dataUsingEncoding:NSUTF8StringEncoding];
 	size_t outputLength;
 	void *outputBuffer = NewBase64Decode([data bytes], [data length], &outputLength);
+    if (outputLength == 0) {
+        free(outputBuffer);
+        return nil;
+    }
 	NSData *result = [NSData dataWithBytes:outputBuffer length:outputLength];
 	free(outputBuffer);
 	return result;
