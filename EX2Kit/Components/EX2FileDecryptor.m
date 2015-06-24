@@ -81,8 +81,6 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
             _activeFilePaths[path] = @(adjustedValue);
             DDLogVerbose(@"EX2FileDecryptor: decremented \"%@\" (%li)", path, (long)adjustedValue);
         }
-        
-        DLog(@"_activeFilePaths: %@", _activeFilePaths);
     }
 }
 
