@@ -106,7 +106,6 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
                 @try
                 {
                     [_fileHandle writeData:encrypted];
-                    [_fileHandle synchronizeFile];
                     bytesWritten += self.chunkSize;
                 }
                 @catch (NSException *exception) 
