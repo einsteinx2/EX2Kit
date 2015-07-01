@@ -21,6 +21,8 @@
 
 #define ISMSiPadCornerRadius 5.
 
+#define BOTTOM_LINE_VIEW_TAG        1290831
+
 + (CAGradientLayer *)verticalShadowWithAlpha:(CGFloat)shadowAlpha inverse:(BOOL)inverse
 {
 	CAGradientLayer *newShadow = [[CAGradientLayer alloc] init];
@@ -75,13 +77,33 @@
 	[[self.layer sublayerWithName:ISMSRightShadowName] removeFromSuperlayer];
 }
 
+- (UIView *) bottomLine
+{
+    return [self viewWithTag:BOTTOM_LINE_VIEW_TAG];
+}
+
 - (void)addBottomLine
 {
-    UIView *bottomLine = [[UIView alloc] init];
-    bottomLine.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleTopMargin;
-    bottomLine.frame = CGRectMake(0., self.height - 1., self.width, 1.);
-    bottomLine.backgroundColor = [UIColor colorWithRed:200./255. green:199./255. blue:204./255. alpha:1.];
-    [self addSubview:bottomLine];
+    UIView *bottomLine = [self viewWithTag:BOTTOM_LINE_VIEW_TAG];
+    
+    if (!bottomLine)
+    {
+        bottomLine = [[UIView alloc] init];
+        bottomLine.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleTopMargin;
+        bottomLine.frame = CGRectMake(0., self.height - 0.5, self.width, 0.5);
+        bottomLine.backgroundColor = [UIColor colorWithRed:200./255. green:199./255. blue:204./255. alpha:1.];
+        [self addSubview:bottomLine];
+    }
+}
+
+- (void) removeBottomLine
+{
+    UIView *bottomLine = [self viewWithTag:BOTTOM_LINE_VIEW_TAG];
+    
+    if (bottomLine)
+    {
+        [bottomLine removeFromSuperview];
+    }
 }
 
 + (CAGradientLayer *)horizontalShadowWithAlpha:(CGFloat)shadowAlpha inverse:(BOOL)inverse
