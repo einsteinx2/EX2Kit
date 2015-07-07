@@ -32,6 +32,7 @@
     self.pageSpacing = 0;
     self.pageWidthFraction = 1;
     self.contentSize = CGSizeMake(PAGE_WIDTH * 5., self.height);
+    self.decelerationRate = UIScrollViewDecelerationRateFast;
     
     _pageViews = [[NSMutableDictionary alloc] initWithCapacity:10];
 }
@@ -234,19 +235,35 @@
 
 - (void)scrollViewWillEndDragging:(UIScrollView *)scrollView withVelocity:(CGPoint)velocity targetContentOffset:(inout CGPoint *)targetContentOffset
 {
-    CGFloat distanceFromCenter = targetContentOffset->x - self.centerOffset.x;
-    
     NSInteger indexDiff = 0;
-    if (fabs(distanceFromCenter) >= (PAGE_WIDTH + self.pageSpacing)/2.)
-    {
-        indexDiff = distanceFromCenter < 0 ? -1 : 1;
+    if(velocity.x > 0) {
+        indexDiff = 1;
+    } else if (velocity.x < 0) {
+        indexDiff = -1;
+    } else {
+        CGFloat distanceFromCenter = targetContentOffset->x - self.centerOffset.x;
+        if (fabs(distanceFromCenter) >= (PAGE_WIDTH + self.pageSpacing)/2.)
+        {
+            indexDiff = distanceFromCenter < 0 ? -1 : 1;
+        }
     }
+    
     if (indexDiff == -1 && self.contentOffset.x > self.centerOffset.x) {
         indexDiff = 0;
     } else if (indexDiff == 1 && self.contentOffset.x < self.centerOffset.x) {
         indexDiff = 0;
     }
+    
     targetContentOffset->x = self.centerOffset.x + (PAGE_WIDTH + self.pageSpacing) * indexDiff;
+}
+
+-(void)snap:(CGPoint) targetContentOffsett
+{
+    [UIView animateWithDuration:.25
+                     animations:^{[self setContentOffset:targetContentOffsett animated:YES];}
+                     completion:^(BOOL finished){
+                     }
+     ];
 }
 
 - (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView
