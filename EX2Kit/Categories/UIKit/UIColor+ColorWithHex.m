@@ -64,11 +64,11 @@
 	 */
 	if (cString[0] == '#')
 	{
-		hex = (int)strtol(cString + 1, NULL, 16);
+		hex = (int)strtoll(cString + 1, NULL, 16);
 	}
 	else
 	{
-		hex = (int)strtol(cString, NULL, 16);
+		hex = (int)strtoll(cString, NULL, 16);
 	}
 	
 	return [UIColor colorWithHex: hex];
@@ -97,11 +97,11 @@
 	
 	if (cString[0] == '#')
 	{
-		hex = (int)strtol(cString + 1, NULL, 16);
+		hex = (int)strtoll(cString + 1, NULL, 16);
 	}
 	else
 	{
-		hex = (int)strtol(cString, NULL, 16);
+		hex = (int)strtoll(cString, NULL, 16);
 	}
 	
 	return [UIColor colorWithAlphaHex: hex];
