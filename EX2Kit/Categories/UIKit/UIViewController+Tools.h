@@ -12,5 +12,7 @@
 
 - (void)insertAsChildViewController:(UIViewController *)viewController;
 - (void)removeFromParentContainerViewController;
+- (void)replaceTextWithLocalizedText;
++ (void) replaceTextWithLocalizedTextInSubviewsForView:(UIView*)view;
 
 @end
