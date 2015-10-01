@@ -182,7 +182,12 @@
 - (void)didMoveToSuperview
 {
     [super didMoveToSuperview];
-    [self setupPages];
+    if (self.superview == nil) {
+        [self.autoScrollTimer invalidate];
+        self.autoScrollTimer = nil;
+    } else {
+        [self setupPages];
+    }
 }
 
 - (void)setCurrentPageIndex:(NSInteger)index
