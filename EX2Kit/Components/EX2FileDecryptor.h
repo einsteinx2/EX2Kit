@@ -26,6 +26,7 @@
 
 - (NSUInteger)readBytes:(void *)buffer length:(NSUInteger)length;
 - (NSData *)readData:(NSUInteger)length;
+- (NSData *)getEntireData;
 
 - (void)closeFile;
 
