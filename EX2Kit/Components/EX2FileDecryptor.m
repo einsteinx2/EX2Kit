@@ -410,4 +410,23 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
 	return decryptedSize;
 }
 
+- (NSData *)getEntireData
+{
+    NSUInteger maxSongSize = 100*1024*1024;
+    NSUInteger totalBytesRead = 0;
+    NSMutableData *songData = [[NSMutableData alloc]init];
+    char * buffer = malloc(sizeof(char) * 4096);
+    do {
+        NSUInteger readBytes = [self readBytes:buffer length:4096];
+        if (readBytes <= 0) {
+            break;
+        }
+        totalBytesRead += readBytes;
+        [songData appendBytes:buffer length:readBytes];
+    } while (totalBytesRead < maxSongSize);
+    free(buffer);
+    
+    return songData;
+}
+
 @end
