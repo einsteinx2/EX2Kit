@@ -375,15 +375,25 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
 
 - (NSUInteger)encryptedChunkSize
 {
-	NSUInteger aesPaddedSize = ((self.chunkSize / 16) + 1) * 16;
-	NSUInteger totalPaddedSize = aesPaddedSize + 66; // Add the RNCryptor padding
-	return totalPaddedSize;
+    return [EX2FileDecryptor encryptedChunkSizeForChunkSize:self.chunkSize];
+}
+
++ (NSUInteger)encryptedChunkSizeForChunkSize:(NSUInteger)chunkSize
+{
+    NSUInteger aesPaddedSize = ((chunkSize / 16) + 1) * 16;
+    NSUInteger totalPaddedSize = aesPaddedSize + 66; // Add the RNCryptor padding
+    return totalPaddedSize;
 }
 
 - (unsigned long long)encryptedFileSizeOnDisk
 {
-	// Just get the size from disk
-	return [[[NSFileManager defaultManager] attributesOfItemAtPath:self.path error:nil] fileSize];
+    return [EX2FileDecryptor encryptedFileSizeOnDiskForPath:self.path];
+}
+
++ (unsigned long long)encryptedFileSizeOnDiskForPath:(NSString *)path
+{
+    // Just get the size from disk
+    return [[[NSFileManager defaultManager] attributesOfItemAtPath:path error:nil] fileSize];
 }
 
 - (unsigned long long)decryptedFileSizeOnDisk
@@ -408,6 +418,31 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
 	unsigned long long decryptedSize = encryptedSize - filePadding;
 	
 	return decryptedSize;
+}
+
++ (unsigned long long)decryptedFileSizeOnDiskForPath:(NSString *)path chunkSize:(NSUInteger)chunkSize
+{
+    // Find the encrypted size
+    unsigned long long encryptedSize = [self encryptedFileSizeOnDiskForPath:path];
+    
+    NSUInteger encryptedChunkSize = [self encryptedChunkSizeForChunkSize:chunkSize];
+    // Find padding size
+    unsigned long long chunkPadding = encryptedChunkSize - chunkSize;
+    unsigned long long numberOfEncryptedChunks = (encryptedSize / encryptedChunkSize);
+    unsigned long long filePadding = numberOfEncryptedChunks * chunkPadding;
+    
+    // Calculate padding remainder
+    int remainder = encryptedSize % encryptedChunkSize;
+    if (remainder > 0)
+    {
+        // There is a partial chunk, so just assume full padding size (sometimes it can be a bit under for some reason, don't know why yet)
+        filePadding += chunkPadding;
+    }
+    
+    // Calculate the decrypted size
+    unsigned long long decryptedSize = encryptedSize - filePadding;
+    
+    return decryptedSize;
 }
 
 - (NSData *)getEntireData

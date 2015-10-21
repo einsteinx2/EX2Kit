@@ -27,7 +27,6 @@
 
 static const int ddLogLevel = LOG_LEVEL_INFO;
 
-#define DEFAULT_CHUNK_SIZE 4096
 
 - (id)init
 {

@@ -8,6 +8,8 @@
 
 #import <Foundation/Foundation.h>
 
+#define DEFAULT_CHUNK_SIZE 4096
+
 @interface EX2FileEncryptor : NSObject
 
 @property (nonatomic, readonly) NSUInteger chunkSize;
