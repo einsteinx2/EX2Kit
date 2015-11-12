@@ -11,13 +11,13 @@
 
 @interface EX2SlidingNotification : UIViewController
 
-- (id)initOnView:(UIView *)theParentView message:(NSString *)theMessage image:(UIImage*)theImage displayTime:(NSTimeInterval)time;
+- (id)initOnView:(UIView *)theParentView message:(NSString *)theMessage displayTime:(NSTimeInterval)time;
 
-+ (id)slidingNotificationOnMainWindowWithMessage:(NSString *)theMessage image:(UIImage*)theImage;
-+ (id)slidingNotificationOnTopViewWithMessage:(NSString *)theMessage image:(UIImage*)theImage;
++ (id)slidingNotificationOnMainWindowWithMessage:(NSString *)theMessage;
++ (id)slidingNotificationOnTopViewWithMessage:(NSString *)theMessage;
 
-+ (id)slidingNotificationOnView:(UIView *)theParentView message:(NSString *)theMessage image:(UIImage*)theImage;
-- (id)initOnView:(UIView *)theParentView message:(NSString *)theMessage image:(UIImage*)theImage;
++ (id)slidingNotificationOnView:(UIView *)theParentView message:(NSString *)theMessage;
+- (id)initOnView:(UIView *)theParentView message:(NSString *)theMessage;
 
 // Allow user to set main window explicitly instead of trying to figure it out each time
 + (void)setMainWindow:(UIWindow *)mainWindow;
@@ -28,11 +28,9 @@
 
 @property (nonatomic, strong) IBOutlet UIImageView *backgroundImageView;
 @property (nonatomic, strong) IBOutlet UILabel *messageLabel;
-@property (nonatomic, strong) IBOutlet UIImageView *imageView;
 
 @property (nonatomic, strong) UIView *parentView;
 @property (nonatomic, copy) NSString *message;
-@property (nonatomic, strong) UIImage *image;
 
 @property NSTimeInterval displayTime;
 

@@ -90,20 +90,18 @@ static BOOL _isThrottlingEnabled = YES;
     }
 }
 
-- (id)initOnView:(UIView *)theParentView message:(NSString *)theMessage image:(UIImage*)theImage displayTime:(NSTimeInterval)time
+- (id)initOnView:(UIView *)theParentView message:(NSString *)theMessage displayTime:(NSTimeInterval)time
 {
 	if ((self = [super initWithNibName:@"EX2SlidingNotification" bundle:[EX2Kit resourceBundle]])) 
 	{
 		_displayTime = time;
 		_parentView = theParentView;
-		_image = theImage;
 		_message = [theMessage copy];
 		
 		// If we're directly on the UIWindow, add 20 points for the status bar
 		self.view.frame = CGRectMake(0., 0, _parentView.width, self.view.height);
         if (IS_IOS7())
         {
-            self.imageView.y += 15.;
             self.messageLabel.y += 15.;
         }
 		
@@ -113,31 +111,30 @@ static BOOL _isThrottlingEnabled = YES;
 	return self;
 }
 
-- (id)initOnView:(UIView *)theParentView message:(NSString *)theMessage image:(UIImage*)theImage
+- (id)initOnView:(UIView *)theParentView message:(NSString *)theMessage
 {
-	return [self initOnView:theParentView message:theMessage image:theImage displayTime:DEFAULT_DISPLAY_TIME];
+	return [self initOnView:theParentView message:theMessage displayTime:DEFAULT_DISPLAY_TIME];
 }
 
-+ (id)slidingNotificationOnMainWindowWithMessage:(NSString *)theMessage image:(UIImage*)theImage
++ (id)slidingNotificationOnMainWindowWithMessage:(NSString *)theMessage
 {
-	return [[self alloc] initOnView:[self mainWindow] message:theMessage image:theImage];
+	return [[self alloc] initOnView:[self mainWindow] message:theMessage];
 }
 
-+ (id)slidingNotificationOnTopViewWithMessage:(NSString *)theMessage image:(UIImage*)theImage
++ (id)slidingNotificationOnTopViewWithMessage:(NSString *)theMessage
 {
-	return [[self alloc] initOnView:[self mainWindow].subviews.firstObjectSafe message:theMessage image:theImage];
+	return [[self alloc] initOnView:[self mainWindow].subviews.firstObjectSafe message:theMessage];
 }
 
-+ (id)slidingNotificationOnView:(UIView *)theParentView message:(NSString *)theMessage image:(UIImage*)theImage
++ (id)slidingNotificationOnView:(UIView *)theParentView message:(NSString *)theMessage
 {
-	return [[self alloc] initOnView:theParentView message:theMessage image:theImage];
+	return [[self alloc] initOnView:theParentView message:theMessage];
 }
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
 	
-	self.imageView.image = self.image;
 	self.messageLabel.text = self.message;
 	
 	[self.view addBottomShadow];
