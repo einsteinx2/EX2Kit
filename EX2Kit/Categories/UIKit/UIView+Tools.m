@@ -261,7 +261,7 @@
 
 - (CGFloat)width
 {
-	return CGRectGetWidth(self.frame);
+	return CGRectGetWidth(self.bounds);
 }
 
 - (void)setWidth:(CGFloat)width
@@ -291,7 +291,7 @@
 
 - (CGSize)size
 {
-	return self.frame.size;
+	return self.bounds.size;
 }
 
 - (void)setSize:(CGSize)size
