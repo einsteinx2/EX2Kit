@@ -1341,7 +1341,7 @@
 		53D44E9615AA56C700CDD3B8 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0630;
+				LastUpgradeCheck = 0710;
 			};
 			buildConfigurationList = 53D44E9915AA56C700CDD3B8 /* Build configuration list for PBXProject "EX2Kit" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -1680,6 +1680,7 @@
 				COPY_PHASE_STRIP = NO;
 				DEAD_CODE_STRIPPING = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
