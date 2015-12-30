@@ -108,10 +108,10 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
 		_chunkSize = theChunkSize;
         
 		_tempDecryptBuffer = [[EX2RingBuffer alloc] initWithBufferLength:BytesFromKiB(75)];
-        _tempDecryptBuffer.maximumLength = BytesFromKiB(500);
+        _tempDecryptBuffer.maximumLength = BytesFromKiB(200);
         
 		_decryptedBuffer = [[EX2RingBuffer alloc] initWithBufferLength:BytesFromKiB(75)];
-        _decryptedBuffer.maximumLength = BytesFromKiB(500);
+        _decryptedBuffer.maximumLength = BytesFromKiB(200);
 	}
 	return self;
 }
@@ -177,6 +177,20 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
 }
 
 - (NSUInteger)readBytes:(void *)buffer length:(NSUInteger)length
+{
+    NSUInteger offset = 0;
+    while (offset < length) {
+        NSUInteger lengthToRead = MIN(length-offset, BytesFromKB(100));
+        NSUInteger amountRead = [self _readBytes:buffer+offset length:lengthToRead];
+        if (amountRead == 0) {
+            break;
+        }
+        offset += amountRead;
+    }
+    return offset;
+}
+
+- (NSUInteger)_readBytes:(void *)buffer length:(NSUInteger)length
 {
 	if (self.decryptedBuffer.filledSpaceLength < length)
 	{
