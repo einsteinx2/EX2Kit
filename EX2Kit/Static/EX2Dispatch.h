@@ -58,6 +58,10 @@
 /// @param block The block to run
 + (void)runInMainThreadAsync:(void (^)(void))block;
 
+
+
+// TODO: Rewrite this timer crap, I'm pretty sure it never worked right
+
 /// @name Timers (cancelable delayed blocks)
 
 /// Runs a block after a delay that can be canceled by name and optionaly repeated
@@ -71,6 +75,7 @@
             withName:(NSString *)name
              repeats:(BOOL)repeats
         performBlock:(void (^)(void))block;
+
 
 /// Runs a block after a delay in the main thread queue that can be canceled by name and optionaly repeated
 /// @param delay The delay in seconds before the block

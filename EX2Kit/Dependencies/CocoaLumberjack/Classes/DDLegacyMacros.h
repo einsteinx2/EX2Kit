@@ -36,9 +36,9 @@ Disable legacy macros by importing CocoaLumberjack.h or DDLogMacros.h instead of
 #define LOG_LEVEL_OFF     DDLogLevelOff
 #define LOG_LEVEL_ERROR   DDLogLevelError
 #define LOG_LEVEL_WARN    DDLogLevelWarning
-#define LOG_LEVEL_INFO    DDLogLevelInfo
+#define DDLogLevelInfo    DDLogLevelInfo
 #define LOG_LEVEL_DEBUG   DDLogLevelDebug
-#define LOG_LEVEL_VERBOSE DDLogLevelVerbose
+#define DDLogLevelVerbose DDLogLevelVerbose
 #define LOG_LEVEL_ALL     DDLogLevelAll
 
 #define LOG_ASYNC_ENABLED YES

@@ -119,7 +119,7 @@ static void initialize_navigationBarImages()
 		return YES;
 	}
 }
-
+ 
 + (BOOL)timerInMainQueueAfterDelay:(NSTimeInterval)delay withName:(NSString *)name repeats:(BOOL)repeats performBlock:(void (^)(void))block
 {
 	return [self timerInQueue:dispatch_get_main_queue() afterDelay:delay withName:name repeats:repeats performBlock:block];
