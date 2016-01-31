@@ -10,7 +10,6 @@
 #import "RNCryptorOld.h"
 #import "RNDecryptor.h"
 #import "EX2RingBuffer.h"
-#import "DDLog.h"
 
 // Keyed on file path, value is number of references
 static __strong NSMutableDictionary *_activeFilePaths;
@@ -31,7 +30,7 @@ static __strong NSMutableDictionary *_activeFilePaths;
 
 #define DEFAULT_DECR_CHUNK_SIZE 4096
 
-static const int ddLogLevel = LOG_LEVEL_INFO;
+static const int ddLogLevel = DDLogLevelInfo;
 
 + (NSDictionary *)openFilePaths
 {

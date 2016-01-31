@@ -9,7 +9,7 @@
 #import "NSURL+SkipBackupAttribute.h"
 #import <sys/xattr.h>
 
-static const int ddLogLevel = LOG_LEVEL_ERROR;
+static const int ddLogLevel = DDLogLevelError;
 
 @implementation NSURL (SkipBackupAttribute)
 

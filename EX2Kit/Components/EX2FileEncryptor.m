@@ -12,7 +12,6 @@
 #import "RNEncryptor.h"
 #import "RNDecryptor.h"
 #import "EX2RingBuffer.h"
-#import "DDLog.h"
 
 @interface EX2FileEncryptor()
 {
@@ -24,7 +23,7 @@
 
 @implementation EX2FileEncryptor
 
-static const int ddLogLevel = LOG_LEVEL_INFO;
+static const int ddLogLevel = DDLogLevelInfo;
 
 #define DEFAULT_CHUNK_SIZE 4096
 

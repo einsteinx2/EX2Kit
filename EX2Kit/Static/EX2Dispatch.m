@@ -110,7 +110,7 @@ static void initialize_navigationBarImages()
 		});
 		
 		// Add it to the dictionary
-		NSValue *timerValue = [NSValue valueWithPointer:timer];
+        NSValue *timerValue = [NSValue valueWithPointer:timer];
         gcdTimers[name] = timerValue;
 		
 		// Start the timer
@@ -139,7 +139,9 @@ static void initialize_navigationBarImages()
 			{
 				// Cancel and release the timer
 				dispatch_source_cancel(timer); 
-				dispatch_release(timer);
+				
+                // Not needed any longer with ARC
+                //dispatch_release(timer);
 			}
 			
 			// Remove the timer pointer from the dictionary

@@ -8,7 +8,7 @@
 
 #import "EX2ActionQueue.h"
 
-static const int ddLogLevel = LOG_LEVEL_VERBOSE;
+static const int ddLogLevel = DDLogLevelVerbose;
 
 @interface EX2ActionQueue()
 @property (nonatomic, strong) NSMutableArray *actionQueue;

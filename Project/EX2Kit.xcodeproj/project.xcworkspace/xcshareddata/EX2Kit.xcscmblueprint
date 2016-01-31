@@ -1,0 +1,37 @@
+{
+  "DVTSourceControlWorkspaceBlueprintPrimaryRemoteRepositoryKey" : "8EDE57C2999432B02AF3774C49AC60A079783175",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyRepositoryLocationsKey" : {
+
+  },
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyStatesKey" : {
+    "EDDBE35C55B96EE65EED71066DE634B275D9D12C" : 0,
+    "C89CD2C0054CCA944685E223F174A6C59B00D5B5" : 0,
+    "8EDE57C2999432B02AF3774C49AC60A079783175" : 0
+  },
+  "DVTSourceControlWorkspaceBlueprintIdentifierKey" : "AA052315-4CC2-4CB0-A954-46DB5B736754",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyPathsKey" : {
+    "EDDBE35C55B96EE65EED71066DE634B275D9D12C" : "..",
+    "C89CD2C0054CCA944685E223F174A6C59B00D5B5" : "..\/..\/..",
+    "8EDE57C2999432B02AF3774C49AC60A079783175" : "EX2Kit\/"
+  },
+  "DVTSourceControlWorkspaceBlueprintNameKey" : "EX2Kit",
+  "DVTSourceControlWorkspaceBlueprintVersion" : 204,
+  "DVTSourceControlWorkspaceBlueprintRelativePathToProjectKey" : "Project\/EX2Kit.xcodeproj",
+  "DVTSourceControlWorkspaceBlueprintRemoteRepositoriesKey" : [
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "github.com:einsteinx2\/EX2Kit.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "8EDE57C2999432B02AF3774C49AC60A079783175"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "github.com:einsteinx2\/iSub.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "C89CD2C0054CCA944685E223F174A6C59B00D5B5"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "github.com:einsteinx2\/libSub.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "EDDBE35C55B96EE65EED71066DE634B275D9D12C"
+    }
+  ]
+}

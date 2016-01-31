@@ -11,7 +11,7 @@
 
 @implementation NSFileHandle (Hash)
 
-static const int ddLogLevel = LOG_LEVEL_VERBOSE;
+static const int ddLogLevel = DDLogLevelVerbose;
 
 #define READ_CHUNK_SIZE BytesFromKB(16)
 

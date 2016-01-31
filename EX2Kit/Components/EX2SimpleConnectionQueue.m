@@ -47,7 +47,7 @@
 
 #import "EX2SimpleConnectionQueue.h"
 
-static const int ddLogLevel = LOG_LEVEL_VERBOSE;
+static const int ddLogLevel = DDLogLevelVerbose;
 
 @interface EX2SimpleConnectionQueue ()
 {
