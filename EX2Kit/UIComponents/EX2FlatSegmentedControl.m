@@ -7,6 +7,10 @@
 //
 
 #import "EX2FlatSegmentedControl.h"
+#import "UIView+Tools.h"
+#import "UIView+SetNeedsLayoutSafe.h"
+#import "UIColor+ColorWithHex.h"
+#import "NSArray+Additions.h"
 #import <QuartzCore/QuartzCore.h>
 
 #define UnselectedGradientName @"unselected"
@@ -294,7 +298,7 @@
             if (self.unselectedFont.pointSize > self.selectedFont.pointSize)
                 sizingFont = self.unselectedFont;
             
-            CGFloat width = [item.text sizeWithFont:sizingFont].width;
+            CGFloat width = [item.text sizeWithAttributes:@{NSFontAttributeName:sizingFont}].width;
             if (width > maxWidth)
                 maxWidth = width;
         }
@@ -411,7 +415,7 @@
     // Create the segment view
     UILabel *segmentView = [[UILabel alloc] init];
     segmentView.text = title;
-    segmentView.textAlignment = UITextAlignmentCenter;
+    segmentView.textAlignment = NSTextAlignmentCenter;
     segmentView.accessibilityLabel = segmentView.text;
     segmentView.textColor = self.unselectedTextColor;
     segmentView.font = self.unselectedFont;

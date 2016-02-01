@@ -7,6 +7,7 @@
 //
 
 #import "NSURL+QueryParameterDictionary.h"
+#import "NSArray+Additions.h"
 
 @implementation NSURL (QueryParameterDictionary)
 

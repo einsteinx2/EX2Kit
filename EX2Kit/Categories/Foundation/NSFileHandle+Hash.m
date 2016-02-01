@@ -7,6 +7,8 @@
 //
 
 #import "NSFileHandle+Hash.h"
+#import "CocoaLumberjack.h"
+#import "EX2Macros.h"
 #import <CommonCrypto/CommonDigest.h>
 
 @implementation NSFileHandle (Hash)

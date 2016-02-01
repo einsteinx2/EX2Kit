@@ -7,6 +7,9 @@
 //
 
 #import "EX2ActionQueue.h"
+#import "EX2Macros.h"
+#import "EX2Dispatch.h"
+#import "CocoaLumberjack.h"
 
 static const int ddLogLevel = DDLogLevelVerbose;
 

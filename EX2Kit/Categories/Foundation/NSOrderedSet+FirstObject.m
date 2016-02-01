@@ -7,6 +7,7 @@
 //
 
 #import "NSOrderedSet+FirstObject.h"
+#import "NSOrderedSet+Safe.h"
 
 @implementation NSOrderedSet (FirstObject)
 

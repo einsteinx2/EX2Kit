@@ -7,7 +7,10 @@
 //
 
 #import "NSURL+SkipBackupAttribute.h"
+#import "CocoaLumberjack.h"
+#import "EX2Macros.h"
 #import <sys/xattr.h>
+#import <UIKit/UIKit.h>
 
 static const int ddLogLevel = DDLogLevelError;
 

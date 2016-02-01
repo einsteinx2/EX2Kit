@@ -11,6 +11,10 @@
 //
 
 #import "EX2NavigationController.h"
+#import "EX2Macros.h"
+#import "EX2Dispatch.h"
+#import "UIView+Tools.h"
+#import "NSArray+Additions.h"
 #import <objc/runtime.h>
 
 @implementation UIViewController (EX2NavigationController)
@@ -223,31 +227,6 @@ static void *key;
 
 - (BOOL)shouldAutorotate
 {
-    UIInterfaceOrientation orientation = UIInterfaceOrientationPortrait;
-    switch([UIDevice currentDevice].orientation)
-    {
-        case UIDeviceOrientationLandscapeLeft:
-            orientation = UIInterfaceOrientationLandscapeLeft;
-            break;
-        case UIDeviceOrientationLandscapeRight:
-            orientation = UIInterfaceOrientationLandscapeRight;
-            break;
-        case UIDeviceOrientationPortrait:
-            orientation = UIInterfaceOrientationPortrait;
-            break;
-        case UIDeviceOrientationPortraitUpsideDown:
-            orientation = UIInterfaceOrientationPortraitUpsideDown;
-            break;
-        default:
-            orientation = UIInterfaceOrientationPortrait;
-    }
-    
-    return [self shouldAutorotateToInterfaceOrientation:orientation];
-}
-
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
-{
-    // Overriden to allow any orientation.
     return YES;
 }
 

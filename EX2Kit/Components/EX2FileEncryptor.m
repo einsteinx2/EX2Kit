@@ -12,6 +12,7 @@
 #import "RNEncryptor.h"
 #import "RNDecryptor.h"
 #import "EX2RingBuffer.h"
+#import "CocoaLumberjack.h"
 
 @interface EX2FileEncryptor()
 {

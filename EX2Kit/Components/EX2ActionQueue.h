@@ -16,6 +16,7 @@ typedef enum
     EX2ActionQueueState_Finished
 } EX2ActionQueueState;
 
+@protocol EX2Action;
 @interface EX2ActionQueue : NSObject
 
 @property (readonly) EX2ActionQueueState queueState;

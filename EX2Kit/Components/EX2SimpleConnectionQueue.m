@@ -46,6 +46,10 @@
 //
 
 #import "EX2SimpleConnectionQueue.h"
+#import "CocoaLumberjack.h"
+#import "EX2Dispatch.h"
+#import "NSArray+Additions.h"
+#import "NSNotificationCenter+MainThread.h"
 
 static const int ddLogLevel = DDLogLevelVerbose;
 

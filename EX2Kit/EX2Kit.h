@@ -18,7 +18,7 @@
 #import "EX2UIComponents.h"
 #endif
 
-#import <CocoaLumberjack/CocoaLumberjack.h>
+#import "CocoaLumberjack.h"
 
 @interface EX2Kit : NSObject
 

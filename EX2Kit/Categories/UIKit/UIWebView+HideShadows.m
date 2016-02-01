@@ -7,6 +7,7 @@
 //
 
 #import "UIWebView+HideShadows.h"
+#import "NSArray+Additions.h"
 
 @implementation UIWebView (HideShadows)
 

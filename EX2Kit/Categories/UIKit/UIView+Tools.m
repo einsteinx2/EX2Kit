@@ -336,7 +336,7 @@
         // Switch the text alignment if necessary
         if ([subview isKindOfClass:[UILabel class]])
         {
-            ((UILabel *)subview).textAlignment = UITextAlignmentRight;
+            ((UILabel *)subview).textAlignment = NSTextAlignmentRight;
         }
     }
 }

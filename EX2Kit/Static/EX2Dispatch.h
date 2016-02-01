@@ -60,7 +60,7 @@
 
 
 
-// TODO: Rewrite this timer crap, I'm pretty sure it never worked right
+// TODO: Rewrite this timer crap, I'm pretty sure it never worked well
 
 /// @name Timers (cancelable delayed blocks)
 

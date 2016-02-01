@@ -11,6 +11,7 @@
 #import "UIView+Tools.h"
 #import "EX2Macros.h"
 #import "NSArray+Additions.h"
+#import "EX2Dispatch.h"
 
 
 @implementation UIViewController (EX2TabBarController)
@@ -83,26 +84,7 @@ static char key;
 
 - (BOOL)shouldAutorotate
 {
-    UIInterfaceOrientation orientation = UIInterfaceOrientationPortrait;
-    switch([UIDevice currentDevice].orientation)
-    {
-        case UIDeviceOrientationLandscapeLeft:
-            orientation = UIInterfaceOrientationLandscapeLeft;
-            break;
-        case UIDeviceOrientationLandscapeRight:
-            orientation = UIInterfaceOrientationLandscapeRight;
-            break;
-        case UIDeviceOrientationPortrait:
-            orientation = UIInterfaceOrientationPortrait;
-            break;
-        case UIDeviceOrientationPortraitUpsideDown:
-            orientation = UIInterfaceOrientationPortraitUpsideDown;
-            break;
-        default:
-            orientation = UIInterfaceOrientationPortrait;
-    }
-    
-    return [self shouldAutorotateToInterfaceOrientation:orientation];
+    return ([[UIDevice currentDevice] orientation] == UIDeviceOrientationPortrait);
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -162,11 +144,6 @@ static char key;
             [self.selectedViewController viewDidDisappear:animated];
         }
 	}
-}
-
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
-{
-    return (interfaceOrientation == UIInterfaceOrientationPortrait);
 }
 
 - (NSArray *)viewControllers

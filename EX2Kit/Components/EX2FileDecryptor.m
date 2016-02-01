@@ -10,6 +10,8 @@
 #import "RNCryptorOld.h"
 #import "RNDecryptor.h"
 #import "EX2RingBuffer.h"
+#import "CocoaLumberjack.h"
+#import "EX2Macros.h"
 
 // Keyed on file path, value is number of references
 static __strong NSMutableDictionary *_activeFilePaths;
@@ -54,10 +56,7 @@ static const int ddLogLevel = DDLogLevelInfo;
         // when _activeFilePaths[path] is nil
         NSInteger adjustedValue = [_activeFilePaths[path] integerValue] + 1;
         
-        NSLog(@"EX2FileDecryptor: incremented \"%@\" (%li)", path, (long)adjustedValue);
         _activeFilePaths[path] = @(adjustedValue);
-        
-        DLog(@"_activeFilePaths: %@", _activeFilePaths);
     }
 }
 
@@ -73,15 +72,11 @@ static const int ddLogLevel = DDLogLevelInfo;
         {
             // If decrementing the value will bring it to 0, remove the entry
             [_activeFilePaths removeObjectForKey:path];
-            NSLog(@"EX2FileDecryptor: removing \"%@\" (%li)", path, (long)adjustedValue);
         }
         else
         {
             _activeFilePaths[path] = @(adjustedValue);
-            NSLog(@"EX2FileDecryptor: decremented \"%@\" (%li)", path, (long)adjustedValue);
         }
-        
-        DLog(@"_activeFilePaths: %@", _activeFilePaths);
     }
 }
 
