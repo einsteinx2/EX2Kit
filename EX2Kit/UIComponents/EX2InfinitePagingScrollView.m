@@ -117,10 +117,10 @@
     self.contentOffset = self.centerOffset;
     
     // Load the views for the visible pages (2 pages to the left, center page, and two pages to the right)
-    int start = self.currentPageIndex - 2;
+    NSInteger start = self.currentPageIndex - 2;
     start = start < 0 && !self.isWrapLeft ? 0 : start;
     
-    int end = self.currentPageIndex + 2;
+    NSInteger end = self.currentPageIndex + 2;
     if (!self.isWrapRight)
         end = end > self.numberOfPages - 1 ? self.numberOfPages - 1 : end;
     
@@ -133,7 +133,7 @@
     }
     else
     {
-        for (int i = start; i <= end; i++)
+        for (NSInteger i = start; i <= end; i++)
         {
             @autoreleasepool
             {

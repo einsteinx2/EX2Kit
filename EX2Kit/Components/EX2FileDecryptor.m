@@ -386,7 +386,7 @@ static const int ddLogLevel = DDLogLevelInfo;
 	unsigned long long filePadding = numberOfEncryptedChunks * chunkPadding;
 	
     // Calculate padding remainder
-    int remainder = encryptedSize % self.encryptedChunkSize;
+    unsigned long long remainder = encryptedSize % self.encryptedChunkSize;
     if (remainder > 0)
     {
         // There is a partial chunk, so just assume full padding size (sometimes it can be a bit under for some reason, don't know why yet)

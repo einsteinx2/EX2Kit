@@ -100,7 +100,7 @@ static void *key;
 - (void)dealloc
 {
     [EX2Dispatch runInMainThreadAndWaitUntilDone:YES block:^{
-        for (int i = _viewControllers.count - 1; i >= 0; i--)
+        for (int i = (int)_viewControllers.count - 1; i >= 0; i--)
         {
             UIViewController *controller = [_viewControllers objectAtIndex:i];
             controller.ex2NavigationController = nil;
