@@ -8,13 +8,13 @@
 
 #import "EX2Action.h"
 
-typedef enum
+typedef NS_ENUM(NSInteger, EX2ActionQueueState)
 {
     EX2ActionQueueState_NotStarted,
     EX2ActionQueueState_Started,
     EX2ActionQueueState_Stopped,
     EX2ActionQueueState_Finished
-} EX2ActionQueueState;
+};
 
 @protocol EX2Action;
 @interface EX2ActionQueue : NSObject

@@ -24,7 +24,7 @@
 - (void)ex2NavigationController:(EX2NavigationController *)controller didShowViewController:(UIViewController *)viewController animated:(BOOL)animated;
 @end
 
-typedef enum EX2NavigationControllerAnimation
+typedef NS_ENUM(NSInteger, EX2NavigationControllerAnimation)
 {
 	// No animation.
 	EX2NavigationControllerAnimationNone    = 0,
@@ -43,8 +43,7 @@ typedef enum EX2NavigationControllerAnimation
 	
 	// The default animation for the transition.
 	EX2NavigationControllerAnimationDefault = 5
-}
-EX2NavigationControllerAnimation;
+};
 
 @interface EX2NavigationController : UIViewController
 

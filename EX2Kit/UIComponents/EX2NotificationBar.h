@@ -17,12 +17,11 @@ extern NSString * const EX2NotificationBarWillHide;
 extern NSString * const EX2NotificationBarDidShow;
 extern NSString * const EX2NotificationBarDidHide;
 
-typedef enum 
+typedef NS_ENUM(NSInteger, EX2NotificationBarPosition)
 {
 	EX2NotificationBarPositionTop,
 	EX2NotificationBarPositionBottom
-} 
-EX2NotificationBarPosition;
+};
 
 @interface EX2NotificationBar : UIViewController
 

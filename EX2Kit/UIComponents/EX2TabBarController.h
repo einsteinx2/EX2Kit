@@ -12,13 +12,12 @@
 
 #import <UIKit/UIKit.h>
 
-typedef enum
+typedef NS_ENUM(NSInteger, EX2TabBarControllerAnimation)
 {
     EX2TabBarControllerAnimationNone = 0,
     EX2TabBarControllerAnimationFadeInOut,
     EX2TabBarControllerAnimationFadeTogether
-}
-EX2TabBarControllerAnimation;
+};
 
 @class EX2TabBarController;
 @protocol EX2TabBarControllerDelegate <NSObject>
