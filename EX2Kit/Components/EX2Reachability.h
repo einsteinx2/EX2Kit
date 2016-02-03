@@ -51,11 +51,12 @@
 #import <SystemConfiguration/SystemConfiguration.h>
 #import <netinet/in.h>
 
-typedef enum {
+typedef NS_ENUM(NSInteger, NetworkStatus)
+{
 	NotReachable = 0,
 	ReachableViaWiFi,
 	ReachableViaWWAN
-} NetworkStatus;
+} ;
 
 extern NSString * const EX2ReachabilityNotification_ReachabilityChanged;
 

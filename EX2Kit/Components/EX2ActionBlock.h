@@ -8,12 +8,12 @@
 
 #import "EX2Action.h"
 
-typedef enum
+typedef NS_ENUM(NSInteger, EX2ActionBlockRunType)
 {
     EX2ActionBlockRunType_Sync, // Main thread, blocking
     EX2ActionBlockRunType_Async, // Main thread, non-blocking
     EX2ActionBlockRunType_Background // Background thread, non-blocking
-} EX2ActionBlockRunType;
+};
 
 @interface EX2ActionBlock : NSObject <EX2Action>
 

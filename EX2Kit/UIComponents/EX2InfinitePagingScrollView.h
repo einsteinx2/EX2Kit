@@ -11,12 +11,12 @@
 
 @class  EX2InfinitePagingScrollView;
 
-typedef enum
+typedef NS_ENUM(NSInteger, EX2AutoScrollDirection)
 {
     EX2AutoScrollDirection_None,
     EX2AutoScrollDirection_Left,
     EX2AutoScrollDirection_Right
-} EX2AutoScrollDirection;
+};
 
 typedef UIView * (^EX2InfinitePagingScrollViewPageBlock)(EX2InfinitePagingScrollView *scrollView, NSInteger index);
 
