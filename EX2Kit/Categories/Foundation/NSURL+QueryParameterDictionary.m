@@ -12,14 +12,14 @@
 @implementation NSURL (QueryParameterDictionary)
 
 // Thanks to this SO answer: http://stackoverflow.com/a/11679248/299262
-- (NSDictionary *)queryParameterDictionary
+- (NSDictionary<NSString*,NSString*> *)queryParameterDictionary
 {
     NSString *string =  [[self.absoluteString stringByReplacingOccurrencesOfString:@"+" withString:@" "] stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
     NSScanner *scanner = [NSScanner scannerWithString:string];
     [scanner setCharactersToBeSkipped:[NSCharacterSet characterSetWithCharactersInString:@"&?"]];
     
     NSString *temp;
-    NSMutableDictionary *dict = [[NSMutableDictionary alloc] init];
+    NSMutableDictionary<NSString*,NSString*> *dict = [[NSMutableDictionary alloc] init];
     [scanner scanUpToString:@"?" intoString:nil];       //ignore the beginning of the string and skip to the vars
     while ([scanner scanUpToString:@"&" intoString:&temp])
     {
@@ -30,7 +30,7 @@
         }
     }
     
-    return [NSDictionary dictionaryWithDictionary:dict];
+    return dict;
 }
 
 @end
