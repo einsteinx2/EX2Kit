@@ -1017,11 +1017,11 @@ static int exception_count = 0;
 
 - (NSString *)description
 {
-	return [@{@"filePath": self.filePath,
-		@"fileName": self.fileName,
-		@"fileAttributes": self.fileAttributes,
-		@"creationDate": self.creationDate,
-		@"modificationDate": self.modificationDate,
+	return [@{@"filePath": n2blank(self.filePath),
+		@"fileName": n2blank(self.fileName),
+		@"fileAttributes": n2blank(self.fileAttributes),
+		@"creationDate": n2blank(self.creationDate),
+		@"modificationDate": n2blank(self.modificationDate),
 		@"fileSize": @(self.fileSize),
 		@"age": @(self.age),
 		@"isArchived": @(self.isArchived)} description];

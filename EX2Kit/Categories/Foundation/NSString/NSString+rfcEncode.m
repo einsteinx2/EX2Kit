@@ -25,7 +25,7 @@
 	
 	CFStringEncoding cfEncoding = CFStringConvertNSStringEncodingToEncoding(encoding);
 	// NSString *urlEscaped = [self stringByAddingPercentEscapesUsingEncoding:encoding];
-	NSString *rfcEscaped = (__bridge NSString *)CFURLCreateStringByAddingPercentEscapes(
+	NSString *rfcEscaped = (__bridge_transfer NSString *)CFURLCreateStringByAddingPercentEscapes(
 																			   NULL, 
 																			   (__bridge CFStringRef)self,
 																			   NULL, 

@@ -42,8 +42,8 @@
     if ((self = [super initWithFrame:frame]))
     {
         [self setup];
+        isAutoscrolling = NO;
     }
-    isAutoscrolling = NO;
     return self;
 }
 
@@ -52,8 +52,8 @@
     if ((self = [super initWithCoder:aDecoder]))
     {
         [self setup];
+        isAutoscrolling = NO;
     }
-    isAutoscrolling = NO;
     return self;
 }
 
