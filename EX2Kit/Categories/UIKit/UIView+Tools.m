@@ -317,10 +317,23 @@
     }
 }
 
-- (CGSize)realSizeDidRotate
+
++ (UIInterfaceOrientation)interfaceOrientationFromDeviceOrientation:(UIDeviceOrientation)deviceOrientation
 {
-    UIInterfaceOrientation orientation = [[UIApplication sharedApplication] statusBarOrientation];
-    
+    switch (deviceOrientation)
+    {
+        case UIDeviceOrientationLandscapeLeft:
+            return UIInterfaceOrientationLandscapeLeft;
+        case UIDeviceOrientationLandscapeRight:
+            return UIInterfaceOrientationLandscapeRight;
+        default:
+            return UIInterfaceOrientationPortrait;
+    }
+}
+
+- (CGSize)realSizeDidRotate:(UIDeviceOrientation)currentOrientation
+{
+    UIInterfaceOrientation orientation = (int)currentOrientation == -1 ? [[UIApplication sharedApplication] statusBarOrientation] : [self.class interfaceOrientationFromDeviceOrientation:currentOrientation];
     CGSize size = self.frame.size;
     if ((UIInterfaceOrientationIsLandscape(orientation) && size.width < size.height) ||
         (UIInterfaceOrientationIsPortrait(orientation) && size.width > size.height))
@@ -331,6 +344,11 @@
         size.height = f;
     }
     return size;
+}
+
+- (CGSize)realSizeDidRotate
+{
+    return [self realSizeDidRotate:-1];
 }
 
 // Convert the view for use in Arabic/Hebrew layout
