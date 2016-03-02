@@ -14,7 +14,12 @@
 // The view's window property is non-nil if a view is currently visible
 - (BOOL)isVisible
 {
-	return (self.isViewLoaded && self.view.window);
+    BOOL isVisible = (self.isViewLoaded && self.view.window);
+    if([self isKindOfClass:[UINavigationController class]]) {
+        UINavigationController *nav = (UINavigationController *)self;
+        isVisible = nav.visibleViewController != nil || nav.topViewController.isVisible;
+    }
+    return isVisible;
 }
 
 @end
