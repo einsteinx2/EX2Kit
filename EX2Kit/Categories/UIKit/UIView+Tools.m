@@ -323,9 +323,9 @@
     switch (deviceOrientation)
     {
         case UIDeviceOrientationLandscapeLeft:
-            return UIInterfaceOrientationLandscapeLeft;
-        case UIDeviceOrientationLandscapeRight:
             return UIInterfaceOrientationLandscapeRight;
+        case UIDeviceOrientationLandscapeRight:
+            return UIInterfaceOrientationLandscapeLeft;
         default:
             return UIInterfaceOrientationPortrait;
     }
