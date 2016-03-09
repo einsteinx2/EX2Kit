@@ -8,7 +8,8 @@
 
 #ifndef EX2Kit_EX2UIComponents_h
 #define EX2Kit_EX2UIComponents_h
-
+#ifdef TVOS
+#else
 #import "SnappySlider.h"
 #import "EX2NotificationBar.h"
 #import "EX2NavigationController.h"
@@ -18,5 +19,6 @@
 #import "EX2LargerTouchScrollView.h"
 #import "EX2GlowButton.h"
 #import "EX2FlatSegmentedControl.h"
+#endif
 
 #endif

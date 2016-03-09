@@ -14,11 +14,16 @@
 #import "EX2Static.h"
 #import "EX2Components.h"
 
-#ifdef IOS
-#import "EX2UIComponents.h"
+#ifdef TVOS
+    #import "DDLog.h"
+#else
+    #ifdef IOS
+        #import "EX2UIComponents.h"
+    #import "CocoaLumberjack.h"
+    #endif
 #endif
 
-#import "CocoaLumberjack.h"
+
 
 @interface EX2Kit : NSObject
 

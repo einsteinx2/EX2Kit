@@ -7,17 +7,14 @@
 //
 
 #import "NSString+URLEncode.h"
+#import <Foundation/NSURL.h>
 
 @implementation NSString (URLEncode)
 
 + (NSString *)URLEncodeString:(NSString *)string 
 {
-    NSString *result = (__bridge_transfer NSString *)CFURLCreateStringByAddingPercentEscapes(kCFAllocatorDefault,
-                    (__bridge CFStringRef)string, NULL, CFSTR(";/?:@&=$+{}[]<>,"), kCFStringEncodingUTF8);
-    
-    
-    return result;
-} 
+    return [string stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet characterSetWithCharactersInString:@";/?:@&=$+{}[]<>,"]];
+}
 
 - (NSString *)URLEncodeString 
 { 

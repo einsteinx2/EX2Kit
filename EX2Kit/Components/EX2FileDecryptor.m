@@ -31,7 +31,10 @@ static __strong NSMutableDictionary *_activeFilePaths;
 
 #define DEFAULT_DECR_CHUNK_SIZE 4096
 
+#ifdef TVOS
+#else
 static const int ddLogLevel = LOG_LEVEL_INFO;
+#endif
 
 + (NSDictionary *)openFilePaths
 {

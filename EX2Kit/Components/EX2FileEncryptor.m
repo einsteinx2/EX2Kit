@@ -25,9 +25,10 @@
 
 @implementation EX2FileEncryptor
 
+#ifdef TVOS
+#else
 static const int ddLogLevel = LOG_LEVEL_INFO;
-
-
+#endif
 - (id)init
 {
 	return [self initWithChunkSize:DEFAULT_CHUNK_SIZE];
@@ -88,7 +89,10 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
         {
             NSData *data = [self.encryptionBuffer drainData:self.chunkSize];
             NSError *encryptionError;
-            NSTimeInterval start = [[NSDate date] timeIntervalSince1970];	
+#ifdef TVOS
+#else
+            NSTimeInterval start = [[NSDate date] timeIntervalSince1970];
+#endif
             //NSData *encrypted = [[RNCryptor AES256Cryptor] encryptData:data password:_key error:&encryptionError];
             NSData *encrypted = [RNEncryptor encryptData:data withSettings:kRNCryptorAES256Settings password:_key error:&encryptionError];
             DDLogVerbose(@"[EX2FileEncryptor] total time: %f", [[NSDate date] timeIntervalSince1970] - start);

@@ -228,6 +228,20 @@
 #define LOG_ASYNC_INFO    (YES && LOG_ASYNC_ENABLED)
 #define LOG_ASYNC_VERBOSE (YES && LOG_ASYNC_ENABLED)
 
+#ifdef TVOS
+
+#define DDLogError(frmt, ...)
+#define DDLogWarn(frmt, ...)
+#define DDLogInfo(frmt, ...)
+#define DDLogVerbose(frmt, ...)
+
+#define DDLogCError(frmt, ...)
+#define DDLogCWarn(frmt, ...)
+#define DDLogCInfo(frmt, ...)
+#define DDLogCVerbose(frmt, ...)
+
+#else
+
 #define DDLogError(frmt, ...)   LOG_OBJC_MAYBE(LOG_ASYNC_ERROR,   ddLogLevel, LOG_FLAG_ERROR,   0, frmt, ##__VA_ARGS__)
 #define DDLogWarn(frmt, ...)    LOG_OBJC_MAYBE(LOG_ASYNC_WARN,    ddLogLevel, LOG_FLAG_WARN,    0, frmt, ##__VA_ARGS__)
 #define DDLogInfo(frmt, ...)    LOG_OBJC_MAYBE(LOG_ASYNC_INFO,    ddLogLevel, LOG_FLAG_INFO,    0, frmt, ##__VA_ARGS__)
@@ -238,6 +252,8 @@
 #define DDLogCInfo(frmt, ...)    LOG_C_MAYBE(LOG_ASYNC_INFO,    ddLogLevel, LOG_FLAG_INFO,    0, frmt, ##__VA_ARGS__)
 #define DDLogCVerbose(frmt, ...) LOG_C_MAYBE(LOG_ASYNC_VERBOSE, ddLogLevel, LOG_FLAG_VERBOSE, 0, frmt, ##__VA_ARGS__)
 
+#endif
+
 /**
  * The THIS_FILE macro gives you an NSString of the file name.
  * For simplicity and clarity, the file name does not include the full path or file extension.
@@ -245,10 +261,16 @@
  * For example: DDLogWarn(@"%@: Unable to find thingy", THIS_FILE) -> @"MyViewController: Unable to find thingy"
 **/
 
-NSString *DDExtractFileNameWithoutExtension(const char *filePath, BOOL copy);
+#ifdef TVOS
 
+#define THIS_FILE @""
+
+#else
+
+NSString *DDExtractFileNameWithoutExtension(const char *filePath, BOOL copy);
 #define THIS_FILE (DDExtractFileNameWithoutExtension(__FILE__, NO))
 
+#endif
 /**
  * The THIS_METHOD macro gives you the name of the current objective-c method.
  * 

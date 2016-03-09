@@ -8,7 +8,10 @@
 
 #import "EX2ActionQueue.h"
 
+#ifdef TVOS
+#else
 static const int ddLogLevel = LOG_LEVEL_VERBOSE;
+#endif
 
 @interface EX2ActionQueue()
 @property (nonatomic, strong) NSMutableArray *actionQueue;
@@ -84,11 +87,11 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
 }
 
 - (void)startQueue
-{                 
+{
     @synchronized(self.actionQueue)
     {
         DDLogVerbose(@"[EX2ActionQueue] startQueue, state: %u  actions: %@", self.queueState, self.actionQueue);
-
+        
         if (self.queueState == EX2ActionQueueState_Started)
             return;
         
@@ -109,8 +112,9 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
     NSArray *actionsToCancel;
     @synchronized(self.actionQueue)
     {
+        
         DDLogVerbose(@"[EX2ActionQueue] stopQueue, cancelCurrentAction: %@", NSStringFromBOOL(cancelRunningActions));
-
+        
         actionsToCancel = self.runningActions;
         
         _queueState = EX2ActionQueueState_Stopped;
@@ -130,7 +134,6 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
 - (void)clearQueue
 {
     DDLogVerbose(@"[EX2ActionQueue] clearQueue, actions: %@", self.actionQueue);
-                 
     // Reset the queue state
     @synchronized(self.actionQueue)
     {
@@ -178,7 +181,6 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
     @synchronized(self.actionQueue)
     {
         DDLogVerbose(@"[EX2ActionQueue] cancelAction: %@", action);
-        
         // Set the state
         action.actionState = EX2ActionState_Cancelled;
         action.actionQueue = nil;
@@ -263,9 +265,7 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
                 }
             }            
         }
-        
         DDLogVerbose(@"[EX2ActionQueue] runNextActions, starting actions: %@", nextActions);
-        
         // Start the actions
         for (id<EX2Action> action in nextActions)
         {

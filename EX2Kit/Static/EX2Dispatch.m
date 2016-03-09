@@ -110,7 +110,11 @@ static void initialize_navigationBarImages()
 		});
 		
 		// Add it to the dictionary
-		NSValue *timerValue = [NSValue valueWithPointer:timer];
+#ifdef TVOS
+        NSValue *timerValue = [NSValue valueWithPointer:(__bridge const void * _Nullable)(timer)];
+#else
+        NSValue *timerValue = [NSValue valueWithPointer:timer];
+#endif
         gcdTimers[name] = timerValue;
 		
 		// Start the timer
@@ -139,7 +143,6 @@ static void initialize_navigationBarImages()
 			{
 				// Cancel and release the timer
 				dispatch_source_cancel(timer); 
-				dispatch_release(timer);
 			}
 			
 			// Remove the timer pointer from the dictionary
