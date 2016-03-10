@@ -16,6 +16,7 @@
 
 #ifdef TVOS
     #import "DDLog.h"
+    #import "UIDevice+Hardware.h"
 #else
     #ifdef IOS
         #import "EX2UIComponents.h"
