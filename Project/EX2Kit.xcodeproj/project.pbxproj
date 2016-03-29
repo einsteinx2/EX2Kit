@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		18091B8D1C9014340023E87E /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 188150A31C8F229300B69793 /* SystemConfiguration.framework */; };
 		188150A21C8F221700B69793 /* DDLog.h in Headers */ = {isa = PBXBuildFile; fileRef = 53F15F65162B9FCA00C24FC1 /* DDLog.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		18C502031CA3F13A00B2DD33 /* UIColor+ColorWithHex.m in Sources */ = {isa = PBXBuildFile; fileRef = 53F15F3A162B9FCA00C24FC1 /* UIColor+ColorWithHex.m */; };
 		18CE94051C90766A00672C52 /* UIDevice+Hardware.m in Sources */ = {isa = PBXBuildFile; fileRef = 53F15F3C162B9FCA00C24FC1 /* UIDevice+Hardware.m */; };
 		18D45AE41C8F100800A025CC /* NSArray+FirstObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 53F15EFD162B9FCA00C24FC1 /* NSArray+FirstObject.m */; };
 		18D45AE51C8F100800A025CC /* NSArray+Safe.m in Sources */ = {isa = PBXBuildFile; fileRef = 53F15EFF162B9FCA00C24FC1 /* NSArray+Safe.m */; };
@@ -1646,6 +1647,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				18D45AE41C8F100800A025CC /* NSArray+FirstObject.m in Sources */,
+				18C502031CA3F13A00B2DD33 /* UIColor+ColorWithHex.m in Sources */,
 				18D45AE51C8F100800A025CC /* NSArray+Safe.m in Sources */,
 				18D45AE61C8F100800A025CC /* NSMutableArray+Safe.m in Sources */,
 				18D45AE71C8F100800A025CC /* NSData+AES128.m in Sources */,

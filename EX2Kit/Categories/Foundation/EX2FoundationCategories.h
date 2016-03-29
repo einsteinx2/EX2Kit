@@ -27,14 +27,7 @@
 #import "NSMutableOrderedSet+Safe.h"
 #import "NSOrderedSet+FirstObject.h"
 #import "NSOrderedSet+FilterBlock.h"
-
-#ifdef IOS
 #import "NSURL+SkipBackupAttribute.h"
-#endif
-
-#ifdef TVOS
-#else
 #import "NSFileHandle+Hash.h"
-#endif
 
 #endif
