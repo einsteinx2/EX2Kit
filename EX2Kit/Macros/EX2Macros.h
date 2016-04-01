@@ -23,6 +23,8 @@
 // iPad app type detection (will detect as iPhone if running an iPhone only app on an iPad)
 #define IS_IPAD() (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
 
+#define IS_TV() (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomTV)
+
 // Lite version build switch
 #ifdef LITE
 #define IS_LITE() (true)  // ENABLE  Lite version
