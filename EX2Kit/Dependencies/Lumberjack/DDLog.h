@@ -230,15 +230,17 @@
 
 #ifdef TVOS
 
-#define DDLogError(frmt, ...)
-#define DDLogWarn(frmt, ...)
-#define DDLogInfo(frmt, ...)
-#define DDLogVerbose(frmt, ...)
+#define DDLogError(frmt, ...) LOG(frmt, ##__VA_ARGS__)
+#define DDLogWarn(frmt, ...) LOG(frmt, ##__VA_ARGS__)
+#define DDLogInfo(frmt, ...) LOG(frmt, ##__VA_ARGS__)
+#define DDLogVerbose(frmt, ...) LOG(frmt, ##__VA_ARGS__)
 
-#define DDLogCError(frmt, ...)
-#define DDLogCWarn(frmt, ...)
-#define DDLogCInfo(frmt, ...)
-#define DDLogCVerbose(frmt, ...)
+#define DDLogCError(frmt, ...) LOG(frmt, ##__VA_ARGS__)
+#define DDLogCWarn(frmt, ...) LOG(frmt, ##__VA_ARGS__)
+#define DDLogCInfo(frmt, ...) LOG(frmt, ##__VA_ARGS__)
+#define DDLogCVerbose(frmt, ...) LOG(frmt, ##__VA_ARGS__)
+
+#define LOG(frmt, ...) do { NSLog(frmt, ##__VA_ARGS__); } while(0)
 
 #else
 

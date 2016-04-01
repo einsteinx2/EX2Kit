@@ -89,10 +89,7 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
         {
             NSData *data = [self.encryptionBuffer drainData:self.chunkSize];
             NSError *encryptionError;
-#ifdef TVOS
-#else
             NSTimeInterval start = [[NSDate date] timeIntervalSince1970];
-#endif
             //NSData *encrypted = [[RNCryptor AES256Cryptor] encryptData:data password:_key error:&encryptionError];
             NSData *encrypted = [RNEncryptor encryptData:data withSettings:kRNCryptorAES256Settings password:_key error:&encryptionError];
             DDLogVerbose(@"[EX2FileEncryptor] total time: %f", [[NSDate date] timeIntervalSince1970] - start);
