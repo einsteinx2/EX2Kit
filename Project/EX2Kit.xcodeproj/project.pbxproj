@@ -135,6 +135,7 @@
 		18D45BB61C8F100800A025CC /* NSArray+Reverse.h in Headers */ = {isa = PBXBuildFile; fileRef = 53621DB9178AB4D000C605FA /* NSArray+Reverse.h */; };
 		18D45BB91C8F100800A025CC /* NSArray+FilterBlock.h in Headers */ = {isa = PBXBuildFile; fileRef = 53059A3C17ABB3CF00FA04B2 /* NSArray+FilterBlock.h */; };
 		18D45BBB1C8F100800A025CC /* NSOrderedSet+FilterBlock.h in Headers */ = {isa = PBXBuildFile; fileRef = 531CC54B17DA639F001A97EB /* NSOrderedSet+FilterBlock.h */; };
+		18EC25EB1CAD343000EC874E /* UIImageView+ImageAnimated.m in Sources */ = {isa = PBXBuildFile; fileRef = 539DC3FB17D649FF001FE630 /* UIImageView+ImageAnimated.m */; };
 		5304A21116901857009B2732 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5304A21016901857009B2732 /* Cocoa.framework */; };
 		5304A21B16901857009B2732 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 5304A21916901857009B2732 /* InfoPlist.strings */; };
 		5304A224169018D2009B2732 /* EX2Kit.m in Sources */ = {isa = PBXBuildFile; fileRef = 5339E20316360B9E007628C0 /* EX2Kit.m */; };
@@ -1671,6 +1672,7 @@
 				18CE94051C90766A00672C52 /* UIDevice+Hardware.m in Sources */,
 				18D45AFA1C8F100800A025CC /* NSString+time.m in Sources */,
 				18D45AFB1C8F100800A025CC /* NSString+TrimmingAdditions.m in Sources */,
+				18EC25EB1CAD343000EC874E /* UIImageView+ImageAnimated.m in Sources */,
 				18D45AFC1C8F100800A025CC /* NSString+URLEncode.m in Sources */,
 				18D45AFD1C8F100800A025CC /* NSString+Validation.m in Sources */,
 				18D45AFE1C8F100800A025CC /* CALayer+ImageFromLayer.m in Sources */,
