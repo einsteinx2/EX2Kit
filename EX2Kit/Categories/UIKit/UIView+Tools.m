@@ -317,7 +317,8 @@
     }
 }
 
-
+#ifdef TVOS
+#else
 + (UIInterfaceOrientation)interfaceOrientationFromDeviceOrientation:(UIDeviceOrientation)deviceOrientation
 {
     switch (deviceOrientation)
@@ -345,6 +346,7 @@
     }
     return size;
 }
+#endif
 
 - (CGSize)realSizeDidRotate
 {
