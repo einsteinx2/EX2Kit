@@ -13,7 +13,8 @@
 
 + (NSString *)URLEncodeString:(NSString *)string 
 {
-    return [string stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet characterSetWithCharactersInString:@";/?:@&=$+{}[]<>,"]];
+    NSString * legalString = @"ABCDEFGHIJKLMNOPQRSTUVWXYabcdefghijklmnopqrstuvwxy1234567890";
+    return [string stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet characterSetWithCharactersInString:legalString]];
 }
 
 - (NSString *)URLEncodeString 
