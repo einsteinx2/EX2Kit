@@ -346,12 +346,12 @@
     }
     return size;
 }
-#endif
 
 - (CGSize)realSizeDidRotate
 {
     return [self realSizeDidRotate:-1];
 }
+#endif
 
 // Convert the view for use in Arabic/Hebrew layout
 - (void)convertToRTL
@@ -378,7 +378,7 @@
         // Switch the text alignment if necessary
         if ([subview isKindOfClass:[UILabel class]])
         {
-            ((UILabel *)subview).textAlignment = UITextAlignmentRight;
+            ((UILabel *)subview).textAlignment = NSTextAlignmentRight;
         }
     }
 }

@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		18091B8D1C9014340023E87E /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 188150A31C8F229300B69793 /* SystemConfiguration.framework */; };
 		1809FFF81CC7823C0004AD5B /* UIView+Tools.h in Headers */ = {isa = PBXBuildFile; fileRef = 53F15F47162B9FCA00C24FC1 /* UIView+Tools.h */; };
+		18252E061CD8926100350A67 /* UIView+Tools.m in Sources */ = {isa = PBXBuildFile; fileRef = 53F15F48162B9FCA00C24FC1 /* UIView+Tools.m */; };
 		188150A21C8F221700B69793 /* DDLog.h in Headers */ = {isa = PBXBuildFile; fileRef = 53F15F65162B9FCA00C24FC1 /* DDLog.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		18BBD2641CC4CFA3007C7697 /* NSURL+SkipBackupAttribute.m in Sources */ = {isa = PBXBuildFile; fileRef = 533B3E53165D8FE000ECD75F /* NSURL+SkipBackupAttribute.m */; };
 		18BC65841CD0FEF2007FC3ED /* UIImage+Color.m in Sources */ = {isa = PBXBuildFile; fileRef = 53A1C30717EB88980039DA81 /* UIImage+Color.m */; };
@@ -1697,6 +1698,7 @@
 				18D45B291C8F100800A025CC /* RNDecryptor.m in Sources */,
 				18D45B2A1C8F100800A025CC /* RNEncryptor.m in Sources */,
 				18D45B2B1C8F100800A025CC /* RNOpenSSLCryptor.m in Sources */,
+				18252E061CD8926100350A67 /* UIView+Tools.m in Sources */,
 				18D45B2C1C8F100800A025CC /* RNOpenSSLDecryptor.m in Sources */,
 				18D45B2D1C8F100800A025CC /* NSOrderedSet+FirstObject.m in Sources */,
 				18D45B2E1C8F100800A025CC /* RNOpenSSLEncryptor.m in Sources */,

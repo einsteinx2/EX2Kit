@@ -25,10 +25,10 @@
 @property (nonatomic) CGSize size;
 
 @property (nonatomic, readonly) UIViewController *viewController;
-- (CGSize)realSizeDidRotate;
 
 #ifdef TVOS
 #else
+- (CGSize)realSizeDidRotate;
 - (CGSize)realSizeDidRotate:(UIDeviceOrientation)currentOrientation;
 + (UIInterfaceOrientation)interfaceOrientationFromDeviceOrientation:(UIDeviceOrientation)deviceOrientation;
 #endif
