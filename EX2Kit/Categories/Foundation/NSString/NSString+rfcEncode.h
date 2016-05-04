@@ -11,6 +11,6 @@
 
 @interface NSString (RFC3875)
 
-- (NSString *)stringByAddingRFC3875PercentEscapes;
+- (NSString *)stringByAddingRFC3875PercentEscapesUsingEncoding:(NSStringEncoding)encoding;
 
 @end

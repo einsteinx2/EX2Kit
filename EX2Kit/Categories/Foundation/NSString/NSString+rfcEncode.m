@@ -12,10 +12,27 @@
 
 @implementation NSString (RFC3875)
 
-- (NSString *)stringByAddingRFC3875PercentEscapes 
+- (NSString *)stringByAddingRFC3875PercentEscapesUsingEncoding:(NSStringEncoding)encoding
 {
-    // CFURLCreateStringByAddingPercentEscapes is now deprecated. We use stringByAddingPercentEncodingWithAllowedCharacters that always uses UTF8.
-	return [self stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet characterSetWithCharactersInString:@";/?:@&=$+{}<>,"]];
+    /*CFStringEncoding cfEncoding = CFStringConvertNSStringEncodingToEncoding(encoding);
+     NSString *urlEscaped = [self stringByAddingPercentEscapesUsingEncoding:encoding];
+     NSString *rfcEscaped = (NSString *)CFURLCreateStringByAddingPercentEscapes(
+     NULL,
+     (CFStringRef)urlEscaped,
+     NULL,
+     (CFStringRef)@";/?:@&=$+{}<>,",
+     cfEncoding);
+     return [rfcEscaped autorelease];*/
+    
+    CFStringEncoding cfEncoding = CFStringConvertNSStringEncodingToEncoding(encoding);
+    // NSString *urlEscaped = [self stringByAddingPercentEscapesUsingEncoding:encoding];
+    NSString *rfcEscaped = (__bridge_transfer NSString *)CFURLCreateStringByAddingPercentEscapes(
+                                                                                                 NULL,
+                                                                                                 (__bridge CFStringRef)self,
+                                                                                                 NULL,
+                                                                                                 (__bridge CFStringRef)@";/?:@&=$+{}<>,",
+                                                                                                 cfEncoding);
+    return rfcEscaped;
 }
 
 @end
