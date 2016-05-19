@@ -8,8 +8,12 @@
 
 #import "UIDevice+Software.h"
 #import <sys/sysctl.h>
+
+#ifdef TVOS
+#else
 #import <CoreTelephony/CTCallCenter.h>
 #import <CoreTelephony/CTCall.h>
+#endif
 
 @implementation UIDevice (Software)
 
@@ -60,6 +64,9 @@
 
 - (BOOL)isOnPhoneCall
 {
+#ifdef TVOS
+    return NO;
+#else
     CTCallCenter *callCenter = [[CTCallCenter alloc] init];
     for (CTCall *call in callCenter.currentCalls)
     {
@@ -67,6 +74,7 @@
             return YES;
     }
     return NO;
+#endif
 }
 
 @end
