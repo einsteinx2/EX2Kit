@@ -251,4 +251,37 @@
 	return [UIColor colorWithRed: red / 255.0f green: green / 255.0f blue: blue / 255.0f alpha: 1.0f];
 }
 
+- (CGFloat)RGBRedFromColor
+{
+    return self.components[0];
+}
+
+- (CGFloat)RGBGreenFromColor
+{
+    return self.components[1];
+}
+
+- (CGFloat)RGBBlueFromColor
+{
+    return self.components[2];
+}
+
+- (CGFloat)RGBAlphaFromColor
+{
+    return self.components[3];
+}
+
+- (const CGFloat *)components
+{
+    CGColorRef color = [self CGColor];
+    
+    int numComponents = CGColorGetNumberOfComponents(color);
+    
+    if (numComponents == 4)
+    {
+        return CGColorGetComponents(color);
+    }
+    return nil;
+}
+
 @end

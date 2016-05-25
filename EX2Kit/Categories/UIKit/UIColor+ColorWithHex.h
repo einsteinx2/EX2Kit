@@ -52,4 +52,9 @@
 // ObjC (manual hex conversion to RGB)
 + (UIColor *)colorWithHexa:(NSString *)hexadecimal;
 
+- (CGFloat)RGBRedFromColor;
+- (CGFloat)RGBGreenFromColor;
+- (CGFloat)RGBBlueFromColor;
+- (CGFloat)RGBAlphaFromColor;
+
 @end
