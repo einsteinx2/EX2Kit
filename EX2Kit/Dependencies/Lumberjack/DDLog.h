@@ -265,7 +265,7 @@
 
 #ifdef TVOS
 
-#define THIS_FILE @""
+#define THIS_FILE NSStringFromClass([self class])
 
 #else
 
