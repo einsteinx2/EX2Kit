@@ -141,6 +141,7 @@
 		18D45BB91C8F100800A025CC /* NSArray+FilterBlock.h in Headers */ = {isa = PBXBuildFile; fileRef = 53059A3C17ABB3CF00FA04B2 /* NSArray+FilterBlock.h */; };
 		18D45BBB1C8F100800A025CC /* NSOrderedSet+FilterBlock.h in Headers */ = {isa = PBXBuildFile; fileRef = 531CC54B17DA639F001A97EB /* NSOrderedSet+FilterBlock.h */; };
 		18EC25EB1CAD343000EC874E /* UIImageView+ImageAnimated.m in Sources */ = {isa = PBXBuildFile; fileRef = 539DC3FB17D649FF001FE630 /* UIImageView+ImageAnimated.m */; };
+		18F9471D1CF88D2300711F69 /* UIViewController+IsVisible.m in Sources */ = {isa = PBXBuildFile; fileRef = 53F15F4A162B9FCA00C24FC1 /* UIViewController+IsVisible.m */; };
 		5304A21116901857009B2732 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5304A21016901857009B2732 /* Cocoa.framework */; };
 		5304A21B16901857009B2732 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 5304A21916901857009B2732 /* InfoPlist.strings */; };
 		5304A224169018D2009B2732 /* EX2Kit.m in Sources */ = {isa = PBXBuildFile; fileRef = 5339E20316360B9E007628C0 /* EX2Kit.m */; };
@@ -1662,6 +1663,7 @@
 				18D45AE91C8F100800A025CC /* NSData+Gzip.m in Sources */,
 				18D45AEA1C8F100800A025CC /* NSDate+UTC.m in Sources */,
 				18D45AEB1C8F100800A025CC /* NSOrderedSet+Safe.m in Sources */,
+				18F9471D1CF88D2300711F69 /* UIViewController+IsVisible.m in Sources */,
 				18BC65841CD0FEF2007FC3ED /* UIImage+Color.m in Sources */,
 				18D45AEC1C8F100800A025CC /* NSMutableDictionary+Safe.m in Sources */,
 				18AD2E4F1CEDBE0C008A466B /* UIDevice+Software.m in Sources */,
