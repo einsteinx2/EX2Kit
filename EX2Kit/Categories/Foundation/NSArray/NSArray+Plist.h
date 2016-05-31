@@ -14,3 +14,10 @@
 + (id)readFromPlist:(NSString *)path;
 
 @end
+
+@interface NSSet (Plist)
+
+- (BOOL)writeToPlist:(NSString *)path;
++ (id)readFromPlist:(NSString *)path;
+
+@end
