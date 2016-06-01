@@ -19,6 +19,8 @@
 @property (nonatomic, readonly) unsigned long long encryptedFileSizeOnDisk;
 @property (nonatomic, readonly) unsigned long long decryptedFileSizeOnDisk;
 
+@property (nonatomic, readonly) unsigned long long offsetInFile;
+
 - (id)initWithPath:(NSString *)path chunkSize:(NSUInteger)chunkSize key:(NSString *)key;
 - (id)initWithPath:(NSString *)path chunkSize:(NSUInteger)chunkSize key:(NSString *)key alternateKeys:(NSArray *)alternateKeys;
 

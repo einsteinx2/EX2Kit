@@ -104,6 +104,11 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
 	return [self initWithChunkSize:DEFAULT_DECR_CHUNK_SIZE];
 }
 
+- (unsigned long long)offsetInFile
+{
+    return self.fileHandle.offsetInFile;
+}
+
 - (id)initWithChunkSize:(NSUInteger)theChunkSize
 {
 	if ((self = [super init]))
