@@ -1954,7 +1954,7 @@
 				SKIP_INSTALL = YES;
 				STRIP_STYLE = all;
 				SUPPORTED_PLATFORMS = "appletvsimulator appletvos";
-				TVOS_DEPLOYMENT_TARGET = 9.0;
+				TVOS_DEPLOYMENT_TARGET = 9.2;
 				VALID_ARCHS = arm64;
 			};
 			name = Debug;
@@ -1991,7 +1991,7 @@
 				SKIP_INSTALL = YES;
 				STRIP_STYLE = all;
 				SUPPORTED_PLATFORMS = "appletvsimulator appletvos";
-				TVOS_DEPLOYMENT_TARGET = 9.0;
+				TVOS_DEPLOYMENT_TARGET = 9.2;
 				VALID_ARCHS = arm64;
 			};
 			name = Release;
