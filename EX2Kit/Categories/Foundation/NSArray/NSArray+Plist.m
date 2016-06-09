@@ -6,10 +6,7 @@
 //
 //
 
-#ifdef TVOS
-#else
 static const int ddLogLevel = LOG_LEVEL_VERBOSE;
-#endif
 
 #import "NSArray+Plist.h"
 
