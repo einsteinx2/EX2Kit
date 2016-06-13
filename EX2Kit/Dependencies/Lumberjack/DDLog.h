@@ -228,22 +228,6 @@
 #define LOG_ASYNC_INFO    (YES && LOG_ASYNC_ENABLED)
 #define LOG_ASYNC_VERBOSE (YES && LOG_ASYNC_ENABLED)
 
-#ifdef TVOS
-
-#define DDLogError(frmt, ...) LOG(frmt, ##__VA_ARGS__)
-#define DDLogWarn(frmt, ...) LOG(frmt, ##__VA_ARGS__)
-#define DDLogInfo(frmt, ...) LOG(frmt, ##__VA_ARGS__)
-#define DDLogVerbose(frmt, ...) LOG(frmt, ##__VA_ARGS__)
-
-#define DDLogCError(frmt, ...) LOG(frmt, ##__VA_ARGS__)
-#define DDLogCWarn(frmt, ...) LOG(frmt, ##__VA_ARGS__)
-#define DDLogCInfo(frmt, ...) LOG(frmt, ##__VA_ARGS__)
-#define DDLogCVerbose(frmt, ...) LOG(frmt, ##__VA_ARGS__)
-
-#define LOG(frmt, ...) do { NSLog(frmt, ##__VA_ARGS__); } while(0)
-
-#else
-
 #define DDLogError(frmt, ...)   LOG_OBJC_MAYBE(LOG_ASYNC_ERROR,   ddLogLevel, LOG_FLAG_ERROR,   0, frmt, ##__VA_ARGS__)
 #define DDLogWarn(frmt, ...)    LOG_OBJC_MAYBE(LOG_ASYNC_WARN,    ddLogLevel, LOG_FLAG_WARN,    0, frmt, ##__VA_ARGS__)
 #define DDLogInfo(frmt, ...)    LOG_OBJC_MAYBE(LOG_ASYNC_INFO,    ddLogLevel, LOG_FLAG_INFO,    0, frmt, ##__VA_ARGS__)
@@ -253,8 +237,6 @@
 #define DDLogCWarn(frmt, ...)    LOG_C_MAYBE(LOG_ASYNC_WARN,    ddLogLevel, LOG_FLAG_WARN,    0, frmt, ##__VA_ARGS__)
 #define DDLogCInfo(frmt, ...)    LOG_C_MAYBE(LOG_ASYNC_INFO,    ddLogLevel, LOG_FLAG_INFO,    0, frmt, ##__VA_ARGS__)
 #define DDLogCVerbose(frmt, ...) LOG_C_MAYBE(LOG_ASYNC_VERBOSE, ddLogLevel, LOG_FLAG_VERBOSE, 0, frmt, ##__VA_ARGS__)
-
-#endif
 
 /**
  * The THIS_FILE macro gives you an NSString of the file name.

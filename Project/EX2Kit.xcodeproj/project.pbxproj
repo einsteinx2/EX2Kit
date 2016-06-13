@@ -9,6 +9,13 @@
 /* Begin PBXBuildFile section */
 		18091B8D1C9014340023E87E /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 188150A31C8F229300B69793 /* SystemConfiguration.framework */; };
 		1809FFF81CC7823C0004AD5B /* UIView+Tools.h in Headers */ = {isa = PBXBuildFile; fileRef = 53F15F47162B9FCA00C24FC1 /* UIView+Tools.h */; };
+		1820C9011D0ECEE500252BA2 /* DDLog.m in Sources */ = {isa = PBXBuildFile; fileRef = 53F15F66162B9FCA00C24FC1 /* DDLog.m */; };
+		1820C9021D0ED28000252BA2 /* DDTTYLogger.m in Sources */ = {isa = PBXBuildFile; fileRef = 53F15F68162B9FCA00C24FC1 /* DDTTYLogger.m */; };
+		1820C9031D0ED28400252BA2 /* DDFileLogger.m in Sources */ = {isa = PBXBuildFile; fileRef = 53F15F64162B9FCA00C24FC1 /* DDFileLogger.m */; };
+		1820C9041D0ED28800252BA2 /* DDASLLogger.m in Sources */ = {isa = PBXBuildFile; fileRef = 53F15F62162B9FCA00C24FC1 /* DDASLLogger.m */; };
+		1820C9051D0ED28A00252BA2 /* DDAbstractDatabaseLogger.m in Sources */ = {isa = PBXBuildFile; fileRef = 53F15F60162B9FCA00C24FC1 /* DDAbstractDatabaseLogger.m */; };
+		1820C9061D0ED29200252BA2 /* ContextFilterLogFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = 53F15F6B162B9FCA00C24FC1 /* ContextFilterLogFormatter.m */; };
+		1820C9071D0ED29500252BA2 /* DispatchQueueLogFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = 53F15F6D162B9FCA00C24FC1 /* DispatchQueueLogFormatter.m */; };
 		18252E061CD8926100350A67 /* UIView+Tools.m in Sources */ = {isa = PBXBuildFile; fileRef = 53F15F48162B9FCA00C24FC1 /* UIView+Tools.m */; };
 		188150A21C8F221700B69793 /* DDLog.h in Headers */ = {isa = PBXBuildFile; fileRef = 53F15F65162B9FCA00C24FC1 /* DDLog.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		18AD2E4F1CEDBE0C008A466B /* UIDevice+Software.m in Sources */ = {isa = PBXBuildFile; fileRef = 53F15F3E162B9FCA00C24FC1 /* UIDevice+Software.m */; };
@@ -1669,17 +1676,21 @@
 				18AD2E4F1CEDBE0C008A466B /* UIDevice+Software.m in Sources */,
 				18D45AED1C8F100800A025CC /* NSNotificationCenter+MainThread.m in Sources */,
 				18D45AEE1C8F100800A025CC /* NSObject+ListMethods.m in Sources */,
+				1820C9021D0ED28000252BA2 /* DDTTYLogger.m in Sources */,
 				18D45AEF1C8F100800A025CC /* GTMNSString+HTML.m in Sources */,
 				18D45AF01C8F100800A025CC /* NSString+Clean.m in Sources */,
+				1820C9071D0ED29500252BA2 /* DispatchQueueLogFormatter.m in Sources */,
 				18D45AF21C8F100800A025CC /* NSString+compareWithoutIndefiniteArticles.m in Sources */,
 				18D45AF31C8F100800A025CC /* NSString+cStringUTF8.m in Sources */,
 				18D45AF41C8F100800A025CC /* NSString+FileSize.m in Sources */,
+				1820C9011D0ECEE500252BA2 /* DDLog.m in Sources */,
 				18D45AF51C8F100800A025CC /* NSString+Gzip.m in Sources */,
 				18BBD2641CC4CFA3007C7697 /* NSURL+SkipBackupAttribute.m in Sources */,
 				18D45AF61C8F100800A025CC /* NSString+hex.m in Sources */,
 				18D45AF71C8F100800A025CC /* NSString+md5.m in Sources */,
 				18D45AF81C8F100800A025CC /* NSString+rfcEncode.m in Sources */,
 				18D45AF91C8F100800A025CC /* NSString+SHA1.m in Sources */,
+				1820C9041D0ED28800252BA2 /* DDASLLogger.m in Sources */,
 				18CE94051C90766A00672C52 /* UIDevice+Hardware.m in Sources */,
 				18D45AFA1C8F100800A025CC /* NSString+time.m in Sources */,
 				18D45AFB1C8F100800A025CC /* NSString+TrimmingAdditions.m in Sources */,
@@ -1694,6 +1705,7 @@
 				18D45B111C8F100800A025CC /* EX2SimpleConnectionQueue.m in Sources */,
 				18D45B191C8F100800A025CC /* EX2Dispatch.m in Sources */,
 				18D45B1F1C8F100800A025CC /* NSString+HasValue.m in Sources */,
+				1820C9061D0ED29200252BA2 /* ContextFilterLogFormatter.m in Sources */,
 				18D45B211C8F100800A025CC /* EX2Kit.m in Sources */,
 				18D45B231C8F100800A025CC /* NSURL+QueryParameterDictionary.m in Sources */,
 				18D45B251C8F100800A025CC /* RNCryptor.m in Sources */,
@@ -1704,6 +1716,8 @@
 				18D45B2B1C8F100800A025CC /* RNOpenSSLCryptor.m in Sources */,
 				18252E061CD8926100350A67 /* UIView+Tools.m in Sources */,
 				18D45B2C1C8F100800A025CC /* RNOpenSSLDecryptor.m in Sources */,
+				1820C9051D0ED28A00252BA2 /* DDAbstractDatabaseLogger.m in Sources */,
+				1820C9031D0ED28400252BA2 /* DDFileLogger.m in Sources */,
 				18D45B2D1C8F100800A025CC /* NSOrderedSet+FirstObject.m in Sources */,
 				18D45B2E1C8F100800A025CC /* RNOpenSSLEncryptor.m in Sources */,
 				18D45B2F1C8F100800A025CC /* RNCryptorOld.m in Sources */,

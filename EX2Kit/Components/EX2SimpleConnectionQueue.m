@@ -48,10 +48,7 @@
 #import "EX2SimpleConnectionQueue.h"
 #import <UIKit/UIKit.h>
 
-#ifdef TVOS
-#else
 static const int ddLogLevel = LOG_LEVEL_VERBOSE;
-#endif
 
 @interface EX2SimpleConnectionQueue ()
 {

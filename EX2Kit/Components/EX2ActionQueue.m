@@ -8,10 +8,7 @@
 
 #import "EX2ActionQueue.h"
 
-#ifdef TVOS
-#else
 static const int ddLogLevel = LOG_LEVEL_VERBOSE;
-#endif
 
 @interface EX2ActionQueue()
 @property (nonatomic, strong) NSMutableArray *actionQueue;

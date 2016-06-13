@@ -211,7 +211,7 @@
 **/
 - (NSString *)defaultLogsDirectory
 {
-#if TARGET_OS_IPHONE
+#if TARGET_OS_IPHONE || TARGET_OS_TV
 	NSArray *paths = NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES);
 	NSString *baseDir = ([paths count] > 0) ? [paths objectAtIndex:0] : nil;
 	NSString *logsDirectory = [baseDir stringByAppendingPathComponent:@"Logs"];

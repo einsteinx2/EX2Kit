@@ -25,10 +25,8 @@
 
 @implementation EX2FileEncryptor
 
-#ifdef TVOS
-#else
 static const int ddLogLevel = LOG_LEVEL_INFO;
-#endif
+
 - (id)init
 {
 	return [self initWithChunkSize:DEFAULT_CHUNK_SIZE];
