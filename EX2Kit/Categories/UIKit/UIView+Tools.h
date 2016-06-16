@@ -57,6 +57,10 @@
 - (void)addBottomLine;
 - (void) removeBottomLine;
 
+- (UIView *) topLine;
+- (void)addTopLine;
+- (void) removeTopLine;
+
 // Convert view from left to right to right to left layout for switching to Arabic/Hebrew
 - (void)convertToRTL;
 
