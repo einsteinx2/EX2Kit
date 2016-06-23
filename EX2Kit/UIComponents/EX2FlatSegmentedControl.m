@@ -83,6 +83,7 @@
         [self insertSegmentWithTitle:[super titleForSegmentAtIndex:i] atIndex:i animated:NO];
     }
     [super removeAllSegments];
+    [super awakeFromNib];
 }
 
 - (void)commonInit
