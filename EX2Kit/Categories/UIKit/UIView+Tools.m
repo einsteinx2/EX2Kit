@@ -21,9 +21,6 @@
 
 #define ISMSiPadCornerRadius 5.
 
-#define BOTTOM_LINE_VIEW_TAG        1290831
-#define TOP_LINE_VIEW_TAG           1319391
-
 + (CAGradientLayer *)verticalShadowWithAlpha:(CGFloat)shadowAlpha inverse:(BOOL)inverse
 {
 	CAGradientLayer *newShadow = [[CAGradientLayer alloc] init];

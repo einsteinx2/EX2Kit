@@ -9,6 +9,9 @@
 #import <UIKit/UIKit.h>
 #import <QuartzCore/QuartzCore.h>
 
+#define BOTTOM_LINE_VIEW_TAG        1290831
+#define TOP_LINE_VIEW_TAG           1319391
+
 @interface UIView (Tools) 
 
 @property (nonatomic) CGFloat left;
