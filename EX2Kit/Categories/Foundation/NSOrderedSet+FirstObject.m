@@ -12,7 +12,7 @@
 
 - (id)firstObject
 {
-	return [self objectAtIndex:0];
+	return [self firstObjectSafe];
 }
 
 - (id)firstObjectSafe
