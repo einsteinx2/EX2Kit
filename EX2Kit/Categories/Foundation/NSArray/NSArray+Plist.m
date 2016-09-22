@@ -15,7 +15,7 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
 - (BOOL)writeToPlist:(NSString *)path
 {
     NSData *data = [NSKeyedArchiver archivedDataWithRootObject:self];
-    if (data)
+    if (data && self.count > 0)
     {
         return [data writeToFile:path atomically:YES];;
     }
