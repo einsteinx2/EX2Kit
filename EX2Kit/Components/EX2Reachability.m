@@ -204,6 +204,15 @@ static void ReachabilityCallback(SCNetworkReachabilityRef target, SCNetworkReach
 	return retVal;
 }*/
 
+- (BOOL)isCellularDataDisabled
+{
+    SCNetworkReachabilityFlags flags;
+    SCNetworkReachabilityGetFlags(reachabilityRef, &flags);
+    BOOL isWWAN = (flags & kSCNetworkReachabilityFlagsIsWWAN) != 0;
+    BOOL isReachable = (flags & kSCNetworkReachabilityFlagsReachable) != 0;
+    return isWWAN && !isReachable;
+}
+
 - (NetworkStatus) localWiFiStatusForFlags: (SCNetworkReachabilityFlags) flags
 {
 	PrintReachabilityFlags(flags, "localWiFiStatusForFlags");
