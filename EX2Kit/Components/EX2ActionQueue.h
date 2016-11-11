@@ -16,6 +16,14 @@ typedef enum
     EX2ActionQueueState_Finished
 } EX2ActionQueueState;
 
+@class EX2ActionQueue;
+
+@protocol EX2ActionQueueDelegate <NSObject>
+
+- (void)actionQueue:(EX2ActionQueue *)queue stateChangedFrom:(EX2ActionQueueState)oldState to:(EX2ActionQueueState)newState;
+
+@end
+
 @interface EX2ActionQueue : NSObject
 
 @property (readonly) EX2ActionQueueState queueState;
@@ -23,6 +31,8 @@ typedef enum
 @property (readonly) NSArray *runningActions;
 @property (readonly) NSArray *actions;
 @property (readonly) NSUInteger actionCount;
+
+@property (nonatomic, weak) id<EX2ActionQueueDelegate> delegate;
 
 @property NSUInteger numberOfConcurrentActions;
 @property NSTimeInterval delayBetweenActions;

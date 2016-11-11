@@ -26,6 +26,16 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
     return self;
 }
 
+- (void)setQueueState:(EX2ActionQueueState)queueState
+{
+    if (_queueState == queueState) {
+        return;
+    }
+    EX2ActionQueueState oldState = _queueState;
+    _queueState = queueState;
+    [self.delegate actionQueue:self stateChangedFrom:oldState to:queueState];
+}
+
 - (NSArray *)runningActions
 {
     @synchronized(self.actionQueue)
@@ -92,7 +102,7 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
         if (self.queueState == EX2ActionQueueState_Started)
             return;
         
-        _queueState = EX2ActionQueueState_Started;
+        self.queueState = EX2ActionQueueState_Started;
     }
     
     [self runNextActions];
@@ -114,7 +124,7 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
         
         actionsToCancel = self.runningActions;
         
-        _queueState = EX2ActionQueueState_Stopped;
+        self.queueState = EX2ActionQueueState_Stopped;
     }
 
     // Cancel the running actions if needed
@@ -134,7 +144,7 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
     // Reset the queue state
     @synchronized(self.actionQueue)
     {
-        _queueState = EX2ActionQueueState_NotStarted;
+        self.queueState = EX2ActionQueueState_NotStarted;
     }
     
     // Cancel all the running actions
@@ -277,7 +287,7 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
             if (nextActions.count == 0 && self.runningActions.count == 0)
             {
                 // We're done, so set the state
-                _queueState = EX2ActionQueueState_Finished;
+                self.queueState = EX2ActionQueueState_Finished;
             }
         }
     }
