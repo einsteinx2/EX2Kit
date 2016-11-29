@@ -12,9 +12,14 @@
 
 @implementation NSString (md5)
 
-+ (NSString *) md5:(NSString *)str 
++ (NSString *)md5:(NSString *)str
 {
-	if ([str length] > 0)
+    return [self md5:str ignoreEmpty:NO];
+}
+
++ (NSString *) md5:(NSString *)str ignoreEmpty:(BOOL)ignoreEmpty
+{
+	if ([str length] > 0 || ignoreEmpty)
 	{
 		const char *cStr = [str UTF8String];
 		unsigned char result[16];
@@ -33,7 +38,12 @@
 
 - (NSString *) md5
 {
-	return [NSString md5:self];
+	return [NSString md5:self ignoreEmpty:NO];
+}
+
+- (NSString *)md5IgnoringEmpty
+{
+    return [NSString md5:self ignoreEmpty:YES];
 }
 
 @end
