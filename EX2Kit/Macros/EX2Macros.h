@@ -25,6 +25,12 @@
 
 #define IS_TV() (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomTV)
 
+#ifdef IMSG
+#define IS_IMSG() (true)
+#else
+#define IS_IMSG() (false)
+#endif
+
 // Lite version build switch
 #ifdef LITE
 #define IS_LITE() (true)  // ENABLE  Lite version
