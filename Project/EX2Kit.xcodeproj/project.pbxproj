@@ -75,7 +75,6 @@
 		18D45B391C8F100800A025CC /* NSObject+UserInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 53293F1B17418ADF007211CB /* NSObject+UserInfo.m */; };
 		18D45B3D1C8F100800A025CC /* EX2ActionQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = 533DA5BF174EAC080064A3E1 /* EX2ActionQueue.m */; };
 		18D45B3E1C8F100800A025CC /* EX2ActionBlock.m in Sources */ = {isa = PBXBuildFile; fileRef = 533DA5C8174EAD570064A3E1 /* EX2ActionBlock.m */; };
-		18D45B3F1C8F100800A025CC /* NSArray+Plist.m in Sources */ = {isa = PBXBuildFile; fileRef = 530BAD0C1771A31B00208A9E /* NSArray+Plist.m */; };
 		18D45B411C8F100800A025CC /* NSArray+Reverse.m in Sources */ = {isa = PBXBuildFile; fileRef = 53621DBA178AB4D000C605FA /* NSArray+Reverse.m */; };
 		18D45B441C8F100800A025CC /* NSArray+FilterBlock.m in Sources */ = {isa = PBXBuildFile; fileRef = 53059A3D17ABB3CF00FA04B2 /* NSArray+FilterBlock.m */; };
 		18D45B461C8F100800A025CC /* NSOrderedSet+FilterBlock.m in Sources */ = {isa = PBXBuildFile; fileRef = 531CC54C17DA639F001A97EB /* NSOrderedSet+FilterBlock.m */; };
@@ -143,7 +142,6 @@
 		18D45BB11C8F100800A025CC /* EX2ActionQueue.h in Headers */ = {isa = PBXBuildFile; fileRef = 533DA5BE174EAC080064A3E1 /* EX2ActionQueue.h */; };
 		18D45BB21C8F100800A025CC /* EX2Action.h in Headers */ = {isa = PBXBuildFile; fileRef = 533DA5C4174EAC490064A3E1 /* EX2Action.h */; };
 		18D45BB31C8F100800A025CC /* EX2ActionBlock.h in Headers */ = {isa = PBXBuildFile; fileRef = 533DA5C7174EAD570064A3E1 /* EX2ActionBlock.h */; };
-		18D45BB41C8F100800A025CC /* NSArray+Plist.h in Headers */ = {isa = PBXBuildFile; fileRef = 530BAD0B1771A31B00208A9E /* NSArray+Plist.h */; };
 		18D45BB61C8F100800A025CC /* NSArray+Reverse.h in Headers */ = {isa = PBXBuildFile; fileRef = 53621DB9178AB4D000C605FA /* NSArray+Reverse.h */; };
 		18D45BB91C8F100800A025CC /* NSArray+FilterBlock.h in Headers */ = {isa = PBXBuildFile; fileRef = 53059A3C17ABB3CF00FA04B2 /* NSArray+FilterBlock.h */; };
 		18D45BBB1C8F100800A025CC /* NSOrderedSet+FilterBlock.h in Headers */ = {isa = PBXBuildFile; fileRef = 531CC54B17DA639F001A97EB /* NSOrderedSet+FilterBlock.h */; };
@@ -246,10 +244,6 @@
 		53059A3F17ABB3CF00FA04B2 /* NSArray+FilterBlock.h in Headers */ = {isa = PBXBuildFile; fileRef = 53059A3C17ABB3CF00FA04B2 /* NSArray+FilterBlock.h */; };
 		53059A4017ABB3CF00FA04B2 /* NSArray+FilterBlock.m in Sources */ = {isa = PBXBuildFile; fileRef = 53059A3D17ABB3CF00FA04B2 /* NSArray+FilterBlock.m */; };
 		53059A4117ABB3CF00FA04B2 /* NSArray+FilterBlock.m in Sources */ = {isa = PBXBuildFile; fileRef = 53059A3D17ABB3CF00FA04B2 /* NSArray+FilterBlock.m */; };
-		530BAD0D1771A31B00208A9E /* NSArray+Plist.h in Headers */ = {isa = PBXBuildFile; fileRef = 530BAD0B1771A31B00208A9E /* NSArray+Plist.h */; };
-		530BAD0E1771A31B00208A9E /* NSArray+Plist.h in Headers */ = {isa = PBXBuildFile; fileRef = 530BAD0B1771A31B00208A9E /* NSArray+Plist.h */; };
-		530BAD0F1771A31B00208A9E /* NSArray+Plist.m in Sources */ = {isa = PBXBuildFile; fileRef = 530BAD0C1771A31B00208A9E /* NSArray+Plist.m */; };
-		530BAD101771A31B00208A9E /* NSArray+Plist.m in Sources */ = {isa = PBXBuildFile; fileRef = 530BAD0C1771A31B00208A9E /* NSArray+Plist.m */; };
 		530EAC3E1781D20000346E4E /* UIImage+Reflection.h in Headers */ = {isa = PBXBuildFile; fileRef = 530EAC3C1781D20000346E4E /* UIImage+Reflection.h */; };
 		530EAC3F1781D20000346E4E /* UIImage+Reflection.m in Sources */ = {isa = PBXBuildFile; fileRef = 530EAC3D1781D20000346E4E /* UIImage+Reflection.m */; };
 		530F684217B23BF800FD5FB1 /* NSOrderedSet+Safe.h in Headers */ = {isa = PBXBuildFile; fileRef = 530F684017B23BF800FD5FB1 /* NSOrderedSet+Safe.h */; };
@@ -533,8 +527,6 @@
 		5304A29C16901BC6009B2732 /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.8.sdk/usr/lib/libz.dylib; sourceTree = DEVELOPER_DIR; };
 		53059A3C17ABB3CF00FA04B2 /* NSArray+FilterBlock.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSArray+FilterBlock.h"; sourceTree = "<group>"; };
 		53059A3D17ABB3CF00FA04B2 /* NSArray+FilterBlock.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSArray+FilterBlock.m"; sourceTree = "<group>"; };
-		530BAD0B1771A31B00208A9E /* NSArray+Plist.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSArray+Plist.h"; sourceTree = "<group>"; };
-		530BAD0C1771A31B00208A9E /* NSArray+Plist.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSArray+Plist.m"; sourceTree = "<group>"; };
 		530EAC3C1781D20000346E4E /* UIImage+Reflection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+Reflection.h"; sourceTree = "<group>"; };
 		530EAC3D1781D20000346E4E /* UIImage+Reflection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Reflection.m"; sourceTree = "<group>"; };
 		530F684017B23BF800FD5FB1 /* NSOrderedSet+Safe.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSOrderedSet+Safe.h"; sourceTree = "<group>"; };
@@ -1006,8 +998,6 @@
 				53F15EFF162B9FCA00C24FC1 /* NSArray+Safe.m */,
 				53F15F00162B9FCA00C24FC1 /* NSMutableArray+Safe.h */,
 				53F15F01162B9FCA00C24FC1 /* NSMutableArray+Safe.m */,
-				530BAD0B1771A31B00208A9E /* NSArray+Plist.h */,
-				530BAD0C1771A31B00208A9E /* NSArray+Plist.m */,
 				53621DB9178AB4D000C605FA /* NSArray+Reverse.h */,
 				53621DBA178AB4D000C605FA /* NSArray+Reverse.m */,
 				53059A3C17ABB3CF00FA04B2 /* NSArray+FilterBlock.h */,
@@ -1321,7 +1311,6 @@
 				18D45BB11C8F100800A025CC /* EX2ActionQueue.h in Headers */,
 				18D45BB21C8F100800A025CC /* EX2Action.h in Headers */,
 				18D45BB31C8F100800A025CC /* EX2ActionBlock.h in Headers */,
-				18D45BB41C8F100800A025CC /* NSArray+Plist.h in Headers */,
 				18D45BB61C8F100800A025CC /* NSArray+Reverse.h in Headers */,
 				18D45BB91C8F100800A025CC /* NSArray+FilterBlock.h in Headers */,
 				18D45BBB1C8F100800A025CC /* NSOrderedSet+FilterBlock.h in Headers */,
@@ -1395,7 +1384,6 @@
 				533DA5C1174EAC080064A3E1 /* EX2ActionQueue.h in Headers */,
 				533DA5C6174EAC490064A3E1 /* EX2Action.h in Headers */,
 				533DA5CA174EAD570064A3E1 /* EX2ActionBlock.h in Headers */,
-				530BAD0E1771A31B00208A9E /* NSArray+Plist.h in Headers */,
 				53059A3F17ABB3CF00FA04B2 /* NSArray+FilterBlock.h in Headers */,
 				531CC54E17DA639F001A97EB /* NSOrderedSet+FilterBlock.h in Headers */,
 			);
@@ -1510,7 +1498,6 @@
 				533DA5C0174EAC080064A3E1 /* EX2ActionQueue.h in Headers */,
 				533DA5C5174EAC490064A3E1 /* EX2Action.h in Headers */,
 				533DA5C9174EAD570064A3E1 /* EX2ActionBlock.h in Headers */,
-				530BAD0D1771A31B00208A9E /* NSArray+Plist.h in Headers */,
 				530EAC3E1781D20000346E4E /* UIImage+Reflection.h in Headers */,
 				53621DBB178AB4D000C605FA /* NSArray+Reverse.h in Headers */,
 				533C369317970138002AC317 /* UIView+SetNeedsLayoutSafe.h in Headers */,
@@ -1728,7 +1715,6 @@
 				18D45B391C8F100800A025CC /* NSObject+UserInfo.m in Sources */,
 				18D45B3D1C8F100800A025CC /* EX2ActionQueue.m in Sources */,
 				18D45B3E1C8F100800A025CC /* EX2ActionBlock.m in Sources */,
-				18D45B3F1C8F100800A025CC /* NSArray+Plist.m in Sources */,
 				18D45B411C8F100800A025CC /* NSArray+Reverse.m in Sources */,
 				18D45B441C8F100800A025CC /* NSArray+FilterBlock.m in Sources */,
 				18D45B461C8F100800A025CC /* NSOrderedSet+FilterBlock.m in Sources */,
@@ -1785,7 +1771,6 @@
 				53293F1F17418ADF007211CB /* NSObject+UserInfo.m in Sources */,
 				533DA5C3174EAC080064A3E1 /* EX2ActionQueue.m in Sources */,
 				533DA5CC174EAD570064A3E1 /* EX2ActionBlock.m in Sources */,
-				530BAD101771A31B00208A9E /* NSArray+Plist.m in Sources */,
 				53059A4117ABB3CF00FA04B2 /* NSArray+FilterBlock.m in Sources */,
 				531CC55017DA639F001A97EB /* NSOrderedSet+FilterBlock.m in Sources */,
 			);
@@ -1886,7 +1871,6 @@
 				53113471174C361900DB199B /* EX2GlowButton.m in Sources */,
 				533DA5C2174EAC080064A3E1 /* EX2ActionQueue.m in Sources */,
 				533DA5CB174EAD570064A3E1 /* EX2ActionBlock.m in Sources */,
-				530BAD0F1771A31B00208A9E /* NSArray+Plist.m in Sources */,
 				530EAC3F1781D20000346E4E /* UIImage+Reflection.m in Sources */,
 				53621DBC178AB4D000C605FA /* NSArray+Reverse.m in Sources */,
 				533C369417970138002AC317 /* UIView+SetNeedsLayoutSafe.m in Sources */,
