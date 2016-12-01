@@ -88,23 +88,30 @@
 
 - (id)initWithLogsDirectory:(NSString *)aLogsDirectory
 {
-	if ((self = [super init]))
-	{
-		maximumNumberOfLogFiles = DEFAULT_LOG_MAX_NUM_LOG_FILES;
-		
-		if (aLogsDirectory)
-			_logsDirectory = [aLogsDirectory copy];
-		else
-			_logsDirectory = [[self defaultLogsDirectory] copy];
-		
-		NSKeyValueObservingOptions kvoOptions = NSKeyValueObservingOptionOld | NSKeyValueObservingOptionNew;
-		
-		[self addObserver:self forKeyPath:@"maximumNumberOfLogFiles" options:kvoOptions context:nil];
-		
-		NSLogVerbose(@"DDFileLogManagerDefault: logsDirectory:\n%@", [self logsDirectory]);
-		NSLogVerbose(@"DDFileLogManagerDefault: sortedLogFileNames:\n%@", [self sortedLogFileNames]);
-	}
-	return self;
+    return [self initWithLogsDirectory:aLogsDirectory namingPrefix:nil];
+}
+
+- (id)initWithLogsDirectory:(NSString *)aLogsDirectory namingPrefix:(NSString *)prefix
+{
+    if ((self = [super init]))
+    {
+        maximumNumberOfLogFiles = DEFAULT_LOG_MAX_NUM_LOG_FILES;
+        
+        if (aLogsDirectory)
+            _logsDirectory = [aLogsDirectory copy];
+        else
+            _logsDirectory = [[self defaultLogsDirectory] copy];
+        
+        NSKeyValueObservingOptions kvoOptions = NSKeyValueObservingOptionOld | NSKeyValueObservingOptionNew;
+        
+        [self addObserver:self forKeyPath:@"maximumNumberOfLogFiles" options:kvoOptions context:nil];
+        
+        _prefix = prefix ? prefix : @"log-";
+        
+        NSLogVerbose(@"DDFileLogManagerDefault: logsDirectory:\n%@", [self logsDirectory]);
+        NSLogVerbose(@"DDFileLogManagerDefault: sortedLogFileNames:\n%@", [self sortedLogFileNames]);
+    }
+    return self;
 }
 
 - (void)dealloc
@@ -251,7 +258,7 @@
 	// 
 	// For example: log-DFFE99.txt
 	
-	BOOL hasProperPrefix = [fileName hasPrefix:@"log-"];
+	BOOL hasProperPrefix = [fileName hasPrefix:_prefix];
 	
 	BOOL hasProperLength = [fileName length] >= 10;
 	
@@ -416,7 +423,7 @@
 	NSString *logsDirectory = [self logsDirectory];
 	do
 	{
-		NSString *fileName = [NSString stringWithFormat:@"log-%@.txt", [self generateShortUUID]];
+		NSString *fileName = [NSString stringWithFormat:@"%@%@.txt",_prefix, [self generateShortUUID]];
 		
 		NSString *filePath = [logsDirectory stringByAppendingPathComponent:fileName];
 		

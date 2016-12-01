@@ -117,10 +117,12 @@
 {
 	NSUInteger maximumNumberOfLogFiles;
 	NSString *_logsDirectory;
+    NSString * _prefix;
 }
 
 - (id)init;
 - (id)initWithLogsDirectory:(NSString *)logsDirectory;
+- (id)initWithLogsDirectory:(NSString *)aLogsDirectory namingPrefix:(NSString *)prefix;
 
 /* Inherited from DDLogFileManager protocol:
 
