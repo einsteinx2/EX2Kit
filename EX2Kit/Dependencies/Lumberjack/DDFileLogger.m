@@ -267,7 +267,7 @@
 	{
 		NSCharacterSet *hexSet = [NSCharacterSet characterSetWithCharactersInString:@"0123456789ABCDEF"];
 		
-		NSString *hex = [fileName substringWithRange:NSMakeRange(4, 6)];
+		NSString *hex = [fileName substringWithRange:NSMakeRange(_prefix.length, 6)];
 		NSString *nohex = [hex stringByTrimmingCharactersInSet:hexSet];
 		
 		if ([nohex length] == 0)
