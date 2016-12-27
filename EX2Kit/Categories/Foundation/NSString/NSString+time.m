@@ -78,49 +78,49 @@
 	{
 		return @"never";
 	}
-	if (timeSinceDate <= 60)
+	if ([self timeIntervalLessThanOneMinute:timeSinceDate])
 	{
 		return @"just now";
 	}
-	else if (timeSinceDate > 60 && timeSinceDate <= 3600)
+	else if ([self timeIntervalIsLessThanOneHour:timeSinceDate])
 	{
-		time = (NSInteger)(timeSinceDate / 60);
+		time = (NSInteger)(timeSinceDate / [self minuteInSeconds]);
 		
 		if (time == 1)
 			return @"1 minute ago";
 		else
 			return [NSString stringWithFormat:@"%ld minutes ago", (long)time];
 	}
-	else if (timeSinceDate > 3600 && timeSinceDate <= 86400)
+	else if ([self timeIntervalIsLessThanOneDay:timeSinceDate])
 	{
-		time = (NSInteger)(timeSinceDate / 3600);
+		time = (NSInteger)(timeSinceDate / [self hourInSeconds]);
 		
 		if (time == 1)
 			return @"1 hour ago";
 		else
 			return [NSString stringWithFormat:@"%ld hours ago", (long)time];
 	}	
-	else if (timeSinceDate > 86400 && timeSinceDate <= 604800)
+	else if ([self timeIntervalIsLessThanOneWeek:timeSinceDate])
 	{
-		time = (NSInteger)(timeSinceDate / 86400);
+		time = (NSInteger)(timeSinceDate / [self dayInSeconds]);
 		
 		if (time == 1)
 			return @"1 day ago";
 		else
 			return [NSString stringWithFormat:@"%ld days ago", (long)time];
 	}
-	else if (timeSinceDate > 604800 && timeSinceDate <= 2629743.83)
+	else if ([self timeIntervalIsLessThanOneMonth:timeSinceDate])
 	{
-		time = (NSInteger)(timeSinceDate / 604800);
+		time = (NSInteger)(timeSinceDate / [self weekInSeconds]);
 		
 		if (time == 1)
 			return @"1 week ago";
 		else
 			return [NSString stringWithFormat:@"%ld weeks ago", (long)time];
 	}
-	else if (timeSinceDate > 2629743.83)
+	else
 	{
-		time = (NSInteger)(timeSinceDate / 2629743.83);
+		time = (NSInteger)(timeSinceDate / [self monthInSeconds]);
 		
 		if (time == 1)
 			return @"1 month ago";
@@ -129,6 +129,104 @@
 	}
 	
 	return @"";
+}
+
++ (NSString *)shortRelativeDateFromDate:(NSDate *)date
+{
+    NSTimeInterval timeSinceDate = [[NSDate date] timeIntervalSinceDate:date];
+    if ([self timeIntervalLessThanOneMinute:timeSinceDate])
+    {
+        return NSLocalizedString(@"now", nil);
+    }
+    else if ([self timeIntervalIsLessThanOneHour:timeSinceDate])
+    {
+        NSInteger time = (NSInteger)(timeSinceDate / [self minuteInSeconds]);
+        return [NSString stringWithFormat:@"%ldm", (long)time];
+    }
+    else if ([self timeIntervalIsLessThanOneDay:timeSinceDate])
+    {
+        NSInteger time = (NSInteger)(timeSinceDate / [self hourInSeconds]);
+        return [NSString stringWithFormat:@"%ldh", (long)time];
+    }
+    else if ([self timeIntervalIsLessThanOneWeek:timeSinceDate])
+    {
+        NSInteger time = (NSInteger)(timeSinceDate / [self dayInSeconds]);
+        return [NSString stringWithFormat:@"%ldd", (long)time];
+    }
+    else if ([self timeIntervalIsLessThanOneYear:timeSinceDate])
+    {
+        NSInteger time = (NSInteger)(timeSinceDate / [self weekInSeconds]);
+        return [NSString stringWithFormat:@"%ldw", (long)time];
+    }
+    else
+    {
+        NSInteger time = (NSInteger)(timeSinceDate / [self yearInSeconds]);
+        return [NSString stringWithFormat:@"%ldy", (long)time];
+    }
+}
+
+#pragma mark - Time relative time
+
++ (BOOL)timeIntervalLessThanOneMinute:(NSTimeInterval)timeInterval
+{
+    return timeInterval <= [self minuteInSeconds];
+}
+
++ (BOOL)timeIntervalIsLessThanOneHour:(NSTimeInterval)timeInterval
+{
+    return timeInterval <= [self hourInSeconds];
+}
+
++ (BOOL)timeIntervalIsLessThanOneDay:(NSTimeInterval)timeInterval
+{
+    return timeInterval <= [self dayInSeconds];
+}
+
++ (BOOL)timeIntervalIsLessThanOneWeek:(NSTimeInterval)timeInterval
+{
+    return timeInterval <= [self weekInSeconds];
+}
+
++ (BOOL)timeIntervalIsLessThanOneMonth:(NSTimeInterval)timeInterval
+{
+    return timeInterval <= [self monthInSeconds];
+}
+
++ (BOOL)timeIntervalIsLessThanOneYear:(NSTimeInterval)timeInterval
+{
+    return timeInterval <= [self yearInSeconds];
+}
+
+#pragma mark - Conversion
+
++ (NSInteger)minuteInSeconds
+{
+    return 60;
+}
+
++ (NSInteger)hourInSeconds
+{
+    return [self minuteInSeconds] * 60;
+}
+
++ (NSInteger)dayInSeconds
+{
+    return [self hourInSeconds] * 24;
+}
+
++ (NSInteger)weekInSeconds
+{
+    return [self dayInSeconds] * 7;
+}
+
++ (NSInteger)monthInSeconds
+{
+    return [self dayInSeconds] * 30;
+}
+
++ (NSInteger)yearInSeconds
+{
+    return [self weekInSeconds] * 52;
 }
 
 @end

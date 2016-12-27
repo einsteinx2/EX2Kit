@@ -12,5 +12,6 @@
 + (NSString *)formatTimeHoursMinutes:(double)seconds hideHoursIfZero:(BOOL)hideHoursIfZero;
 + (NSString *)formatTimeDecimalHours:(double)seconds;
 + (NSString *)relativeTime:(NSDate *)date;
++ (NSString *)shortRelativeDateFromDate:(NSDate *)date;
 
 @end
