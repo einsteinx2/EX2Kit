@@ -26,7 +26,15 @@
 
 + (void)runInBackgroundAfterDelay:(NSTimeInterval)delay block:(void (^)(void))block
 {
-	[self runInQueue:dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0) delay:delay block:block];
+    block = [block copy];
+    
+    dispatch_block_t newBlock = ^{
+        @autoreleasepool {
+            block();
+        }
+    };
+    dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, delay * NSEC_PER_SEC), queue, newBlock);
 }
 
 #pragma mark - Blocks asynchronously
