@@ -42,7 +42,12 @@
 + (void)runAsync:(dispatch_queue_t)queue block:(void (^)(void))block
 {
 	block = [block copy];
-	dispatch_async(queue, block);
+    dispatch_block_t newBlock = ^{
+        @autoreleasepool {
+            block();
+        }
+    };
+	dispatch_async(queue, newBlock);
 }
 
 + (void)runInBackgroundAsync:(void (^)(void))block
