@@ -81,30 +81,6 @@ static char key;
     // e.g. self.myOutlet = nil;
 }
 
-- (BOOL)shouldAutorotate
-{
-    UIInterfaceOrientation orientation = UIInterfaceOrientationPortrait;
-    switch([UIDevice currentDevice].orientation)
-    {
-        case UIDeviceOrientationLandscapeLeft:
-            orientation = UIInterfaceOrientationLandscapeLeft;
-            break;
-        case UIDeviceOrientationLandscapeRight:
-            orientation = UIInterfaceOrientationLandscapeRight;
-            break;
-        case UIDeviceOrientationPortrait:
-            orientation = UIInterfaceOrientationPortrait;
-            break;
-        case UIDeviceOrientationPortraitUpsideDown:
-            orientation = UIInterfaceOrientationPortraitUpsideDown;
-            break;
-        default:
-            orientation = UIInterfaceOrientationPortrait;
-    }
-    
-    return [self shouldAutorotateToInterfaceOrientation:orientation];
-}
-
 - (void)viewWillAppear:(BOOL)animated
 {
 	[super viewWillAppear:animated];

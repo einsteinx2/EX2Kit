@@ -191,30 +191,6 @@ NSString * const EX2NotificationBarDidHide = @"EX2NotificationBarDidHide";
 
 #pragma mark - Rotation
 
-- (BOOL)shouldAutorotate
-{
-    UIInterfaceOrientation orientation = UIInterfaceOrientationPortrait;
-    switch([UIDevice currentDevice].orientation)
-    {
-        case UIDeviceOrientationLandscapeLeft:
-            orientation = UIInterfaceOrientationLandscapeLeft;
-            break;
-        case UIDeviceOrientationLandscapeRight:
-            orientation = UIInterfaceOrientationLandscapeRight;
-            break;
-        case UIDeviceOrientationPortrait:
-            orientation = UIInterfaceOrientationPortrait;
-            break;
-        case UIDeviceOrientationPortraitUpsideDown:
-            orientation = UIInterfaceOrientationPortraitUpsideDown;
-            break;
-        default:
-            orientation = UIInterfaceOrientationPortrait;
-    }
-    
-    return [self shouldAutorotateToInterfaceOrientation:orientation];
-}
-
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)inOrientation 
 {
 	// Don't allow rotating while the notification bar is animating
