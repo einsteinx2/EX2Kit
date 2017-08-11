@@ -154,7 +154,12 @@ static BOOL _isThrottlingEnabled = YES;
 - (void)sizeToFit
 {
 	CGSize maximumLabelSize = CGSizeMake(self.messageLabel.width, 300.);
-	CGSize expectedLabelSize = [self.message sizeWithFont:self.messageLabel.font constrainedToSize:maximumLabelSize lineBreakMode:self.messageLabel.lineBreakMode];
+
+    NSAttributedString *attributedText = [[NSAttributedString alloc] initWithString:self.message attributes:@{NSFontAttributeName: self.messageLabel.font}];
+    CGRect rect = [attributedText boundingRectWithSize:maximumLabelSize
+                                               options:NSStringDrawingUsesLineFragmentOrigin
+                                               context:nil];
+	CGSize expectedLabelSize = CGSizeMake(ceil(rect.size.width), ceil(rect.size.height));
 	if (expectedLabelSize.height >= 25.)
 	{
 		self.messageLabel.size = expectedLabelSize;

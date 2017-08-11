@@ -295,7 +295,13 @@
             if (self.unselectedFont.pointSize > self.selectedFont.pointSize)
                 sizingFont = self.unselectedFont;
             
-            CGFloat width = [item.text sizeWithFont:sizingFont].width;
+            NSAttributedString *attributedText = [[NSAttributedString alloc] initWithString:item.text attributes:@{NSFontAttributeName: sizingFont}];
+            CGRect rect = [attributedText boundingRectWithSize:CGSizeMake(MAXFLOAT, sizingFont.lineHeight)
+                                                       options:NSStringDrawingUsesLineFragmentOrigin
+                                                       context:nil];
+            CGSize expectedLabelSize = CGSizeMake(ceil(rect.size.width), ceil(rect.size.height));
+            
+            CGFloat width = expectedLabelSize.width;
             if (width > maxWidth)
                 maxWidth = width;
         }
@@ -412,7 +418,7 @@
     // Create the segment view
     UILabel *segmentView = [[UILabel alloc] init];
     segmentView.text = title;
-    segmentView.textAlignment = UITextAlignmentCenter;
+    segmentView.textAlignment = NSTextAlignmentCenter;
     segmentView.accessibilityLabel = segmentView.text;
     segmentView.textColor = self.unselectedTextColor;
     segmentView.font = self.unselectedFont;
