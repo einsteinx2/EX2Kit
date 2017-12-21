@@ -335,7 +335,7 @@
         return; //prevent auto-scrolling when there's only 1 page view
     
     // Defensive: prevent auto-scrolling when there's only 1 page view
-    if (self.pageViews.count > 1)
+    if (self.numberOfPages > 1)
     {
         isAutoscrolling = YES;
         // Cancel any existing timer
