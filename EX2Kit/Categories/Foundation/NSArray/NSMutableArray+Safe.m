@@ -29,6 +29,15 @@
     }
 }
 
+- (void)insertObjectSafe:(id)object atIndexSafe:(NSUInteger)index
+{
+    if (index > self.count + 1) {
+        [self addObjectSafe:object];
+        return;
+    }
+    [self insertObjectSafe:object atIndex:index];
+}
+
 - (void)removeObjectAtIndexSafe:(NSUInteger)index
 {
 	if (index < self.count)
