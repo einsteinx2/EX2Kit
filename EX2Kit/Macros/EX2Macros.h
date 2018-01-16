@@ -23,7 +23,11 @@
 // iPad app type detection (will detect as iPhone if running an iPhone only app on an iPad)
 #define IS_IPAD() (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
 
+#ifdef WATCHOS
+#define IS_TV() (false)
+#else
 #define IS_TV() (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomTV)
+#endif
 
 #ifdef IMSG
 #define IS_IMSG() (true)

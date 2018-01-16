@@ -486,6 +486,139 @@
 		53FA691D1644789900D19576 /* table-fade-bottom@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 53FA69191644789900D19576 /* table-fade-bottom@2x.png */; };
 		53FA691E1644789900D19576 /* table-fade-top.png in Resources */ = {isa = PBXBuildFile; fileRef = 53FA691A1644789900D19576 /* table-fade-top.png */; };
 		53FA691F1644789900D19576 /* table-fade-top@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 53FA691B1644789900D19576 /* table-fade-top@2x.png */; };
+		ECF069AB20077D8E008CBA54 /* NSArray+FirstObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 53F15EFD162B9FCA00C24FC1 /* NSArray+FirstObject.m */; };
+		ECF069AC20077D8E008CBA54 /* NSArray+Safe.m in Sources */ = {isa = PBXBuildFile; fileRef = 53F15EFF162B9FCA00C24FC1 /* NSArray+Safe.m */; };
+		ECF069AD20077D8E008CBA54 /* NSMutableArray+Safe.m in Sources */ = {isa = PBXBuildFile; fileRef = 53F15F01162B9FCA00C24FC1 /* NSMutableArray+Safe.m */; };
+		ECF069AE20077D8E008CBA54 /* NSData+AES128.m in Sources */ = {isa = PBXBuildFile; fileRef = 53F15F03162B9FCA00C24FC1 /* NSData+AES128.m */; };
+		ECF069AF20077D8E008CBA54 /* NSData+Base64.m in Sources */ = {isa = PBXBuildFile; fileRef = 53F15F05162B9FCA00C24FC1 /* NSData+Base64.m */; };
+		ECF069B020077D8E008CBA54 /* NSData+Gzip.m in Sources */ = {isa = PBXBuildFile; fileRef = 53F15F07162B9FCA00C24FC1 /* NSData+Gzip.m */; };
+		ECF069B120077D8E008CBA54 /* NSDate+UTC.m in Sources */ = {isa = PBXBuildFile; fileRef = 53F15F09162B9FCA00C24FC1 /* NSDate+UTC.m */; };
+		ECF069B220077D8E008CBA54 /* NSOrderedSet+Safe.m in Sources */ = {isa = PBXBuildFile; fileRef = 530F684117B23BF800FD5FB1 /* NSOrderedSet+Safe.m */; };
+		ECF069B320077D8E008CBA54 /* NSMutableDictionary+Safe.m in Sources */ = {isa = PBXBuildFile; fileRef = 53F15F0B162B9FCA00C24FC1 /* NSMutableDictionary+Safe.m */; };
+		ECF069B420077D8E008CBA54 /* NSNotificationCenter+MainThread.m in Sources */ = {isa = PBXBuildFile; fileRef = 53F15F0D162B9FCA00C24FC1 /* NSNotificationCenter+MainThread.m */; };
+		ECF069B520077D8E008CBA54 /* NSObject+ListMethods.m in Sources */ = {isa = PBXBuildFile; fileRef = 53F15F0F162B9FCA00C24FC1 /* NSObject+ListMethods.m */; };
+		ECF069B620077D8E008CBA54 /* GTMNSString+HTML.m in Sources */ = {isa = PBXBuildFile; fileRef = 53F15F13162B9FCA00C24FC1 /* GTMNSString+HTML.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		ECF069B720077D8E008CBA54 /* NSString+Clean.m in Sources */ = {isa = PBXBuildFile; fileRef = 53F15F16162B9FCA00C24FC1 /* NSString+Clean.m */; };
+		ECF069B920077D8E008CBA54 /* NSString+compareWithoutIndefiniteArticles.m in Sources */ = {isa = PBXBuildFile; fileRef = 53F15F18162B9FCA00C24FC1 /* NSString+compareWithoutIndefiniteArticles.m */; };
+		ECF069BA20077D8E008CBA54 /* NSString+cStringUTF8.m in Sources */ = {isa = PBXBuildFile; fileRef = 53F15F1A162B9FCA00C24FC1 /* NSString+cStringUTF8.m */; };
+		ECF069BB20077D8E008CBA54 /* NSString+FileSize.m in Sources */ = {isa = PBXBuildFile; fileRef = 53F15F1C162B9FCA00C24FC1 /* NSString+FileSize.m */; };
+		ECF069BC20077D8E008CBA54 /* NSString+Gzip.m in Sources */ = {isa = PBXBuildFile; fileRef = 53F15F1E162B9FCA00C24FC1 /* NSString+Gzip.m */; };
+		ECF069BD20077D8E008CBA54 /* NSString+hex.m in Sources */ = {isa = PBXBuildFile; fileRef = 53F15F20162B9FCA00C24FC1 /* NSString+hex.m */; };
+		ECF069BE20077D8E008CBA54 /* NSString+md5.m in Sources */ = {isa = PBXBuildFile; fileRef = 53F15F22162B9FCA00C24FC1 /* NSString+md5.m */; };
+		ECF069C020077D8E008CBA54 /* NSString+SHA1.m in Sources */ = {isa = PBXBuildFile; fileRef = 53F15F26162B9FCA00C24FC1 /* NSString+SHA1.m */; };
+		ECF069C120077D8E008CBA54 /* NSString+time.m in Sources */ = {isa = PBXBuildFile; fileRef = 53F15F28162B9FCA00C24FC1 /* NSString+time.m */; };
+		ECF069C220077D8E008CBA54 /* NSString+TrimmingAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 53F15F2A162B9FCA00C24FC1 /* NSString+TrimmingAdditions.m */; };
+		ECF069C320077D8E008CBA54 /* NSString+URLEncode.m in Sources */ = {isa = PBXBuildFile; fileRef = 53F15F2C162B9FCA00C24FC1 /* NSString+URLEncode.m */; };
+		ECF069C420077D8E008CBA54 /* NSString+Validation.m in Sources */ = {isa = PBXBuildFile; fileRef = 53F15F2E162B9FCA00C24FC1 /* NSString+Validation.m */; };
+		ECF069D320077D8E008CBA54 /* EX2FileDecryptor.m in Sources */ = {isa = PBXBuildFile; fileRef = 53F15F4E162B9FCA00C24FC1 /* EX2FileDecryptor.m */; };
+		ECF069D420077D8E008CBA54 /* EX2FileEncryptor.m in Sources */ = {isa = PBXBuildFile; fileRef = 53F15F50162B9FCA00C24FC1 /* EX2FileEncryptor.m */; };
+		ECF069D720077D8E008CBA54 /* EX2RingBuffer.m in Sources */ = {isa = PBXBuildFile; fileRef = 53F15F56162B9FCA00C24FC1 /* EX2RingBuffer.m */; };
+		ECF069D820077D8E008CBA54 /* EX2SimpleConnectionQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = 53F15F58162B9FCA00C24FC1 /* EX2SimpleConnectionQueue.m */; };
+		ECF069D920077D8E008CBA54 /* DDAbstractDatabaseLogger.m in Sources */ = {isa = PBXBuildFile; fileRef = 53F15F60162B9FCA00C24FC1 /* DDAbstractDatabaseLogger.m */; };
+		ECF069DA20077D8E008CBA54 /* DDASLLogger.m in Sources */ = {isa = PBXBuildFile; fileRef = 53F15F62162B9FCA00C24FC1 /* DDASLLogger.m */; };
+		ECF069DB20077D8E008CBA54 /* DDFileLogger.m in Sources */ = {isa = PBXBuildFile; fileRef = 53F15F64162B9FCA00C24FC1 /* DDFileLogger.m */; };
+		ECF069DC20077D8E008CBA54 /* DDLog.m in Sources */ = {isa = PBXBuildFile; fileRef = 53F15F66162B9FCA00C24FC1 /* DDLog.m */; };
+		ECF069DD20077D8E008CBA54 /* DDTTYLogger.m in Sources */ = {isa = PBXBuildFile; fileRef = 53F15F68162B9FCA00C24FC1 /* DDTTYLogger.m */; };
+		ECF069E020077D8E008CBA54 /* EX2Dispatch.m in Sources */ = {isa = PBXBuildFile; fileRef = 53F15F76162B9FCA00C24FC1 /* EX2Dispatch.m */; };
+		ECF069E620077D8E008CBA54 /* NSString+HasValue.m in Sources */ = {isa = PBXBuildFile; fileRef = 5339E1811635E93A007628C0 /* NSString+HasValue.m */; };
+		ECF069E820077D8E008CBA54 /* EX2Kit.m in Sources */ = {isa = PBXBuildFile; fileRef = 5339E20316360B9E007628C0 /* EX2Kit.m */; };
+		ECF069EA20077D8E008CBA54 /* NSURL+QueryParameterDictionary.m in Sources */ = {isa = PBXBuildFile; fileRef = 53145C16163F5E6400DE22F1 /* NSURL+QueryParameterDictionary.m */; };
+		ECF069EC20077D8E008CBA54 /* RNCryptor.m in Sources */ = {isa = PBXBuildFile; fileRef = 53E2F47216684CCE00743BB8 /* RNCryptor.m */; };
+		ECF069EE20077D8E008CBA54 /* EX2Language.m in Sources */ = {isa = PBXBuildFile; fileRef = 53F884CC16BB61C000372A2D /* EX2Language.m */; };
+		ECF069EF20077D8E008CBA54 /* RNCryptorEngine.m in Sources */ = {isa = PBXBuildFile; fileRef = 53F884F716BB855A00372A2D /* RNCryptorEngine.m */; };
+		ECF069F020077D8E008CBA54 /* RNDecryptor.m in Sources */ = {isa = PBXBuildFile; fileRef = 53F884F916BB855A00372A2D /* RNDecryptor.m */; };
+		ECF069F120077D8E008CBA54 /* RNEncryptor.m in Sources */ = {isa = PBXBuildFile; fileRef = 53F884FB16BB855A00372A2D /* RNEncryptor.m */; };
+		ECF069F220077D8E008CBA54 /* RNOpenSSLCryptor.m in Sources */ = {isa = PBXBuildFile; fileRef = 53F884FD16BB855A00372A2D /* RNOpenSSLCryptor.m */; };
+		ECF069F320077D8E008CBA54 /* RNOpenSSLDecryptor.m in Sources */ = {isa = PBXBuildFile; fileRef = 53F884FF16BB855A00372A2D /* RNOpenSSLDecryptor.m */; };
+		ECF069F420077D8E008CBA54 /* NSOrderedSet+FirstObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 530F684D17B23CF600FD5FB1 /* NSOrderedSet+FirstObject.m */; };
+		ECF069F520077D8E008CBA54 /* RNOpenSSLEncryptor.m in Sources */ = {isa = PBXBuildFile; fileRef = 53F8850116BB855B00372A2D /* RNOpenSSLEncryptor.m */; };
+		ECF069F620077D8E008CBA54 /* RNCryptorOld.m in Sources */ = {isa = PBXBuildFile; fileRef = 53F8851E16BB8EF900372A2D /* RNCryptorOld.m */; };
+		ECF069F820077D8E008CBA54 /* NSFileHandle+Hash.m in Sources */ = {isa = PBXBuildFile; fileRef = 531F4F3F17062C3300D7F8B0 /* NSFileHandle+Hash.m */; };
+		ECF069F920077D8E008CBA54 /* NSData+Hash.m in Sources */ = {isa = PBXBuildFile; fileRef = 5380B5C2170667F90010AED2 /* NSData+Hash.m */; };
+		ECF069FA20077D8E008CBA54 /* NSMutableOrderedSet+Safe.m in Sources */ = {isa = PBXBuildFile; fileRef = 530F684717B23C0E00FD5FB1 /* NSMutableOrderedSet+Safe.m */; };
+		ECF069FE20077D8E008CBA54 /* NSNumber+CleanString.m in Sources */ = {isa = PBXBuildFile; fileRef = 537CBC97173DDE61001989CE /* NSNumber+CleanString.m */; };
+		ECF069FF20077D8E008CBA54 /* NSNull+CleanString.m in Sources */ = {isa = PBXBuildFile; fileRef = 537CBC9B173DDF75001989CE /* NSNull+CleanString.m */; };
+		ECF06A0020077D8E008CBA54 /* NSObject+UserInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 53293F1B17418ADF007211CB /* NSObject+UserInfo.m */; };
+		ECF06A0420077D8E008CBA54 /* EX2ActionQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = 533DA5BF174EAC080064A3E1 /* EX2ActionQueue.m */; };
+		ECF06A0520077D8E008CBA54 /* EX2ActionBlock.m in Sources */ = {isa = PBXBuildFile; fileRef = 533DA5C8174EAD570064A3E1 /* EX2ActionBlock.m */; };
+		ECF06A0720077D8E008CBA54 /* NSArray+Reverse.m in Sources */ = {isa = PBXBuildFile; fileRef = 53621DBA178AB4D000C605FA /* NSArray+Reverse.m */; };
+		ECF06A0A20077D8E008CBA54 /* NSArray+FilterBlock.m in Sources */ = {isa = PBXBuildFile; fileRef = 53059A3D17ABB3CF00FA04B2 /* NSArray+FilterBlock.m */; };
+		ECF06A0C20077D8E008CBA54 /* NSOrderedSet+FilterBlock.m in Sources */ = {isa = PBXBuildFile; fileRef = 531CC54C17DA639F001A97EB /* NSOrderedSet+FilterBlock.m */; };
+		ECF06A0E20077D8E008CBA54 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 53F15ED9162B9F1B00C24FC1 /* Foundation.framework */; };
+		ECF06A1120077D8E008CBA54 /* EX2Kit.h in Headers */ = {isa = PBXBuildFile; fileRef = 53F15F71162B9FCA00C24FC1 /* EX2Kit.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		ECF06A1220077D8E008CBA54 /* EX2Components.h in Headers */ = {isa = PBXBuildFile; fileRef = 53F15F4C162B9FCA00C24FC1 /* EX2Components.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		ECF06A1320077D8E008CBA54 /* EX2FileDecryptor.h in Headers */ = {isa = PBXBuildFile; fileRef = 53F15F4D162B9FCA00C24FC1 /* EX2FileDecryptor.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		ECF06A1420077D8E008CBA54 /* EX2FileEncryptor.h in Headers */ = {isa = PBXBuildFile; fileRef = 53F15F4F162B9FCA00C24FC1 /* EX2FileEncryptor.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		ECF06A1520077D8E008CBA54 /* EX2NetworkIndicator.h in Headers */ = {isa = PBXBuildFile; fileRef = 53F15F51162B9FCA00C24FC1 /* EX2NetworkIndicator.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		ECF06A1720077D8E008CBA54 /* EX2RingBuffer.h in Headers */ = {isa = PBXBuildFile; fileRef = 53F15F55162B9FCA00C24FC1 /* EX2RingBuffer.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		ECF06A1820077D8E008CBA54 /* EX2SimpleConnectionQueue.h in Headers */ = {isa = PBXBuildFile; fileRef = 53F15F57162B9FCA00C24FC1 /* EX2SimpleConnectionQueue.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		ECF06A1920077D8E008CBA54 /* EX2Macros.h in Headers */ = {isa = PBXBuildFile; fileRef = 53F15F73162B9FCA00C24FC1 /* EX2Macros.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		ECF06A1A20077D8E008CBA54 /* NSOrderedSet+Safe.h in Headers */ = {isa = PBXBuildFile; fileRef = 530F684017B23BF800FD5FB1 /* NSOrderedSet+Safe.h */; };
+		ECF06A1B20077D8E008CBA54 /* EX2Static.h in Headers */ = {isa = PBXBuildFile; fileRef = 53F15F77162B9FCA00C24FC1 /* EX2Static.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		ECF06A1C20077D8E008CBA54 /* EX2Dispatch.h in Headers */ = {isa = PBXBuildFile; fileRef = 53F15F75162B9FCA00C24FC1 /* EX2Dispatch.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		ECF06A2320077D8E008CBA54 /* CocoaLumberjack.h in Headers */ = {isa = PBXBuildFile; fileRef = 53F15F5E162B9FCA00C24FC1 /* CocoaLumberjack.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		ECF06A2420077D8E008CBA54 /* DDAbstractDatabaseLogger.h in Headers */ = {isa = PBXBuildFile; fileRef = 53F15F5F162B9FCA00C24FC1 /* DDAbstractDatabaseLogger.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		ECF06A2520077D8E008CBA54 /* DDASLLogger.h in Headers */ = {isa = PBXBuildFile; fileRef = 53F15F61162B9FCA00C24FC1 /* DDASLLogger.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		ECF06A2620077D8E008CBA54 /* DDFileLogger.h in Headers */ = {isa = PBXBuildFile; fileRef = 53F15F63162B9FCA00C24FC1 /* DDFileLogger.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		ECF06A2720077D8E008CBA54 /* NSOrderedSet+FirstObject.h in Headers */ = {isa = PBXBuildFile; fileRef = 530F684C17B23CF600FD5FB1 /* NSOrderedSet+FirstObject.h */; };
+		ECF06A2820077D8E008CBA54 /* DDLog.h in Headers */ = {isa = PBXBuildFile; fileRef = 53F15F65162B9FCA00C24FC1 /* DDLog.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		ECF06A2A20077D8E008CBA54 /* DDTTYLogger.h in Headers */ = {isa = PBXBuildFile; fileRef = 53F15F67162B9FCA00C24FC1 /* DDTTYLogger.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		ECF06A2B20077D8E008CBA54 /* ContextFilterLogFormatter.h in Headers */ = {isa = PBXBuildFile; fileRef = 53F15F6A162B9FCA00C24FC1 /* ContextFilterLogFormatter.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		ECF06A2D20077D8E008CBA54 /* EX2Categories.h in Headers */ = {isa = PBXBuildFile; fileRef = 53F15EF7162B9FCA00C24FC1 /* EX2Categories.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		ECF06A2E20077D8E008CBA54 /* EX2FoundationCategories.h in Headers */ = {isa = PBXBuildFile; fileRef = 53F15EF9162B9FCA00C24FC1 /* EX2FoundationCategories.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		ECF06A2F20077D8E008CBA54 /* NSArray+Additions.h in Headers */ = {isa = PBXBuildFile; fileRef = 53F15EFB162B9FCA00C24FC1 /* NSArray+Additions.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		ECF06A3020077D8E008CBA54 /* NSArray+FirstObject.h in Headers */ = {isa = PBXBuildFile; fileRef = 53F15EFC162B9FCA00C24FC1 /* NSArray+FirstObject.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		ECF06A3120077D8E008CBA54 /* NSArray+Safe.h in Headers */ = {isa = PBXBuildFile; fileRef = 53F15EFE162B9FCA00C24FC1 /* NSArray+Safe.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		ECF06A3220077D8E008CBA54 /* NSMutableArray+Safe.h in Headers */ = {isa = PBXBuildFile; fileRef = 53F15F00162B9FCA00C24FC1 /* NSMutableArray+Safe.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		ECF06A3320077D8E008CBA54 /* NSData+AES128.h in Headers */ = {isa = PBXBuildFile; fileRef = 53F15F02162B9FCA00C24FC1 /* NSData+AES128.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		ECF06A3420077D8E008CBA54 /* NSData+Base64.h in Headers */ = {isa = PBXBuildFile; fileRef = 53F15F04162B9FCA00C24FC1 /* NSData+Base64.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		ECF06A3520077D8E008CBA54 /* NSData+Gzip.h in Headers */ = {isa = PBXBuildFile; fileRef = 53F15F06162B9FCA00C24FC1 /* NSData+Gzip.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		ECF06A3620077D8E008CBA54 /* NSDate+UTC.h in Headers */ = {isa = PBXBuildFile; fileRef = 53F15F08162B9FCA00C24FC1 /* NSDate+UTC.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		ECF06A3720077D8E008CBA54 /* NSMutableDictionary+Safe.h in Headers */ = {isa = PBXBuildFile; fileRef = 53F15F0A162B9FCA00C24FC1 /* NSMutableDictionary+Safe.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		ECF06A3820077D8E008CBA54 /* NSNotificationCenter+MainThread.h in Headers */ = {isa = PBXBuildFile; fileRef = 53F15F0C162B9FCA00C24FC1 /* NSNotificationCenter+MainThread.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		ECF06A3920077D8E008CBA54 /* NSObject+ListMethods.h in Headers */ = {isa = PBXBuildFile; fileRef = 53F15F0E162B9FCA00C24FC1 /* NSObject+ListMethods.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		ECF06A3A20077D8E008CBA54 /* GTMDefines.h in Headers */ = {isa = PBXBuildFile; fileRef = 53F15F11162B9FCA00C24FC1 /* GTMDefines.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		ECF06A3B20077D8E008CBA54 /* GTMNSString+HTML.h in Headers */ = {isa = PBXBuildFile; fileRef = 53F15F12162B9FCA00C24FC1 /* GTMNSString+HTML.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		ECF06A3C20077D8E008CBA54 /* NSString+Additions.h in Headers */ = {isa = PBXBuildFile; fileRef = 53F15F14162B9FCA00C24FC1 /* NSString+Additions.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		ECF06A3D20077D8E008CBA54 /* NSString+Clean.h in Headers */ = {isa = PBXBuildFile; fileRef = 53F15F15162B9FCA00C24FC1 /* NSString+Clean.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		ECF06A3F20077D8E008CBA54 /* NSString+compareWithoutIndefiniteArticles.h in Headers */ = {isa = PBXBuildFile; fileRef = 53F15F17162B9FCA00C24FC1 /* NSString+compareWithoutIndefiniteArticles.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		ECF06A4020077D8E008CBA54 /* NSString+cStringUTF8.h in Headers */ = {isa = PBXBuildFile; fileRef = 53F15F19162B9FCA00C24FC1 /* NSString+cStringUTF8.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		ECF06A4120077D8E008CBA54 /* NSString+FileSize.h in Headers */ = {isa = PBXBuildFile; fileRef = 53F15F1B162B9FCA00C24FC1 /* NSString+FileSize.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		ECF06A4220077D8E008CBA54 /* NSString+Gzip.h in Headers */ = {isa = PBXBuildFile; fileRef = 53F15F1D162B9FCA00C24FC1 /* NSString+Gzip.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		ECF06A4420077D8E008CBA54 /* NSString+hex.h in Headers */ = {isa = PBXBuildFile; fileRef = 53F15F1F162B9FCA00C24FC1 /* NSString+hex.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		ECF06A4520077D8E008CBA54 /* NSString+md5.h in Headers */ = {isa = PBXBuildFile; fileRef = 53F15F21162B9FCA00C24FC1 /* NSString+md5.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		ECF06A4620077D8E008CBA54 /* NSString+rfcEncode.h in Headers */ = {isa = PBXBuildFile; fileRef = 53F15F23162B9FCA00C24FC1 /* NSString+rfcEncode.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		ECF06A4720077D8E008CBA54 /* NSString+SHA1.h in Headers */ = {isa = PBXBuildFile; fileRef = 53F15F25162B9FCA00C24FC1 /* NSString+SHA1.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		ECF06A4820077D8E008CBA54 /* NSString+time.h in Headers */ = {isa = PBXBuildFile; fileRef = 53F15F27162B9FCA00C24FC1 /* NSString+time.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		ECF06A4920077D8E008CBA54 /* NSString+TrimmingAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = 53F15F29162B9FCA00C24FC1 /* NSString+TrimmingAdditions.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		ECF06A4A20077D8E008CBA54 /* NSString+URLEncode.h in Headers */ = {isa = PBXBuildFile; fileRef = 53F15F2B162B9FCA00C24FC1 /* NSString+URLEncode.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		ECF06A4B20077D8E008CBA54 /* NSString+Validation.h in Headers */ = {isa = PBXBuildFile; fileRef = 53F15F2D162B9FCA00C24FC1 /* NSString+Validation.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		ECF06A4C20077D8E008CBA54 /* EX2QuartzCoreCategories.h in Headers */ = {isa = PBXBuildFile; fileRef = 53F15F34162B9FCA00C24FC1 /* EX2QuartzCoreCategories.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		ECF06A5C20077D8E008CBA54 /* NSString+HasValue.h in Headers */ = {isa = PBXBuildFile; fileRef = 5339E1801635E93A007628C0 /* NSString+HasValue.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		ECF06A5D20077D8E008CBA54 /* NSURL+QueryParameterDictionary.h in Headers */ = {isa = PBXBuildFile; fileRef = 53145C15163F5E6400DE22F1 /* NSURL+QueryParameterDictionary.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		ECF06A5F20077D8E008CBA54 /* NSURL+SkipBackupAttribute.h in Headers */ = {isa = PBXBuildFile; fileRef = 533B3E52165D8FE000ECD75F /* NSURL+SkipBackupAttribute.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		ECF06A6020077D8E008CBA54 /* RNCryptor.h in Headers */ = {isa = PBXBuildFile; fileRef = 53E2F47116684CCE00743BB8 /* RNCryptor.h */; };
+		ECF06A6120077D8E008CBA54 /* EX2Language.h in Headers */ = {isa = PBXBuildFile; fileRef = 53F884CB16BB61C000372A2D /* EX2Language.h */; };
+		ECF06A6220077D8E008CBA54 /* RNCryptor+Private.h in Headers */ = {isa = PBXBuildFile; fileRef = 53F884F516BB855A00372A2D /* RNCryptor+Private.h */; };
+		ECF06A6320077D8E008CBA54 /* RNCryptorEngine.h in Headers */ = {isa = PBXBuildFile; fileRef = 53F884F616BB855A00372A2D /* RNCryptorEngine.h */; };
+		ECF06A6420077D8E008CBA54 /* RNDecryptor.h in Headers */ = {isa = PBXBuildFile; fileRef = 53F884F816BB855A00372A2D /* RNDecryptor.h */; };
+		ECF06A6520077D8E008CBA54 /* NSMutableOrderedSet+Safe.h in Headers */ = {isa = PBXBuildFile; fileRef = 530F684617B23C0E00FD5FB1 /* NSMutableOrderedSet+Safe.h */; };
+		ECF06A6620077D8E008CBA54 /* RNEncryptor.h in Headers */ = {isa = PBXBuildFile; fileRef = 53F884FA16BB855A00372A2D /* RNEncryptor.h */; };
+		ECF06A6720077D8E008CBA54 /* RNOpenSSLCryptor.h in Headers */ = {isa = PBXBuildFile; fileRef = 53F884FC16BB855A00372A2D /* RNOpenSSLCryptor.h */; };
+		ECF06A6820077D8E008CBA54 /* RNOpenSSLDecryptor.h in Headers */ = {isa = PBXBuildFile; fileRef = 53F884FE16BB855A00372A2D /* RNOpenSSLDecryptor.h */; };
+		ECF06A6920077D8E008CBA54 /* RNOpenSSLEncryptor.h in Headers */ = {isa = PBXBuildFile; fileRef = 53F8850016BB855B00372A2D /* RNOpenSSLEncryptor.h */; };
+		ECF06A6A20077D8E008CBA54 /* RNCryptorOld.h in Headers */ = {isa = PBXBuildFile; fileRef = 53F8851D16BB8EF900372A2D /* RNCryptorOld.h */; };
+		ECF06A6D20077D8E008CBA54 /* NSFileHandle+Hash.h in Headers */ = {isa = PBXBuildFile; fileRef = 531F4F3E17062C3300D7F8B0 /* NSFileHandle+Hash.h */; };
+		ECF06A6E20077D8E008CBA54 /* NSData+Hash.h in Headers */ = {isa = PBXBuildFile; fileRef = 5380B5C1170667F90010AED2 /* NSData+Hash.h */; };
+		ECF06A7220077D8E008CBA54 /* NSNumber+CleanString.h in Headers */ = {isa = PBXBuildFile; fileRef = 537CBC96173DDE61001989CE /* NSNumber+CleanString.h */; };
+		ECF06A7320077D8E008CBA54 /* NSNull+CleanString.h in Headers */ = {isa = PBXBuildFile; fileRef = 537CBC9A173DDF75001989CE /* NSNull+CleanString.h */; };
+		ECF06A7420077D8E008CBA54 /* NSObject+UserInfo.h in Headers */ = {isa = PBXBuildFile; fileRef = 53293F1A17418ADF007211CB /* NSObject+UserInfo.h */; };
+		ECF06A7720077D8E008CBA54 /* EX2ActionQueue.h in Headers */ = {isa = PBXBuildFile; fileRef = 533DA5BE174EAC080064A3E1 /* EX2ActionQueue.h */; };
+		ECF06A7820077D8E008CBA54 /* EX2Action.h in Headers */ = {isa = PBXBuildFile; fileRef = 533DA5C4174EAC490064A3E1 /* EX2Action.h */; };
+		ECF06A7920077D8E008CBA54 /* EX2ActionBlock.h in Headers */ = {isa = PBXBuildFile; fileRef = 533DA5C7174EAD570064A3E1 /* EX2ActionBlock.h */; };
+		ECF06A7B20077D8E008CBA54 /* NSArray+Reverse.h in Headers */ = {isa = PBXBuildFile; fileRef = 53621DB9178AB4D000C605FA /* NSArray+Reverse.h */; };
+		ECF06A7E20077D8E008CBA54 /* NSArray+FilterBlock.h in Headers */ = {isa = PBXBuildFile; fileRef = 53059A3C17ABB3CF00FA04B2 /* NSArray+FilterBlock.h */; };
+		ECF06A8020077D8E008CBA54 /* NSOrderedSet+FilterBlock.h in Headers */ = {isa = PBXBuildFile; fileRef = 531CC54B17DA639F001A97EB /* NSOrderedSet+FilterBlock.h */; };
 		FC488817182C880A00356DE7 /* UIViewController+Tools.h in Headers */ = {isa = PBXBuildFile; fileRef = FC488815182C880A00356DE7 /* UIViewController+Tools.h */; };
 		FC488818182C880A00356DE7 /* UIViewController+Tools.m in Sources */ = {isa = PBXBuildFile; fileRef = FC488816182C880A00356DE7 /* UIViewController+Tools.m */; };
 		FCA12C9918AD561B00D5EDE7 /* UIImage+RoundedImage.h in Headers */ = {isa = PBXBuildFile; fileRef = FCA12C9718AD561B00D5EDE7 /* UIImage+RoundedImage.h */; };
@@ -503,6 +636,15 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		53F15ED5162B9F1B00C24FC1 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "include/${PRODUCT_NAME}";
+			dstSubfolderSpec = 16;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		ECF06A0F20077D8E008CBA54 /* CopyFiles */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
 			dstPath = "include/${PRODUCT_NAME}";
@@ -748,6 +890,7 @@
 		53FA69191644789900D19576 /* table-fade-bottom@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "table-fade-bottom@2x.png"; sourceTree = "<group>"; };
 		53FA691A1644789900D19576 /* table-fade-top.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "table-fade-top.png"; sourceTree = "<group>"; };
 		53FA691B1644789900D19576 /* table-fade-top@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "table-fade-top@2x.png"; sourceTree = "<group>"; };
+		ECF06A8420077D8E008CBA54 /* libEX2Kit watch.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libEX2Kit watch.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		FC488815182C880A00356DE7 /* UIViewController+Tools.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+Tools.h"; sourceTree = "<group>"; };
 		FC488816182C880A00356DE7 /* UIViewController+Tools.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+Tools.m"; sourceTree = "<group>"; };
 		FCA12C9718AD561B00D5EDE7 /* UIImage+RoundedImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+RoundedImage.h"; sourceTree = "<group>"; };
@@ -786,6 +929,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				53F15EEB162B9F6800C24FC1 /* CoreFoundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		ECF06A0D20077D8E008CBA54 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				ECF06A0E20077D8E008CBA54 /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -838,6 +989,7 @@
 				53F15EE9162B9F6800C24FC1 /* EX2KitResources.bundle */,
 				5304A20F16901857009B2732 /* EX2KitOSX.framework */,
 				18D45BBF1C8F100800A025CC /* libEX2KitTV.a */,
+				ECF06A8420077D8E008CBA54 /* libEX2Kit watch.a */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -1508,6 +1660,87 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		ECF06A1020077D8E008CBA54 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				ECF06A1120077D8E008CBA54 /* EX2Kit.h in Headers */,
+				ECF06A1220077D8E008CBA54 /* EX2Components.h in Headers */,
+				ECF06A1320077D8E008CBA54 /* EX2FileDecryptor.h in Headers */,
+				ECF06A1420077D8E008CBA54 /* EX2FileEncryptor.h in Headers */,
+				ECF06A1520077D8E008CBA54 /* EX2NetworkIndicator.h in Headers */,
+				ECF06A1720077D8E008CBA54 /* EX2RingBuffer.h in Headers */,
+				ECF06A1820077D8E008CBA54 /* EX2SimpleConnectionQueue.h in Headers */,
+				ECF06A1920077D8E008CBA54 /* EX2Macros.h in Headers */,
+				ECF06A1A20077D8E008CBA54 /* NSOrderedSet+Safe.h in Headers */,
+				ECF06A1B20077D8E008CBA54 /* EX2Static.h in Headers */,
+				ECF06A1C20077D8E008CBA54 /* EX2Dispatch.h in Headers */,
+				ECF06A2320077D8E008CBA54 /* CocoaLumberjack.h in Headers */,
+				ECF06A2420077D8E008CBA54 /* DDAbstractDatabaseLogger.h in Headers */,
+				ECF06A2520077D8E008CBA54 /* DDASLLogger.h in Headers */,
+				ECF06A2620077D8E008CBA54 /* DDFileLogger.h in Headers */,
+				ECF06A2720077D8E008CBA54 /* NSOrderedSet+FirstObject.h in Headers */,
+				ECF06A2820077D8E008CBA54 /* DDLog.h in Headers */,
+				ECF06A2A20077D8E008CBA54 /* DDTTYLogger.h in Headers */,
+				ECF06A2B20077D8E008CBA54 /* ContextFilterLogFormatter.h in Headers */,
+				ECF06A2D20077D8E008CBA54 /* EX2Categories.h in Headers */,
+				ECF06A2E20077D8E008CBA54 /* EX2FoundationCategories.h in Headers */,
+				ECF06A2F20077D8E008CBA54 /* NSArray+Additions.h in Headers */,
+				ECF06A3020077D8E008CBA54 /* NSArray+FirstObject.h in Headers */,
+				ECF06A3120077D8E008CBA54 /* NSArray+Safe.h in Headers */,
+				ECF06A3220077D8E008CBA54 /* NSMutableArray+Safe.h in Headers */,
+				ECF06A3320077D8E008CBA54 /* NSData+AES128.h in Headers */,
+				ECF06A3420077D8E008CBA54 /* NSData+Base64.h in Headers */,
+				ECF06A3520077D8E008CBA54 /* NSData+Gzip.h in Headers */,
+				ECF06A3620077D8E008CBA54 /* NSDate+UTC.h in Headers */,
+				ECF06A3720077D8E008CBA54 /* NSMutableDictionary+Safe.h in Headers */,
+				ECF06A3820077D8E008CBA54 /* NSNotificationCenter+MainThread.h in Headers */,
+				ECF06A3920077D8E008CBA54 /* NSObject+ListMethods.h in Headers */,
+				ECF06A3A20077D8E008CBA54 /* GTMDefines.h in Headers */,
+				ECF06A3B20077D8E008CBA54 /* GTMNSString+HTML.h in Headers */,
+				ECF06A3C20077D8E008CBA54 /* NSString+Additions.h in Headers */,
+				ECF06A3D20077D8E008CBA54 /* NSString+Clean.h in Headers */,
+				ECF06A3F20077D8E008CBA54 /* NSString+compareWithoutIndefiniteArticles.h in Headers */,
+				ECF06A4020077D8E008CBA54 /* NSString+cStringUTF8.h in Headers */,
+				ECF06A4120077D8E008CBA54 /* NSString+FileSize.h in Headers */,
+				ECF06A4220077D8E008CBA54 /* NSString+Gzip.h in Headers */,
+				ECF06A4420077D8E008CBA54 /* NSString+hex.h in Headers */,
+				ECF06A4520077D8E008CBA54 /* NSString+md5.h in Headers */,
+				ECF06A4620077D8E008CBA54 /* NSString+rfcEncode.h in Headers */,
+				ECF06A4720077D8E008CBA54 /* NSString+SHA1.h in Headers */,
+				ECF06A4820077D8E008CBA54 /* NSString+time.h in Headers */,
+				ECF06A4920077D8E008CBA54 /* NSString+TrimmingAdditions.h in Headers */,
+				ECF06A4A20077D8E008CBA54 /* NSString+URLEncode.h in Headers */,
+				ECF06A4B20077D8E008CBA54 /* NSString+Validation.h in Headers */,
+				ECF06A4C20077D8E008CBA54 /* EX2QuartzCoreCategories.h in Headers */,
+				ECF06A5C20077D8E008CBA54 /* NSString+HasValue.h in Headers */,
+				ECF06A5D20077D8E008CBA54 /* NSURL+QueryParameterDictionary.h in Headers */,
+				ECF06A5F20077D8E008CBA54 /* NSURL+SkipBackupAttribute.h in Headers */,
+				ECF06A6020077D8E008CBA54 /* RNCryptor.h in Headers */,
+				ECF06A6120077D8E008CBA54 /* EX2Language.h in Headers */,
+				ECF06A6220077D8E008CBA54 /* RNCryptor+Private.h in Headers */,
+				ECF06A6320077D8E008CBA54 /* RNCryptorEngine.h in Headers */,
+				ECF06A6420077D8E008CBA54 /* RNDecryptor.h in Headers */,
+				ECF06A6520077D8E008CBA54 /* NSMutableOrderedSet+Safe.h in Headers */,
+				ECF06A6620077D8E008CBA54 /* RNEncryptor.h in Headers */,
+				ECF06A6720077D8E008CBA54 /* RNOpenSSLCryptor.h in Headers */,
+				ECF06A6820077D8E008CBA54 /* RNOpenSSLDecryptor.h in Headers */,
+				ECF06A6920077D8E008CBA54 /* RNOpenSSLEncryptor.h in Headers */,
+				ECF06A6A20077D8E008CBA54 /* RNCryptorOld.h in Headers */,
+				ECF06A6D20077D8E008CBA54 /* NSFileHandle+Hash.h in Headers */,
+				ECF06A6E20077D8E008CBA54 /* NSData+Hash.h in Headers */,
+				ECF06A7220077D8E008CBA54 /* NSNumber+CleanString.h in Headers */,
+				ECF06A7320077D8E008CBA54 /* NSNull+CleanString.h in Headers */,
+				ECF06A7420077D8E008CBA54 /* NSObject+UserInfo.h in Headers */,
+				ECF06A7720077D8E008CBA54 /* EX2ActionQueue.h in Headers */,
+				ECF06A7820077D8E008CBA54 /* EX2Action.h in Headers */,
+				ECF06A7920077D8E008CBA54 /* EX2ActionBlock.h in Headers */,
+				ECF06A7B20077D8E008CBA54 /* NSArray+Reverse.h in Headers */,
+				ECF06A7E20077D8E008CBA54 /* NSArray+FilterBlock.h in Headers */,
+				ECF06A8020077D8E008CBA54 /* NSOrderedSet+FilterBlock.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
@@ -1582,6 +1815,24 @@
 			productReference = 53F15EE9162B9F6800C24FC1 /* EX2KitResources.bundle */;
 			productType = "com.apple.product-type.bundle";
 		};
+		ECF069A920077D8E008CBA54 /* EX2Kit watch */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = ECF06A8120077D8E008CBA54 /* Build configuration list for PBXNativeTarget "EX2Kit watch" */;
+			buildPhases = (
+				ECF069AA20077D8E008CBA54 /* Sources */,
+				ECF06A0D20077D8E008CBA54 /* Frameworks */,
+				ECF06A0F20077D8E008CBA54 /* CopyFiles */,
+				ECF06A1020077D8E008CBA54 /* Headers */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "EX2Kit watch";
+			productName = EX2Kit;
+			productReference = ECF06A8420077D8E008CBA54 /* libEX2Kit watch.a */;
+			productType = "com.apple.product-type.library.static";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -1606,6 +1857,7 @@
 				53F15EE8162B9F6800C24FC1 /* EX2KitResources */,
 				5304A20E16901857009B2732 /* EX2KitOSX */,
 				18D45AE21C8F100800A025CC /* EX2KitTV */,
+				ECF069A920077D8E008CBA54 /* EX2Kit watch */,
 			);
 		};
 /* End PBXProject section */
@@ -1888,6 +2140,71 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		ECF069AA20077D8E008CBA54 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				ECF069AB20077D8E008CBA54 /* NSArray+FirstObject.m in Sources */,
+				ECF069AC20077D8E008CBA54 /* NSArray+Safe.m in Sources */,
+				ECF069AD20077D8E008CBA54 /* NSMutableArray+Safe.m in Sources */,
+				ECF069AE20077D8E008CBA54 /* NSData+AES128.m in Sources */,
+				ECF069AF20077D8E008CBA54 /* NSData+Base64.m in Sources */,
+				ECF069B020077D8E008CBA54 /* NSData+Gzip.m in Sources */,
+				ECF069B120077D8E008CBA54 /* NSDate+UTC.m in Sources */,
+				ECF069B220077D8E008CBA54 /* NSOrderedSet+Safe.m in Sources */,
+				ECF069B320077D8E008CBA54 /* NSMutableDictionary+Safe.m in Sources */,
+				ECF069B420077D8E008CBA54 /* NSNotificationCenter+MainThread.m in Sources */,
+				ECF069B520077D8E008CBA54 /* NSObject+ListMethods.m in Sources */,
+				ECF069B620077D8E008CBA54 /* GTMNSString+HTML.m in Sources */,
+				ECF069B720077D8E008CBA54 /* NSString+Clean.m in Sources */,
+				ECF069B920077D8E008CBA54 /* NSString+compareWithoutIndefiniteArticles.m in Sources */,
+				ECF069BA20077D8E008CBA54 /* NSString+cStringUTF8.m in Sources */,
+				ECF069BB20077D8E008CBA54 /* NSString+FileSize.m in Sources */,
+				ECF069BC20077D8E008CBA54 /* NSString+Gzip.m in Sources */,
+				ECF069BD20077D8E008CBA54 /* NSString+hex.m in Sources */,
+				ECF069BE20077D8E008CBA54 /* NSString+md5.m in Sources */,
+				ECF069C020077D8E008CBA54 /* NSString+SHA1.m in Sources */,
+				ECF069C120077D8E008CBA54 /* NSString+time.m in Sources */,
+				ECF069C220077D8E008CBA54 /* NSString+TrimmingAdditions.m in Sources */,
+				ECF069C320077D8E008CBA54 /* NSString+URLEncode.m in Sources */,
+				ECF069C420077D8E008CBA54 /* NSString+Validation.m in Sources */,
+				ECF069D320077D8E008CBA54 /* EX2FileDecryptor.m in Sources */,
+				ECF069D420077D8E008CBA54 /* EX2FileEncryptor.m in Sources */,
+				ECF069D720077D8E008CBA54 /* EX2RingBuffer.m in Sources */,
+				ECF069D820077D8E008CBA54 /* EX2SimpleConnectionQueue.m in Sources */,
+				ECF069D920077D8E008CBA54 /* DDAbstractDatabaseLogger.m in Sources */,
+				ECF069DA20077D8E008CBA54 /* DDASLLogger.m in Sources */,
+				ECF069DB20077D8E008CBA54 /* DDFileLogger.m in Sources */,
+				ECF069DC20077D8E008CBA54 /* DDLog.m in Sources */,
+				ECF069DD20077D8E008CBA54 /* DDTTYLogger.m in Sources */,
+				ECF069E020077D8E008CBA54 /* EX2Dispatch.m in Sources */,
+				ECF069E620077D8E008CBA54 /* NSString+HasValue.m in Sources */,
+				ECF069E820077D8E008CBA54 /* EX2Kit.m in Sources */,
+				ECF069EA20077D8E008CBA54 /* NSURL+QueryParameterDictionary.m in Sources */,
+				ECF069EC20077D8E008CBA54 /* RNCryptor.m in Sources */,
+				ECF069EE20077D8E008CBA54 /* EX2Language.m in Sources */,
+				ECF069EF20077D8E008CBA54 /* RNCryptorEngine.m in Sources */,
+				ECF069F020077D8E008CBA54 /* RNDecryptor.m in Sources */,
+				ECF069F120077D8E008CBA54 /* RNEncryptor.m in Sources */,
+				ECF069F220077D8E008CBA54 /* RNOpenSSLCryptor.m in Sources */,
+				ECF069F320077D8E008CBA54 /* RNOpenSSLDecryptor.m in Sources */,
+				ECF069F420077D8E008CBA54 /* NSOrderedSet+FirstObject.m in Sources */,
+				ECF069F520077D8E008CBA54 /* RNOpenSSLEncryptor.m in Sources */,
+				ECF069F620077D8E008CBA54 /* RNCryptorOld.m in Sources */,
+				ECF069F820077D8E008CBA54 /* NSFileHandle+Hash.m in Sources */,
+				ECF069F920077D8E008CBA54 /* NSData+Hash.m in Sources */,
+				ECF069FA20077D8E008CBA54 /* NSMutableOrderedSet+Safe.m in Sources */,
+				ECF069FE20077D8E008CBA54 /* NSNumber+CleanString.m in Sources */,
+				ECF069FF20077D8E008CBA54 /* NSNull+CleanString.m in Sources */,
+				ECF06A0020077D8E008CBA54 /* NSObject+UserInfo.m in Sources */,
+				ECF06A0420077D8E008CBA54 /* EX2ActionQueue.m in Sources */,
+				ECF06A0520077D8E008CBA54 /* EX2ActionBlock.m in Sources */,
+				ECF06A0720077D8E008CBA54 /* NSArray+Reverse.m in Sources */,
+				ECF06A0A20077D8E008CBA54 /* NSArray+FilterBlock.m in Sources */,
+				ECF06A0C20077D8E008CBA54 /* NSOrderedSet+FilterBlock.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
@@ -2062,12 +2379,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = (
-					armv7,
-					armv7s,
-					arm64,
-				);
-				"ARCHS[sdk=iphonesimulator*]" = i386;
+				ARCHS = "$(ARCHS_STANDARD)";
+				"ARCHS[sdk=iphonesimulator*]" = "$(ARCHS_STANDARD)";
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
@@ -2098,10 +2411,11 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				ONLY_ACTIVE_ARCH = YES;
+				ONLY_ACTIVE_ARCH = NO;
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
 				STRIP_INSTALLED_PRODUCT = NO;
+				VALID_ARCHS = "arm64 armv7 armv7s i386";
 			};
 			name = Debug;
 		};
@@ -2109,12 +2423,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = (
-					armv7,
-					armv7s,
-					arm64,
-				);
-				"ARCHS[sdk=iphonesimulator*]" = i386;
+				ARCHS = "$(ARCHS_STANDARD)";
+				"ARCHS[sdk=iphonesimulator*]" = "$(ARCHS_STANDARD)";
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
@@ -2141,16 +2451,15 @@
 				SKIP_INSTALL = YES;
 				STRIP_INSTALLED_PRODUCT = NO;
 				VALIDATE_PRODUCT = YES;
+				VALID_ARCHS = "arm64 armv7 armv7s i386";
 			};
 			name = Release;
 		};
 		53F15EE3162B9F1B00C24FC1 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = (
-					"$(ARCHS_STANDARD)",
-					armv7s,
-				);
+				ARCHS = "$(ARCHS_STANDARD)";
+				"ARCHS[sdk=iphonesimulator*]" = "$(ARCHS_STANDARD)";
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_WARN_EMPTY_BODY = YES;
@@ -2175,16 +2484,15 @@
 				SEPARATE_STRIP = NO;
 				SKIP_INSTALL = YES;
 				STRIP_STYLE = all;
+				VALID_ARCHS = "arm64 armv7 armv7s i386";
 			};
 			name = Debug;
 		};
 		53F15EE4162B9F1B00C24FC1 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = (
-					"$(ARCHS_STANDARD)",
-					armv7s,
-				);
+				ARCHS = "$(ARCHS_STANDARD)";
+				"ARCHS[sdk=iphonesimulator*]" = "$(ARCHS_STANDARD)";
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_WARN_EMPTY_BODY = YES;
@@ -2206,6 +2514,7 @@
 				SEPARATE_STRIP = NO;
 				SKIP_INSTALL = YES;
 				STRIP_STYLE = all;
+				VALID_ARCHS = "arm64 armv7 armv7s i386";
 			};
 			name = Release;
 		};
@@ -2259,6 +2568,73 @@
 			};
 			name = Release;
 		};
+		ECF06A8220077D8E008CBA54 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD)";
+				"ARCHS[sdk=iphonesimulator*]" = "$(ARCHS_STANDARD)";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				DEAD_CODE_STRIPPING = YES;
+				DEPLOYMENT_POSTPROCESSING = NO;
+				DSTROOT = /tmp/EX2Kit.dst;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "EX2Kit/EX2Kit-Prefix.pch";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"$(inherited)",
+					"WOS=1",
+				);
+				GCC_TREAT_WARNINGS_AS_ERRORS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = NO;
+				HEADER_SEARCH_PATHS = "\"$(SRCROOT)\"/**";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				ONLY_ACTIVE_ARCH = NO;
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PUBLIC_HEADERS_FOLDER_PATH = "include/$(TARGET_NAME)";
+				SDKROOT = watchos;
+				SEPARATE_STRIP = NO;
+				SKIP_INSTALL = YES;
+				STRIP_STYLE = all;
+				SUPPORTED_PLATFORMS = "watchsimulator watchos";
+				VALID_ARCHS = "armv7k i386";
+			};
+			name = Debug;
+		};
+		ECF06A8320077D8E008CBA54 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD)";
+				"ARCHS[sdk=iphonesimulator*]" = "$(ARCHS_STANDARD)";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEAD_CODE_STRIPPING = YES;
+				DEPLOYMENT_POSTPROCESSING = NO;
+				DSTROOT = /tmp/EX2Kit.dst;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "EX2Kit/EX2Kit-Prefix.pch";
+				GCC_PREPROCESSOR_DEFINITIONS = "WOS=1";
+				GCC_TREAT_WARNINGS_AS_ERRORS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = NO;
+				HEADER_SEARCH_PATHS = "\"$(SRCROOT)\"/**";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PUBLIC_HEADERS_FOLDER_PATH = "include/$(TARGET_NAME)";
+				SDKROOT = watchos;
+				SEPARATE_STRIP = NO;
+				SKIP_INSTALL = YES;
+				STRIP_STYLE = all;
+				SUPPORTED_PLATFORMS = "watchsimulator watchos";
+				VALID_ARCHS = "armv7k i386";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -2303,6 +2679,15 @@
 			buildConfigurations = (
 				53F15EF4162B9F6800C24FC1 /* Debug */,
 				53F15EF5162B9F6800C24FC1 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		ECF06A8120077D8E008CBA54 /* Build configuration list for PBXNativeTarget "EX2Kit watch" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				ECF06A8220077D8E008CBA54 /* Debug */,
+				ECF06A8320077D8E008CBA54 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

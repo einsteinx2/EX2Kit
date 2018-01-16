@@ -56,8 +56,12 @@ static DDASLLogger *sharedInstance;
 	{
 		// A default asl client is provided for the main thread,
 		// but background threads need to create their own client.
-		
+#ifdef WOS
+        
+#else
 		client = asl_open(NULL, "com.apple.console", 0);
+        
+#endif
 	}
 	return self;
 }
@@ -73,7 +77,10 @@ static DDASLLogger *sharedInstance;
 	
 	if (logMsg)
 	{
+#ifdef WOS
+#else
 		const char *msg = [logMsg UTF8String];
+#endif
 		
 		int aslLogLevel;
 		switch (logMessage->logLevel)
@@ -86,8 +93,12 @@ static DDASLLogger *sharedInstance;
 			case 3  : aslLogLevel = ASL_LEVEL_WARNING; break;
 			default : aslLogLevel = ASL_LEVEL_NOTICE;  break;
 		}
+        
+#ifdef WOS
+#else
 		
 		asl_log(client, NULL, aslLogLevel, "%s", msg);
+#endif
 	}
 }
 

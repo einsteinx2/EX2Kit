@@ -22,6 +22,9 @@
         #import "EX2UIComponents.h"
         #import "CocoaLumberjack.h"
     #endif
+    #ifdef WOS
+        #import "DDLog.h"
+    #endif
 #endif
 
 
