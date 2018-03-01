@@ -11,6 +11,7 @@
 #import "RNDecryptor.h"
 #import "EX2RingBuffer.h"
 #import "DDLog.h"
+#import "EX2ANGLogger.h"
 
 // Keyed on file path, value is number of references
 static __strong NSMutableDictionary *_activeFilePaths;
@@ -30,8 +31,6 @@ static __strong NSMutableDictionary *_activeFilePaths;
 @implementation EX2FileDecryptor
 
 #define DEFAULT_DECR_CHUNK_SIZE 4096
-
-static const int ddLogLevel = LOG_LEVEL_INFO;
 
 + (NSDictionary *)openFilePaths
 {
@@ -54,11 +53,10 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
         // Note that if the entry doesn't exist, this still works because [_activeFilePaths[path] integerValue] evaluates to 0
         // when _activeFilePaths[path] is nil
         NSInteger adjustedValue = [_activeFilePaths[path] integerValue] + 1;
-        
-        DDLogVerbose(@"EX2FileDecryptor: incremented \"%@\" (%li)", path, (long)adjustedValue);
+        [EX2ANGLogger log:@"EX2FileDecryptor: incremented \"%@\" (%li)", path, (long)adjustedValue];
         _activeFilePaths[path] = @(adjustedValue);
         
-        DDLogVerbose(@"_activeFilePaths: %@", _activeFilePaths);
+        [EX2ANGLogger log:@"_activeFilePaths: %@", _activeFilePaths];
     }
 }
 
@@ -74,12 +72,12 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
         {
             // If decrementing the value will bring it to 0, remove the entry
             [_activeFilePaths removeObjectForKey:path];
-            DDLogVerbose(@"EX2FileDecryptor: removing \"%@\" (%li)", path, (long)adjustedValue);
+            [EX2ANGLogger log:@"EX2FileDecryptor: removing \"%@\" (%li)", path, (long)adjustedValue];
         }
         else
         {
             _activeFilePaths[path] = @(adjustedValue);
-            DDLogVerbose(@"EX2FileDecryptor: decremented \"%@\" (%li)", path, (long)adjustedValue);
+            [EX2ANGLogger log:@"EX2FileDecryptor: decremented \"%@\" (%li)", path, (long)adjustedValue];
         }
     }
 }
@@ -159,7 +157,7 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
     {
         self.seekOffset = mod;
         
-        DDLogVerbose(@"[EX2FileDecryptor] offset: %lu  padding: %lu  realOffset: %lu  mod: %lu:  for path: %@", (unsigned long)offset, (unsigned long)padding, (unsigned long)realOffset, (unsigned long)mod, self.path);
+        [EX2ANGLogger log:@"[EX2FileDecryptor] offset: %lu  padding: %lu  realOffset: %lu  mod: %lu:  for path: %@", (unsigned long)offset, (unsigned long)padding, (unsigned long)realOffset, (unsigned long)mod, self.path];
         
         @try 
         {
@@ -168,7 +166,7 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
         } 
         @catch (NSException *exception) 
         {
-            DDLogError(@"[EX2FileDecryptor] exception seeking to offset %lu, %@ for path: %@", (unsigned long)offset, exception, self.path);
+            [EX2ANGLogger logError:@"[EX2FileDecryptor] exception seeking to offset %lu, %@ for path: %@", (unsigned long)offset, exception, self.path];
         }
         
         if (success)
@@ -201,8 +199,8 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
 	{
 		NSUInteger encryptedChunkSize = self.encryptedChunkSize;
 		
-		DDLogVerbose(@"[EX2FileDecryptor]   ");
-		DDLogVerbose(@"[EX2FileDecryptor] asked to read length: %lu for path: %@", (unsigned long)length, self.path);
+		[EX2ANGLogger log:@"[EX2FileDecryptor]   "];
+		[EX2ANGLogger log:@"[EX2FileDecryptor] asked to read length: %lu for path: %@", (unsigned long)length, self.path];
 		// Round up the read to the next block
 		//length = self.decryptedBuffer.filledSpaceLength - length;
 		NSUInteger realLength = self.seekOffset + length;
@@ -213,7 +211,7 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
 			realLength += self.encryptedChunkSize;
 		}
 		
-		DDLogVerbose(@"[EX2FileDecryptor] seek offset %lu  realLength %lu for path: %@", (unsigned long)self.seekOffset, (unsigned long)realLength, self.path);
+		[EX2ANGLogger log:@"[EX2FileDecryptor] seek offset %lu  realLength %lu for path: %@", (unsigned long)self.seekOffset, (unsigned long)realLength, self.path];
 		NSUInteger mod = realLength % encryptedChunkSize;
 		if (mod > self.chunkSize)
 		{
@@ -221,7 +219,7 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
 			mod -= self.chunkSize;
 		}
 		
-		DDLogVerbose(@"[EX2FileDecryptor] mod %lu for path: %@", (unsigned long)mod, self.path);
+		[EX2ANGLogger log:@"[EX2FileDecryptor] mod %lu for path: %@", (unsigned long)mod, self.path];
 		//if (mod != 0)
 		if (realLength % encryptedChunkSize != 0)
 		{
@@ -229,9 +227,9 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
 			//realLength += ENCR_CHUNK_SIZE - mod; 
 			realLength = ((int)(realLength / encryptedChunkSize) * encryptedChunkSize) + encryptedChunkSize;
 		}
-		DDLogVerbose(@"[EX2FileDecryptor] reading length: %lu for path: %@", (unsigned long)realLength, self.path);
+		[EX2ANGLogger log:@"[EX2FileDecryptor] reading length: %lu for path: %@", (unsigned long)realLength, self.path];
 		
-		DDLogVerbose(@"[EX2FileDecryptor] file offset: %llu for path: %@", self.fileHandle.offsetInFile, self.path);
+		[EX2ANGLogger log:@"[EX2FileDecryptor] file offset: %llu for path: %@", self.fileHandle.offsetInFile, self.path];
 		
 		// We need to decrypt some more data
 		[self.tempDecryptBuffer reset];
@@ -241,28 +239,28 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
 		} @catch (NSException *exception) {
 			readData = nil;
 		}
-		DDLogVerbose(@"[EX2FileDecryptor] read data length %lu for path: %@", (unsigned long)readData.length, self.path);
+		[EX2ANGLogger log:@"[EX2FileDecryptor] read data length %lu for path: %@", (unsigned long)readData.length, self.path];
 		
 		if (readData)
 		{
-			DDLogVerbose(@"[EX2FileDecryptor] filling temp buffer with data for path: %@", self.path);
+			[EX2ANGLogger log:@"[EX2FileDecryptor] filling temp buffer with data for path: %@", self.path];
 			[self.tempDecryptBuffer fillWithData:readData];
-			DDLogVerbose(@"[EX2FileDecryptor] temp buffer filled size %lu for path: %@", (unsigned long)self.tempDecryptBuffer.filledSpaceLength, self.path);
+			[EX2ANGLogger log:@"[EX2FileDecryptor] temp buffer filled size %lu for path: %@", (unsigned long)self.tempDecryptBuffer.filledSpaceLength, self.path];
 		}
 		
 		while (self.tempDecryptBuffer.filledSpaceLength >= encryptedChunkSize)
 		{
-			DDLogVerbose(@"[EX2FileDecryptor] draining data for path: %@", self.path);
+			[EX2ANGLogger log:@"[EX2FileDecryptor] draining data for path: %@", self.path];
 			NSData *data = [self.tempDecryptBuffer drainData:encryptedChunkSize];
-			DDLogVerbose(@"[EX2FileDecryptor] data drained, filled size %lu for path: %@", (unsigned long)self.tempDecryptBuffer.filledSpaceLength, self.path);
+			[EX2ANGLogger log:@"[EX2FileDecryptor] data drained, filled size %lu for path: %@", (unsigned long)self.tempDecryptBuffer.filledSpaceLength, self.path];
             
-            DDLogVerbose(@"[EX2FileDecryptor] decrypting data for path: %@", self.path);
+            [EX2ANGLogger log:@"[EX2FileDecryptor] decrypting data for path: %@", self.path];
 			NSError *decryptionError;
             NSData *decrypted;
             if (!self.useOldDecryptor)
             {
                 decrypted = [RNDecryptor decryptData:data withPassword:_key error:&decryptionError];
-                DDLogVerbose(@"[EX2FileDecryptor] data size: %lu  decrypted size: %lu for path: %@", (unsigned long)data.length, (unsigned long)decrypted.length, self.path);
+                [EX2ANGLogger log:@"[EX2FileDecryptor] data size: %lu  decrypted size: %lu for path: %@", (unsigned long)data.length, (unsigned long)decrypted.length, self.path];
             }
             
             if (decryptionError && _alternateKeys)
@@ -270,21 +268,21 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
                 if (decryptionError)
                 {
                     _error = decryptionError;
-                    DDLogError(@"[EX2FileDecryptor] There was an error decrypting this chunk using new decryptor, trying the alternate keys: %@ for path: %@", decryptionError, self.path);
+                    [EX2ANGLogger logError:@"[EX2FileDecryptor] There was an error decrypting this chunk using new decryptor, trying the alternate keys: %@ for path: %@", decryptionError, self.path];
                 }
                 
                 decryptionError = nil;
                 for (NSString *alternate in _alternateKeys)
                 {
                     decrypted = [RNDecryptor decryptData:data withPassword:alternate error:&decryptionError];
-                    DDLogVerbose(@"[EX2FileDecryptor] data size: %lu  decrypted size: %lu for path: %@", (unsigned long)data.length, (unsigned long)decrypted.length, self.path);
+                    [EX2ANGLogger log:@"[EX2FileDecryptor] data size: %lu  decrypted size: %lu for path: %@", (unsigned long)data.length, (unsigned long)decrypted.length, self.path];
                     if (decryptionError)
                     {
-                        DDLogError(@"[EX2FileDecryptor] There was an error decrypting this chunk using an alternate key: %@  for path: %@", decryptionError, self.path);
+                        [EX2ANGLogger logError:@"[EX2FileDecryptor] There was an error decrypting this chunk using an alternate key: %@  for path: %@", decryptionError, self.path];
                     }
                     else
                     {
-                        DDLogError(@"[EX2FileDecryptor] The alternate key was successful, storing that as the new key for path: %@", self.path);
+                        [EX2ANGLogger logError:@"[EX2FileDecryptor] The alternate key was successful, storing that as the new key for path: %@", self.path];
                         _key = alternate;
                         _error = nil;
                         break;
@@ -297,15 +295,15 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
                 if (decryptionError)
                 {
                     _error = decryptionError;
-                    DDLogError(@"[EX2FileDecryptor] There was an error decrypting this chunk using new decryptor, trying old decryptor: %@ for path: %@", decryptionError, self.path);
+                    [EX2ANGLogger logError:@"[EX2FileDecryptor] There was an error decrypting this chunk using new decryptor, trying old decryptor: %@ for path: %@", decryptionError, self.path];
                 }
                 
                 decryptionError = nil;
                 decrypted = [[RNCryptorOld AES256Cryptor] decryptData:data password:_key error:&decryptionError];
-                DDLogVerbose(@"[EX2FileDecryptor] data size: %lu  decrypted size: %lu for path: %@", (unsigned long)data.length, (unsigned long)decrypted.length, self.path);
+                [EX2ANGLogger log:@"[EX2FileDecryptor] data size: %lu  decrypted size: %lu for path: %@", (unsigned long)data.length, (unsigned long)decrypted.length, self.path];
                 if (decryptionError)
                 {
-                    DDLogError(@"[EX2FileDecryptor] There was an error decrypting this chunk using old decryptor, giving up: %@  for path: %@", decryptionError, self.path);
+                    [EX2ANGLogger logError:@"[EX2FileDecryptor] There was an error decrypting this chunk using old decryptor, giving up: %@  for path: %@", decryptionError, self.path];
                 }
                 else
                 {
@@ -319,18 +317,18 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
 				// Add the data to the decryption buffer
 				if (self.seekOffset > 0)
 				{
-					DDLogVerbose(@"[EX2FileDecryptor] seek offset greater than 0 for path: %@", self.path);
+					[EX2ANGLogger log:@"[EX2FileDecryptor] seek offset greater than 0 for path: %@", self.path];
 					const void *tempBuff = decrypted.bytes;
-					DDLogVerbose(@"[EX2FileDecryptor] filling decrypted buffer length %lu for path: %@", (unsigned long)(self.chunkSize - self.seekOffset), self.path);
+					[EX2ANGLogger log:@"[EX2FileDecryptor] filling decrypted buffer length %lu for path: %@", (unsigned long)(self.chunkSize - self.seekOffset), self.path];
 					[self.decryptedBuffer fillWithBytes:tempBuff+self.seekOffset length:self.chunkSize-self.seekOffset];
 					self.seekOffset = 0;
-					DDLogVerbose(@"[EX2FileDecryptor] setting seekOffset to 0 for path: %@", self.path);
+					[EX2ANGLogger log:@"[EX2FileDecryptor] setting seekOffset to 0 for path: %@", self.path];
 				}
 				else
 				{
-					DDLogVerbose(@"[EX2FileDecryptor] filling decrypted buffer with data length %lu for path: %@", (unsigned long)decrypted.length, self.path);
+					[EX2ANGLogger log:@"[EX2FileDecryptor] filling decrypted buffer with data length %lu for path: %@", (unsigned long)decrypted.length, self.path];
 					[self.decryptedBuffer fillWithData:decrypted];
-					DDLogVerbose(@"[EX2FileDecryptor] filled decrypted buffer for path: %@", self.path);
+					[EX2ANGLogger log:@"[EX2FileDecryptor] filled decrypted buffer for path: %@", self.path];
 				}
 			}
 		}
@@ -340,13 +338,13 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
 	NSUInteger bytesRead = self.decryptedBuffer.filledSpaceLength >= length ? length : self.decryptedBuffer.filledSpaceLength;
 	if (bytesRead > 0)
 	{
-		DDLogVerbose(@"[EX2FileDecryptor] draining bytes into buffer length %lu for path: %@", (unsigned long)bytesRead, self.path);
+		[EX2ANGLogger log:@"[EX2FileDecryptor] draining bytes into buffer length %lu for path: %@", (unsigned long)bytesRead, self.path];
 		[self.decryptedBuffer drainBytes:buffer length:bytesRead];
-		DDLogVerbose(@"[EX2FileDecryptor] bytes drained for path: %@", self.path);
+		[EX2ANGLogger log:@"[EX2FileDecryptor] bytes drained for path: %@", self.path];
 	}
     else
     {
-        DDLogVerbose(@"[EX2FileDecryptor] bytes read was 0 so not draining anything for path: %@", self.path);
+        [EX2ANGLogger log:@"[EX2FileDecryptor] bytes read was 0 so not draining anything for path: %@", self.path];
     }
 
 	return bytesRead;
@@ -361,13 +359,13 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
 	{
 		returnData = [NSData dataWithBytesNoCopy:buffer length:realLength freeWhenDone:YES];
 	}
-	DDLogVerbose(@"[EX2FileDecryptor] read bytes length %lu for path: %@", (unsigned long)realLength, self.path);
+	[EX2ANGLogger log:@"[EX2FileDecryptor] read bytes length %lu for path: %@", (unsigned long)realLength, self.path];
 	return returnData;
 }
 
 - (void)closeFile
 {
-    DDLogVerbose(@"[EX2FileDecryptor] closing file for path: %@", self.path);
+    [EX2ANGLogger log:@"[EX2FileDecryptor] closing file for path: %@", self.path];
     
     if (self.fileHandle)
     {
@@ -376,14 +374,14 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
         [self.fileHandle closeFile];
         _fileHandle = nil;
         
-        DDLogVerbose(@"[EX2FileDecryptor] deallocated handle for path: %@", self.path);
+        [EX2ANGLogger log:@"[EX2FileDecryptor] deallocated handle for path: %@", self.path];
     }
     else
     {
-        DDLogVerbose(@"[EX2FileDecryptor] no handle was found for path: %@", self.path);
+        [EX2ANGLogger log:@"[EX2FileDecryptor] no handle was found for path: %@", self.path];
     }
     
-    DDLogVerbose(@"[EX2FileDecryptor] unregistering path: %@", self.path);
+    [EX2ANGLogger log:@"[EX2FileDecryptor] unregistering path: %@", self.path];
     [EX2FileDecryptor unregisterOpenFilePath:self.path];
 }
 

@@ -8,8 +8,7 @@
 
 #import "NSURL+SkipBackupAttribute.h"
 #import <sys/xattr.h>
-
-static const int ddLogLevel = LOG_LEVEL_ERROR;
+#import "EX2ANGLogger.h"
 
 @implementation NSURL (SkipBackupAttribute)
 
@@ -39,11 +38,11 @@ static const int ddLogLevel = LOG_LEVEL_ERROR;
         {
             success = [self setResourceValue:@(isAdd) forKey:NSURLIsExcludedFromBackupKey error:&error];
             if(!success)
-                DDLogError(@"Error excluding %@ from backup: %@", self.lastPathComponent, error);
+                [EX2ANGLogger logError:@"Error excluding %@ from backup: %@", self.lastPathComponent, error];
         }
         @catch (NSException *exception)
         {
-            DDLogError(@"Exception excluding %@ from backup: %@", self.lastPathComponent, exception);
+            [EX2ANGLogger logError:@"Exception excluding %@ from backup: %@", self.lastPathComponent, exception];
         }
         
         return success;

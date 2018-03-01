@@ -13,6 +13,7 @@
 #import "RNDecryptor.h"
 #import "EX2RingBuffer.h"
 #import "DDLog.h"
+#import "EX2ANGLogger.h"
 
 @interface EX2FileEncryptor()
 {
@@ -24,8 +25,6 @@
 @end
 
 @implementation EX2FileEncryptor
-
-static const int ddLogLevel = LOG_LEVEL_INFO;
 
 - (id)init
 {
@@ -90,12 +89,12 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
             NSTimeInterval start = [[NSDate date] timeIntervalSince1970];
             //NSData *encrypted = [[RNCryptor AES256Cryptor] encryptData:data password:_key error:&encryptionError];
             NSData *encrypted = [RNEncryptor encryptData:data withSettings:kRNCryptorAES256Settings password:_key error:&encryptionError];
-            DDLogVerbose(@"[EX2FileEncryptor] total time: %f", [[NSDate date] timeIntervalSince1970] - start);
+            [EX2ANGLogger log:@"[EX2FileEncryptor] total time: %f", [[NSDate date] timeIntervalSince1970] - start];
 
             //DLog(@"data size: %u  encrypted size: %u", data.length, encrypted.length);
             if (encryptionError)
             {
-                DDLogError(@"[EX2FileEncryptor] Encryptor: ERROR THERE WAS AN ERROR ENCRYPTING THIS CHUNK: %@", encryptionError);
+                [EX2ANGLogger logError:@"[EX2FileEncryptor] Encryptor: ERROR THERE WAS AN ERROR ENCRYPTING THIS CHUNK: %@", encryptionError];
                 return bytesWritten;
             }
             else
@@ -109,7 +108,7 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
                 }
                 @catch (NSException *exception) 
                 {
-                    DDLogError(@"[EX2FileEncryptor] Encryptor: Failed to write to file");
+                    [EX2ANGLogger logError:@"[EX2FileEncryptor] Encryptor: Failed to write to file"];
                     @throw(exception);
                 }
             }
@@ -126,7 +125,6 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
 
 - (void)clearBuffer
 {
-	DDLogInfo(@"[EX2FileEncryptor] Encryptor: clearing the buffer");
 	[self.encryptionBuffer reset];
 }
 
@@ -136,10 +134,10 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
     {
         if (self.fileHandle)
         {
-            DDLogInfo(@"[EX2FileEncryptor] Encryptor: closing the file");
+            [EX2ANGLogger logInfo:@"[EX2FileEncryptor] Encryptor: closing the file"];
             while (self.encryptionBuffer.filledSpaceLength > 0)
             {
-                DDLogInfo(@"[EX2FileEncryptor] Encryptor: writing the remaining bytes");
+                [EX2ANGLogger logInfo:@"[EX2FileEncryptor] Encryptor: writing the remaining bytes"];
                 NSUInteger length = self.encryptionBuffer.filledSpaceLength >= 4096 ? 4096 : self.encryptionBuffer.filledSpaceLength;
                 NSData *data = [self.encryptionBuffer drainData:length];
                 
@@ -152,7 +150,7 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
                 NSLog(@"decrypted length: %lu", (unsigned long)decrypted.length);
                 if (encryptionError)
                 {
-                    DDLogError(@"[EX2FileEncryptor] ERROR THERE WAS AN ERROR ENCRYPTING THIS CHUNK: %@", encryptionError);
+                    [EX2ANGLogger logError:@"[EX2FileEncryptor] ERROR THERE WAS AN ERROR ENCRYPTING THIS CHUNK: %@", encryptionError];
                     //return NO;
                 }
                 else
@@ -164,7 +162,7 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
                     }
                     @catch (NSException *exception) 
                     {
-                        DDLogError(@"[EX2FileEncryptor] Encryptor: ERROR writing remaining bytes");
+                        [EX2ANGLogger logError:@"[EX2FileEncryptor] Encryptor: ERROR writing remaining bytes"];
                     }
                 }
             }
@@ -176,7 +174,7 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
             }
             @catch (NSException *exception)
             {
-                DDLogError(@"[EX2FileEncryptor] Exception synchronizing and closing file handle: %@", exception);
+                [EX2ANGLogger logError:@"[EX2FileEncryptor] Exception synchronizing and closing file handle: %@", exception];
             }
             _fileHandle = nil;
             

@@ -18,6 +18,8 @@
 		1820C9071D0ED29500252BA2 /* DispatchQueueLogFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = 53F15F6D162B9FCA00C24FC1 /* DispatchQueueLogFormatter.m */; };
 		18252E061CD8926100350A67 /* UIView+Tools.m in Sources */ = {isa = PBXBuildFile; fileRef = 53F15F48162B9FCA00C24FC1 /* UIView+Tools.m */; };
 		188150A21C8F221700B69793 /* DDLog.h in Headers */ = {isa = PBXBuildFile; fileRef = 53F15F65162B9FCA00C24FC1 /* DDLog.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		18A45BE22048685A003CE1D6 /* EX2ANGLogger.h in Headers */ = {isa = PBXBuildFile; fileRef = 18A45BE02048685A003CE1D6 /* EX2ANGLogger.h */; };
+		18A45BE32048685A003CE1D6 /* EX2ANGLogger.m in Sources */ = {isa = PBXBuildFile; fileRef = 18A45BE12048685A003CE1D6 /* EX2ANGLogger.m */; };
 		18AD2E4F1CEDBE0C008A466B /* UIDevice+Software.m in Sources */ = {isa = PBXBuildFile; fileRef = 53F15F3E162B9FCA00C24FC1 /* UIDevice+Software.m */; };
 		18BBD2641CC4CFA3007C7697 /* NSURL+SkipBackupAttribute.m in Sources */ = {isa = PBXBuildFile; fileRef = 533B3E53165D8FE000ECD75F /* NSURL+SkipBackupAttribute.m */; };
 		18BC65841CD0FEF2007FC3ED /* UIImage+Color.m in Sources */ = {isa = PBXBuildFile; fileRef = 53A1C30717EB88980039DA81 /* UIImage+Color.m */; };
@@ -658,6 +660,8 @@
 /* Begin PBXFileReference section */
 		188150A31C8F229300B69793 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = Platforms/AppleTVOS.platform/Developer/SDKs/AppleTVOS9.1.sdk/System/Library/Frameworks/SystemConfiguration.framework; sourceTree = DEVELOPER_DIR; };
 		188150A61C8F253800B69793 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = Platforms/AppleTVOS.platform/Developer/SDKs/AppleTVOS9.1.sdk/System/Library/Frameworks/Security.framework; sourceTree = DEVELOPER_DIR; };
+		18A45BE02048685A003CE1D6 /* EX2ANGLogger.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EX2ANGLogger.h; sourceTree = "<group>"; };
+		18A45BE12048685A003CE1D6 /* EX2ANGLogger.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = EX2ANGLogger.m; sourceTree = "<group>"; };
 		18D45BBF1C8F100800A025CC /* libEX2KitTV.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libEX2KitTV.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		5304A20F16901857009B2732 /* EX2KitOSX.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = EX2KitOSX.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		5304A21016901857009B2732 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = Library/Frameworks/Cocoa.framework; sourceTree = DEVELOPER_DIR; };
@@ -1286,6 +1290,8 @@
 				533DA5C4174EAC490064A3E1 /* EX2Action.h */,
 				533DA5C7174EAD570064A3E1 /* EX2ActionBlock.h */,
 				533DA5C8174EAD570064A3E1 /* EX2ActionBlock.m */,
+				18A45BE02048685A003CE1D6 /* EX2ANGLogger.h */,
+				18A45BE12048685A003CE1D6 /* EX2ANGLogger.m */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -1635,6 +1641,7 @@
 				53F8851416BB855B00372A2D /* RNOpenSSLDecryptor.h in Headers */,
 				53F8851816BB855B00372A2D /* RNOpenSSLEncryptor.h in Headers */,
 				53F8851F16BB8EF900372A2D /* RNCryptorOld.h in Headers */,
+				18A45BE22048685A003CE1D6 /* EX2ANGLogger.h in Headers */,
 				FC488817182C880A00356DE7 /* UIViewController+Tools.h in Headers */,
 				5398D07D16EE80BE002D8548 /* UIWebView+HideShadows.h in Headers */,
 				531F4F4017062C3300D7F8B0 /* NSFileHandle+Hash.h in Headers */,
@@ -2041,6 +2048,7 @@
 				53F15F8D162B9FCA00C24FC1 /* NSDate+UTC.m in Sources */,
 				530F684417B23BF800FD5FB1 /* NSOrderedSet+Safe.m in Sources */,
 				53F15F8E162B9FCA00C24FC1 /* NSMutableDictionary+Safe.m in Sources */,
+				18A45BE32048685A003CE1D6 /* EX2ANGLogger.m in Sources */,
 				53F15F8F162B9FCA00C24FC1 /* NSNotificationCenter+MainThread.m in Sources */,
 				53F15F90162B9FCA00C24FC1 /* NSObject+ListMethods.m in Sources */,
 				53F15F91162B9FCA00C24FC1 /* GTMNSString+HTML.m in Sources */,
@@ -2410,6 +2418,10 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = (
+					"\"$(SRCROOT)\"",
+					"\"$(PROJECT_DIR)\"",
+				);
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				ONLY_ACTIVE_ARCH = NO;
 				SDKROOT = iphoneos;
@@ -2446,6 +2458,10 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = (
+					"\"$(SRCROOT)\"",
+					"\"$(PROJECT_DIR)\"",
+				);
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
@@ -2475,7 +2491,10 @@
 				);
 				GCC_TREAT_WARNINGS_AS_ERRORS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = NO;
-				HEADER_SEARCH_PATHS = "\"$(SRCROOT)\"/**";
+				HEADER_SEARCH_PATHS = (
+					"\"$(SRCROOT)\"/**",
+					"\"$(PROJECT_DIR)\"/**",
+				);
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				ONLY_ACTIVE_ARCH = NO;
 				OTHER_LDFLAGS = "-ObjC";
@@ -2506,7 +2525,10 @@
 				GCC_PREPROCESSOR_DEFINITIONS = "IOS=1";
 				GCC_TREAT_WARNINGS_AS_ERRORS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = NO;
-				HEADER_SEARCH_PATHS = "\"$(SRCROOT)\"/**";
+				HEADER_SEARCH_PATHS = (
+					"\"$(SRCROOT)\"/**",
+					"\"$(PROJECT_DIR)\"/**",
+				);
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";

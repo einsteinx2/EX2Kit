@@ -47,8 +47,7 @@
 
 #import "EX2SimpleConnectionQueue.h"
 #import <UIKit/UIKit.h>
-
-static const int ddLogLevel = LOG_LEVEL_VERBOSE;
+#import "EX2ANGLogger.h"
 
 @interface EX2SimpleConnectionQueue ()
 {
@@ -79,7 +78,7 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
     if (self.isStartConnectionsAutomatically)
         [self startQueue];
     
-	DDLogVerbose(@"[EX2SimpleConnectionQueue] CONNECTION QUEUE REGISTER: %lu connections waiting, %lu active", (unsigned long)self.waitingConnectionStack.count, (unsigned long)self.activeConnectionStack.count);
+	[EX2ANGLogger log:@"[EX2SimpleConnectionQueue] CONNECTION QUEUE REGISTER: %lu connections waiting, %lu active", (unsigned long)self.waitingConnectionStack.count, (unsigned long)self.activeConnectionStack.count];
 }
 
 - (void)startNextConnection
@@ -108,7 +107,7 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
          
          [self.activeConnectionStack removeObjectSafe:connection];
          
-         DDLogVerbose(@"[EX2SimpleConnectionQueue] CONNECTION QUEUE FINISHED: %lu connections waiting, %lu active", (unsigned long)self.waitingConnectionStack.count, (unsigned long)self.activeConnectionStack.count);
+         [EX2ANGLogger log:@"[EX2SimpleConnectionQueue] CONNECTION QUEUE FINISHED: %lu connections waiting, %lu active", (unsigned long)self.waitingConnectionStack.count, (unsigned long)self.activeConnectionStack.count];
          
          if (self.activeConnectionStack.count + self.waitingConnectionStack.count == 0)
          {

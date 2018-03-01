@@ -8,10 +8,9 @@
 
 #import "NSFileHandle+Hash.h"
 #import <CommonCrypto/CommonDigest.h>
+#import "EX2ANGLogger.h"
 
 @implementation NSFileHandle (Hash)
-
-static const int ddLogLevel = LOG_LEVEL_VERBOSE;
 
 #define READ_CHUNK_SIZE BytesFromKB(16)
 
@@ -50,7 +49,7 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
     }
     @catch (NSException *exception)
     {
-        DDLogError(@"[NSFileHandle+HashAndChecksum] Failed to generate SHA1 hash with exception %@", exception);
+        [EX2ANGLogger logError:@"[NSFileHandle+HashAndChecksum] Failed to generate SHA1 hash with exception %@", exception];
         return nil;
     }
 }
@@ -92,7 +91,6 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
     }
     @catch (NSException *exception)
     {
-        DDLogError(@"[NSFileHandle+HashAndChecksum] Failed to generate MD5 hash with exception %@", exception);
         return nil;
     }
 }
