@@ -7,7 +7,6 @@
 //
 
 #import "EX2ActionQueue.h"
-#import "EX2ANGLogger.h"
 
 @interface EX2ActionQueue()
 @property (nonatomic, strong) NSMutableArray *actionQueue;
@@ -96,8 +95,6 @@
 {
     @synchronized(self.actionQueue)
     {
-        [EX2ANGLogger log:@"[EX2ActionQueue] startQueue, state: %u  actions: %@", self.queueState, self.actionQueue];
-        
         if (self.queueState == EX2ActionQueueState_Started)
             return;
         
@@ -119,8 +116,6 @@
     @synchronized(self.actionQueue)
     {
         
-        [EX2ANGLogger log:@"[EX2ActionQueue] stopQueue, cancelCurrentAction: %@", NSStringFromBOOL(cancelRunningActions)];
-        
         actionsToCancel = self.runningActions;
         
         self.queueState = EX2ActionQueueState_Stopped;
@@ -129,7 +124,6 @@
     // Cancel the running actions if needed
     if (cancelRunningActions)
     {
-        [EX2ANGLogger log:@"[EX2ActionQueue] stopQueue, canceling actions: %@", actionsToCancel];
         for (id<EX2Action> action in actionsToCancel)
         {
             [action cancelAction];
@@ -139,7 +133,6 @@
 
 - (void)clearQueue
 {
-    [EX2ANGLogger log:@"[EX2ActionQueue] clearQueue, actions: %@", self.actionQueue];
     // Reset the queue state
     @synchronized(self.actionQueue)
     {
@@ -162,8 +155,6 @@
         }
         [_actionQueue removeAllObjects];
     }
-    
-    [EX2ANGLogger log:@"[EX2ActionQueue] clearQueue, queue cleared, actions: %@", self.actionQueue];
 }
 
 - (void)queueAction:(id<EX2Action>)action
@@ -173,8 +164,6 @@
     
     @synchronized(self.actionQueue)
     {
-        [EX2ANGLogger log:@"[EX2ActionQueue] queueAction: %@", action];
-
         action.actionQueue = self;
         action.actionState = EX2ActionState_Waiting;
         [self.actionQueue addObject:action];
@@ -186,7 +175,6 @@
 {
     @synchronized(self.actionQueue)
     {
-        [EX2ANGLogger log:@"[EX2ActionQueue] cancelAction: %@", action];
         // Set the state
         action.actionState = EX2ActionState_Cancelled;
         action.actionQueue = nil;
@@ -206,8 +194,6 @@
 {
     @synchronized(self.actionQueue)
     {
-        [EX2ANGLogger log:@"[EX2ActionQueue] actionFailed: %@", action];
-
         // Set the action state to failed
         action.actionState = EX2ActionState_Failed;
         action.actionQueue = nil;
@@ -230,8 +216,6 @@
     
     @synchronized(self.actionQueue)
     {
-        [EX2ANGLogger log:@"[EX2ActionQueue] actionFinished: %@", action];
-
         // Set the action state to completed
         action.actionState = EX2ActionState_Completed;
         action.actionQueue = nil;
@@ -271,7 +255,6 @@
                 }
             }            
         }
-        [EX2ANGLogger log:@"[EX2ActionQueue] runNextActions, starting actions: %@", nextActions];
         // Start the actions
         for (id<EX2Action> action in nextActions)
         {
