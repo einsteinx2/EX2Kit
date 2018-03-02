@@ -17,6 +17,7 @@
 		1820C9061D0ED29200252BA2 /* ContextFilterLogFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = 53F15F6B162B9FCA00C24FC1 /* ContextFilterLogFormatter.m */; };
 		1820C9071D0ED29500252BA2 /* DispatchQueueLogFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = 53F15F6D162B9FCA00C24FC1 /* DispatchQueueLogFormatter.m */; };
 		18252E061CD8926100350A67 /* UIView+Tools.m in Sources */ = {isa = PBXBuildFile; fileRef = 53F15F48162B9FCA00C24FC1 /* UIView+Tools.m */; };
+		185DBF5D2049B85F001A27AD /* EX2ANGLogger.m in Sources */ = {isa = PBXBuildFile; fileRef = 18A45BE12048685A003CE1D6 /* EX2ANGLogger.m */; };
 		188150A21C8F221700B69793 /* DDLog.h in Headers */ = {isa = PBXBuildFile; fileRef = 53F15F65162B9FCA00C24FC1 /* DDLog.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		18A45BE22048685A003CE1D6 /* EX2ANGLogger.h in Headers */ = {isa = PBXBuildFile; fileRef = 18A45BE02048685A003CE1D6 /* EX2ANGLogger.h */; };
 		18A45BE32048685A003CE1D6 /* EX2ANGLogger.m in Sources */ = {isa = PBXBuildFile; fileRef = 18A45BE12048685A003CE1D6 /* EX2ANGLogger.m */; };
@@ -2196,6 +2197,7 @@
 				ECF069F120077D8E008CBA54 /* RNEncryptor.m in Sources */,
 				ECF069F220077D8E008CBA54 /* RNOpenSSLCryptor.m in Sources */,
 				ECF069F320077D8E008CBA54 /* RNOpenSSLDecryptor.m in Sources */,
+				185DBF5D2049B85F001A27AD /* EX2ANGLogger.m in Sources */,
 				ECF069F420077D8E008CBA54 /* NSOrderedSet+FirstObject.m in Sources */,
 				ECF069F520077D8E008CBA54 /* RNOpenSSLEncryptor.m in Sources */,
 				ECF069F620077D8E008CBA54 /* RNCryptorOld.m in Sources */,
