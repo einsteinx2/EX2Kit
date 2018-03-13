@@ -149,6 +149,7 @@
 		18D45BB91C8F100800A025CC /* NSArray+FilterBlock.h in Headers */ = {isa = PBXBuildFile; fileRef = 53059A3C17ABB3CF00FA04B2 /* NSArray+FilterBlock.h */; };
 		18D45BBB1C8F100800A025CC /* NSOrderedSet+FilterBlock.h in Headers */ = {isa = PBXBuildFile; fileRef = 531CC54B17DA639F001A97EB /* NSOrderedSet+FilterBlock.h */; };
 		18EC25EB1CAD343000EC874E /* UIImageView+ImageAnimated.m in Sources */ = {isa = PBXBuildFile; fileRef = 539DC3FB17D649FF001FE630 /* UIImageView+ImageAnimated.m */; };
+		18EF1EC120582BFE0098309E /* NSURL+SkipBackupAttribute.m in Sources */ = {isa = PBXBuildFile; fileRef = 533B3E53165D8FE000ECD75F /* NSURL+SkipBackupAttribute.m */; };
 		18F9471D1CF88D2300711F69 /* UIViewController+IsVisible.m in Sources */ = {isa = PBXBuildFile; fileRef = 53F15F4A162B9FCA00C24FC1 /* UIViewController+IsVisible.m */; };
 		5304A21116901857009B2732 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5304A21016901857009B2732 /* Cocoa.framework */; };
 		5304A21B16901857009B2732 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 5304A21916901857009B2732 /* InfoPlist.strings */; };
@@ -2171,6 +2172,7 @@
 				ECF069BB20077D8E008CBA54 /* NSString+FileSize.m in Sources */,
 				ECF069BC20077D8E008CBA54 /* NSString+Gzip.m in Sources */,
 				ECF069BD20077D8E008CBA54 /* NSString+hex.m in Sources */,
+				18EF1EC120582BFE0098309E /* NSURL+SkipBackupAttribute.m in Sources */,
 				ECF069BE20077D8E008CBA54 /* NSString+md5.m in Sources */,
 				ECF069C020077D8E008CBA54 /* NSString+SHA1.m in Sources */,
 				ECF069C120077D8E008CBA54 /* NSString+time.m in Sources */,

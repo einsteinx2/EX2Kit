@@ -14,39 +14,22 @@
 
 - (BOOL)addOrRemoveSkipAttribute:(BOOL)isAdd
 {
-    // Must be at least iOS 5.0.1 and this URL must point to a file
-    if (SYSTEM_VERSION_LESS_THAN(@"5.0.1") || ![[NSFileManager defaultManager] fileExistsAtPath:self.path])
-        return NO;
+    // Do the new method
+    NSError *error = nil;
+    BOOL success = NO;
     
-    if (SYSTEM_VERSION_EQUAL_TO(@"5.0.1"))
+    @try
     {
-        // Do the deprecated method
-        const char* filePath = [self.path fileSystemRepresentation];
-        const char* attrName = "com.apple.MobileBackup";
-        u_int8_t attrValue = isAdd;
-        
-        int result = setxattr(filePath, attrName, &attrValue, sizeof(attrValue), 0, 0);
-        return result == 0;
+        success = [self setResourceValue:@(isAdd) forKey:NSURLIsExcludedFromBackupKey error:&error];
+        if(!success)
+            [EX2ANGLogger logError:@"Error excluding %@ from backup: %@", self.lastPathComponent, error];
     }
-    else
-    {        
-        // Do the new method
-        NSError *error = nil;
-        BOOL success = NO;
-        
-        @try
-        {
-            success = [self setResourceValue:@(isAdd) forKey:NSURLIsExcludedFromBackupKey error:&error];
-            if(!success)
-                [EX2ANGLogger logError:@"Error excluding %@ from backup: %@", self.lastPathComponent, error];
-        }
-        @catch (NSException *exception)
-        {
-            [EX2ANGLogger logError:@"Exception excluding %@ from backup: %@", self.lastPathComponent, exception];
-        }
-        
-        return success;
+    @catch (NSException *exception)
+    {
+        [EX2ANGLogger logError:@"Exception excluding %@ from backup: %@", self.lastPathComponent, exception];
     }
+    
+    return success;
 }
 
 - (BOOL)addSkipBackupAttribute
