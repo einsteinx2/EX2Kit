@@ -37,7 +37,7 @@
 @property (nonatomic, strong) IBOutlet UIButton *tapButton;
 
 @property (copy) void (^tapBlock)(void);
-
+@property (copy) void (^closeBlock)(void);
 
 - (BOOL)showAndHideSlidingNotification;
 - (BOOL)showAndHideSlidingNotification:(NSTimeInterval)showTime;

@@ -230,28 +230,35 @@ static BOOL _isThrottlingEnabled = YES;
 
 - (void)hideSlidingNotification
 {
+    [self hideSlidingNotificationIsTap:NO];
+}
+
+- (void)hideSlidingNotificationIsTap:(BOOL)isTap
+{
     [self.class hidingMessage:self.message];
     
 	[NSObject cancelPreviousPerformRequestsWithTarget:self selector:@selector(hide) object:nil];
 	
-	[UIView animateWithDuration:ANIMATION_DELAY animations:^(void)
-     {
+	[UIView animateWithDuration:ANIMATION_DELAY animations:^(void) {
          self.view.y = -self.view.height;
      }
-    completion:^(BOOL finished)
-     {
+    completion:^(BOOL finished) {
          [self.view removeFromSuperview];
          self.selfRef = nil;
+         if (self.tapBlock && isTap)
+         {
+             self.tapBlock();
+         }
+         if (self.closeBlock && !isTap)
+         {
+             self.closeBlock();
+         }
      }];
 }
 
 - (IBAction)buttonAction:(id)sender
 {
-    if (self.tapBlock)
-    {
-        self.tapBlock();
-    }
-    [self hideSlidingNotification];
+    [self hideSlidingNotificationIsTap:YES];
 }
 
 @end
