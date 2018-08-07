@@ -37,6 +37,9 @@ static __strong NSMutableArray *_activeMessages = nil;
 
 + (BOOL)showingMessage:(NSString *)message
 {
+    if (!message) {
+        return YES;
+    }
     @synchronized(_activeMessages)
     {
         if (!_isThrottlingEnabled)
