@@ -491,6 +491,8 @@
 		53FA691D1644789900D19576 /* table-fade-bottom@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 53FA69191644789900D19576 /* table-fade-bottom@2x.png */; };
 		53FA691E1644789900D19576 /* table-fade-top.png in Resources */ = {isa = PBXBuildFile; fileRef = 53FA691A1644789900D19576 /* table-fade-top.png */; };
 		53FA691F1644789900D19576 /* table-fade-top@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 53FA691B1644789900D19576 /* table-fade-top@2x.png */; };
+		9901CC58212D8C1D0080B171 /* NSArray+CleanString.h in Headers */ = {isa = PBXBuildFile; fileRef = 9901CC56212D8C1D0080B171 /* NSArray+CleanString.h */; };
+		9901CC59212D8C1D0080B171 /* NSArray+CleanString.m in Sources */ = {isa = PBXBuildFile; fileRef = 9901CC57212D8C1D0080B171 /* NSArray+CleanString.m */; };
 		ECF069AB20077D8E008CBA54 /* NSArray+FirstObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 53F15EFD162B9FCA00C24FC1 /* NSArray+FirstObject.m */; };
 		ECF069AC20077D8E008CBA54 /* NSArray+Safe.m in Sources */ = {isa = PBXBuildFile; fileRef = 53F15EFF162B9FCA00C24FC1 /* NSArray+Safe.m */; };
 		ECF069AD20077D8E008CBA54 /* NSMutableArray+Safe.m in Sources */ = {isa = PBXBuildFile; fileRef = 53F15F01162B9FCA00C24FC1 /* NSMutableArray+Safe.m */; };
@@ -897,6 +899,8 @@
 		53FA69191644789900D19576 /* table-fade-bottom@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "table-fade-bottom@2x.png"; sourceTree = "<group>"; };
 		53FA691A1644789900D19576 /* table-fade-top.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "table-fade-top.png"; sourceTree = "<group>"; };
 		53FA691B1644789900D19576 /* table-fade-top@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "table-fade-top@2x.png"; sourceTree = "<group>"; };
+		9901CC56212D8C1D0080B171 /* NSArray+CleanString.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSArray+CleanString.h"; sourceTree = "<group>"; };
+		9901CC57212D8C1D0080B171 /* NSArray+CleanString.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSArray+CleanString.m"; sourceTree = "<group>"; };
 		ECF06A8420077D8E008CBA54 /* libEX2Kit watch.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libEX2Kit watch.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		FC488815182C880A00356DE7 /* UIViewController+Tools.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+Tools.h"; sourceTree = "<group>"; };
 		FC488816182C880A00356DE7 /* UIViewController+Tools.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+Tools.m"; sourceTree = "<group>"; };
@@ -1161,6 +1165,8 @@
 				53621DBA178AB4D000C605FA /* NSArray+Reverse.m */,
 				53059A3C17ABB3CF00FA04B2 /* NSArray+FilterBlock.h */,
 				53059A3D17ABB3CF00FA04B2 /* NSArray+FilterBlock.m */,
+				9901CC56212D8C1D0080B171 /* NSArray+CleanString.h */,
+				9901CC57212D8C1D0080B171 /* NSArray+CleanString.m */,
 			);
 			path = NSArray;
 			sourceTree = "<group>";
@@ -1620,6 +1626,7 @@
 				53A1C30817EB88980039DA81 /* UIImage+Color.h in Headers */,
 				5373A953162DD71F0016A019 /* UIBezierPath+Smoothing.h in Headers */,
 				5373A954162DD71F0016A019 /* UIColor+ColorWithHex.h in Headers */,
+				9901CC58212D8C1D0080B171 /* NSArray+CleanString.h in Headers */,
 				5373A955162DD71F0016A019 /* UIDevice+Hardware.h in Headers */,
 				53703CB317ED05DF007F3011 /* UIButton+Colors.h in Headers */,
 				5373A956162DD71F0016A019 /* UIDevice+Software.h in Headers */,
@@ -2083,6 +2090,7 @@
 				53F15FA8162B9FCA00C24FC1 /* UITableView+Shadows.m in Sources */,
 				53F15FA9162B9FCA00C24FC1 /* UIView+Tools.m in Sources */,
 				53F15FAA162B9FCA00C24FC1 /* UIViewController+IsVisible.m in Sources */,
+				9901CC59212D8C1D0080B171 /* NSArray+CleanString.m in Sources */,
 				53F15FAB162B9FCA00C24FC1 /* EX2FileDecryptor.m in Sources */,
 				53F15FAC162B9FCA00C24FC1 /* EX2FileEncryptor.m in Sources */,
 				53F15FAD162B9FCA00C24FC1 /* EX2NetworkIndicator.m in Sources */,

@@ -29,5 +29,6 @@
 #import "NSOrderedSet+FilterBlock.h"
 #import "NSURL+SkipBackupAttribute.h"
 #import "NSFileHandle+Hash.h"
+#import "NSArray+CleanString.h"
 
 #endif
