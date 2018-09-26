@@ -2615,7 +2615,6 @@
 				SKIP_INSTALL = YES;
 				STRIP_STYLE = all;
 				SUPPORTED_PLATFORMS = "watchsimulator watchos";
-				VALID_ARCHS = "armv7k i386";
 			};
 			name = Debug;
 		};
@@ -2645,7 +2644,6 @@
 				SKIP_INSTALL = YES;
 				STRIP_STYLE = all;
 				SUPPORTED_PLATFORMS = "watchsimulator watchos";
-				VALID_ARCHS = "armv7k i386";
 			};
 			name = Release;
 		};
