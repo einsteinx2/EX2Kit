@@ -49,9 +49,6 @@
 // Generates a color randomly
 + (UIColor *)randomColor;
 
-// ObjC (manual hex conversion to RGB)
-+ (UIColor *)colorWithHexa:(NSString *)hexadecimal;
-
 - (CGFloat)RGBRedFromColor;
 - (CGFloat)RGBGreenFromColor;
 - (CGFloat)RGBBlueFromColor;
