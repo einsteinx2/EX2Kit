@@ -94,7 +94,7 @@
     _segmentMargin = 20.;
     _borderWidth = .5;
     
-    UIColor *gray = [UIColor colorWithHexString:@"707070"];
+    UIColor *gray = [UIColor colorWithHex:0x707070];
     
     _borderColor = gray;
     _selectedBackgroundColor = gray;
