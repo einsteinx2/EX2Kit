@@ -35,6 +35,12 @@
 #define IS_IMSG() (false)
 #endif
 
+#ifdef WATCHOS
+#define IS_WATCH() (true)
+#else
+#define IS_WATCH() (false)
+#endif
+
 // Lite version build switch
 #ifdef LITE
 #define IS_LITE() (true)  // ENABLE  Lite version
