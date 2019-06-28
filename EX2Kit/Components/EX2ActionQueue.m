@@ -192,6 +192,7 @@
 
 - (void)actionFailed:(id<EX2Action>)action
 {
+    BOOL fatal = [action respondsToSelector:@selector(isFailureFatal)] && [action isFailureFatal];
     @synchronized(self.actionQueue)
     {
         // Set the action state to failed
@@ -204,7 +205,9 @@
             [self.actionQueue removeObjectIdenticalTo:action];
         }
     }
-    
+    if (fatal) {
+        [self clearQueue];
+    }
     // Run the next actions if needed
     [self runNextActions];
 }

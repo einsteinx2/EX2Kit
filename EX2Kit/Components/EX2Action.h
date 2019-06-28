@@ -21,6 +21,9 @@ typedef enum
 @class EX2ActionQueue;
 @protocol EX2Action <NSObject>
 
+@optional
+- (BOOL)isFailureFatal;
+
 @required
 @property (weak) EX2ActionQueue *actionQueue;
 @property EX2ActionState actionState;
