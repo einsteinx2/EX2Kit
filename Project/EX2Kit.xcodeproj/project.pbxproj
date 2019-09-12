@@ -1863,6 +1863,7 @@
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
 			knownRegions = (
+				English,
 				en,
 			);
 			mainGroup = 53D44E9415AA56C700CDD3B8;
@@ -2602,7 +2603,7 @@
 					"$(inherited)",
 					"WOS=1",
 				);
-				GCC_TREAT_WARNINGS_AS_ERRORS = YES;
+				GCC_TREAT_WARNINGS_AS_ERRORS = NO;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = NO;
 				HEADER_SEARCH_PATHS = "\"$(SRCROOT)\"/**";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
@@ -2632,7 +2633,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "EX2Kit/EX2Kit-Prefix.pch";
 				GCC_PREPROCESSOR_DEFINITIONS = "WOS=1";
-				GCC_TREAT_WARNINGS_AS_ERRORS = YES;
+				GCC_TREAT_WARNINGS_AS_ERRORS = NO;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = NO;
 				HEADER_SEARCH_PATHS = "\"$(SRCROOT)\"/**";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
