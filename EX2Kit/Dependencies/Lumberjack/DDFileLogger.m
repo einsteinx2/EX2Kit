@@ -564,7 +564,7 @@
 	
 	dispatch_block_t block = ^{ @autoreleasepool {
 		
-		maximumFileSize = newMaximumFileSize;
+        self->maximumFileSize = newMaximumFileSize;
 		[self maybeRollLogFileDueToSize];
 		
 	}};
@@ -580,7 +580,7 @@
 		NSAssert(currentQueue != globalLoggingQueue, @"Core architecture requirement failure");
 		
 		dispatch_async(globalLoggingQueue, ^{
-			dispatch_async(loggerQueue, block);
+            dispatch_async(self->loggerQueue, block);
 		});
 	}
 }
@@ -622,7 +622,7 @@
 		
 	dispatch_block_t block = ^{ @autoreleasepool {
 		
-		rollingFrequency = newRollingFrequency;
+        self->rollingFrequency = newRollingFrequency;
 		[self maybeRollLogFileDueToAge];
 		
 	}};
@@ -638,7 +638,7 @@
 		NSAssert(currentQueue != globalLoggingQueue, @"Core architecture requirement failure");
 		
 		dispatch_async(globalLoggingQueue, ^{
-			dispatch_async(loggerQueue, block);
+            dispatch_async(self->loggerQueue, block);
 		});
 	}
 }
@@ -718,7 +718,7 @@
 		NSAssert(currentQueue != globalLoggingQueue, @"Core architecture requirement failure");
 		
 		dispatch_async(globalLoggingQueue, ^{
-			dispatch_async(loggerQueue, block);
+            dispatch_async(self->loggerQueue, block);
 		});
 	}
 }

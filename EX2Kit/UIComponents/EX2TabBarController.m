@@ -74,13 +74,6 @@ static char key;
     }
 }
 
-- (void)viewDidUnload
-{
-    [super viewDidUnload];
-    // Release any retained subviews of the main view.
-    // e.g. self.myOutlet = nil;
-}
-
 - (void)viewWillAppear:(BOOL)animated
 {
 	[super viewWillAppear:animated];
@@ -138,11 +131,6 @@ static char key;
             [self.selectedViewController viewDidDisappear:animated];
         }
 	}
-}
-
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
-{
-    return (interfaceOrientation == UIInterfaceOrientationPortrait);
 }
 
 - (NSArray *)viewControllers
@@ -247,7 +235,7 @@ static char key;
 {
     // Ensure this always runs in the main thread, not just always calling runInMainThread because I don't want it to be async all the time
     void (^block) (void) = ^{
-        if (_selectedIndex != index)
+        if (self->_selectedIndex != index)
         {
             // Sanity check
             if (self.tabBar.items.count == 0)

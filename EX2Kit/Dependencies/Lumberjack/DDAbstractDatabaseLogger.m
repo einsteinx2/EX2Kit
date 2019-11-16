@@ -259,16 +259,16 @@
 {
 	dispatch_block_t block = ^{
 		
-		if (saveThreshold != threshold)
+        if (self->saveThreshold != threshold)
 		{
-			saveThreshold = threshold;
+            self->saveThreshold = threshold;
 			
 			// Since the saveThreshold has changed,
 			// we check to see if the current unsavedCount has surpassed the new threshold.
 			// 
 			// If it has, we immediately save the log.
 			
-			if ((unsavedCount >= saveThreshold) && (saveThreshold > 0))
+            if ((self->unsavedCount >= self->saveThreshold) && (self->saveThreshold > 0))
 			{
 				@autoreleasepool {
 					
@@ -310,9 +310,9 @@
 		// C99 recommended floating point comparison macro
 		// Read: isLessThanOrGreaterThan(floatA, floatB)
 		
-		if (/* saveInterval != interval */ islessgreater(saveInterval, interval))
+        if (/* saveInterval != interval */ islessgreater(self->saveInterval, interval))
 		{
-			saveInterval = interval;
+            self->saveInterval = interval;
 			
 			// There are several cases we need to handle here.
 			// 
@@ -327,11 +327,11 @@
 			// 4. If the saveInterval decreased, then we need to reset the timer so that it fires at an earlier date.
 			//    (Plus we might need to do an immediate save.)
 			
-			if (saveInterval > 0.0)
+            if (self->saveInterval > 0.0)
 			{
 				@autoreleasepool
 				{
-					if (saveTimer == NULL)
+                    if (self->saveTimer == NULL)
 					{
 						// Handles #2
 						// 
@@ -353,7 +353,7 @@
 					}
 				}
 			}
-			else if (saveTimer)
+            else if (self->saveTimer)
 			{
 				// Handles #1
 				
@@ -393,12 +393,12 @@
 		// C99 recommended floating point comparison macro
 		// Read: isLessThanOrGreaterThan(floatA, floatB)
 		
-		if (/* maxAge != interval */ islessgreater(maxAge, interval))
+        if (/* maxAge != interval */ islessgreater(self->maxAge, interval))
 		{
-			NSTimeInterval oldMaxAge = maxAge;
+            NSTimeInterval oldMaxAge = self->maxAge;
 			NSTimeInterval newMaxAge = interval;
 			
-			maxAge = interval;
+            self->maxAge = interval;
 			
 			// There are several cases we need to handle here.
 			// 
@@ -442,7 +442,7 @@
 				{
 					[self performDelete];
 					
-					if (deleteTimer)
+                    if (self->deleteTimer)
 						[self updateDeleteTimer];
 					else
 						[self createAndStartDeleteTimer];
@@ -482,9 +482,9 @@
 		// C99 recommended floating point comparison macro
 		// Read: isLessThanOrGreaterThan(floatA, floatB)
 		
-		if (/* deleteInterval != interval */ islessgreater(deleteInterval, interval))
+        if (/* deleteInterval != interval */ islessgreater(self->deleteInterval, interval))
 		{
-			deleteInterval = interval;
+            self->deleteInterval = interval;
 			
 			// There are several cases we need to handle here.
 			// 
@@ -499,11 +499,11 @@
 			// 4. If the deleteInterval decreased, then we need to reset the timer so that it fires at an earlier date.
 			//    (Plus we might need to do an immediate delete.)
 			
-			if (deleteInterval > 0.0)
+            if (self->deleteInterval > 0.0)
 			{
 				@autoreleasepool
 				{
-					if (deleteTimer == NULL)
+                    if (self->deleteTimer == NULL)
 					{
 						// Handles #2
 						// 
@@ -524,7 +524,7 @@
 					}
 				}
 			}
-			else if (deleteTimer)
+            else if (self->deleteTimer)
 			{
 				// Handles #1
 				
@@ -561,7 +561,7 @@
 {
 	dispatch_block_t block = ^{
 		
-		deleteOnEverySave = flag;
+        self->deleteOnEverySave = flag;
 	};
 	
 	if (DDLogCurrentQueue == loggerQueue)

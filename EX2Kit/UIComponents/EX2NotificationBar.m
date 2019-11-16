@@ -189,60 +189,6 @@ NSString * const EX2NotificationBarDidHide = @"EX2NotificationBarDidHide";
 	}
 }
 
-#pragma mark - Rotation
-
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)inOrientation 
-{
-	// Don't allow rotating while the notification bar is animating
-	if (self.isNotificationBarAnimating)
-	{
-		return inOrientation == [UIApplication sharedApplication].statusBarOrientation;
-	}
-
-	// Otherwise ask the main view controller
-	return [self.mainViewController shouldAutorotateToInterfaceOrientation:inOrientation];
-}
-
-- (void)willRotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration
-{
-	[super willRotateToInterfaceOrientation:toInterfaceOrientation duration:duration];
-	
-	[self.mainViewController willRotateToInterfaceOrientation:toInterfaceOrientation duration:duration];
-		
-	if ([self.mainViewController isKindOfClass:[UITabBarController class]])
-	{
-		UITabBarController *tabController = (UITabBarController *)self.mainViewController;
-		if ([tabController.selectedViewController isKindOfClass:[UINavigationController class]])
-		{
-			// Must resize the navigation bar manually because it will only happen automatically when 
-			// it's the main window's root view controller
-			UINavigationController *navController = (UINavigationController *)tabController.selectedViewController;
-			navController.navigationBar.height = UIInterfaceOrientationIsPortrait(toInterfaceOrientation) ? 44. : 32.;
-		}
-	}
-}
-
-- (void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation
-{
-	[super didRotateFromInterfaceOrientation:fromInterfaceOrientation];
-	
-	[self.mainViewController didRotateFromInterfaceOrientation:fromInterfaceOrientation];
-	
-	if (self.isNotificationBarShowing)
-	{
-		if ([self.mainViewController isKindOfClass:[UITabBarController class]])
-		{
-			UITabBarController *tabController = (UITabBarController *)self.mainViewController;
-			if ([tabController.selectedViewController isKindOfClass:[UINavigationController class]])
-			{
-				// Must shift down the navigation controller after switching tabs
-				UINavigationController *navController = (UINavigationController *)tabController.selectedViewController;
-				navController.view.y = ACTUAL_STATUS_HEIGHT;
-			}
-		}
-	}
-}
-
 #pragma mark - Properties
 
 - (EX2NotificationBarPosition)notificationBarPosition
@@ -391,7 +337,7 @@ NSString * const EX2NotificationBarDidHide = @"EX2NotificationBarDidHide";
             }
         }
         
-        _isNotificationBarAnimating = NO;
+        self->_isNotificationBarAnimating = NO;
 	};
 	
 	[[NSNotificationCenter defaultCenter] postNotificationName:EX2NotificationBarWillShow object:nil];
@@ -463,7 +409,7 @@ NSString * const EX2NotificationBarDidHide = @"EX2NotificationBarDidHide";
             }
         }
         
-        _isNotificationBarAnimating = NO;
+        self->_isNotificationBarAnimating = NO;
 	};
 	
 	[[NSNotificationCenter defaultCenter] postNotificationName:EX2NotificationBarWillHide object:nil];

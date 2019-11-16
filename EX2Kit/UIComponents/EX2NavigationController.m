@@ -96,11 +96,11 @@ static void *key;
 - (void)dealloc
 {
     [EX2Dispatch runInMainThreadAndWaitUntilDone:YES block:^{
-        for (int i = _viewControllers.count - 1; i >= 0; i--)
+        for (int i = self->_viewControllers.count - 1; i >= 0; i--)
         {
-            UIViewController *controller = [_viewControllers objectAtIndex:i];
+            UIViewController *controller = [self->_viewControllers objectAtIndex:i];
             controller.ex2NavigationController = nil;
-            [_viewControllers removeObjectAtIndexSafe:i];
+            [self->_viewControllers removeObjectAtIndexSafe:i];
         }
     }];
 }
@@ -219,12 +219,6 @@ static void *key;
 	{
 		[self.viewControllers.lastObject viewDidDisappear:animated];
 	}
-}
-
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
-{
-    // Overriden to allow any orientation.
-    return YES;
 }
 
 - (void)didReceiveMemoryWarning
