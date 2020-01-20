@@ -140,10 +140,12 @@ static BOOL _isThrottlingEnabled = YES;
 	
 	self.messageLabel.text = self.message;
 	
-	[self.view addBottomShadow];
-	CALayer *shadow = [[self.view.layer sublayers] objectAtIndexSafe:0];
-    shadow.frame = CGRectMake(shadow.frame.origin.x, shadow.frame.origin.y, 1024., shadow.frame.size.height);
-    
+    self.view.layer.shadowRadius = 4.0f;
+    self.view.layer.shadowColor = UIColor.blackColor.CGColor;
+    self.view.layer.shadowOffset = CGSizeMake(2.0f, 0.0f);
+    self.view.layer.shadowOpacity = 0.6f;
+    self.view.layer.masksToBounds = NO;
+
     [self sizeToFit];
 }
 
@@ -167,11 +169,6 @@ static BOOL _isThrottlingEnabled = YES;
 	{
 		self.messageLabel.size = expectedLabelSize;
 		self.view.height = self.messageLabel.height + 6.;
-		
-		[[[self.view.layer sublayers] objectAtIndexSafe:0] removeFromSuperlayer];
-		[self.view addBottomShadow];
-		CALayer *shadow = [[self.view.layer sublayers] objectAtIndexSafe:0];
-		shadow.frame = CGRectMake(shadow.frame.origin.x, shadow.frame.origin.y, 1024., shadow.frame.size.height);
 	}
     
     // Add 20 points for the status bar if we're on iOS 7.
