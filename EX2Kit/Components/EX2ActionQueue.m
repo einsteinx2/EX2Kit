@@ -10,6 +10,7 @@
 
 @interface EX2ActionQueue()
 @property (nonatomic, strong) NSMutableArray *actionQueue;
+@property (nonatomic) NSInteger absoluteActionCount;
 @end
 
 @implementation EX2ActionQueue
@@ -231,6 +232,19 @@
     [self runNextActions];
 }
 
+- (NSString *)getTagFromAction:(NSObject *)action
+{
+    @synchronized (self.actionQueue) {
+        NSString * KEY = @"action_queue_id";
+        NSString * actionId = [action ex2CustomObjectForKey:KEY];
+        if (!actionId) {
+            actionId = @(self.absoluteActionCount++).stringValue;
+            [action ex2SetCustomObject:actionId forKey:KEY];
+        }
+        return actionId;
+    }
+}
+
 - (void)runNextActions
 {
     // Run the next action if needed
@@ -244,8 +258,23 @@
             NSUInteger numberOfRunningActions = self.runningActions.count;
             if (numberOfRunningActions < self.numberOfConcurrentActions)
             {
+                NSMutableSet * seen = [[NSMutableSet alloc] init];
                 for (id<EX2Action> action in self.actionQueue)
                 {
+                    [seen addObject:[self getTagFromAction:action]];
+                    if ([action respondsToSelector:@selector(blockedBy)]) {
+                        BOOL blocked = NO;
+                        for (id<EX2Action> blocker in action.blockedBy) {
+                            NSString * tag = [self getTagFromAction:blocker];
+                            if ([seen containsObject:tag]) {
+                                blocked = YES;
+                                break;
+                            }
+                        }
+                        if (blocked) {
+                            continue;
+                        }
+                    }
                     if (action.actionState == EX2ActionState_Waiting)
                     {
                         [nextActions addObject:action];

@@ -24,6 +24,8 @@ typedef enum
 @optional
 - (BOOL)isFailureFatal;
 
+@property (nonatomic, readonly) NSArray<id<EX2Action>> * blockedBy;
+
 @required
 @property (weak) EX2ActionQueue *actionQueue;
 @property EX2ActionState actionState;
