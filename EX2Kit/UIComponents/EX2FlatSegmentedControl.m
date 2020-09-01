@@ -58,18 +58,8 @@
     if ((self = [super init]))
     {
         [self commonInit];
-    }
-    return self;
-}
-
-- (id)initWithItems:(NSArray *)items
-{
-    if ((self = [self init]))
-    {
-        [items enumerateObjectsUsingBlock:^(id title, NSUInteger idx, BOOL *stop)
-         {
-             [self insertSegmentWithTitle:title atIndex:idx animated:NO];
-         }];
+        
+        [self initWithItems:nil];
     }
     return self;
 }
