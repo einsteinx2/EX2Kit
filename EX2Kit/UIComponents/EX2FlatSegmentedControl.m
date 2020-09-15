@@ -55,11 +55,9 @@
 
 - (id)init
 {
-    if ((self = [super init]))
+    if ((self = [super initWithItems:nil]))
     {
         [self commonInit];
-        
-        [self initWithItems:nil];
     }
     return self;
 }
