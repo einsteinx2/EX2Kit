@@ -31,6 +31,7 @@ typedef enum
 @property (readonly) NSArray *runningActions;
 @property (readonly) NSArray *actions;
 @property (readonly) NSUInteger actionCount;
+@property (readonly) BOOL didFail;
 
 @property (nonatomic, weak) id<EX2ActionQueueDelegate> delegate;
 

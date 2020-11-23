@@ -11,6 +11,7 @@
 @interface EX2ActionQueue()
 @property (nonatomic, strong) NSMutableArray *actionQueue;
 @property (nonatomic) NSInteger absoluteActionCount;
+@property (readwrite) BOOL didFail;
 @end
 
 @implementation EX2ActionQueue
@@ -207,6 +208,7 @@
         }
     }
     if (fatal) {
+        _didFail = YES;
         [self clearQueue];
     }
     // Run the next actions if needed
