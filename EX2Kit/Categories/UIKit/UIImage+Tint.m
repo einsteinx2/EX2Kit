@@ -12,7 +12,7 @@
 
 @implementation UIImage (Tint)
 
-- (UIImage *)imageWithTint:(UIColor *)tintColor 
+- (UIImage *)imageWithTint:(UIColor *)tintColor
 {
     // Begin drawing
     //CGRect aRect = CGRectMake(0.f, 0.f, self.size.width * SCREEN_SCALE(), self.size.height * SCREEN_SCALE());
@@ -25,7 +25,7 @@
     {
         //UIGraphicsBeginImageContext(aRect.size);
         UIGraphicsBeginImageContextWithOptions(aRect.size, NO, SCREEN_SCALE());
-        CGContextRef c = UIGraphicsGetCurrentContext(); 
+        CGContextRef c = UIGraphicsGetCurrentContext();
 		
         // draw image
         CGContextTranslateCTM(c, 0, aRect.size.height);
@@ -42,7 +42,7 @@
     UIGraphicsBeginImageContextWithOptions(aRect.size, NO, SCREEN_SCALE());
 	
     // Get the graphic context
-    CGContextRef c = UIGraphicsGetCurrentContext(); 
+    CGContextRef c = UIGraphicsGetCurrentContext();
 	
     // Draw the image
     [self drawInRect:aRect];
@@ -60,7 +60,7 @@
     UIRectFillUsingBlendMode(aRect, kCGBlendModeNormal);
 	
     UIImage *img = UIGraphicsGetImageFromCurrentImageContext();
-    UIGraphicsEndImageContext();    
+    UIGraphicsEndImageContext();
 	
     // Release memory
     CGColorSpaceRelease(colorSpace);

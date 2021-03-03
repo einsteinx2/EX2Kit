@@ -9,7 +9,6 @@
 #ifndef EX2Kit_EX2QuartzCoreCategories_h
 #define EX2Kit_EX2QuartzCoreCategories_h
 
-#import "CALayer+ImageFromLayer.h"
 #import "CALayer+SublayerWithName.h"
 
 #endif

@@ -229,8 +229,6 @@ static BOOL _isThrottlingEnabled = YES;
 - (void)hideSlidingNotificationIsTap:(BOOL)isTap
 {
     [self.class hidingMessage:self.message];
-    
-	[NSObject cancelPreviousPerformRequestsWithTarget:self selector:@selector(hide) object:nil];
 	
 	[UIView animateWithDuration:ANIMATION_DELAY animations:^(void) {
          self.view.y = -self.view.height;
