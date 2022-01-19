@@ -62,13 +62,6 @@
 #define IS_DEBUG() (false)
 #endif
 
-// Adhoc version build switch (activated only on adhoc)
-#ifdef ADHOC
-#define IS_ADHOC() (true)
-#else
-#define IS_ADHOC() (false)
-#endif
-
 // Release version build switch
 #ifdef RELEASE
 #define IS_RELEASE() (true)
