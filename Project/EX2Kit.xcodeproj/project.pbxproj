@@ -1556,6 +1556,11 @@
 			isa = PBXProject;
 			attributes = {
 				LastUpgradeCheck = 1100;
+				TargetAttributes = {
+					53F15EE8162B9F6800C24FC1 = {
+						DevelopmentTeam = NNML75GLQL;
+					};
+				};
 			};
 			buildConfigurationList = 53D44E9915AA56C700CDD3B8 /* Build configuration list for PBXProject "EX2Kit" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -2205,6 +2210,7 @@
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COMBINE_HIDPI_IMAGES = NO;
+				DEVELOPMENT_TEAM = NNML75GLQL;
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "EX2KitResources/EX2KitResources-Prefix.pch";
@@ -2232,6 +2238,7 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COMBINE_HIDPI_IMAGES = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = NNML75GLQL;
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "EX2KitResources/EX2KitResources-Prefix.pch";
