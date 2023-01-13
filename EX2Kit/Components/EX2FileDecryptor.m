@@ -403,13 +403,12 @@ static __strong NSMutableDictionary *_activeFilePaths;
 
 - (unsigned long long)encryptedFileSizeOnDisk
 {
-    return [EX2FileDecryptor encryptedFileSizeOnDiskForPath:self.path];
+    return [EX2FileDecryptor encryptedFileSizeOnDiskForPath:self.path withError:nil];
 }
 
-+ (unsigned long long)encryptedFileSizeOnDiskForPath:(NSString *)path
-{
++ (unsigned long long)encryptedFileSizeOnDiskForPath:(NSString *)path withError:(NSError **)error {
     // Just get the size from disk
-    return [[[NSFileManager defaultManager] attributesOfItemAtPath:path error:nil] fileSize];
+    return [[[NSFileManager defaultManager] attributesOfItemAtPath:path error:error] fileSize];
 }
 
 - (unsigned long long)decryptedFileSizeOnDisk
@@ -436,10 +435,11 @@ static __strong NSMutableDictionary *_activeFilePaths;
 	return decryptedSize;
 }
 
-+ (unsigned long long)decryptedFileSizeOnDiskForPath:(NSString *)path chunkSize:(NSUInteger)chunkSize
-{
++ (unsigned long long)decryptedFileSizeOnDiskForPath:(NSString *)path
+                                           chunkSize:(NSUInteger)chunkSize
+                                           withError:(NSError **)error {
     // Find the encrypted size
-    unsigned long long encryptedSize = [self encryptedFileSizeOnDiskForPath:path];
+    unsigned long long encryptedSize = [self encryptedFileSizeOnDiskForPath:path withError:error];
     
     NSUInteger encryptedChunkSize = [self encryptedChunkSizeForChunkSize:chunkSize];
     // Find padding size

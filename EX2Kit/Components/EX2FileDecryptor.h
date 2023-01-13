@@ -37,7 +37,7 @@
 + (void)unregisterOpenFilePath:(NSString *)path;
 + (BOOL)isFilePathInUse:(NSString *)path;
 
-+ (unsigned long long)decryptedFileSizeOnDiskForPath:(NSString *)path chunkSize:(NSUInteger)chunkSize;
++ (unsigned long long)decryptedFileSizeOnDiskForPath:(NSString *)path chunkSize:(NSUInteger)chunkSize withError:(NSError **)error;
 
 
 @end
