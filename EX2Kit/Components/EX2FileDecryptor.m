@@ -247,7 +247,7 @@ static __strong NSMutableDictionary *_activeFilePaths;
 			//[EX2ANGLogger log:@"[EX2FileDecryptor] temp buffer filled size %lu for path: %@", (unsigned long)self.tempDecryptBuffer.filledSpaceLength, self.path];
 		}
 		
-		while (self.tempDecryptBuffer.filledSpaceLength > 0)
+		while (self.tempDecryptBuffer.filledSpaceLength >= encryptedChunkSize)
 		{
 			//[EX2ANGLogger log:@"[EX2FileDecryptor] draining data for path: %@", self.path];
 			NSData *data = [self.tempDecryptBuffer drainData:encryptedChunkSize];
