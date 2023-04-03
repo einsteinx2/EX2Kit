@@ -90,7 +90,7 @@ static __strong NSMutableDictionary *gcdTimers;
 static __strong NSObject *syncObject;
 
 __attribute__((constructor))
-static void initialize_navigationBarImages() 
+static void initialize_navigationBarImages(void)
 {
 	gcdTimers = [[NSMutableDictionary alloc] init];
 	syncObject = [[NSObject alloc] init];
