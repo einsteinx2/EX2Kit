@@ -13,7 +13,7 @@
 
 + (NSString *)URLEncodeString:(NSString *)string 
 {
-    NSString * legalString = @"ABCDEFGHIJKLMNOPQRSTUVWXYabcdefghijklmnopqrstuvwxy1234567890";
+    NSString * legalString = @"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz1234567890";
     return [string stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet characterSetWithCharactersInString:legalString]];
 }
 
