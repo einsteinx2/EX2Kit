@@ -16,6 +16,11 @@
 {
     // Begin drawing
     //CGRect aRect = CGRectMake(0.f, 0.f, self.size.width * SCREEN_SCALE(), self.size.height * SCREEN_SCALE());
+    
+    if (self.size.width == 0 || self.size.height == 0) {
+        return nil;
+    }
+    
     CGRect aRect = CGRectMake(0.f, 0.f, self.size.width, self.size.height);
     CGImageRef alphaMask;
 	
