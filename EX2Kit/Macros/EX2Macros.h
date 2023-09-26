@@ -29,11 +29,7 @@
 #define IS_TV() (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomTV)
 #endif
 
-#ifdef IMSG
-#define IS_IMSG() (true)
-#else
 #define IS_IMSG() (false)
-#endif
 
 #ifdef WATCHOS
 #define IS_WATCH() (true)
@@ -71,8 +67,6 @@
 
 // Screen scale detection
 #ifdef IOS
-#define SCREEN_SCALE() ([[UIScreen mainScreen] respondsToSelector:@selector(scale)] ? [[UIScreen mainScreen] scale] : 1.0f)
-#elif IMSG
 #define SCREEN_SCALE() ([[UIScreen mainScreen] respondsToSelector:@selector(scale)] ? [[UIScreen mainScreen] scale] : 1.0f)
 #elif TVOS
 #define SCREEN_SCALE() ([[UIScreen mainScreen] respondsToSelector:@selector(scale)] ? [[UIScreen mainScreen] scale] : 1.0f)

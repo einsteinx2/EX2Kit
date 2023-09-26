@@ -18,9 +18,7 @@
 #import "EX2Action.h"
 #import "EX2ActionBlock.h"
 
-#ifdef IOS
-    #import "EX2NetworkIndicator.h"
-    #import "EX2Reachability.h"
-#endif
+#import "EX2NetworkIndicator.h"
+#import "EX2Reachability.h"
 
 #endif
